@@ -1,7 +1,135 @@
-@{ ViewData["Title"] = "Home Page"; }
+﻿@model HelpingHands.Models.Contact
+<section id="hero" class="module parallax rellax parallax-1">
+    <div class="container">
+        <div class="jumbotron special-jumbtron" data-aos="fade-up">
+            <h1 class="display-4 text-center" data-aos="fade-up" data-aos-delay="300">An advocacy group creating access to quality wellness care has never been easier... </h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="500">Talk To A U.S Licensed Doctor Where You Want & When You Want For Just $9.90 A Month</p>
+            <hr>
+            <a data-aos="fade-up" data-aos-delay="700" class="btn btn-success btn-cta font-weight-bold text-uppercase btn-lg btn-rounded btn-shadowed" role="button" href="~/pricing.html">Subscribe</a>
+        </div>
 
-<div id="app"></div>
+    </div>
+</section>
 
-@section scripts {
-    <script src="~/dist/main.js" asp-append-version="true"></script>
+<section id="features" class="feature-container bg-gray-2 float-container">
+    <div class="container ">
+        <div class="features-list ">
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="./assets/img/clock.svg" alt="clock">
+                <div class="desc">
+                    24/7 access to U.S.-licensed doctors by phone or video
+                </div>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                <img src="./assets/img/phone.svg" alt="phone">
+                <div class="desc">
+                    Our doctors diagnose and treat a wide range of medical conditions
+                </div>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                <img src="./assets/img/pills.svg" alt="pills">
+                <div class="desc">
+                    Quality care from wherever you are
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="vision" class="vision-container bg-gray-4">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-lg vision-image" data-aos="fade" data-aos-delay="100" style="background-image: url('./assets/img/vision1.jpeg');">
+            </div>
+            <div class="col-lg vision-wrapper">
+                <div class="vision-box" data-aos="fade" data-aos-delay="200">
+                    <h1>
+                        We are transforming how people access healthcare around the world.
+                    </h1><br><br>
+                    <p style="text-align: justify;">We are creating a new kind of healthcare experience – one with greater convenience, outcomes, and value. Our partnerships combined with our Mobile App drive community participation in healthy behaviors designed to prevent and lower incident rates of pre-diagnosed illnesses.</p>
+
+                    <svg class="triangle" preserveAspectRatio="none" data-bbox="19.999 20 160.002 160" viewBox="19.999 20 160.002 160" height="200" width="200" xmlns="http://www.w3.org/2000/svg" data-type="shape" role="img">
+                        <g>
+                            <path d="M180.001 180H19.999V20l160.002 160z"></path>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="text-center">
+                    <a class="btn btn-success btn-cta text-spaced font-weight-bold text-uppercase btn-lg btn-rounded btn-shadowed" role="button" href="./partner.html">Partner with us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="slide" class="slide-show bg-gray-2">
+    <div class="slideshow-vision container">
+        <div>
+            <img src="./assets/img/vision1.png" alt="" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-item standalone bg-gray-2">
+                <div class="desc">
+                    Video access in just a snap from any device
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="./assets/img/vision2.png" alt="" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-item standalone bg-gray-2">
+                <div class="desc">
+                    Get medical treatment & prescriptions for non-medical conditions from your smartphone
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="./assets/img/vision3.png" alt="" data-aos="fade-up" data-aos-delay="600">
+            <div class="feature-item standalone bg-gray-2">
+                <div class="desc">
+                    No more waiting rooms, or delays to visit a certified doctor
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section id="contact" class="contact-wrapper bg-gray-3">
+    <div class="container" data-aos="fade-up" data-aos-delay="200">
+        <h1 class="text-uppercase text-center text-white">contact Life helping hands</h1>
+        <form asp-controller="Contacts" asp-action="Create" class="contact-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md">
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-md">
+                    <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Email">
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <input type="text" asp-for="Subject" class="form-control" placeholder="Subject">
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <textarea class="form-control" asp-for="Note" rows="3" placeholder="Type your message here..."></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-lg btn-light">Submit</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

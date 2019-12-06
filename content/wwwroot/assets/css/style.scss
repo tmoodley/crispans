@@ -1,0 +1,92 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+$transition: all 0.3s ease;
+body {
+  overflow-x: hidden;
+}
+.img-full {
+  width: 100%;
+  height: auto;
+}
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+ 
+ 
+.navbar-scroll {
+  background-color: rgba(0,123,255,0.4);
+  transition: background-color 0.5s;
+}
+@media(max-width: 768px){
+    .navbar {background-color: #007bff !important; }
+}
+/* ============================================================
+  PRIMARY STRUCTURE
+============================================================ */
+.parallax-container {
+  // max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+  SECTIONS
+============================================================ */
+ 
+section.module.parallax-1 {
+  background-image: url("../img/hero-banner.jpg");
+  background-position: 50% 100%;
+  background-repeat: repeat; 
+  background-size: cover;
+  // background-color: rgba(0,123,255,0.4);
+  // background-blend-mode: screen;
+} 
+
+section.module.parallax{
+  @include media-mobile{
+    .container{
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    margin-top: 70px;
+  }
+}
+
+@media all and (min-width: 600px) {
+
+  section.module.parallax {
+    padding: 250px 0px 150px 0px;
+    
+  }
+   
+}
+ 
+@media(max-width: 768px){
+    .col-md-4 {
+      text-align: center;
+      line-height: 30px;
+  }
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
+}

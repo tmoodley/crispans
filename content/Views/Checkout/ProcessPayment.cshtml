@@ -1,0 +1,24 @@
+﻿@page
+@model HelpingHands.Models.Customer
+@{
+
+}
+
+<section id="donate" class="pad-top donate-wrapper bg-gray-1">
+    <div class="container">
+        <h3>Thank You for registering</h3>
+        <br />
+        Congratulations @ViewBag.GivenName @ViewBag.FamilyName!
+        <br />
+        <br />
+        You are on your way to a healthier life. With this "@ViewBag.SubscriptionPlan" subscription plan, you are smartly investing in you and your family's future.
+        <br />
+        <br />
+        You are eligible for services on the 1st of the month but in the meantime look out for your welcome kit and download the Tela-Doc application. Directions for setup are below.
+        <br />
+        <br />
+        Thanks for joining!<br />
+        We will start billing your card on the 1st of every month to start your service.<br />
+        <a asp-area="Identity" asp-page="/Account/Register">Register</a> now for maintenance of your account.
+    </div>
+</section>

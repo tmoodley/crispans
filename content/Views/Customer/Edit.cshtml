@@ -1,0 +1,100 @@
+﻿@model HelpingHands.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+    ViewBag.Email = User.Identity.Name;
+}
+<section id="donate" class="pad-top donate-wrapper bg-gray-1">
+    <div class="container">
+        <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
+            Update your information
+        </h1>
+        <div class="row justify-content-md-center">
+            <div class="col-lg-6">
+                <form asp-action="Edit" class="contact-form form-dark mt-5 ">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="PartnerId" type="hidden" value="281921" />
+                    <input asp-for="PrimarySourceMemberId" type="hidden">
+                    <input asp-for="EmailAddress" type="hidden" value="@ViewBag.Email" />
+                    <input asp-for="StartDate" type="hidden" />
+                    <input asp-for="SubscriptionPlan" type="hidden">
+                    <input asp-for="Gender" type="hidden">
+                    <input asp-for="Id" type="hidden">
+
+                    <div class="form-group row">
+                        <label asp-for="GivenName" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="GivenName" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="GivenName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="FamilyName" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="FamilyName" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="FamilyName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Birthday" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="Birthday" type="date" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="Birthday" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Address1" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="Address1" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="Address1" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="City" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="City" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="State" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="State" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="PostalCode" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="PostalCode" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CellPhone" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="CellPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
+                            <small>Required cell number format: ### ###-####</small>
+                            <span asp-validation-for="CellPhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="WorkPhone" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="WorkPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
+                            <small>Required work number format: ### ###-####</small>
+                            <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <button type="submit" class="btn btn-block btn-lg btn-dark">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
