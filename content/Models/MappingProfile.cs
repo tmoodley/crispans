@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Square.Connect.Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,8 @@ namespace HelpingHands.Models
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
+            CreateMap<Models.Customer, Models.DTO.CustomerDto>();
+            CreateMap<Models.Invoice, Models.DTO.InvoiceDto>();
             CreateMap<Models.Customer, Square.Connect.Model.Customer>();
             CreateMap<Models.Customer, CreateCustomerRequest>()
                 .ForMember(x => x.Birthday,

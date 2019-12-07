@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HelpingHands.Data;
 using HelpingHands.Models;
+using AutoMapper;
+using HelpingHands.Models.DTO;
 
 namespace Vue2Spa.Controllers.api
 {
@@ -15,17 +17,23 @@ namespace Vue2Spa.Controllers.api
     public class CustomersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        // Create a field to store the mapper object
+        private readonly IMapper _mapper;
 
-        public CustomersController(ApplicationDbContext context)
+        public CustomersController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
         {
-            return await _context.Customers.ToListAsync();
+            var customersDto = await _context.Customers.Include(x => x.Invoices).ToListAsync();
+            var customerList= _mapper.Map<List<CustomerDto>>(customersDto);
+
+            return customerList;
         }
 
         // GET: api/Customers/5
