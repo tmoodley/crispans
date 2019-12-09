@@ -58,6 +58,7 @@ namespace HelpingHands.Models.DTO
         public DateTime Birthday { get; set; }
         public string ReferenceId { get; set; }
         public string Note { get; set; }
+        public DateTime PaidUntil { get; set; }
         public List<InvoiceDto> Invoices { get; set; }
     }
 }

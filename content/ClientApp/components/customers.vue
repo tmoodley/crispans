@@ -14,7 +14,7 @@
             <th>Given Name</th>
             <th>Family Name</th>
             <th>Subscription Plan</th>
-            <th>Paid</th>
+            <th>Paid Until</th>
           </tr>
         </thead>
         <tbody>
@@ -22,8 +22,8 @@
             <td>{{ customer.gender }}</td>
             <td>{{ customer.givenName }}</td>
             <td>{{ customer.familyName }}</td>
-            <td>{{ customer.subscriptionPlan }}</td> 
-            <td><icon :icon="customer.invoices.length > 0 ? 'check' : 'times'" class="mr-2 menu-icon"></icon> </td>
+            <td>{{ customer.subscriptionPlan }}</td>
+            <td>{{ customer.paidUntil }}</td> 
           </tr>
         </tbody>
       </table> 

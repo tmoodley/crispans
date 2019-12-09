@@ -12,7 +12,11 @@ namespace HelpingHands.Models
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<Models.Customer, Models.DTO.CustomerDto>();
+            CreateMap<Models.Customer, Models.DTO.CustomerDto>()
+                .ForMember(x => x.PaidUntil,
+                            m => m.MapFrom(a => a.Invoices
+                            .OrderByDescending(x => x.PaymentDate)
+                            .FirstOrDefault(x => x != null).PaymentDate));
             CreateMap<Models.Invoice, Models.DTO.InvoiceDto>();
             CreateMap<Models.Customer, Square.Connect.Model.Customer>();
             CreateMap<Models.Customer, CreateCustomerRequest>()
