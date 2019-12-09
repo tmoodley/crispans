@@ -78,11 +78,11 @@ namespace Vue2Spa.Controllers
                 try
                 {
                     var response = paymentsApi.CreatePayment(createPaymentRequest);
-
+                    DateTime now = DateTime.Now; 
                     //Add Invoice
                     var invoice = new Invoice()
                     {
-                        PaymentDate = new DateTime(),
+                        PaymentDate = now.Date,
                         CustomerId = id,
                         SubscriptionPlan = customer.SubscriptionPlan,
                         Amount = cost,

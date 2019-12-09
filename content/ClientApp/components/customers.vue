@@ -1,11 +1,23 @@
 <template>
   <div>
     <h1>Customers</h1>
-    <button @click="processPayments()">Process Payments</button>
+    <b-container fluid>
+      <b-row class="my-1">
+        <b-col sm="3">
+          <label for="date1">Date To Process</label>
+        </b-col>
+        <b-col sm="3">
+          <b-form-input id="date1" type="date"></b-form-input>
+        </b-col>
+        <b-col sm="3">
+          <button @click="processPayments()">Process Payments</button>
+        </b-col>
+      </b-row>
+    </b-container> 
     <div v-if="!customers" class="text-center">
       <p><em>Loading...</em></p>
       <h1><icon icon="spinner" pulse /></h1>
-    </div> 
+    </div>
     <template v-if="customers">
       <table class="table">
         <thead class="dark-bg text-white">
@@ -23,10 +35,10 @@
             <td>{{ customer.givenName }}</td>
             <td>{{ customer.familyName }}</td>
             <td>{{ customer.subscriptionPlan }}</td>
-            <td>{{ customer.paidUntil }}</td> 
+            <td>{{ customer.paidUntil }}</td>
           </tr>
         </tbody>
-      </table> 
+      </table>
     </template>
   </div>
 </template>
@@ -38,7 +50,8 @@ export default {
       customers: null,
       total: 0,
       pageSize: 5,
-      currentPage: 1
+      currentPage: 1,
+      date1: '',
     }
   },
 
