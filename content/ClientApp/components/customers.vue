@@ -34,7 +34,7 @@ export default {
       pageSize: 5,
       currentPage: 1,
       date1: '',
-      fields: ['givenName', 'familyName', 'subscriptionPlan', 'paidUntil', 'paid'],
+      fields: ['givenName', 'familyName', 'primarySourceMemberId','emailAddress','subscriptionPlan', 'paidUntil', 'paid'],
       value: 45,
       max: 100
     }

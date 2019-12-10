@@ -2,10 +2,12 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "/Views/Shared/_AdminLayout.cshtml";
-} 
+}
 
 <div id="app"></div>
 
 @section scripts {
+    <!-- Custom scripts for all pages-->
+    <script src="~/dist/vendor.js" asp-append-version="true"></script>
     <script src="~/dist/main.js" asp-append-version="true"></script>
 }
