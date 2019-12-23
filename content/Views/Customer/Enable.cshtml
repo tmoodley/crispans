@@ -1,0 +1,17 @@
+
+@{
+    ViewData["Title"] = "Enable";
+}
+    <section id="donate" class="pad-top donate-wrapper bg-gray-1">
+        <div class="container">
+            <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
+                Enable Membership
+            </h1> 
+            We're happy that you want to enable your membership.  Please click on button below to restart your membership.
+
+            <form asp-action="Enable" class="contact-form form-dark mt-5 ">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <button type="submit" class="btn btn-block btn-lg btn-dark">Enable Membership</button>
+            </form>
+        </div>
+    </section>

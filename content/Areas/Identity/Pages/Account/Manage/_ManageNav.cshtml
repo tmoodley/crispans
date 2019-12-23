@@ -1,4 +1,4 @@
-﻿@inject SignInManager<HelpingHands.Models.ApplicationUser> SignInManager
+@inject SignInManager<HelpingHands.Models.ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
@@ -11,4 +11,5 @@
             <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
         }
         <li class="nav-item"><a class="nav-link" href="/Dependents/">Dependents</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Customer/Cancel">Cancel Membership</a></li>
     </ul>

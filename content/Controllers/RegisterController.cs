@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,13 +60,15 @@ namespace HelpingHands.Controllers
             }
 
             string userId = this.User.FindFirstValue(ClaimTypes.Name);
-
-            var customer = await _context.Customers
-                .FirstOrDefaultAsync(m => m.EmailAddress == userId);
-            if (customer != null)
+            if (!string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Dependents");
-            }
+                var customer = await _context.Customers
+                                .FirstOrDefaultAsync(m => m.EmailAddress == userId);
+                if (customer != null)
+                {
+                    return RedirectToAction("Index", "Dependents");
+                }
+            }            
 
             ViewBag.subscription = subscription;
             ViewBag.PrimarySourceId = GeneratePrimaryId();
@@ -84,8 +86,18 @@ namespace HelpingHands.Controllers
         {
             if (ModelState.IsValid)
             {
-                //save to square 
-                 
+                //Make sure email is not null 
+                if (string.IsNullOrEmpty(customer.EmailAddress))
+                {
+                    ViewBag.Error = "Valid Email is Required.";
+                    ViewBag.subscription = "Monthly";
+                    ViewBag.Gender = customer.Gender;
+                    ViewBag.PrimarySourceId = GeneratePrimaryId();
+                    var _partnerId = HttpContext.Session.GetString("PartnerId");
+                    ViewBag.PartnerId = _partnerId;
+                    return View();
+                }
+
                 var _customer = await _context.Customers.FirstOrDefaultAsync(m => m.EmailAddress == customer.EmailAddress);
                 if (_customer != null)
                 {

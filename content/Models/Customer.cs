@@ -55,6 +55,7 @@ namespace HelpingHands.Models
         public string Nickname {get; set; }
         [Display(Name = "Company")]
         public string CompanyName {get; set; }
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string EmailAddress {get; set; }
@@ -63,5 +64,6 @@ namespace HelpingHands.Models
         public string ReferenceId {get; set;}
         public string Note {get; set;} 
         public List<Invoice> Invoices { get; set; }
+        public bool isActive { get; set; }
     }
 }
