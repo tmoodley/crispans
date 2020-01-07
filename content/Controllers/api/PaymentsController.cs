@@ -63,10 +63,10 @@ namespace Vue2Spa.Controllers
                 //// Monetary amounts are specified in the smallest unit of the applicable currency.
                 //// This amount is in cents. It's also hard-coded for $1.00,
                 //// which isn't very useful.
-                long cost = 99;
+                long cost = 9900;
                 if (customer.SubscriptionPlan == "Monthly")
                 {
-                    cost = (long)9.90;
+                    cost = (long)990.00;
                 }
                 Money amount = new Money(cost, "USD");
 

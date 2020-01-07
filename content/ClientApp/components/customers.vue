@@ -11,6 +11,8 @@
         </b-col>
         <b-col sm="4">
           <b-button @click="processPayments" :disabled="date1 == ''">Process Payments</b-button>
+          <b-button size="sm" @click="selectAllRows">Select all</b-button>
+          <b-button size="sm" @click="clearSelected">Clear selected</b-button>
         </b-col>
       </b-row>
       <b-progress :value="value" :max="max" show-progress animated v-if="isCompleted"></b-progress>
@@ -20,7 +22,22 @@
       <h1><icon icon="spinner" pulse /></h1>
     </div>
     <template v-if="customers">
-      <b-table hover :items="customers" :fields="fields"></b-table>
+      <b-table hover :items="customers" :fields="fields" selectable
+               ref="selectableTable"
+               :select-mode="selectMode"
+               @row-selected="onRowSelected">
+        <!-- Example scoped slot for select state illustrative purposes -->
+        <template v-slot:cell(selected)="{ rowSelected }">
+          <template v-if="rowSelected">
+            <span aria-hidden="true">&check;</span>
+            <span class="sr-only">Selected</span>
+          </template>
+          <template v-else>
+            <span aria-hidden="true">&nbsp;</span>
+            <span class="sr-only">Not selected</span>
+          </template>
+        </template>
+      </b-table>
     </template>
   </div>
 </template>
@@ -34,12 +51,23 @@ export default {
       pageSize: 5,
       currentPage: 1,
       date1: '',
-      fields: ['givenName', 'familyName', 'primarySourceMemberId','emailAddress','subscriptionPlan', 'paidUntil', 'paid'],
+      selectMode: 'multi',
+      fields: ['selected', 'givenName', 'familyName', 'primarySourceMemberId','emailAddress','subscriptionPlan', 'paidUntil', 'paid'],
       value: 45,
-      max: 100
+      max: 100, 
+      selected: []
     }
   }, 
   methods: {
+    onRowSelected(items) {
+        this.selected = items
+    },
+    selectAllRows() {
+      this.$refs.selectableTable.selectAllRows()
+    },
+    clearSelected() {
+      this.$refs.selectableTable.clearSelected()
+    },
     async loadPage () { 
       try { 
         let response = await this.$http.get(`/api/Customers`) 
@@ -52,9 +80,10 @@ export default {
     },
     async processPayments() {
       var _this = this;
-      this.max = this.customers.length;
+      this.max = this.selected.length;
       this.value = 0;
-      this.customers.forEach(function (customer, index, array) {
+      debugger;
+      this.selected.forEach(function (customer, index, array) {
         if (date1.value > customer.paidUntil) {
           try { 
               let response = _this.$http.get(`/api/Payments/` + customer.id) 
