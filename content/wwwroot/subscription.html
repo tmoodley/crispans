@@ -38,250 +38,251 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-gray fixed-top">
-    <div class="container">
-      <div class="d-flex order-0">
-        <a class="navbar-brand mr-1" href="./">
-          <img src="/assets/img/LOGO.png" alt="Capacitym">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-          <i class="fa fa-bars"></i>
-        </button>
-      </div>
-      <div class="navbar-collapse collapse w-50 justify-content-center order-2" id="collapsingNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="btn btn-outline-brand btn-block font-weight-bold" href="./index.html">Home <span class="sr-only">Home</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-brand btn-block font-weight-bold" href="./pricing.html">Plans & Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-brand btn-block font-weight-bold" href="./partner.html">Partner With Us</a>
-          </li>
-        </ul>
-      </div>
-      <span class="navbar-text navbar-cta small text-truncate mt-1 text-right order-1 order-md-last">
-          
-          <a class="btn btn-outline-brand font-weight-bold" role="button" href="/Identity/Account/Login">Login</a>
-      </span>
-    </div>
-  </nav>
-
-
-  <section id="donate" class="pad-top donate-wrapper bg-gray-4">
-    <div class="container">
-      <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">Subscription
-      </h1>
-      <div class="row justify-content-md-center">
-        <div class="col-lg-6">
-          <form class="contact-form form-dark mt-5  ">
-            <div class="form-group required row">
-              <label for="partner_id" class="col-sm-3 col-form-label">Partner ID </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="partner_id" value="">
-              </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-gray fixed-top">
+        <div class="container">
+            <div class="d-flex order-0">
+                <a class="navbar-brand mr-1" href="./">
+                    <img src="/assets/img/LOGO.png" alt="Capacitym">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+                    <i class="fa fa-bars"></i>
+                </button>
             </div>
-            <!--  -->
-
-            <div class="form-group row">
-              <label for="relationship_primary" class="col-sm-3 col-form-label">Relationship to Primary</label>
-              <div class="col-sm-9">
-                <select class="custom-select mr-sm-2" id="relationship_primary">
-                  <option value="Primary" class="custom_field_select_option " selected="">Primary</option>
-                  <option value="Spouse – Male" class="custom_field_select_option ">Spouse – Male</option>
-                  <option value="Spouse – Female" class="custom_field_select_option ">Spouse – Female</option>
-                  <option value="Child – Male" class="custom_field_select_option ">Child – Male</option>
-                  <option value="Child – Female" class="custom_field_select_option ">Child – Female</option>
-                  <option value="Other" class="custom_field_select_option ">Other</option>
-                  <option value="Unspecified" class="custom_field_select_option ">Unspecified</option>
-                  <option value="Parent" class="custom_field_select_option ">Parent</option>
-                </select>
-              </div>
+            <div class="navbar-collapse collapse w-50 justify-content-center order-2" id="collapsingNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="btn btn-outline-brand btn-block font-weight-bold" href="./index.html">Home <span class="sr-only">Home</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-brand btn-block font-weight-bold" href="./pricing.html">Plans & Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-brand btn-block font-weight-bold" href="./partner.html">Partner With Us</a>
+                    </li>
+                </ul>
             </div>
-            <!--  -->
+            <span class="navbar-text navbar-cta small text-truncate mt-1 text-right order-1 order-md-last">
 
-            <div class="form-group row">
-              <label for="primary_source_member_id" class="col-sm-3 col-form-label">Primary Source Member ID</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="primary_source_member_id" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="first_name" class="col-sm-3 col-form-label">First Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="first_name" placeholder="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="last_name" placeholder="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="email" class="col-sm-3 col-form-label">E-mail</label>
-              <div class="col-sm-9">
-                <input type="email" class="form-dark form-control form-control-plaintext" id="email" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="username" class="col-sm-3 col-form-label">Username</label>
-              <div class="col-sm-9">
-                <input type="email" class="form-dark form-control form-control-plaintext" id="username" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="password" class="col-sm-3 col-form-label">Password</label>
-              <div class="col-sm-9">
-                <input type="password" class="form-dark form-control form-control-plaintext" id="password" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="gender" class="col-sm-3 col-form-label">Gender</label>
-              <div class="col-sm-9">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="gender-1" value="M">
-                  <label class="form-check-label" for="gender-1">Male</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="gender-2" value="F">
-                  <label class="form-check-label" for="gender-2">Female</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="gender-3" value="NA">
-                  <label class="form-check-label" for="gender-3">Unspecified</label>
-                </div>
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="birthday" class="col-sm-3 col-form-label">Birth Date</label>
-              <div class="col-sm-9">
-                <input type="date" class="form-dark form-control form-control-plaintext" id="birthday" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="address" class="col-sm-3 col-form-label">Address</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="address" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="City" class="col-sm-3 col-form-label">City</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="City" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="State" class="col-sm-3 col-form-label">State</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="State" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="postal" class="col-sm-3 col-form-label">Postal Code</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="postal" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group required row">
-              <label for="start_date" class="col-sm-3 col-form-label">Start Date</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="start_date" value="">
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group row">
-              <label for="cellphone" class="col-sm-3 col-form-label">Cell Phone</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="cellphone" placeholder="### ###-####">
-                <small>Required phone number format: ### ###-####</small>
-              </div>
-            </div>
-            <!--  -->
-
-            <div class="form-group row">
-              <label for="workphone" class="col-sm-3 col-form-label">workphone Phone</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-dark form-control form-control-plaintext" id="workphone" placeholder="### ###-####">
-                <small>Required phone number format: ### ###-####</small>
-              </div>
-            </div>
-            <!--  -->
-            <br>
-            <div class="form-group">
-              <label for="subscription_plan" class="font-weight-bold">Subscription Plans</label>
-              <hr>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="subscription_plan" id="subscription_plan1" value="yearly" checked>
-                <label class="form-check-label" for="subscription_plan1">
-                  <b> Yearly - $99 / 1 Year</b> <br />
-                  <small><i>Annually Subscription Renewal Fee is $99</i></small>
-                </label>
-              </div>
-              <hr>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="subscription_plan" id="subscription_plan2" value="monthly">
-                <label class="form-check-label" for="subscription_plan2">
-                  <b>Monthly - $9.9 / 1 Month</b><br />
-                  <small><i>Monthly Subscription Renewal Fee is $9.9</i></small>
-                </label>
-              </div>
-              <hr>
-            </div>
-            <br>
-            <br>
-            <div class="form-group required row">
-
-              <div class="col-sm-9">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="send_to_email" value="sendEmail">
-                  <label class="form-check-label" for="send_to_email">Send these credentials via email.</label>
-                </div>
-              </div>
-            </div>
-            <!--  -->
-
-
-            <br>
-            <br>
-            <button type="submit" class="btn btn-block btn-lg btn-dark">Register</button>
-
-            <div class="text-center"> <small>Only registered users can see this information.</small></div>
-          </form>
+                <a class="btn btn-outline-brand font-weight-bold" role="button" href="/Identity/Account/Login">Login</a>
+            </span>
         </div>
-
-      </div>
-    </div>
-  </section>
+    </nav>
 
 
-  <section id="contact" class="contact-wrapper bg-gray-3">
+    <section id="donate" class="pad-top donate-wrapper bg-gray-4">
+        <div class="container">
+            <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
+                Subscription
+            </h1>
+            <div class="row justify-content-md-center">
+                <div class="col-lg-6">
+                    <form class="contact-form form-dark mt-5  ">
+                        <div class="form-group required row">
+                            <label for="partner_id" class="col-sm-3 col-form-label">Partner ID </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="partner_id" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group row">
+                            <label for="relationship_primary" class="col-sm-3 col-form-label">Relationship to Primary</label>
+                            <div class="col-sm-9">
+                                <select class="custom-select mr-sm-2" id="relationship_primary">
+                                    <option value="Primary" class="custom_field_select_option " selected="">Primary</option>
+                                    <option value="Spouse – Male" class="custom_field_select_option ">Spouse – Male</option>
+                                    <option value="Spouse – Female" class="custom_field_select_option ">Spouse – Female</option>
+                                    <option value="Child – Male" class="custom_field_select_option ">Child – Male</option>
+                                    <option value="Child – Female" class="custom_field_select_option ">Child – Female</option>
+                                    <option value="Other" class="custom_field_select_option ">Other</option>
+                                    <option value="Unspecified" class="custom_field_select_option ">Unspecified</option>
+                                    <option value="Parent" class="custom_field_select_option ">Parent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group row">
+                            <label for="primary_source_member_id" class="col-sm-3 col-form-label">Primary Source Member ID</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="primary_source_member_id" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="first_name" class="col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="first_name" placeholder="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="last_name" placeholder="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="email" class="col-sm-3 col-form-label">E-mail</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-dark form-control form-control-plaintext" id="email" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="username" class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-dark form-control form-control-plaintext" id="username" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="password" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-dark form-control form-control-plaintext" id="password" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+                            <div class="col-sm-9">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender-1" value="M">
+                                    <label class="form-check-label" for="gender-1">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender-2" value="F">
+                                    <label class="form-check-label" for="gender-2">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender-3" value="NA">
+                                    <label class="form-check-label" for="gender-3">Unspecified</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="birthday" class="col-sm-3 col-form-label">Birth Date</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-dark form-control form-control-plaintext" id="birthday" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="address" class="col-sm-3 col-form-label">Address</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="address" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="City" class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="City" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="State" class="col-sm-3 col-form-label">State</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="State" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="postal" class="col-sm-3 col-form-label">Postal Code</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="postal" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group required row">
+                            <label for="start_date" class="col-sm-3 col-form-label">Start Date</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="start_date" value="">
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group row">
+                            <label for="cellphone" class="col-sm-3 col-form-label">Cell Phone</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="cellphone" placeholder="### ###-####">
+                                <small>Required phone number format: ### ###-####</small>
+                            </div>
+                        </div>
+                        <!--  -->
+
+                        <div class="form-group row">
+                            <label for="workphone" class="col-sm-3 col-form-label">workphone Phone</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-dark form-control form-control-plaintext" id="workphone" placeholder="### ###-####">
+                                <small>Required phone number format: ### ###-####</small>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <br>
+                        <div class="form-group">
+                            <label for="subscription_plan" class="font-weight-bold">Subscription Plans</label>
+                            <hr>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="subscription_plan" id="subscription_plan1" value="yearly" checked>
+                                <label class="form-check-label" for="subscription_plan1">
+                                    <b> Yearly - $99 / 1 Year</b> <br />
+                                    <small><i>Annually Subscription Renewal Fee is $99</i></small>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="subscription_plan" id="subscription_plan2" value="monthly">
+                                <label class="form-check-label" for="subscription_plan2">
+                                    <b>Monthly - $9.9 / 1 Month</b><br />
+                                    <small><i>Monthly Subscription Renewal Fee is $9.9</i></small>
+                                </label>
+                            </div>
+                            <hr>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="form-group required row">
+
+                            <div class="col-sm-9">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="send_to_email" value="sendEmail">
+                                    <label class="form-check-label" for="send_to_email">Send these credentials via email.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+
+
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-block btn-lg btn-dark">Register</button>
+
+                        <div class="text-center"> <small>Only registered users can see this information.</small></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="contact-wrapper bg-gray-3">
         <div class="container" data-aos="fade-up" data-aos-delay="200">
             <h1 class="text-uppercase text-center text-white">contact Capacitym</h1>
 
@@ -308,29 +309,40 @@
             </form>
         </div>
     </section>
-  
 
 
-  <footer>
-    <div class="social">
-      <a href="#"><img src="./assets/img/fb.png" alt=""></a>
-      <a href="#"><img src="./assets/img/twitter.png" alt=""></a>
-      <a href="#"><img src="./assets/img/linkedin.png" alt=""></a>
-    </div>
-    <div class="text-center">
-      ©2019 by Capacitym.
-    </div>
-  </footer>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                    <ul class="list-unstyled list-inline social text-center">
+                        <li class="list-inline-item"><a href="https://www.facebook.com/Capacitym"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="https://twitter.com/Capacitym2"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                    </ul>
+                </div>
+                </hr>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p><u><a href="https://capacitym.com/">Capacitym</a></u> </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-  <!-- build:js -->
-  <script src="assets/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="assets/js/scripts.js"></script>
-  <!-- endbuild -->
+    <!-- build:js -->
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>

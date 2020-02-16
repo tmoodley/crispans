@@ -42,7 +42,7 @@
         <div class="container">
             <div class="d-flex order-0">
                 <a class="navbar-brand mr-1" href="/">
-                    <img src="/assets/img/logo.jpeg" alt="Capacitym">
+                    <img src="/assets/img/LOGO.png" alt="Capacitym">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
                     <i class="fa fa-bars"></i>
@@ -169,16 +169,27 @@
     </section>
 
 
-    <footer>
-        <div class="social">
-            <a href="#"><img src="./assets/img/fb.png" alt=""></a>
-            <a href="#"><img src="./assets/img/twitter.png" alt=""></a>
-            <a href="#"><img src="./assets/img/linkedin.png" alt=""></a>
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                    <ul class="list-unstyled list-inline social text-center">
+                        <li class="list-inline-item"><a href="https://www.facebook.com/Capacitym"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="https://twitter.com/Capacitym2"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                    </ul>
+                </div>
+                </hr>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p><u><a href="https://capacitym.com/">Capacitym</a></u> </p>
+                </div>
+            </div>
         </div>
-        <div class="text-center">
-            ©2019 by Capacitym.
-        </div>
-    </footer>
+    </section>
 
 
     <!-- build:js -->
@@ -190,76 +201,75 @@
     <script src="assets/js/scripts.js"></script>
     <style>
         /* CSS-only ribbon styles    */
-        .cnrflash
-        {
-        /*Position correctly within container*/
-        position: absolute;
-        top: -9px;
-        right: -12px;
-        z-index: 1; /*Set overflow to hidden, to mask inner square*/
-        overflow: hidden; /*Set size and add subtle rounding  		to soften edges*/
-        width: 100px;
-        height: 100px;
-        border-radius: 3px 5px 3px 0;
+        .cnrflash {
+            /*Position correctly within container*/
+            position: absolute;
+            top: -9px;
+            right: -12px;
+            z-index: 1; /*Set overflow to hidden, to mask inner square*/
+            overflow: hidden; /*Set size and add subtle rounding  		to soften edges*/
+            width: 100px;
+            height: 100px;
+            border-radius: 3px 5px 3px 0;
         }
-        .cnrflash-inner
-        {
-        /*Set position, make larger then 			container and rotate 45 degrees*/
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 145px;
-        height: 145px;
-        -ms-transform: rotate(45deg); /* IE 9 */
-        -o-transform: rotate(45deg); /* Opera */
-        -moz-transform: rotate(45deg); /* Firefox */
-        -webkit-transform: rotate(45deg); /* Safari and Chrome */
-        -webkit-transform-origin: 100% 100%; /*Purely decorative effects to add texture and stuff*/ /* Safari and Chrome */
-        -ms-transform-origin: 100% 100%;  /* IE 9 */
-        -o-transform-origin: 100% 100%; /* Opera */
-        -moz-transform-origin: 100% 100%; /* Firefox */
-        background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.1) 50%), linear-gradient(0deg, transparent 0%, rgba(1,1,1,.2) 50%);
-        background-size: 4px,auto, auto,auto;
-        background-color: #aa0101;
-        box-shadow: 0 3px 3px 0 rgba(1,1,1,.5), 0 1px 0 0 rgba(1,1,1,.5), inset 0 -1px 8px 0 rgba(255,255,255,.3), inset 0 -1px 0 0 rgba(255,255,255,.2);
+
+        .cnrflash-inner {
+            /*Set position, make larger then 			container and rotate 45 degrees*/
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 145px;
+            height: 145px;
+            -ms-transform: rotate(45deg); /* IE 9 */
+            -o-transform: rotate(45deg); /* Opera */
+            -moz-transform: rotate(45deg); /* Firefox */
+            -webkit-transform: rotate(45deg); /* Safari and Chrome */
+            -webkit-transform-origin: 100% 100%; /*Purely decorative effects to add texture and stuff*/ /* Safari and Chrome */
+            -ms-transform-origin: 100% 100%; /* IE 9 */
+            -o-transform-origin: 100% 100%; /* Opera */
+            -moz-transform-origin: 100% 100%; /* Firefox */
+            background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.1) 50%), linear-gradient(0deg, transparent 0%, rgba(1,1,1,.2) 50%);
+            background-size: 4px,auto, auto,auto;
+            background-color: #aa0101;
+            box-shadow: 0 3px 3px 0 rgba(1,1,1,.5), 0 1px 0 0 rgba(1,1,1,.5), inset 0 -1px 8px 0 rgba(255,255,255,.3), inset 0 -1px 0 0 rgba(255,255,255,.2);
         }
-        .cnrflash-inner:before, .cnrflash-inner:after
-        {
-        /*Use the border triangle trick to make  				it look like the ribbon wraps round it's 				container*/
-        content: " ";
-        display: block;
-        position: absolute;
-        bottom: -16px;
-        width: 0;
-        height: 0;
-        border: 8px solid #800000;
-        }
-        .cnrflash-inner:before
-        {
-        left: 1px;
-        border-bottom-color: transparent;
-        border-right-color: transparent;
-        }
-        .cnrflash-inner:after
-        {
-        right: 0;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-        }
-        .cnrflash-label
-        {
-        /*Make the label look nice*/
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: block;
-        width: 100%;
-        padding-bottom: 5px;
-        color: #fff;
-        text-shadow: 0 1px 1px rgba(1,1,1,.8);
-        font-size: 0.95em;
-        font-weight: bold;
-        text-align: center;
+
+            .cnrflash-inner:before, .cnrflash-inner:after {
+                /*Use the border triangle trick to make  				it look like the ribbon wraps round it's 				container*/
+                content: " ";
+                display: block;
+                position: absolute;
+                bottom: -16px;
+                width: 0;
+                height: 0;
+                border: 8px solid #800000;
+            }
+
+            .cnrflash-inner:before {
+                left: 1px;
+                border-bottom-color: transparent;
+                border-right-color: transparent;
+            }
+
+            .cnrflash-inner:after {
+                right: 0;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+            }
+
+        .cnrflash-label {
+            /*Make the label look nice*/
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            padding-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 1px 1px rgba(1,1,1,.8);
+            font-size: 0.95em;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
     <!-- endbuild -->
