@@ -45,11 +45,11 @@ namespace Vue2Spa
 
             services.AddDistributedMemoryCache();
 
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 443;
-            });
+            //services.AddHttpsRedirection(options =>
+            //{
+            //    options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+            //    options.HttpsPort = 443;
+            //});
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -157,9 +157,10 @@ namespace Vue2Spa
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline. 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            var options = new RewriteOptions();
-            options.Rules.Add(new RedirectToNonWwwRule());
-            app.UseRewriter(options);
+            //for ssl certs
+            //var options = new RewriteOptions();
+            //options.Rules.Add(new RedirectToNonWwwRule());
+            //app.UseRewriter(options);
 
             if (env.IsDevelopment())
             {

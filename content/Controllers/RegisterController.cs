@@ -136,7 +136,7 @@ namespace HelpingHands.Controllers
 
                     await _emailAttachmentSender.SendEmailAttachmentAsync(
                         customer.EmailAddress,
-                        "Thank you for joining Life Helping Hands",
+                        "Thank you for joining Capacitym",
                         "Congratulations!<br />You are eligible for services on the 1st of the month. but in the meantime look out for your welcome kit and download the Tela-Doc application. If you haven't registered already, please register now by clicking on the link below. <br />  <a href='https://lifehelpinghands.org/Identity/Account/Register'>Register</a> now for maintenance of your account.", true);
 
                 }

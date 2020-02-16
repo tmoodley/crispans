@@ -32,10 +32,10 @@ namespace HelpingHands.Controllers
         {
             await _emailAttachmentSender.SendEmailAttachmentAsync(
                         email,
-                        "Thank you for joining Life Helping Hands",
+                        "Thank you for joining Capacitym",
                         "Hi Member,<br>" +
                         "<br>" +
-                        "I first want to thank you for supporting us doing our initial start-up.  Your support means everything to our Team at Life Helping Hands.<br>" +
+                        "I first want to thank you for supporting us doing our initial start-up.  Your support means everything to our Team at Capacitym.<br>" +
                         "<br>" +
                         "You should have received your welcome letter.  Please <a href='https://lifehelpinghands.org/Identity/Account/Register'>Register</a> to begin using the services.<br>" +
                         "<br>" +
