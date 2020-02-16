@@ -148,7 +148,7 @@ namespace Vue2Spa
 
             services.AddSession(options =>
             {
-                options.Cookie.Name = ".LifeHelpingHands.Session";
+                options.Cookie.Name = ".Capacitym.Session";
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.IsEssential = true;
             });
