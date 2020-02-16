@@ -68,7 +68,7 @@ namespace HelpingHands.Controllers
                 await _context.SaveChangesAsync();
 
                 await _emailSender.SendEmailAsync(
-                   "4lifehelpinghands@gmail.com",
+                   "ty.moodley@gmail.com",
                    "New Contact",
                    "There is a new contact " + contact.EmailAddress + "<br /> Name:" + contact.Name + "<br /> Subject:" + contact.Subject + "<br /> Message:" + contact.Note);
 

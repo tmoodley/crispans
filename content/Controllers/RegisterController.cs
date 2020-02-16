@@ -130,14 +130,14 @@ namespace HelpingHands.Controllers
 
                     //send email
                     await _emailSender.SendEmailAsync(
-                        "4lifehelpinghands@gmail.com",
+                        "ty.moodley@gmail.com",
                         "New Subscriber",
                         "There is a new contact " + customer.EmailAddress + "<br /> Name:" + customer.FamilyName + " " + customer.FamilyName + "<br /> Subscription Plan:" + customer.SubscriptionPlan);
 
                     await _emailAttachmentSender.SendEmailAttachmentAsync(
                         customer.EmailAddress,
                         "Thank you for joining Capacitym",
-                        "Congratulations!<br />You are eligible for services on the 1st of the month. but in the meantime look out for your welcome kit and download the Tela-Doc application. If you haven't registered already, please register now by clicking on the link below. <br />  <a href='https://lifehelpinghands.org/Identity/Account/Register'>Register</a> now for maintenance of your account.", true);
+                        "Congratulations!<br />You are eligible for services on the 1st of the month. but in the meantime look out for your welcome kit. If you haven't registered already, please register now by clicking on the link below. <br />  <a href='https://capacitym.com/Identity/Account/Register'>Register</a> now for maintenance of your account.", true);
 
                 }
                 catch (Exception e)

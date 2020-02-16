@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,9 +37,9 @@ namespace HelpingHands.Controllers
                         "<br>" +
                         "I first want to thank you for supporting us doing our initial start-up.  Your support means everything to our Team at Capacitym.<br>" +
                         "<br>" +
-                        "You should have received your welcome letter.  Please <a href='https://lifehelpinghands.org/Identity/Account/Register'>Register</a> to begin using the services.<br>" +
+                        "You should have received your welcome letter.  Please <a href='https://capacitym.com/Identity/Account/Register'>Register</a> to begin using the services.<br>" +
                         "<br>" +
-                        "Click on this link to <a href='https://lifehelpinghands.org//assets/Getting-Enrolled-Tela-Doc.pdf'>download</a> instructions about Getting Enrolled to Tela Doc.<br>" +
+                        "Click on this link to <a href='https://capacitym.com//assets/Getting-Enrolled-Tela-Doc.pdf'>download</a> instructions about Getting Enrolled to Tela Doc.<br>" +
                         "<br>" + 
                         "To keep your services up to date, we have made upgrades to the site.  There is a new login to your account and to activate you will need to login and change your password.<br>" +
                         "<br>" +
