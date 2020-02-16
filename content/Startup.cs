@@ -235,7 +235,7 @@ namespace Vue2Spa
                 //Assign Admin role to the main User here we have given our newly registered 
                 //login id for Admin management
                 ApplicationUser user = await UserManager.FindByEmailAsync("ty.moodley@gmail.com");
-                ApplicationUser user2 = await UserManager.FindByEmailAsync("matthewskennethr@gmail.com");
+                ApplicationUser user2 = await UserManager.FindByEmailAsync("mgaughan72@gmail.com");
                 var User = new ApplicationUser();
                 await UserManager.AddToRoleAsync(user, "Administrator");
                 await UserManager.AddToRoleAsync(user2, "Administrator");
