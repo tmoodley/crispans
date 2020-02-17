@@ -193,10 +193,11 @@ namespace Vue2Spa
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
-            {
+            { 
                 routes.MapRoute(
-                 name: "areas",
-                 template: "{area:exists}/{controller=Home}/{action=Index}");
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
 
                 routes.MapRoute(
                     name: "default",

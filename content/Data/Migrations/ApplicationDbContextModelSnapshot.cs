@@ -396,6 +396,24 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("Capabilities");
                 });
 
+            modelBuilder.Entity("Vue2Spa.Models.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("ParentId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("Vue2Spa.Models.Certification", b =>
                 {
                     b.Property<Guid>("Id")
@@ -560,6 +578,13 @@ namespace HelpingHands.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Vue2Spa.Models.Category", b =>
+                {
+                    b.HasOne("Vue2Spa.Models.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HelpingHands.Controllers
-{ 
- 
+{
     [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
