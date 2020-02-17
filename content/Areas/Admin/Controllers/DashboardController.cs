@@ -1,12 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vue2Spa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrator")]
+    [Area("Admin")]
     public class DashboardController : Controller
     {
         // GET: Dashboard
