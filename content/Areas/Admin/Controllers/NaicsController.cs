@@ -51,7 +51,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // GET: Admin/Naics/Create
         public IActionResult Create()
         {
-            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["ParentId"] = new SelectList(_context.Naics, "Id", "Name");
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", naics.ParentId);
+            ViewData["ParentId"] = new SelectList(_context.Naics, "Id", "Name", naics.ParentId);
             return View(naics);
         }
 
@@ -86,7 +86,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", naics.ParentId);
+            ViewData["ParentId"] = new SelectList(_context.Naics, "Id", "Name", naics.ParentId);
             return View(naics);
         }
 
@@ -122,7 +122,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", naics.ParentId);
+            ViewData["ParentId"] = new SelectList(_context.Naics, "Id", "Name", naics.ParentId);
             return View(naics);
         }
 

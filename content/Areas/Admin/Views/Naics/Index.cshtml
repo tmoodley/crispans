@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vue2Spa.Models.Naics>
+@model IEnumerable<Vue2Spa.Models.Naics>
 
 @{
     ViewData["Title"] = "Index";
@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Parent.Id)
+                @Html.DisplayFor(modelItem => item.Parent.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

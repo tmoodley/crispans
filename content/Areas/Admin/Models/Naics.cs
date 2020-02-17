@@ -13,10 +13,10 @@ namespace Vue2Spa.Models
         public Guid? ParentId { get; set; }
 
         // Navigation property to parent category    
-        public virtual Category Parent { get; set; }
+        public virtual Naics Parent { get; set; }
 
         // Navigation property to child categories    
-        public virtual ICollection<Category> Children { get; set; }
+        public virtual ICollection<Naics> Children { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }
         public int DisplayOrder { get; set; }

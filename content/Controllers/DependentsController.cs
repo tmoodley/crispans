@@ -83,7 +83,7 @@ namespace HelpingHands.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", dependent.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", dependent.CustomerId);
             return View(dependent);
         }
 
@@ -136,7 +136,7 @@ namespace HelpingHands.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", dependent.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", dependent.CustomerId);
             return View(dependent);
         }
 
