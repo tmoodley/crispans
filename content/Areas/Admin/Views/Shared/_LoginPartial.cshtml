@@ -1,0 +1,61 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+ 
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="navbar-text navbar-cta small  mt-1  text-right order-1 order-md-last">  
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li id="theme_selector" class="dropdown">
+                    <button class="btn btn-outline-brand btn-block dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span><i class="fa fa-user"></i> @User.Identity.Name</span>
+                    </button>
+                    <ul id="theme" class="dropdown-menu" role="menu">
+                        <li>
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/Customer/Edit">Update Information</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/Card/Update/">Update Card</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/Dependents/">Dependents</a>
+                        </li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+                        <li>
+                            <a class="dropdown-item" href="/Admin/">Admin Dashboard</a>
+                        </li>
+                        }
+                        @if (User.IsInRole("Partner"))
+                        {
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+                        <li>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Dashboard" asp-area="Partner">Partner Dashboard</a>
+                        </li>
+                        } 
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+                        <li>
+                            <form class="form-inline" id="logout-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+    </div>
+}
+else
+{
+<span class="navbar-text navbar-cta small text-truncate mt-1  text-right order-1 order-md-last"> 
+    <a class="btn btn-outline-brand font-weight-bold" role="button" asp-area="Identity" asp-page="/Account/Login">Login</a>
+</span>
+} 
