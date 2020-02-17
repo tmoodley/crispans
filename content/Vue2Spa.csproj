@@ -3696,6 +3696,10 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Portal\Controllers\" />
+    <Folder Include="Areas\Portal\Data\" />
+    <Folder Include="Areas\Portal\Models\" />
+    <Folder Include="Areas\Portal\Views\" />
     <Folder Include="Controllers\Admin\" />
   </ItemGroup>
   <ItemGroup>
