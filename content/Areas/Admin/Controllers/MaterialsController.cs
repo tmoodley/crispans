@@ -25,7 +25,8 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // GET: Admin/Materials
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Materials.ToListAsync());
+            var applicationDbContext = _context.Materials.Include(m => m.Parent);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Admin/Materials/Details/5
@@ -37,6 +38,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             }
 
             var material = await _context.Materials
+                .Include(m => m.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (material == null)
             {
@@ -49,6 +51,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // GET: Admin/Materials/Create
         public IActionResult Create()
         {
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id");
             return View();
         }
 
@@ -57,7 +60,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DisplayOrder")] Material material)
+        public async Task<IActionResult> Create([Bind("Id,ParentId,Name,DisplayOrder")] Material material)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +69,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", material.ParentId);
             return View(material);
         }
 
@@ -82,6 +86,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", material.ParentId);
             return View(material);
         }
 
@@ -90,7 +95,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,DisplayOrder")] Material material)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,ParentId,Name,DisplayOrder")] Material material)
         {
             if (id != material.Id)
             {
@@ -117,6 +122,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", material.ParentId);
             return View(material);
         }
 
@@ -129,6 +135,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             }
 
             var material = await _context.Materials
+                .Include(m => m.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (material == null)
             {

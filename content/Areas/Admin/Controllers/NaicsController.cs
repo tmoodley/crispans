@@ -25,7 +25,8 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // GET: Admin/Naics
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Naics.ToListAsync());
+            var applicationDbContext = _context.Naics.Include(n => n.Parent);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Admin/Naics/Details/5
@@ -37,6 +38,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             }
 
             var naics = await _context.Naics
+                .Include(n => n.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (naics == null)
             {
@@ -49,6 +51,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // GET: Admin/Naics/Create
         public IActionResult Create()
         {
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id");
             return View();
         }
 
@@ -57,7 +60,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DisplayOrder")] Naics naics)
+        public async Task<IActionResult> Create([Bind("Id,ParentId,Name,DisplayOrder")] Naics naics)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +69,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", naics.ParentId);
             return View(naics);
         }
 
@@ -82,6 +86,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", naics.ParentId);
             return View(naics);
         }
 
@@ -90,7 +95,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,DisplayOrder")] Naics naics)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,ParentId,Name,DisplayOrder")] Naics naics)
         {
             if (id != naics.Id)
             {
@@ -117,6 +122,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ParentId"] = new SelectList(_context.Categories, "Id", "Id", naics.ParentId);
             return View(naics);
         }
 
@@ -129,6 +135,7 @@ namespace Vue2Spa.Areas.Admin.Controllers
             }
 
             var naics = await _context.Naics
+                .Include(n => n.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (naics == null)
             {
