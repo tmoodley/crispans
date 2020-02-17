@@ -21,5 +21,14 @@ namespace HelpingHands.Data
         public DbSet<Partner> Partners { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        //public DbSet<Category> Categories { get; set; }
+        public DbSet<Naics> Naics { get; set; }
+        public DbSet<Capability> Capabilities { get; set; }
+        public DbSet<Machine> Machines { get; set; }
+        public DbSet<Industry> Industries { get; set; }
+        public DbSet<FileType> FileTypes { get; set; }
+        public DbSet<Material> Materials { get; set; }
+        public DbSet<Certification> Certifications { get; set; }
+        public DbSet<CompanyType> CompanyTypes { get; set; }
     }
 }
