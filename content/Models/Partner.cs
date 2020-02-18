@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Vue2Spa.Models;
 
 namespace HelpingHands.Models
 {
@@ -57,5 +58,7 @@ namespace HelpingHands.Models
         public string Note {get; set; }
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
+
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }
