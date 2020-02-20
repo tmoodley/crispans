@@ -14,6 +14,9 @@ namespace HelpingHands.Models
         public string PartnerId { get; set;} 
         [Display(Name = "Primary Source Member Id")]
         public string PrimarySourceMemberId { get; set; } 
+        [Required]
+        [Display(Name = "Number of Employees")]
+        public int NumberOfEmployees { get; set; }
         public string Username { get; set; }
         [BindProperty, Required]
         public string Gender { get; set; }
@@ -53,6 +56,7 @@ namespace HelpingHands.Models
         [Display(Name = "Last Name")]
         public string FamilyName {get; set;}
         public string Nickname {get; set; }
+        [Required]
         [Display(Name = "Company")]
         public string CompanyName {get; set; }
         [Required]
@@ -65,5 +69,15 @@ namespace HelpingHands.Models
         public string Note {get; set;} 
         public List<Invoice> Invoices { get; set; }
         public bool isActive { get; set; }
+
+        public virtual ICollection<Capability> Capabilities { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<Certification> Certifications { get; set; }
+        public virtual ICollection<CompanyType> CompanyTypes { get; set; }
+        public virtual ICollection<FileType> FileTypes { get; set; }
+        public virtual ICollection<Industry> Industries { get; set; }
+        public virtual ICollection<Machine> Machines { get; set; }
+        public virtual ICollection<Material> Materials { get; set; }
+        public virtual ICollection<Naics> Naics { get; set; }
     }
 }

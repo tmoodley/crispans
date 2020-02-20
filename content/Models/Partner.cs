@@ -15,7 +15,7 @@ namespace HelpingHands.Models
         public string PartnerId { get; set;} 
         [Display(Name = "Organization Name")]
         public string OrganizationName  { get; set; }
-        [Display(Name = "Number of Members/Employees")] 
+        [Display(Name = "Number of Employees")] 
         public int NumberOfEmployees { get; set; }
         [Display(Name = "Contact Person")]
         public string ContactPerson { get; set; }        
@@ -57,8 +57,6 @@ namespace HelpingHands.Models
         public string ReferenceId {get; set;}
         public string Note {get; set; }
         [Display(Name = "Active")]
-        public bool IsActive { get; set; }
-
-        public virtual ICollection<Category> Categories { get; set; }
+        public bool IsActive { get; set; } 
     }
 }

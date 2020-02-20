@@ -1,4 +1,4 @@
-﻿@model HelpingHands.Models.Customer
+@model HelpingHands.Models.Customer
 
 @{
     ViewData["Title"] = "Create";
@@ -14,18 +14,21 @@
                 <form asp-action="Subscribe" class="contact-form form-dark mt-5 ">
                     <div class="text-danger">@ViewBag.Error</div>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group required row">
-                        <label asp-for="PartnerId" class="col-sm-3 col-form-label"></label>
+
+                    <input type="hidden" asp-for="PartnerId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PartnerId" disabled />
+                    <input type="hidden" asp-for="PrimarySourceMemberId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PrimarySourceId" disabled>
+                    <div class="form-group row">
+                        <label asp-for="CompanyName" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <input asp-for="PartnerId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PartnerId" disabled/>
-                            <span asp-validation-for="PartnerId" class="text-danger"></span>
+                            <input asp-for="CompanyName" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="CompanyName" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label asp-for="PrimarySourceMemberId" class="col-sm-3 col-form-label"></label>
+                        <label asp-for="NumberOfEmployees" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <input asp-for="PrimarySourceMemberId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PrimarySourceId" disabled>
-                            <span asp-validation-for="PrimarySourceMemberId" class="text-danger"></span>
+                            <input asp-for="NumberOfEmployees" class="form-dark form-control form-control-plaintext" />
+                            <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -131,7 +134,7 @@
                         <hr>
                         <br />
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Yearly" @(ViewBag.subscription == "Yearly" ? "checked": "")>
+                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Yearly" @(ViewBag.subscription == "Yearly" ? "checked" : "")>
                             <label class="form-check-label" for="subscription_plan1">
                                 <b> Yearly - $99 / 1 Year</b> <br />
                                 <small><i>Annually Subscription Renewal Fee is $99</i></small>
@@ -139,7 +142,7 @@
                         </div>
                         <hr>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Monthly" @(ViewBag.subscription == "Monthly" ? "checked": "")>
+                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Monthly" @(ViewBag.subscription == "Monthly" ? "checked" : "")>
                             <label class="form-check-label" for="subscription_plan2">
                                 <b>Monthly - $9.90 / 1 Month</b><br />
                                 <small><i>Monthly Subscription Renewal Fee is $9.90</i></small>
