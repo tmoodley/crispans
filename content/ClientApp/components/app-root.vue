@@ -66,12 +66,12 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+                <router-link :to="{ name: 'Partner' }">
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
+                  </p> 
+                </router-link> 
               </li>
             </ul>
           </div>

@@ -1,6 +1,5 @@
 <template>
-  <div class="content">
-    {{user}}
+  <div class="content"> 
     <div class="row">
       <div class="col-md-8">
         <div class="card">
@@ -13,33 +12,33 @@
                 <div class="col-md-5 pr-1">
                   <div class="form-group">
                     <label>Company</label>
-                    <input type="text" class="form-control" placeholder="Company" v-model="user.OrganizationName">
+                    <input type="text" class="form-control" placeholder="Company" v-model="user.companyName">
                   </div>
                 </div>
                 <div class="col-md-3 px-1">
                   <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control" placeholder="Username" v-model="user.Username">
+                    <input type="text" class="form-control" placeholder="Username" v-model="user.username">
                   </div>
                 </div>
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" placeholder="Email" v-model="user.EmailAddress">
+                    <input type="email" class="form-control" placeholder="Email" disabled v-model="user.emailAddress">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
-                    <label>ContactPerson</label>
-                    <input type="text" class="form-control" placeholder="Contact Person"  v-model="user.ContactPerson">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name"  v-model="user.givenName">
                   </div>
                 </div>
                 <div class="col-md-6 pl-1">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" placeholder="Last Name" >
+                    <input type="text" class="form-control" placeholder="Last Name"   v-model="user.familyName">
                   </div>
                 </div>
               </div>
@@ -47,7 +46,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Address</label>
-                    <input type="text" class="form-control" placeholder="Home Address" v-model="user.Address1">
+                    <input type="text" class="form-control" placeholder="Address" v-model="user.address1">
                   </div>
                 </div>
               </div>
@@ -55,26 +54,26 @@
                 <div class="col-md-4 pr-1">
                   <div class="form-group">
                     <label>City</label>
-                    <input type="text" class="form-control" placeholder="City" v-model="user.City">
+                    <input type="text" class="form-control" placeholder="City" v-model="user.city">
                   </div>
                 </div>
                 <div class="col-md-4 px-1">
                   <div class="form-group">
-                    <label>Country</label>
-                    <input type="text" class="form-control" placeholder="Country" v-model="user.State">
+                    <label>Province/State</label>
+                    <input type="text" class="form-control" placeholder="Province/State" v-model="user.state">
                   </div>
                 </div>
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label>Postal Code</label>
-                    <input type="number" class="form-control" placeholder="ZIP Code" v-model="user.PostalCode">
+                    <label>Postal Code/Zip</label>
+                    <input type="text" class="form-control" placeholder="ZIP Code" v-model="user.postalCode">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>About Me</label>
+                    <label>Categories</label>
                     <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" v-model="user.CompanyName"></textarea>
                   </div>
                 </div>
@@ -128,20 +127,22 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      email: _user,
       user: ''
       }
     },
   methods: {
       getPartner() {
         return axios
-          .get('/api/partners/ty.moodley@gmail.com')
+          .get('/portal/api/customers/' + this.email)
           .then(response => (this.user = response.data))
     },
     save() {
       event.preventDefault();
-        return axios
-          .post('/api/partners/', this.user)
-          .then(response => (this.user = response.data))
+      var self = this;
+      return axios
+        .put('/portal/api/customers/' + this.user.id, this.user)
+        .then(response => { self.user = response.data })
       }
     },
   mounted: function ()  {
