@@ -4,12 +4,9 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-      <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          CT
-        </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+      <div class="logo"> 
+        <a href="https://capacitym.com" class="simple-text logo-normal">
+          Capacitym.com
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -92,26 +89,22 @@
           <nav>
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
+                <a href="https://capacitym.com">
+                  Capacitym.com
                 </a>
               </li>
               <li>
-                <a href="http://presentation.creative-tim.com">
+                <a href="https://capacitym.com/aboutus">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
+                <a href="http://blog.capacitym.com">
                   Blog
                 </a>
               </li>
             </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy;
-            Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
+          </nav> 
         </div>
       </footer>
     </div>
