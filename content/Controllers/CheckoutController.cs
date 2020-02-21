@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace HelpingHands.Controllers
             ViewData["Title"] = "Check Out";
             var model = new PaymentModel(this._configuration);
             ViewBag.CustomerId = customer.ReferenceId;
-            ViewBag.Amount = customer.SubscriptionPlan == "Monthly" ? "9.90" : "99.00";
+            ViewBag.Amount = customer.SubscriptionPlan == "Monthly" ? "19.99" : "99.00";
             ViewBag.ApplicationId = _configuration["AppSettings:Environment"] == "sandbox" ?
                 _configuration["AppSettings:SandboxApplicationId"] : _configuration["AppSettings:ApplicationId"]; 
             ViewBag.LocationId = _configuration["AppSettings:Environment"] == "sandbox" ?

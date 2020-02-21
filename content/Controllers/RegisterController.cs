@@ -66,7 +66,7 @@ namespace HelpingHands.Controllers
                                 .FirstOrDefaultAsync(m => m.EmailAddress == userId);
                 if (customer != null)
                 {
-                    return RedirectToAction("Index", "Dependents");
+                    return RedirectToAction("Index", "Dashboard", new { area = "portal" });
                 }
             }            
 
