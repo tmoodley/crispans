@@ -9,7 +9,7 @@ using Vue2Spa.Models;
 namespace HelpingHands.Models
 {
     public class Customer
-    {
+    { 
         [Display(Name = "Partner Id")]
         public string PartnerId { get; set;} 
         [Display(Name = "Primary Source Member Id")]
@@ -69,15 +69,6 @@ namespace HelpingHands.Models
         public string Note {get; set;} 
         public List<Invoice> Invoices { get; set; }
         public bool isActive { get; set; }
-
-        public virtual ICollection<Capability> Capabilities { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Certification> Certifications { get; set; }
-        public virtual ICollection<CompanyType> CompanyTypes { get; set; }
-        public virtual ICollection<FileType> FileTypes { get; set; }
-        public virtual ICollection<Industry> Industries { get; set; }
-        public virtual ICollection<Machine> Machines { get; set; }
-        public virtual ICollection<Material> Materials { get; set; }
-        public virtual ICollection<Naics> Naics { get; set; }
+        public ICollection<CustomerCategory> CustomerCategories { get; set; }
     }
 }

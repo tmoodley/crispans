@@ -9,12 +9,7 @@ using Vue2Spa.Models;
 namespace HelpingHands.Data
 {
     public class ApplicationDbContext : IdentityDbContext
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-
+    { 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Dependent> Dependents { get; set; }
         public DbSet<Contact> Contacts { get; set; }
@@ -30,5 +25,27 @@ namespace HelpingHands.Data
         public DbSet<Material> Materials { get; set; }
         public DbSet<Certification> Certifications { get; set; }
         public DbSet<CompanyType> CompanyTypes { get; set; }
+         
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); // I had removed this
+            /// Rest of on model creating here. 
+            modelBuilder.Entity<CustomerCategory>()
+                .HasKey(x => new { x.CustomerId, x.CategoryId });
+
+            modelBuilder.Entity<CustomerCategory>()
+                .HasOne(bc => bc.Customer)
+                .WithMany(b => b.CustomerCategories)
+                .HasForeignKey(bc => bc.CustomerId);
+            modelBuilder.Entity<CustomerCategory>()
+                .HasOne(bc => bc.Category)
+                .WithMany(c => c.CustomerCategories)
+                .HasForeignKey(bc => bc.CategoryId);
+        }
     }
 }
