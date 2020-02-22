@@ -35,8 +35,17 @@ const actions = {
         return response.data;
       })
   },
-  removeCategory({ commit }, payload) {
-    commit('removeCategory', payload);
+  removeCategory({ commit }, payload) { 
+    //commit('removeCategory', payload);
+    var customerCategory = {
+      categoryId: payload[0].id,
+      customerId: state.company.id
+    }
+    return axios
+      .delete('/portal/api/customercategories/?categoryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
   }
 }
 
@@ -56,7 +65,7 @@ const mutations = {
     state.company.customerCategories.push(customerCategory);
   },
   removeCategory(state, category) {
-    var index = state.company.categories.indexOf(x => x.name === category);
+    var index = state.company.customerCategories.indexOf(x => x.name === category);
     state.company.customerCategories.splice(index, 1);
   },
 }

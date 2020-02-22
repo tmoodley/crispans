@@ -99,10 +99,10 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         }
 
         // DELETE: api/CustomerCategories/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<CustomerCategory>> DeleteCustomerCategory(string id)
+        [HttpDelete()]
+        public async Task<ActionResult<CustomerCategory>> DeleteCustomerCategory([FromQuery] string customerId, [FromQuery] Guid categoryId)
         {
-            var customerCategory = await _context.CustomerCategory.FindAsync(id);
+            var customerCategory = await _context.CustomerCategory.Where(x => x.CustomerId == customerId && x.CategoryId == categoryId).FirstOrDefaultAsync().ConfigureAwait(false);
             if (customerCategory == null)
             {
                 return NotFound();
