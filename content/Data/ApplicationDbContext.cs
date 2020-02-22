@@ -47,5 +47,7 @@ namespace HelpingHands.Data
                 .WithMany(c => c.CustomerCategories)
                 .HasForeignKey(bc => bc.CategoryId);
         }
+
+        public DbSet<Vue2Spa.Models.CustomerCategory> CustomerCategory { get; set; }
     }
 }

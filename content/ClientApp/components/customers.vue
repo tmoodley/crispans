@@ -81,8 +81,7 @@ export default {
     async processPayments() {
       var _this = this;
       this.max = this.selected.length;
-      this.value = 0;
-      debugger;
+      this.value = 0; 
       this.selected.forEach(function (customer, index, array) {
         if (date1.value > customer.paidUntil) {
           try { 

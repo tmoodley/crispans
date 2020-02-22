@@ -27,14 +27,14 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
-            return await _context.Customers.ToListAsync();
+            return await _context.Customers.Include(x => x.CustomerCategories).ToListAsync();
         }
 
         // GET: api/Customers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Customer>> GetCustomer(string id)
         {
-            var customer = await _context.Customers.Where(x => x.EmailAddress == id).FirstOrDefaultAsync();
+            var customer = await _context.Customers.Include(x => x.CustomerCategories).Where(x => x.EmailAddress == id).FirstOrDefaultAsync();
 
             if (customer == null)
             {

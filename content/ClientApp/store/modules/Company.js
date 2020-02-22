@@ -23,7 +23,17 @@ const actions = {
       })
   },
   addCategory({ commit }, payload) {
-    commit('addCategory', payload);
+
+    var customerCategory = {
+      CategoryId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customercategories/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
   },
   removeCategory({ commit }, payload) {
     commit('removeCategory', payload);
@@ -36,14 +46,18 @@ const mutations = {
     state.company = company
   },
   addCategory(state, category) {
-    if (state.company.categories == null) {
-      state.company.categories = []
+    if (state.company.customerCategories == null) {
+      state.company.customerCategories = []
     }
-    state.company.categories.push(category);
+    var customerCategory = {
+      CategoryId: category[0].id,
+      CustomerId: state.company.id
+    } 
+    state.company.customerCategories.push(customerCategory);
   },
   removeCategory(state, category) {
     var index = state.company.categories.indexOf(x => x.name === category);
-    state.company.categories.splice(index, 1);
+    state.company.customerCategories.splice(index, 1);
   },
 }
 

@@ -61,6 +61,9 @@
       }
     },
     computed: {
+      ...mapState({
+        store: state => state.company
+      }), 
       criteria() {
         // Compute the search criteria
         return this.search.trim().toLowerCase()
@@ -100,19 +103,25 @@
       },
       getCategories() {
         var self = this;
+        var cats = self.store.company.customerCategories.map(x => x.categoryId);
         return axios
           .get('/portal/api/categories/')
           .then(function (response) {
             self.categories = response.data;
-            self.options = response.data.map(function (x) {
-            return x.name
+            self.options = response.data.map(function (x) { 
+              if (cats.indexOf(x.id) > -1) {
+                self.value.push(x.name)
+              }
+              return x.name
             })
           });
       }
     },
-    mounted: function ()  {
-      this.getCategories();
-      //this.options = this.store.company.categories;
+    mounted: function () {
+      var self = this;
+      setTimeout(function () {
+        self.getCategories();
+      }, 1000);      
     }
   }
 </script>
