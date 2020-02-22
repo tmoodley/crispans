@@ -144,7 +144,12 @@ namespace Vue2Spa
                   policy.RequireRole("Administrator", "Subscriber", "Partner"));
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    .AddJsonOptions(options => {
+                        options.SerializerSettings.ReferenceLoopHandling =
+                            Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    });
 
             services.AddSession(options =>
             {
