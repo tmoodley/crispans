@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form-group label="Choose Category">
+    <b-form-group label="Choose Certification">
       <b-form-tags v-model="value" no-outer-focus class="mb-2">
         <template v-slot="{ tags, disabled, addTag, removeTag }">
           <ul v-if="tags.length > 0" class="list-inline d-inline-block mb-2">
@@ -88,27 +88,28 @@
     },
     methods: {
       ...mapActions('company', [
-        'addCategory',
-        'removeCategory'
+        'addCertification',
+        'removeCertification'
       ]), 
       onOptionClick({ option, addTag }) {
         addTag(option); 
         var category = this.categories.filter(x => x.name == option);
-        this.addCategory(category);
+        this.addCertification(category);
         this.search = '';
       },
       onRemoveClick(tag) { 
         var category = this.categories.filter(x => x.name == tag);
-        this.removeCategory(category);
+        this.removeCertification(category);
       },
       getCategories() {
         var self = this; 
         var cats = [];
-        if (self.store.company.customerCategories != null) {
-          cats = self.store.company.customerCategories.map(x => x.categoryId);
+        if (self.store.company.customerCertifications != null) {
+          cats = self.store.company.customerCertifications.map(x => x.certificationId);
         }
+        
         return axios
-          .get('/portal/api/categories/')
+          .get('/portal/api/certifications/')
           .then(function (response) {
             self.categories = response.data;
             self.options = response.data.map(function (x) { 

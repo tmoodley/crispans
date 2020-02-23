@@ -34,7 +34,10 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         [HttpGet("{id}")]
         public async Task<ActionResult<Customer>> GetCustomer(string id)
         {
-            var customer = await _context.Customers.Include(x => x.CustomerCategories).Where(x => x.EmailAddress == id).FirstOrDefaultAsync();
+            var customer = await _context.Customers
+                .Include(x => x.CustomerCategories)
+                .Include(x => x.CustomerCertifications)
+                .Where(x => x.EmailAddress == id).FirstOrDefaultAsync().ConfigureAwait(false);
 
             if (customer == null)
             {

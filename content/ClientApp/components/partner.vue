@@ -79,6 +79,7 @@
         <div class="card card-user">
           <div class="card-body">
             <category></category>
+            <certification></certification>
           </div>
         </div>
       </div>
@@ -90,12 +91,14 @@
   import axios from 'axios' 
   import { mapState, mapActions } from 'vuex'
   import category from './categories/category'
+  import certification from './categories/certification'
   export default {
   computed: mapState({
     store: state => state.company
   }), 
   components: {
-    'category': category
+    category,
+    certification
   },
   data () {
     return {

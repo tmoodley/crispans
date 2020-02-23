@@ -22,8 +22,7 @@ const actions = {
         return response.data;
       })
   },
-  addCategory({ commit }, payload) {
-
+  addCategory({ commit }, payload) { 
     var customerCategory = {
       CategoryId: payload[0].id,
       CustomerId: state.company.id
@@ -35,14 +34,28 @@ const actions = {
         return response.data;
       })
   },
-  removeCategory({ commit }, payload) { 
-    //commit('removeCategory', payload);
-    var customerCategory = {
-      categoryId: payload[0].id,
-      customerId: state.company.id
-    }
+  removeCategory({ commit }, payload) {
     return axios
       .delete('/portal/api/customercategories/?categoryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
+  },
+  addCertification({ commit }, payload) {
+    var customerCategory = {
+      CertificationId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customercertifications/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeCertification({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customercertifications/?certificationId=' + payload[0].id + '&customerId=' + state.company.id)
       .then(function (response) {
         return response.data;
       });
