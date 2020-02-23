@@ -37,6 +37,13 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             var customer = await _context.Customers
                 .Include(x => x.CustomerCategories)
                 .Include(x => x.CustomerCertifications)
+                .Include(x => x.CustomerCapabilities)
+                .Include(x => x.CustomerCompanyTypes)
+                .Include(x => x.CustomerFileTypes)
+                .Include(x => x.CustomerIndustries)
+                .Include(x => x.CustomerMachines)
+                .Include(x => x.CustomerMaterials)
+                .Include(x => x.CustomerNaics)
                 .Where(x => x.EmailAddress == id).FirstOrDefaultAsync().ConfigureAwait(false);
 
             if (customer == null)

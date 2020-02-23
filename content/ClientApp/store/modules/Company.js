@@ -59,6 +59,25 @@ const actions = {
       .then(function (response) {
         return response.data;
       });
+  },
+  addCapability({ commit }, payload) {
+    var customerCategory = {
+      CapabilityId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customercapabilities/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeCapability({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customercapabilities/?capabilityId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
   }
 }
 

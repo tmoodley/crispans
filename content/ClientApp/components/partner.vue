@@ -80,6 +80,7 @@
           <div class="card-body">
             <category></category>
             <certification></certification>
+            <capability></capability>
           </div>
         </div>
       </div>
@@ -92,13 +93,15 @@
   import { mapState, mapActions } from 'vuex'
   import category from './categories/category'
   import certification from './categories/certification'
+  import capability from './categories/capability'
   export default {
   computed: mapState({
     store: state => state.company
   }), 
   components: {
     category,
-    certification
+    certification,
+    capability
   },
   data () {
     return {
