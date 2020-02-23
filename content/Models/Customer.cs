@@ -70,5 +70,13 @@ namespace HelpingHands.Models
         public List<Invoice> Invoices { get; set; }
         public bool isActive { get; set; }
         public ICollection<CustomerCategory> CustomerCategories { get; set; }
+        public ICollection<CustomerNaics> CustomerNaics { get; set; }
+        public ICollection<CustomerCapability> CustomerCapabilities { get; set; }
+        public ICollection<CustomerCertification> CustomerCertifications { get; set; }
+        public ICollection<CustomerCompanyType> CustomerCompanyTypes { get; set; }
+        public ICollection<CustomerFileType> CustomerFileTypes { get; set; }
+        public ICollection<CustomerIndustry> CustomerIndustries { get; set; }
+        public ICollection<CustomerMachine> CustomerMachines { get; set; }
+        public ICollection<CustomerMaterial> CustomerMaterials { get; set; }
     }
 }

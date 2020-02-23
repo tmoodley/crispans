@@ -20,5 +20,6 @@ namespace Vue2Spa.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
         public int DisplayOrder { get; set; }
+        public ICollection<CustomerNaics> CustomerNaics { get; set; }
     }
 }
