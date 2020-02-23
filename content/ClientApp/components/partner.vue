@@ -96,7 +96,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
-            <category></category>
+            <filetype></filetype>
           </div>
         </div>
       </div>
@@ -141,6 +141,7 @@
   import certification from './categories/certification'
   import capability from './categories/capability'
   import companytype from './categories/companytype'
+  import filetype from './categories/filetype'
   export default {
   computed: mapState({
     store: state => state.company
@@ -149,7 +150,8 @@
     category,
     certification,
     capability,
-    companytype
+    companytype,
+    filetype
   },
   data () {
     return {

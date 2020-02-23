@@ -97,6 +97,25 @@ const actions = {
       .then(function (response) {
         return response.data;
       });
+  },
+  addFileType({ commit }, payload) {
+    var customerCategory = {
+      FileTypeId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customerfileTypes/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeFileType({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customerFileTypes/?FileTypeId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
   }
 }
 
