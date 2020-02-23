@@ -70,7 +70,7 @@
                   </div>
                 </div>
               </div>
-              <b-button variant="success" type="submit">SAVE</b-button> 
+              <b-button variant="success" type="submit">SAVE</b-button>
             </form>
           </div>
         </div>
@@ -85,6 +85,52 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <companytype></companytype>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <category></category>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <category></category>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <category></category>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <category></category>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <category></category>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -94,6 +140,7 @@
   import category from './categories/category'
   import certification from './categories/certification'
   import capability from './categories/capability'
+  import companytype from './categories/companytype'
   export default {
   computed: mapState({
     store: state => state.company
@@ -101,7 +148,8 @@
   components: {
     category,
     certification,
-    capability
+    capability,
+    companytype
   },
   data () {
     return {

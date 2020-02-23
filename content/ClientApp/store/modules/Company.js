@@ -78,6 +78,25 @@ const actions = {
       .then(function (response) {
         return response.data;
       });
+  },
+  addCompanyType({ commit }, payload) {
+    var customerCategory = {
+      CompanyTypeId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customerCompanyTypes/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeCompanyType({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customerCompanyTypes/?CompanyTypeId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
   }
 }
 
