@@ -125,7 +125,7 @@
       var self = this;
       setTimeout(function () {
         self.getMachines();
-      }, 1000);      
+      }, 2000);   
     }
   }
 </script>

@@ -125,7 +125,7 @@
       var self = this;
       setTimeout(function () {
         self.getMaterials();
-      }, 1000);      
+      }, 2000);   
     }
   }
 </script>

@@ -125,7 +125,7 @@
       var self = this;
       setTimeout(function () {
         self.getFileTypes();
-      }, 1000);      
+      }, 2000);   
     }
   }
 </script>

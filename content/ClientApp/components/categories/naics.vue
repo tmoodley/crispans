@@ -130,7 +130,7 @@
       var self = this;
       setTimeout(function () {
         self.getNaics();
-      }, 1000);      
+      }, 2000);   
     }
   }
 </script>

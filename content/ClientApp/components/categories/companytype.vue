@@ -125,7 +125,7 @@
       var self = this;
       setTimeout(function () {
         self.getCompanyTypes();
-      }, 1000);      
+      }, 2000);   
     }
   }
 </script>
