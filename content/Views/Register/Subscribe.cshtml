@@ -147,6 +147,13 @@
                                 <b>Monthly - $19.99 / 1 Month</b><br />
                                 <small><i>Monthly Subscription Renewal Fee is $19.99</i></small>
                             </label>
+                        </div> 
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Free" @(ViewBag.subscription == "Free" ? "checked" : "")>
+                            <label class="form-check-label" for="subscription_plan2">
+                                <b>Free Trial</b><br />
+                                <small><i>FREE</i></small>
+                            </label>
                         </div>
                         <span asp-validation-for="SubscriptionPlan" class="text-danger"></span>
                         <hr>
