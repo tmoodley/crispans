@@ -98,7 +98,12 @@
         this.search = '';
       },
       onRemoveClick(tag) { 
-        var category = this.categories.filter(x => x.name == tag);
+        var category = this.categories.filter(function (x) { 
+          var name = x.name.trim();
+          if (name === tag.trim()) {
+            return x;
+          }
+        }); 
         this.removeNaics(category);
       },
       getNaics() {
