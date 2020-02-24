@@ -48,7 +48,18 @@ namespace HelpingHands.Controllers
             ViewData["Title"] = "Check Out";
             var model = new PaymentModel(this._configuration);
             ViewBag.CustomerId = customer.ReferenceId;
-            ViewBag.Amount = customer.SubscriptionPlan == "Monthly" ? "19.99" : "99.00";
+            if(customer.SubscriptionPlan == "Monthly")
+            {
+                ViewBag.Amount = "19.99";
+            }
+            if (customer.SubscriptionPlan == "Yearly") 
+            {
+                ViewBag.Amount = "99.00";
+            }
+            if (customer.SubscriptionPlan == "Free")
+            {
+                ViewBag.Amount = "0";
+            } 
             ViewBag.ApplicationId = _configuration["AppSettings:Environment"] == "sandbox" ?
                 _configuration["AppSettings:SandboxApplicationId"] : _configuration["AppSettings:ApplicationId"]; 
             ViewBag.LocationId = _configuration["AppSettings:Environment"] == "sandbox" ?
