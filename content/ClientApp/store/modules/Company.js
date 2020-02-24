@@ -116,6 +116,82 @@ const actions = {
       .then(function (response) {
         return response.data;
       });
+  },
+  addIndustry({ commit }, payload) {
+    var customerCategory = {
+      IndustryId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customerIndustries/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeIndustry({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customerIndustries/?IndustryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
+  },
+  addMachine({ commit }, payload) {
+    var customerCategory = {
+      MachineId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customerMachines/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeMachine({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customerMachines/?machineId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
+  },
+  addMaterial({ commit }, payload) {
+    var customerCategory = {
+      MaterialId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customerMaterials/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeMaterial({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customerMaterials/?MaterialId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
+  },
+  addNaics({ commit }, payload) {
+    var customerCategory = {
+      NaicsId: payload[0].id,
+      CustomerId: state.company.id
+    }
+
+    return axios
+      .post('/portal/api/customerNaics/', customerCategory)
+      .then(function (response) {
+        return response.data;
+      })
+  },
+  removeNaics({ commit }, payload) {
+    return axios
+      .delete('/portal/api/customerNaics/?NaicsId=' + payload[0].id + '&customerId=' + state.company.id)
+      .then(function (response) {
+        return response.data;
+      });
   }
 }
 

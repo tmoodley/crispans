@@ -103,7 +103,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
-            <category></category>
+            <industry></industry>
           </div>
         </div>
       </div>
@@ -112,21 +112,21 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
-            <category></category>
+            <machine></machine>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
-            <category></category>
+            <material></material>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
-            <category></category>
+            <naics></naics>
           </div>
         </div>
       </div>
@@ -142,6 +142,10 @@
   import capability from './categories/capability'
   import companytype from './categories/companytype'
   import filetype from './categories/filetype'
+  import industry from './categories/industry'
+  import machine from './categories/machine'
+  import material from './categories/material'
+  import naics from './categories/naics'
   export default {
   computed: mapState({
     store: state => state.company
@@ -151,7 +155,11 @@
     certification,
     capability,
     companytype,
-    filetype
+    filetype,
+    industry,
+    machine,
+    material,
+    naics
   },
   data () {
     return {
