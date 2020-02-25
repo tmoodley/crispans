@@ -4,6 +4,7 @@ using System.Text;
 using HelpingHands.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Vue2Spa.Areas.Portal.Models;
 using Vue2Spa.Models;
 
 namespace HelpingHands.Data
@@ -15,6 +16,7 @@ namespace HelpingHands.Data
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Partner> Partners { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Job> Jobs { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Vue2Spa.Models.CustomerCategory> CustomerCategory { get; set; }
@@ -151,7 +153,92 @@ namespace HelpingHands.Data
             .HasOne(bc => bc.CompanyType)
             .WithMany(c => c.CustomerCompanyTypes)
             .HasForeignKey(bc => bc.CompanyTypeId);
-    }
+
+            modelBuilder.Entity<JobCategory>()
+                .HasKey(x => new { x.JobId, x.CategoryId });
+
+            modelBuilder.Entity<JobCategory>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobCategories)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobCategory>()
+                .HasOne(bc => bc.Category)
+                .WithMany(c => c.JobCategories)
+                .HasForeignKey(bc => bc.CategoryId);
+              
+            modelBuilder.Entity<JobMachine>()
+                    .HasKey(x => new { x.JobId, x.MachineId });
+
+            modelBuilder.Entity<JobMachine>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobMachines)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobMachine>()
+                .HasOne(bc => bc.Machine)
+                .WithMany(c => c.JobMachines)
+                .HasForeignKey(bc => bc.MachineId);
+
+            modelBuilder.Entity<JobIndustry>()
+                   .HasKey(x => new { x.JobId, x.IndustryId });
+
+            modelBuilder.Entity<JobIndustry>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobIndustries)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobIndustry>()
+                .HasOne(bc => bc.Industry)
+                .WithMany(c => c.JobIndustries)
+                .HasForeignKey(bc => bc.IndustryId);
+
+            modelBuilder.Entity<JobFileType>()
+                    .HasKey(x => new { x.JobId, x.FileTypeId });
+
+            modelBuilder.Entity<JobFileType>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobFileTypes)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobFileType>()
+                .HasOne(bc => bc.FileType)
+                .WithMany(c => c.JobFileTypes)
+                .HasForeignKey(bc => bc.FileTypeId);
+
+            modelBuilder.Entity<JobMaterial>()
+                    .HasKey(x => new { x.JobId, x.MaterialId });
+
+            modelBuilder.Entity<JobMaterial>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobMaterials)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobMaterial>()
+                .HasOne(bc => bc.Material)
+                .WithMany(c => c.JobMaterials)
+                .HasForeignKey(bc => bc.MaterialId);
+
+            modelBuilder.Entity<JobCertification>()
+                   .HasKey(x => new { x.JobId, x.CertificationId });
+
+            modelBuilder.Entity<JobCertification>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobCertifications)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobCertification>()
+                .HasOne(bc => bc.Certification)
+                .WithMany(c => c.JobCertifications)
+                .HasForeignKey(bc => bc.CertificationId);
+
+            modelBuilder.Entity<JobCompanyType>()
+             .HasKey(x => new { x.JobId, x.CompanyTypeId });
+
+            modelBuilder.Entity<JobCompanyType>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobCompanyTypes)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobCompanyType>()
+                .HasOne(bc => bc.CompanyType)
+                .WithMany(c => c.JobCompanyTypes)
+                .HasForeignKey(bc => bc.CompanyTypeId);
+
+        }
 
     }
 }

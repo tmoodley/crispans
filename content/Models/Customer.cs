@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Vue2Spa.Areas.Portal.Models;
 using Vue2Spa.Models;
 
 namespace HelpingHands.Models
@@ -68,6 +69,7 @@ namespace HelpingHands.Models
         public string ReferenceId {get; set;}
         public string Note {get; set;} 
         public List<Invoice> Invoices { get; set; }
+        public List<Job> Jobs { get; set; }
         public bool isActive { get; set; }
         public ICollection<CustomerCategory> CustomerCategories { get; set; }
         public ICollection<CustomerNaics> CustomerNaics { get; set; }

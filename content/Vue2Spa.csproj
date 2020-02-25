@@ -3749,7 +3749,6 @@
     <Folder Include="Areas\Administration\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Portal\Data\" />
-    <Folder Include="Areas\Portal\Models\" />
     <Folder Include="Controllers\Admin\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
