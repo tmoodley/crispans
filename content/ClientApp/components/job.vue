@@ -276,14 +276,16 @@
     ]), 
     save() {
       event.preventDefault();
-      var self = this;
+      var self = this; 
       return axios
-        .put('/portal/api/customers/' + this.store.company.id, this.store.company)
-        .then(response => { self.store.company = response.data })
+        .post('/portal/api/jobs/', this.job)
+        .then(response => { console.log(response.data) })
       },
-      onComplete: function(){
-      alert('Yay. Done!');
-   }
+      onComplete: function () {
+        this.save().then(function () {
+          alert('Yay. Done!');
+        });
+      }
     },
   mounted: function ()  {
     this.getCompany(this.email)
