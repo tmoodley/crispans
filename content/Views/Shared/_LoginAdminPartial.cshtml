@@ -4,12 +4,9 @@
 
 
 @if (SignInManager.IsSignedIn(User))
-{
-    <div class="navbar-text navbar-cta small  mt-1  text-right order-1 order-md-last">
-        <ul class="nav navbar-nav navbar-right">
-
-            <li id="theme_selector" class="dropdown">
-                <button class="btn btn-outline-brand btn-block dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+{  
+   <li id="theme_selector" class="dropdown">
+                <button class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span><i class="fa fa-user"></i> @User.Identity.Name</span>
                 </button>
                 <ul id="theme" class="dropdown-menu" role="menu">
@@ -49,13 +46,11 @@
                         </form>
                     </li>
                 </ul>
-            </li>
-        </ul>
-    </div>
+            </li> 
 }
 else
 {
-    <span class="navbar-text navbar-cta small text-truncate mt-1  text-right order-1 order-md-last">
-        <a class="btn btn-outline-brand font-weight-bold" role="button" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </span>
-} 
+<li class="nav-item">
+    <a class="nav-link smoth-scroll" role="button" asp-area="Identity" asp-page="/Account/Login">Login</a>
+</li> 
+}
