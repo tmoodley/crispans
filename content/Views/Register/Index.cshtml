@@ -4,168 +4,197 @@
     ViewData["Title"] = "Create";
     ViewBag.Email = User.Identity.Name;
 }
-<section id="donate" class="pad-top donate-wrapper bg-gray-4">
-    <div class="container">
-        <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
-            Subscription
-        </h1>
-        <div class="row justify-content-md-center">
-            <div class="col-lg-6">
-                <form asp-action="Subscribe" class="contact-form form-dark mt-5 ">
-                    <div class="text-danger">@ViewBag.Error</div>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="banner-area banner-2">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="banner-content content-padding">
+                    <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
+                        Subscription
+                    </h1>
+                    <div class="row justify-content-md-center">
+                        <div class="col-lg-6">
+                            <form asp-action="Subscribe" class="contact-form form-dark mt-5 ">
+                                <div class="text-danger">@ViewBag.Error</div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <input type="hidden" asp-for="PartnerId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PartnerId" disabled />
-                    <input type="hidden" asp-for="PrimarySourceMemberId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PrimarySourceId" disabled>
-                    <div class="form-group row">
-                        <label asp-for="CompanyName" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="CompanyName" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                <input type="hidden" asp-for="PartnerId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PartnerId" disabled />
+                                <input type="hidden" asp-for="PrimarySourceMemberId" class="form-dark form-control form-control-plaintext" value="@ViewBag.PrimarySourceId" disabled>
+                                <div class="form-group row">
+                                    <label asp-for="CompanyName" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="CompanyName" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="NumberOfEmployees" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="NumberOfEmployees" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="GivenName" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="GivenName" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="GivenName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="FamilyName" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="FamilyName" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="FamilyName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="EmailAddress" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="EmailAddress" class="form-dark form-control form-control-plaintext" value="@ViewBag.Email" disabled="@(ViewBag.Email != null ? "disabled" : null)" />
+                                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group required row">
+                                    <label asp-for="Gender" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Gender" id="Gender" value="M">
+                                            <label class="form-check-label" for="gender-1">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Gender" id="Gender" value="F">
+                                            <label class="form-check-label" for="gender-2">Female</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Gender" id="Gender" value="NA">
+                                            <label class="form-check-label" for="gender-3">Unspecified</label>
+                                        </div>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Birthday" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Birthday" type="date" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="Birthday" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Address1" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Address1" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="Address1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="City" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="City" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="State" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="State" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="PostalCode" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="PostalCode" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="StartDate" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="StartDate" type="date" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="CellPhone" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="CellPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
+                                        <small>Required cell number format: ### ###-####</small>
+                                        <span asp-validation-for="CellPhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="WorkPhone" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="WorkPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
+                                        <small>Required work number format: ### ###-####</small>
+                                        <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label asp-for="SubscriptionPlan" class="font-weight-bold">Subscription Plans</label>
+                                    <hr>
+                                    <br />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Yearly" @(ViewBag.subscription == "Yearly" ? "checked" : "")>
+                                        <label class="form-check-label" for="subscription_plan1">
+                                            <b> Yearly - $99 / 1 Year</b> <br />
+                                            <small><i>Annually Subscription Renewal Fee is $99</i></small>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Monthly" @(ViewBag.subscription == "Monthly" ? "checked" : "")>
+                                        <label class="form-check-label" for="subscription_plan2">
+                                            <b>Monthly - $19.99 / 1 Month</b><br />
+                                            <small><i>Monthly Subscription Renewal Fee is $19.99</i></small>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Free" @(ViewBag.subscription == "Free" ? "checked" : "")>
+                                        <label class="form-check-label" for="subscription_plan2">
+                                            <b>Free Trial</b><br />
+                                            <small><i>FREE</i></small>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="SubscriptionPlan" class="text-danger"></span>
+                                    <hr>
+                                </div>
+                                <button type="submit" class="btn btn-block btn-lg btn-dark">Register</button>
+                                <div class="text-center"> <small>Only registered users can see this information.</small></div>
+                            </form>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label asp-for="NumberOfEmployees" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="NumberOfEmployees" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="GivenName" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="GivenName" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="GivenName" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="FamilyName" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="FamilyName" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="FamilyName" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="EmailAddress" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="EmailAddress" class="form-dark form-control form-control-plaintext" value="@ViewBag.Email" disabled="@(ViewBag.Email != null ? "disabled" : null)" />
-                            <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group required row">
-                        <label asp-for="Gender" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Gender" id="Gender" value="M">
-                                <label class="form-check-label" for="gender-1">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Gender" id="Gender" value="F">
-                                <label class="form-check-label" for="gender-2">Female</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Gender" id="Gender" value="NA">
-                                <label class="form-check-label" for="gender-3">Unspecified</label>
-                            </div>
-                            <span asp-validation-for="Gender" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="Birthday" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="Birthday" type="date" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="Birthday" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="Address1" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="Address1" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="Address1" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="City" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="City" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="City" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="State" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="State" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="State" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="PostalCode" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="PostalCode" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="PostalCode" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="StartDate" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="StartDate" type="date" class="form-dark form-control form-control-plaintext" />
-                            <span asp-validation-for="StartDate" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="CellPhone" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="CellPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
-                            <small>Required cell number format: ### ###-####</small>
-                            <span asp-validation-for="CellPhone" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label asp-for="WorkPhone" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <input asp-for="WorkPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
-                            <small>Required work number format: ### ###-####</small>
-                            <span asp-validation-for="WorkPhone" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label asp-for="SubscriptionPlan" class="font-weight-bold">Subscription Plans</label>
-                        <hr>
-                        <br />
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Yearly" @(ViewBag.subscription == "Yearly" ? "checked" : "")>
-                            <label class="form-check-label" for="subscription_plan1">
-                                <b> Yearly - $99 / 1 Year</b> <br />
-                                <small><i>Annually Subscription Renewal Fee is $99</i></small>
-                            </label>
-                        </div>
-                        <hr>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Monthly" @(ViewBag.subscription == "Monthly" ? "checked" : "")>
-                            <label class="form-check-label" for="subscription_plan2">
-                                <b>Monthly - $19.99 / 1 Month</b><br />
-                                <small><i>Monthly Subscription Renewal Fee is $19.99</i></small>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="SubscriptionPlan" id="SubscriptionPlan" value="Free" @(ViewBag.subscription == "Free" ? "checked" : "")>
-                            <label class="form-check-label" for="subscription_plan2">
-                                <b>Free Trial</b><br />
-                                <small><i>FREE</i></small>
-                            </label>
-                        </div>
-                        <span asp-validation-for="SubscriptionPlan" class="text-danger"></span>
-                        <hr>
-                    </div>
-                    <button type="submit" class="btn btn-block btn-lg btn-dark">Register</button>
-                    <div class="text-center"> <small>Only registered users can see this information.</small></div>
-                </form>
-            </div>
+                </div>
+                </div>
         </div>
     </div>
-</section>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+<style>
+    .form-control { 
+    background: white;
+}
+    small {
+    color: white;
+}
+    label.font-weight-bold {
+    color: white;
+}
+    label.form-check-label {
+    color: white;
+}
+    h1.text-capitalize.text-center.font3 {
+    color: white;
+}
+    label.col-sm-3.col-form-label {
+    color: white;
+}
+    .banner-area.banner-2 {
+    background-size: auto;
+}
+</style>

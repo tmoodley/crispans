@@ -3772,6 +3772,7 @@
     <Folder Include="Areas\Portal\Data\" />
     <Folder Include="Controllers\Admin\" />
     <Folder Include="wwwroot\dist\" />
+    <Folder Include="wwwroot\img\banner\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\admin\css\sb-admin-2.css">
@@ -3819,6 +3820,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="wwwroot\admin\js\sq-payment-form.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\banner\slider-3.jpg">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

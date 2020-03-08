@@ -1,0 +1,111 @@
+
+@{
+    ViewData["Title"] = "Partner";
+}
+
+<!--MAIN BANNER AREA START -->
+<div class="page-banner-area page-contact" id="page-banner">
+    <div class="overlay dark-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
+                <div class="banner-content content-padding">
+                    <h1 class="text-white">Partner With Us</h1>
+                    <p>Sign up today and start submitting bids for jobs on our secure platform</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MAIN HEADER AREA END --> 
+
+<section id="vision" class="pad-top vision-container bg-gray-4">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-lg vision-image" data-aos="fade" data-aos-delay="100">
+                <br>
+                <br>
+                <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
+                    Partner with Us
+                </h1>
+                <form action="/Partners/Create" method="post" class="contact-form form-dark mt-5  ">
+                    <div class="form-group required row">
+                        <label for="org_name" class="col-sm-3 col-form-label">Organization Name </label>
+                        <div class="col-sm-9">
+                            <input class="form-dark form-control form-control-plaintext" type="text" id="OrganizationName" name="OrganizationName" value="" />
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="form-group required row">
+                        <label for="emp_num" class="col-sm-3 col-form-label">Number of Employees </label>
+                        <div class="col-sm-9">
+                            <input type="number" data-val="true" data-val-required="The Number of Employees field is required." id="NumberOfEmployees" name="NumberOfEmployees" class="form-dark form-control form-control-plaintext" value="">
+                        </div>
+                    </div>
+                    <!--  -->
+
+                    <div class="form-group required row">
+                        <label for="contact_person" class="col-sm-3 col-form-label">Contact Person </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-dark form-control form-control-plaintext" id="ContactPerson" name="ContactPerson" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group required row">
+                        <label for="email_address" class="col-sm-3 col-form-label">Email </label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-dark form-control form-control-plaintext" id="EmailAddress" name="EmailAddress" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group required row">
+                        <label for="phone" class="col-sm-3 col-form-label">Phone Number </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-dark form-control form-control-plaintext" id="PhoneNumber" name="PhoneNumber" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group required row">
+                        <label for="address" class="col-sm-3 col-form-label">Address </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-dark form-control form-control-plaintext" id="Address1" name="Address1" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="message" class="col-sm-3 col-form-label">Message </label>
+                        <div class="col-sm-9">
+                            <textarea name="Note" id="Note" rows="3" style="resize: vertical;" class="form-dark form-control"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-hero btn-circled">Submit</button> 
+                </form>
+            </div>
+            <div class="col-lg vision-wrapper">
+                <div class="vision-box" data-aos="fade" data-aos-delay="200" style="margin-top:0px;">
+                    <br/>
+                    <br/>
+                    <h1>
+                        Partnership Program
+                        <p>Become part of our network of Manufacturers</p>
+                    </h1>
+                    <p>Each year, thousands of manufacturers go out of business because of capacity underutilization. Capactity Underutilization is a situation where a plant is operated at output levels below the output level at which short-run AVERAGE COST is at a minimum.</p>
+                    <p>
+                        Capicitym was created to solve this problem.  Our online platform connects manufacturers in North America with shared manufacturing goals.<br />
+                        At Capicitym, we have created a large network of manufacturers with excess capacity.
+                    </p>
+                    <p>We have the platform. Partner with us to get access to our network immediately.<br />Partner with us today so we can connect you to others and increase your business.</p>
+                     
+                </div>
+
+                <div class="text-center">
+                    <!-- <a class="btn btn-success btn-cta text-spaced font-weight-bold text-uppercase btn-lg btn-rounded btn-shadowed" role="button" href="./">Partner with us</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
