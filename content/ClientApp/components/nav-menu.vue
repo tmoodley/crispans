@@ -12,17 +12,11 @@
     </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
       <ul class="nav">
-        <li class="active ">
-          <a href="/portal/dashboard">
-            <i class="now-ui-icons design_app"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
         <li class="nav-item" v-for="(route, index) in routes" :key="index">
           <router-link :to="route.path" exact-active-class="active">
             <icon :icon="route.icon" class="mr-2 menu-icon" /><span>{{ route.display }}</span>
           </router-link>
-        </li> 
+        </li>
       </ul>
     </div>
   </div>
