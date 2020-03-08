@@ -3,22 +3,29 @@
 @{
 
 }
-
-<section id="donate" class="pad-top donate-wrapper bg-gray-1">
-    <div class="container">
-        <h3>Thank You for registering</h3>
-        <br />
-        Congratulations @ViewBag.GivenName @ViewBag.FamilyName!
-        <br />
-        <br />
-        You are on your way to increasing your revenue. With this "@ViewBag.SubscriptionPlan" subscription plan, you are smartly investing in your company's future.
-        <br />
-        <br />
-        Register now to continue setting up your company.  With the subscription started you can submit jobs and bids for jobs.
-        <br />
-        <br />
-        Thanks for joining!<br />
-        We will start billing your card on the 1st of every month to start your service.<br />
-        <a asp-area="Identity" asp-page="/Account/Register">Register</a> now for maintenance of your account.
+<div class="banner-area banner-2">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <section id="donate" class="pad-top donate-wrapper bg-gray-1">
+                    <div class="container">
+                        <h3>Thank You for registering</h3>
+                        <br />
+                        Congratulations @ViewBag.GivenName @ViewBag.FamilyName!
+                        <br />
+                        <br />
+                        You are on your way to increasing your revenue. With this "@ViewBag.SubscriptionPlan" subscription plan, you are smartly investing in your company's future.
+                        <br />
+                        <br />
+                        Register now to continue setting up your company.  With the subscription started you can submit jobs and bids for jobs.
+                        <br />
+                        <br />
+                        Thanks for joining!<br />
+                        We will start billing your card on the 1st of every month to start your service.<br />
+                        <a asp-area="Identity" asp-page="/Account/Register">Register</a> now for maintenance of your account.
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
-</section>
+</div>
