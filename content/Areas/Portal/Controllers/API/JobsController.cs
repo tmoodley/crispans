@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Vue2Spa.Areas.Portal.Controllers.API
 {
     [Authorize(Roles = "Partner,Administrator")] 
-    [Route("portal/api/[controller]")]
+    [Route("/portal/api/[controller]")]
     [ApiController]
     public class JobsController : ControllerBase
     {

@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200308222126_added-documents")]
+    partial class addeddocuments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -410,10 +412,6 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("BondTitle2");
 
-                    b.Property<Guid>("CadFileDocumentId");
-
-                    b.Property<Guid>("ContractDocumentId");
-
                     b.Property<DateTime>("Created");
 
                     b.Property<string>("CreatedBy");
@@ -469,8 +467,6 @@ namespace HelpingHands.Data.Migrations
                     b.Property<bool>("LeadAgency");
 
                     b.Property<string>("Name");
-
-                    b.Property<Guid>("NdaDocumentId");
 
                     b.Property<int>("NumReferencesRequired");
 
@@ -546,13 +542,9 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("TermsAndConditionsHeadingText");
 
-                    b.Property<Guid>("TermsDocumentId");
-
                     b.Property<decimal?>("TotalContractAmount");
 
                     b.Property<bool?>("UnsealManually");
-
-                    b.Property<bool>("isNda");
 
                     b.HasKey("Id");
 

@@ -8,5 +8,5 @@ export const routes = [
   { name: 'searchrfqs', path: '/portal/rfq/search', component: Job, display: 'Search RFQs', icon: 'eye' },
   { name: 'myrfqs', path: '/portal/rfq/', component: Jobs, display: 'My RFQs', icon: 'tasks' },
   { name: 'quotes', path: '/portal/rfq/', component: Jobs, display: 'Sent Quotes', icon: 'tasks' },
-  { name: 'searchcompanies', path: '/portal/companies/search/', component: Jobs, display: 'Search Companies', icon: 'tasks' },
+  { name: 'searchcompanies', path: '/portal/companies/search/', component: Jobs, display: 'Search Companies', icon: 'tasks' }
 ]

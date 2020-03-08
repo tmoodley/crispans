@@ -162,7 +162,12 @@ namespace Vue2Spa.Areas.Portal.Models
         public string LastUpdatedBy { get; set; }
 
         public string CustomerId { get; set; }
-        public Customer Customers { get; set; }
+        public Customer Customers { get; set; } 
+        public bool isNda { get; set; }
+        public Guid TermsDocumentId { get; set; }
+        public Guid NdaDocumentId { get; set; }
+        public Guid ContractDocumentId { get; set; }
+        public Guid CadFileDocumentId { get; set; }
 
         public ICollection<JobCategory> JobCategories { get; set; }
         public ICollection<JobCertification> JobCertifications { get; set; }

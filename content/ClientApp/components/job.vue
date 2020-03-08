@@ -65,22 +65,22 @@
                       <div class="card-body">
                         <div class="form-group form-check">
                           <b-form-checkbox v-model="job.IsCloseQuestionsAfterDeadline"
-                                           value="accepted"
-                                           unchecked-value="not_accepted">
+                                           value="true"
+                                           unchecked-value="false">
                             Close Questions After Deadline
                           </b-form-checkbox>
                         </div>
                         <div class="form-group form-check">
                           <b-form-checkbox v-model="job.IncludeOtherDocument"
-                                           value="accepted"
-                                           unchecked-value="not_accepted">
+                                           value="true"
+                                           unchecked-value="false">
                             Include Other Document
                           </b-form-checkbox>
                         </div>
                         <div class="form-group form-check">
                           <b-form-checkbox v-model="job.AllowBidDocumentPreview"
-                                           value="accepted"
-                                           unchecked-value="not_accepted">
+                                           value="true"
+                                           unchecked-value="false">
                             Allow Job Document Preview
                           </b-form-checkbox>
                         </div>
@@ -160,6 +160,42 @@
                   </div>
                 </div>
               </tab-content>
+              <tab-content title="Documents step"
+                           icon="fa fa-file">
+                <div class="row">
+                  <div class="col-md-12">
+                    <b-form-checkbox switch size="lg" class="float-left">NDA (NON DISCLOSURE AGREEMENT)</b-form-checkbox>
+                    <i id="tooltip-nda" class="fas fa-info-circle float-left"></i>
+                    <b-tooltip target="tooltip-nda">NON DISCLOSURE AGREEMENT</b-tooltip>
+                  </div>
+                  <div class="col-md-12">If you upload and NDA, bidding companies need to first sign the uploaded NDA before viewing documents.</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3>File Upload</h3>
+                    <p>In this section, you can upload your JOB related documents such as NDA's, Contracts, General Terms and Conditions, etc</p>
+                  </div>
+                </div>
+                <div class="row">
+                  {{job}}
+                  <div class="col-md-12">
+                    NDA File
+                    <upload @setid="setNda"></upload>
+                  </div>
+                  <div class="col-md-12">
+                    Contract File
+                    <upload @setid="setContract"></upload>
+                  </div>
+                  <div class="col-md-12">
+                    Terms and Conditions File
+                    <upload @setid="setTerms"></upload>
+                  </div>
+                  <div class="col-md-12">
+                    3D Visualizations File
+                    <upload @setid="setCadFile"></upload>
+                  </div>
+                </div>
+              </tab-content>
                 <tab-content title="Last step"
                              icon="fa fa-check">
                   <div class="row">
@@ -227,11 +263,13 @@
   import machine from './categories/machine'
   import material from './categories/material'
   import naics from './categories/naics'
+  import upload from './jobs/document'
   export default {
   computed: mapState({
     store: state => state.company
   }), 
-  components: {
+    components: {
+    upload,
     category,
     certification,
     capability,
@@ -285,8 +323,20 @@
         this.save().then(function () {
           alert('Yay. Done!');
         });
+      },
+      setNda(id) { 
+        this.job.ndaDocumentId = id;
+      },
+      setTerms(id){
+          this.job.termsDocumentId = id;
+      },
+      setContract(id){
+          this.job.contractDocumentId = id;
+      },
+      setCadFile(id){
+          this.job.cadFileDocumentId = id;
       }
-    },
+  },
   mounted: function ()  {
     this.getCompany(this.email)
   }

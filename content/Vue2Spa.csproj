@@ -3772,6 +3772,7 @@
     <Folder Include="Controllers\Admin\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\img\banner\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\admin\css\sb-admin-2.css">

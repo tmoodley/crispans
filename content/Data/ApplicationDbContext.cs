@@ -10,7 +10,8 @@ using Vue2Spa.Models;
 namespace HelpingHands.Data
 {
     public class ApplicationDbContext : IdentityDbContext
-    { 
+    {
+        public DbSet<Document> Documents { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Dependent> Dependents { get; set; }
         public DbSet<Contact> Contacts { get; set; }
