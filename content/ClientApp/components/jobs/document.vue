@@ -10,7 +10,7 @@
 
 <script>
 import vue2Dropzone from 'vue2-dropzone' 
-import { mapState, mapActions } from 'vuex' 
+import { mapState } from 'vuex' 
 export default {
   name: 'app',
   components: {

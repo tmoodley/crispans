@@ -313,14 +313,20 @@
     ]), 
     save() {
       event.preventDefault();
-      var self = this; 
+      var self = this;
+      this.job.CustomerId = this.store.company.id;
       return axios
-        .post('/portal/api/jobs/', this.job)
+        .post('/portal/api/jobs/PostJob/', self.job)
         .then(response => { console.log(response.data) })
       },
       onComplete: function () {
-        this.save().then(function () {
-          alert('Yay. Done!');
+        var self = this;
+        this.save().then(function () { 
+          self.$swal.fire(
+            'Saved',
+            'Job Saved',
+            'success'
+          )
         });
       },
       setNda(id) { 

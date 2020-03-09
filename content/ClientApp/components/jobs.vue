@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex' 
 export default { 
   data () {
     return {
@@ -79,7 +80,7 @@ export default {
     },
     async loadPage () { 
       try { 
-        let response = await this.$http.get(`/portal/api/Jobs`) 
+        let response = await this.$http.get(`/portal/api/Jobs/GetJobs/?id=` + this.store.company.id) 
         this.jobs = response.data
         this.total = response.data.length
       } catch (err) {
@@ -93,7 +94,10 @@ export default {
     isCompleted: function () {
       // `this` points to the vm instance
       return this.max == this.value
-    }
+    },
+    ...mapState({
+      store: state => state.company
+    }),
   },
   async created () {
     this.loadPage()
