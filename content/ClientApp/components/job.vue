@@ -176,8 +176,7 @@
                     <p>In this section, you can upload your JOB related documents such as NDA's, Contracts, General Terms and Conditions, etc</p>
                   </div>
                 </div>
-                <div class="row">
-                  {{job}}
+                <div class="row"> 
                   <div class="col-md-12">
                     NDA File
                     <upload @setid="setNda"></upload>
