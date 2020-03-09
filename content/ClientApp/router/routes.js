@@ -1,6 +1,6 @@
-import Partner from 'components/partner'
-import Job from 'components/job'
-import Jobs from 'components/jobs'
+const Partner = () => import(/* webpackChunkName: "home" */ 'components/partner.vue')
+const Job = () => import(/* webpackChunkName: "about" */ 'components/jobs/job.vue')
+const Jobs = () => import(/* webpackChunkName: "contact" */ 'components/jobs/jobs.vue')
 
 export const routes = [
   { name: 'dashboard', path: '/portal/dashboard', component: Partner, display: 'My Profile', icon: 'home' },

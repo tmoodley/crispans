@@ -253,16 +253,16 @@
 <script>
   import axios from 'axios' 
   import { mapState, mapActions } from 'vuex'
-  import category from './categories/category'
-  import certification from './categories/certification'
-  import capability from './categories/capability'
-  import companytype from './categories/companytype'
-  import filetype from './categories/filetype'
-  import industry from './categories/industry'
-  import machine from './categories/machine'
-  import material from './categories/material'
-  import naics from './categories/naics'
-  import upload from './jobs/document'
+  import category from '../categories/category'
+  import certification from '../categories/certification'
+  import capability from '../categories/capability'
+  import companytype from '../categories/companytype'
+  import filetype from '../categories/filetype'
+  import industry from '../categories/industry'
+  import machine from '../categories/machine'
+  import material from '../categories/material'
+  import naics from '../categories/naics'
+  import upload from '../jobs/document'
   export default {
   computed: mapState({
     store: state => state.company
