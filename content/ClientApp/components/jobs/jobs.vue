@@ -6,7 +6,7 @@
           <div class="card-header">
             <h5 class="title">Create New Job</h5>
           </div>
-          <div class="card-body"> 
+          <div class="card-body">
             <b-container fluid>
               <b-row class="my-1">
                 <b-col sm="4">
@@ -15,7 +15,7 @@
                 <b-col sm="4">
                   <b-form-input id="date1" type="date" v-model="date1"></b-form-input>
                 </b-col>
-                <b-col sm="4"> 
+                <b-col sm="4">
                   <b-button size="sm" @click="selectAllRows">Select all</b-button>
                   <b-button size="sm" @click="clearSelected">Clear selected</b-button>
                 </b-col>
@@ -28,22 +28,20 @@
             </div>
             <template v-if="jobs">
               <b-table hover :items="jobs" :fields="fields" selectable
-                       ref="selectableTable"
-                       :select-mode="selectMode"
-                       @row-selected="onRowSelected">
+                       ref="selectableTable">
                 <!-- Example scoped slot for select state illustrative purposes -->
-                <template v-slot:cell(selected)="{ rowSelected }">
-                  <template v-if="rowSelected">
-                    <span aria-hidden="true">&check;</span>
-                    <span class="sr-only">Selected</span>
-                  </template>
-                  <template v-else>
-                    <span aria-hidden="true">&nbsp;</span>
-                    <span class="sr-only">Not selected</span>
-                  </template>
+
+                <template>
+                  <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+                    {{ row.detailsShowing ? 'Hide' : 'Show'}} Edit
+                  </b-button>
+                </template>
+                <template v-slot:row-details="row">
+                 {{row}}
                 </template>
               </b-table>
             </template>
+           
           </div>
           </div>
         </div>
@@ -53,7 +51,11 @@
 
 <script>
 import { mapState } from 'vuex' 
-export default { 
+import job from './job'
+export default {
+  components: {
+    job
+  },
   data () {
     return {
       jobs: null,
@@ -62,7 +64,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['selected', 'name', 'number', 'scope','status','totalContractAmount', 'dateClosing', 'awarded'],
+      fields: ['name', 'number', 'scope','status','totalContractAmount', 'dateClosing', 'awarded','selected'],
       value: 45,
       max: 100, 
       selected: []

@@ -59,6 +59,25 @@
                     <li class="nav-item">
                         <a class="nav-link smoth-scroll" href="/service">Service</a>
                     </li>
+                    <li id="theme_selector" class="dropdown" style="cursor: pointer;">
+                        <a class="nav-link smoth-scroll" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span>Functions</span>
+                        </a>
+                        <ul id="theme" class="dropdown-menu" role="menu">
+                            <li>
+                                <a class="dropdown-item" href="/functions/ordersearch/" title="Search for orders">Search for orders</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/functions/ordermanagement/" title="Order Management">Order Management</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/functions/createbids/" title="Create Bids">Create Bids</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/functions/quotemanagement/" title="Quote Management">Quote Management</a>
+                            </li> 
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link smoth-scroll" href="/pricing">Pricing</a>
                     </li>
@@ -69,8 +88,8 @@
                         <a class="nav-link smoth-scroll" href="/contact">Contact</a>
                     </li>
                     <partial name="_LoginPartial" />
-                </ul>
-            </div>
+                        </ul>
+</div>
         </div>
     </nav>
     <partial name="_CookieConsentPartial" />
@@ -86,21 +105,20 @@
                         <p>An online platform creating access to quality manufacturing has never been easier.</p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-4 col-md-4">
+                <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="footer-widget footer-link">
                         <h4>About</h4>
                         <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Service</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/functions">Service</a></li>
+                            <li><a href="/pricing">Pricing</a></li>
+                            <li><a href="/partner">Partner</a></li>
+                            <li><a href="/contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-sm-6 col-md-6">
+                @*<div class="col-lg-2 col-sm-6 col-md-6">
                     <div class="footer-widget footer-link">
                         <h4>Quick Links</h4>
                         <ul>
@@ -112,7 +130,7 @@
                             <li><a href="#">Terms & Condition</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>*@
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="footer-widget footer-text">
                         <h4>Our location</h4>

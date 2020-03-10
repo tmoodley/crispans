@@ -8,12 +8,32 @@ using HelpingHands.Models;
 
 namespace HelpingHands.Controllers
 {
-    public class ServiceController : Controller
+    public class FunctionsController : Controller
     {
         public IActionResult Index()
         {
             return View();
-        } 
+        }
+
+        public IActionResult OrderSearch()
+        {
+            return View();
+        }
+
+        public IActionResult OrderManagement()
+        {
+            return View();
+        }
+
+        public IActionResult CreateBids()
+        {
+            return View();
+        }
+
+        public IActionResult QuoteManagement()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
