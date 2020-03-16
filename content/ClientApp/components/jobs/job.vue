@@ -303,11 +303,11 @@
     return {
       email: _user,
       job: {
-        Name: '',
-        Number: '',
-        Status: 'design',
-        Scope: 'goods',
-        Type: 'rfp'
+        name: '',
+        number: '',
+        status: 'design',
+        scope: 'goods',
+        type: 'rfp'
       },
       options: [
         { text: 'Goods', value: 'goods' },
@@ -365,9 +365,9 @@
         });
     },
     save() {
-        event.preventDefault();
-        var self = this;
-        if (this.action = "edit") { 
+      event.preventDefault();
+      var self = this; 
+        if (this.action == "edit") { 
           return axios
             .put('/portal/api/jobs/PutJob/' + self.job.id, self.job)
             .then(response => { console.log(response.data) })
@@ -375,7 +375,7 @@
         else {
           this.job.CustomerId = this.store.company.id;
           return axios
-            .put('/portal/api/jobs/PostJob/', self.job)
+            .post('/portal/api/jobs/PostJob/', self.job)
             .then(response => { console.log(response.data) })
         } 
       },
@@ -405,7 +405,12 @@
       }
   },
     mounted: function () { 
-      this.job = this.selectedjob;
+      if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
+        this.job = this.selectedjob;
+      }
+      else {
+        this.action = 'add';
+      }
       this.getCompany(this.email)
   }
 }
