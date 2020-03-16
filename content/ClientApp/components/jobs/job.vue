@@ -283,7 +283,7 @@
   import naics from '../categories/naics'
   import upload from '../jobs/document'
   export default {
-    props: ['selectedjob', 'action'],
+    props: ['selectedjob'],
   computed: mapState({
     store: state => state.company
   }), 
@@ -301,6 +301,7 @@
   },
   data () {
     return {
+      action: '',
       email: _user,
       job: {
         name: '',
@@ -367,7 +368,7 @@
     save() {
       event.preventDefault();
       var self = this; 
-        if (this.action == "edit") { 
+        if (self.action == "edit") { 
           return axios
             .put('/portal/api/jobs/PutJob/' + self.job.id, self.job)
             .then(response => { console.log(response.data) })
@@ -387,7 +388,12 @@
             'Job Saved',
             'success'
           ).then(function () {
-            self.$emit("hide");
+            if (self.action == 'edit') {
+              self.$emit("hide");
+            }
+            else {
+              self.$router.push({ path: '/portal/rfq/' })
+            }
           })
         });
       },
@@ -407,6 +413,7 @@
     mounted: function () { 
       if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
         this.job = this.selectedjob;
+        this.action = 'edit';
       }
       else {
         this.action = 'add';
