@@ -8,40 +8,36 @@
           </div>
           <div class="card-body">
             <b-container fluid>
-              <b-row class="my-1">
-                <b-col sm="4">
-                  <label for="date1">Date To Process</label>
-                </b-col>
-                <b-col sm="4">
-                  <b-form-input id="date1" type="date" v-model="date1"></b-form-input>
-                </b-col>
-                <b-col sm="4">
-                  <b-button size="sm" @click="selectAllRows">Select all</b-button>
-                  <b-button size="sm" @click="clearSelected">Clear selected</b-button>
-                </b-col>
-              </b-row>
-              <b-progress :value="value" :max="max" show-progress animated v-if="isCompleted"></b-progress>
+
             </b-container>
             <div v-if="!jobs" class="text-center">
               <p><em>Loading...</em></p>
               <h1><icon icon="spinner" pulse /></h1>
             </div>
             <template v-if="jobs">
-              <b-table hover :items="jobs" :fields="fields" selectable
-                       ref="selectableTable">
+              <b-table hover :items="jobs" :fields="fields">
                 <!-- Example scoped slot for select state illustrative purposes -->
-
-                <template>
-                  <b-button size="sm" @click="row.toggleDetails" class="mr-2">
-                    {{ row.detailsShowing ? 'Hide' : 'Show'}} Edit
+                <template v-slot:cell(actions)="row">
+                  <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+                    Edit
+                  </b-button>
+                  <b-button size="sm" @click="row.toggleDetails">
+                    {{ row.detailsShowing ? 'Hide' : 'Show' }} View Bids
                   </b-button>
                 </template>
                 <template v-slot:row-details="row">
-                 {{row}}
+                  <b-card>
+                    <ul>
+                      <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+                    </ul>
+                  </b-card>
                 </template>
               </b-table>
             </template>
-           
+            <!-- Info modal -->
+            <b-modal :id="infoModal.id" :title="infoModal.title" size="xl" hide-footer @hide="resetInfoModal">
+              <job :selectedjob="infoModal.job" :action="edit" @hide="resetInfoModal"></job>
+            </b-modal>
           </div>
           </div>
         </div>
@@ -59,26 +55,31 @@ export default {
   data () {
     return {
       jobs: null,
+      selectedJob: null,
       total: 0,
       pageSize: 5,
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'scope','status','totalContractAmount', 'dateClosing', 'awarded','selected'],
+      fields: ['name', 'number', 'scope','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
       value: 45,
       max: 100, 
-      selected: []
+      selected: [],
+      infoModal: {
+        id: 'info-modal',
+        title: '',
+        job: null
+      }
     }
   }, 
   methods: {
-    onRowSelected(items) {
-        this.selected = items
+    resetInfoModal() {
+      this.$bvModal.hide(this.infoModal.id)
     },
-    selectAllRows() {
-      this.$refs.selectableTable.selectAllRows()
-    },
-    clearSelected() {
-      this.$refs.selectableTable.clearSelected()
+    info(item, index, button) {
+      this.infoModal.title = `View RFQ: Job`;
+      this.infoModal.job = item;
+      this.$root.$emit('bv::show::modal', this.infoModal.id, button);
     },
     async loadPage () { 
       try { 
@@ -91,12 +92,7 @@ export default {
       } 
     }, 
   },
-  computed: {
-    // a computed getter
-    isCompleted: function () {
-      // `this` points to the vm instance
-      return this.max == this.value
-    },
+  computed: { 
     ...mapState({
       store: state => state.company
     }),

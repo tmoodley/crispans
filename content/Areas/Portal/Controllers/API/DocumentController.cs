@@ -25,6 +25,30 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             _context = context;
             this._host = _host;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Document>> GetDocument(Guid id)
+        {
+            var document = await _context.Documents.FindAsync(id).ConfigureAwait(false);
+
+            if (document == null)
+            {
+                return NotFound();
+            }
+             
+
+            var path = Path.Combine(
+                           Directory.GetCurrentDirectory(),
+                           "wwwroot/uploads", document.Id.ToString());
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory).ConfigureAwait(false);
+            }
+            memory.Position = 0;
+            return File(memory, "application/octet-stream", document.Name); 
+        }
+
         [HttpPost] 
         public async Task<IActionResult> Upload(IFormFile file, [FromForm]Guid CustomerId)
         {

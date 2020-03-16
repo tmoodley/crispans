@@ -17,9 +17,9 @@
                         <h5 class="title">Create Job</h5>
                       </div>
                       <div class="card-body">
-                        <div class="form-group">
+                        <div class="form-group"> 
                           <b-form-group label="Job Classification">
-                            <b-form-radio-group v-model="job.Scope"
+                            <b-form-radio-group v-model="job.scope"
                                                 :options="options"
                                                 name="radios-stacked"
                                                 stacked></b-form-radio-group>
@@ -27,19 +27,19 @@
                         </div>
                         <div class="form-group">
                           <label for="Status" class="control-label">Type</label>
-                          <b-form-select v-model="job.Type" :options="typeOptions" class="form-control"></b-form-select>
+                          <b-form-select v-model="job.type" :options="typeOptions" class="form-control"></b-form-select>
                         </div>
                         <div class="form-group">
                           <label for="Name" class="control-label">Name</label>
-                          <input v-model="job.Name" class="form-control" placeholder="Create x amount of widgets" />
+                          <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" />
                         </div>
                         <div class="form-group">
                           <label for="Number" class="control-label">Job Number</label>
-                          <input v-model="job.Number" class="form-control" placeholder="JobXYZ" />
+                          <input v-model="job.number" class="form-control" placeholder="JobXYZ" />
                         </div>
                         <div class="form-group">
                           <label for="Status" class="control-label">Job Status</label>
-                          <b-form-select v-model="job.Status" :options="statusOptions" class="form-control"></b-form-select>
+                          <b-form-select v-model="job.status" :options="statusOptions" class="form-control"></b-form-select>
                         </div>
                       </div>
                     </div>
@@ -95,15 +95,15 @@
                       <div class="card-body">
                         <div class="form-group">
                           <label for="DateAvailable" class="control-label">Date Available</label>
-                          <b-form-datepicker id="DateAvailable" v-model="job.DateAvailable" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="DateAvailable" v-model="job.dateAvailable" class="mb-2"></b-form-datepicker>
                         </div>
                         <div class="form-group">
                           <label for="DateClosing" class="control-label">Date Closing</label>
-                          <b-form-datepicker id="DateClosing" v-model="job.DateClosing" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="DateClosing" v-model="job.dateClosing" class="mb-2"></b-form-datepicker>
                         </div>
                         <div class="form-group">
                           <label for="question-deadline" class="control-label">Question Deadline</label>
-                          <b-form-datepicker id="question-deadline" v-model="job.QuestionDeadline" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="question-deadline" v-model="job.questionDeadline" class="mb-2"></b-form-datepicker>
                         </div>
                       </div>
                     </div>
@@ -111,8 +111,7 @@
                 </div>
               </tab-content>
               <tab-content title="Job Categories"
-                           icon="fa fa-list-alt">
-
+                           icon="fa fa-list-alt"> 
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card">
@@ -176,78 +175,98 @@
                     <p>In this section, you can upload your JOB related documents such as NDA's, Contracts, General Terms and Conditions, etc</p>
                   </div>
                 </div>
-                <div class="row"> 
-                  <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-6">
                     NDA File
+                  </div>
+                  <div class="col-md-6">
+                    <b-button class="float-right" v-if="job.ndaDocumentId" @click="download(job.ndaDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                  </div>
+                  <div class="col-md-12">
                     <upload @setid="setNda"></upload>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     Contract File
+                  </div>
+                  <div class="col-md-6">
+                    <b-button class="float-right" v-if="job.termsDocumentId" @click="download(job.termsDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                  </div>
+                  <div class="col-md-12">
                     <upload @setid="setContract"></upload>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     Terms and Conditions File
-                    <upload @setid="setTerms"></upload>
+                  </div>
+                  <div class="col-md-6">
+                    <b-button class="float-right" v-if="job.contractDocumentId" @click="download(job.contractDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
                   </div>
                   <div class="col-md-12">
+                    <upload @setid="setTerms"></upload>
+                  </div>
+                  <div class="col-md-6">
                     3D Visualizations File
+                  </div>
+                  <div class="col-md-6">
+                    <b-button class="float-right" v-if="job.cadFileDocumentId " @click="download(job.cadFileDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                  </div>
+                  <div class="col-md-12">
                     <upload @setid="setCadFile"></upload>
                   </div>
                 </div>
               </tab-content>
-                <tab-content title="Last step"
-                             icon="fa fa-check">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="card">
-                        <div class="card-header">
-                          <h5 class="title">Job Value</h5>
-                        </div>
-                        <div class="card-body">
-                          <div class="form-group">
-                            <label for="EstimatedAnnualValue" class="control-label">Estimated Annual Value</label>
-                            <input v-model="job.EstimatedAnnualValue" class="form-control" />
-                          </div>
-                          <div class="form-group">
-                            <label for="ActualContractValue" class="control-label">Actual Contract Value</label>
-                            <input v-model="job.ActualContractValue" class="form-control" />
-                          </div>
-                          <div class="form-group">
-                            <label for="ActualAnnualValue" class="control-label">Actual Annual Value</label>
-                            <input v-model="job.ActualAnnualValue" class="form-control" />
-                          </div>
-                        </div>
+              <tab-content title="Last step"
+                           icon="fa fa-check">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5 class="title">Job Value</h5>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card">
-                        <div class="card-header">
-                          <h5 class="title">Job Dates</h5>
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label for="EstimatedAnnualValue" class="control-label">Estimated Annual Value</label>
+                          <input v-model="job.estimatedAnnualValue" class="form-control" />
                         </div>
-                        <div class="card-body">
-                          <div class="form-group">
-                            <label for="DateAvailable" class="control-label">Date Available</label>
-                            <b-form-datepicker id="DateAvailable" v-model="job.DateAvailable" class="mb-2"></b-form-datepicker>
-                          </div>
-                          <div class="form-group">
-                            <label for="DateClosing" class="control-label">Date Closing</label>
-                            <b-form-datepicker id="DateClosing" v-model="job.DateClosing" class="mb-2"></b-form-datepicker>
-                          </div>
-                          <div class="form-group">
-                            <label for="question-deadline" class="control-label">Question Deadline</label>
-                            <b-form-datepicker id="question-deadline" v-model="job.QuestionDeadline" class="mb-2"></b-form-datepicker>
-                          </div>
+                        <div class="form-group">
+                          <label for="ActualContractValue" class="control-label">Actual Contract Value</label>
+                          <input v-model="job.actualContractValue" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="ActualAnnualValue" class="control-label">Actual Annual Value</label>
+                          <input v-model="job.actualAnnualValue" class="form-control" />
                         </div>
                       </div>
                     </div>
                   </div>
-                </tab-content>
+                  <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5 class="title">Job Dates</h5>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label for="DateAvailable" class="control-label">Date Available</label>
+                          <b-form-datepicker id="DateAvailable" v-model="job.dateAvailable" class="mb-2"></b-form-datepicker>
+                        </div>
+                        <div class="form-group">
+                          <label for="DateClosing" class="control-label">Date Closing</label>
+                          <b-form-datepicker id="DateClosing" v-model="job.dateClosing" class="mb-2"></b-form-datepicker>
+                        </div>
+                        <div class="form-group">
+                          <label for="question-deadline" class="control-label">Question Deadline</label>
+                          <b-form-datepicker id="question-deadline" v-model="job.questionDeadline" class="mb-2"></b-form-datepicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tab-content>
             </form-wizard>
-            </div>
           </div>
         </div>
-      </div>   
-        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -264,6 +283,7 @@
   import naics from '../categories/naics'
   import upload from '../jobs/document'
   export default {
+    props: ['selectedjob', 'action'],
   computed: mapState({
     store: state => state.company
   }), 
@@ -310,14 +330,54 @@
     methods: {
     ...mapActions('company', [
         'getCompany'
-    ]), 
+    ]),
+      download(id) {
+        axios({
+
+          url: '/portal/api/documents/' + id,
+
+          method: 'GET', 
+
+        }).then(function (doc) {
+          axios({
+
+            url: '/portal/api/document/' + id,
+
+            method: 'GET',
+
+            responseType: 'blob',
+
+          }).then((response) => {
+
+            var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+
+            var fileLink = document.createElement('a');
+             
+            fileLink.href = fileURL;
+
+            fileLink.setAttribute('download', doc.data.name);
+
+            document.body.appendChild(fileLink);
+             
+            fileLink.click();
+
+          })
+        });
+    },
     save() {
-      event.preventDefault();
-      var self = this;
-      this.job.CustomerId = this.store.company.id;
-      return axios
-        .post('/portal/api/jobs/PostJob/', self.job)
-        .then(response => { console.log(response.data) })
+        event.preventDefault();
+        var self = this;
+        if (this.action = "edit") { 
+          return axios
+            .put('/portal/api/jobs/PutJob/' + self.job.id, self.job)
+            .then(response => { console.log(response.data) })
+        }
+        else {
+          this.job.CustomerId = this.store.company.id;
+          return axios
+            .put('/portal/api/jobs/PostJob/', self.job)
+            .then(response => { console.log(response.data) })
+        } 
       },
       onComplete: function () {
         var self = this;
@@ -326,7 +386,9 @@
             'Saved',
             'Job Saved',
             'success'
-          )
+          ).then(function () {
+            self.$emit("hide");
+          })
         });
       },
       setNda(id) { 
@@ -342,8 +404,9 @@
           this.job.cadFileDocumentId = id;
       }
   },
-  mounted: function ()  {
-    this.getCompany(this.email)
+    mounted: function () { 
+      this.job = this.selectedjob;
+      this.getCompany(this.email)
   }
 }
 </script>
