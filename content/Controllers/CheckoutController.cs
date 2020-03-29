@@ -132,7 +132,7 @@ namespace HelpingHands.Controllers
             ViewBag.FamilyName = customer.FamilyName;
             ViewBag.SubscriptionPlan = customer.SubscriptionPlan;
 
-            RedirectToAction("Index", "Dashboard", new { area = "Portal" });
+            return RedirectToAction("Index", "Dashboard", new { area = "Portal" });
         }
 
         private static string NewIdempotencyKey()
