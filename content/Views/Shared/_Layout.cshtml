@@ -23,6 +23,8 @@
     <!-- Icofont -->
     <link rel="stylesheet" href="/plugins/icofont/icofont.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Data Tables-->
+    <link href="~/lib/datatables/datatables.css" rel="stylesheet" />
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -72,8 +74,11 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="/functions/quotemanagement/" title="Quote Management">Quote Management</a>
-                            </li> 
+                            </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link smoth-scroll" href="/tenders">Tenders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link smoth-scroll" href="/pricing">Pricing</a>
@@ -85,8 +90,8 @@
                         <a class="nav-link smoth-scroll" href="/contact">Contact</a>
                     </li>
                     <partial name="_LoginPartial" />
-                        </ul>
-</div>
+                </ul>
+            </div>
         </div>
     </nav>
     <partial name="_CookieConsentPartial" />
@@ -116,18 +121,18 @@
                 </div>
 
                 @*<div class="col-lg-2 col-sm-6 col-md-6">
-                    <div class="footer-widget footer-link">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="#">How it Works</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Report Bug</a></li>
-                            <li><a href="#">License</a></li>
-                            <li><a href="#">Terms & Condition</a></li>
-                        </ul>
-                    </div>
-                </div>*@
+                        <div class="footer-widget footer-link">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#">How it Works</a></li>
+                                <li><a href="#">Support</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Report Bug</a></li>
+                                <li><a href="#">License</a></li>
+                                <li><a href="#">Terms & Condition</a></li>
+                            </ul>
+                        </div>
+                    </div>*@
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="footer-widget footer-text">
                         <h4>Our location</h4>
@@ -191,11 +196,14 @@
     <script src="/plugins/jquery/contact.js"></script>
     <script src="/js/custom.js"></script>
 
+    <!--Data Tables-->
+    <script src="~/lib/datatables/datatables.js"></script>
+
     @RenderSection("Scripts", required: false)
     <style>
-    div#cookieConsent {
-        z-index: 10000;
-    }
+        div#cookieConsent {
+            z-index: 10000;
+        }
     </style>
 </body>
 </html>

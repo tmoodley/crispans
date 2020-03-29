@@ -1,4 +1,5 @@
 using AutoMapper;
+using DataTables.AspNet.AspNetCore;
 using HelpingHands.Data;
 using HelpingHands.Models;
 using HelpingHands.rules;
@@ -15,7 +16,9 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vue2Spa.Providers;
 
@@ -99,6 +102,12 @@ namespace Vue2Spa
                      )
              );
 
+            //DataTabales
+            services.RegisterDataTables(ctx =>
+            {
+                var appJson = ctx.ValueProvider.GetValue("appJson").FirstValue ?? "{}";
+                return JsonConvert.DeserializeObject<IDictionary<string, object>>(appJson);
+            }, true);
 
             //Password Strength Setting
             services.Configure<IdentityOptions>(options =>
