@@ -26,11 +26,13 @@ namespace HelpingHands.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IEmailSender _emailSender; 
         private readonly IEmailAttachmentSender _emailAttachmentSender;
+
         readonly Configuration configuration;
         readonly IConfiguration _configuration;
 
         private readonly UserManager<HelpingHands.Models.ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager; 
+        private readonly SignInManager<ApplicationUser> _signInManager;
         // Create a field to store the mapper object
         private readonly IMapper _mapper;
 
@@ -40,6 +42,7 @@ namespace HelpingHands.Controllers
                                             IEmailSender emailSender,
                                             IEmailAttachmentSender emailAttachmentSender,
                                             UserManager<HelpingHands.Models.ApplicationUser> userManager,
+                                            SignInManager<HelpingHands.Models.ApplicationUser> signInManager,
                                             RoleManager<IdentityRole> roleManager)
         {
             _emailSender = emailSender;
@@ -54,6 +57,7 @@ namespace HelpingHands.Controllers
                 _configuration["AppSettings:SandboxAccessToken"] : _configuration["AppSettings:AccessToken"]; 
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         // GET: Customers
@@ -180,14 +184,17 @@ namespace HelpingHands.Controllers
                         "Thank you for joining Capacitym",
                         "Congratulations!<br />You are eligible for services on the 1st of the month. but in the meantime look out for your welcome kit. If you haven't registered already, please register now by clicking on the link below. <br />  <a href='https://capacitym.com/Identity/Account/Login'>Login</a> - using default password 'Password123456' and your email " + customer.EmailAddress + " for maintenance of your account.", true);
 
+                
                 }
                 catch (Exception e)
                 {
                     Debug.Print("Exception when calling CustomersApi.CreateCustomer: " + e.Message);
-                }
-                return RedirectToAction("ProcessCard", "Checkout", new { id = customer.Id });
+                } 
             }
-            return RedirectToAction("ProcessCard", "Checkout", new { id = customer.Id });
+            var result2 = await _signInManager.PasswordSignInAsync(customer.EmailAddress, "Password123456", true, lockoutOnFailure: true).ConfigureAwait(false);
+            return result2.Succeeded && customer.SubscriptionPlan == "Free"
+                ? RedirectToAction("Index", "Dashboard", new { area = "Portal" })
+                : RedirectToAction("ProcessCard", "Checkout", new { id = customer.Id });
         }
 
         public string GeneratePrimaryId()
