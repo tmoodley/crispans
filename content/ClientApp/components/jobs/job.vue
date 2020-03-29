@@ -26,7 +26,7 @@
                           </b-form-group>
                         </div>
                         <div class="form-group">
-                          <label for="Status" class="control-label">Type</label>
+                          <label for="Status" class="control-label">Type</label> 
                           <b-form-select v-model="job.type" :options="typeOptions" class="form-control"></b-form-select>
                         </div>
                         <div class="form-group">
@@ -58,39 +58,39 @@
                            icon="fa fa-list-alt">
                 <div class="row">
                   <div class="col-md-12">
-                    <b-form-input v-model="job.Title" placeholder="Title"></b-form-input>
+                    <b-form-input v-model="job.title" placeholder="Title"></b-form-input>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <wysiwyg v-model="job.Description" />
+                    <wysiwyg v-model="job.description" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <b-form-input v-model="job.Quantity" placeholder="Quantity"></b-form-input>
+                    <b-form-input v-model="job.quantity" placeholder="Quantity"></b-form-input>
                   </div>
                   <div class="col-md-6">
-                    <b-form-input v-model="job.Price" placeholder="Price"></b-form-input>
+                    <b-form-input v-model="job.price" placeholder="Price"></b-form-input>
                   </div>
                 </div>
                 <div class="row"> 
                   <div class="col-md-12"><h2>Workpiece Data</h2></div>
                   <div class="col-md-12"><h3>Dimensions</h3></div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.Length" placeholder="Length* mm"></b-form-input>
+                    <b-form-input v-model="job.length" placeholder="Length* mm"></b-form-input>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.Width" placeholder="Width mm"></b-form-input>
+                    <b-form-input v-model="job.width" placeholder="Width mm"></b-form-input>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.Height" placeholder="Height  mm"></b-form-input>
+                    <b-form-input v-model="job.height" placeholder="Height  mm"></b-form-input>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.Diameter" placeholder="Diameter mm"></b-form-input>
+                    <b-form-input v-model="job.diameter" placeholder="Diameter mm"></b-form-input>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.MinTolerance" placeholder="Min Tolerance mm"></b-form-input>
+                    <b-form-input v-model="job.minTolerance" placeholder="Min Tolerance mm"></b-form-input>
                   </div>
                 </div>
               </tab-content>
@@ -104,21 +104,21 @@
                       </div>
                       <div class="card-body">
                         <div class="form-group form-check">
-                          <b-form-checkbox v-model="job.IsCloseQuestionsAfterDeadline"
+                          <b-form-checkbox v-model="job.isCloseQuestionsAfterDeadline"
                                            value="true"
                                            unchecked-value="false">
                             Close Questions After Deadline
                           </b-form-checkbox>
                         </div>
                         <div class="form-group form-check">
-                          <b-form-checkbox v-model="job.IncludeOtherDocument"
+                          <b-form-checkbox v-model="job.includeOtherDocument"
                                            value="true"
                                            unchecked-value="false">
                             Include Other Document
                           </b-form-checkbox>
                         </div>
                         <div class="form-group form-check">
-                          <b-form-checkbox v-model="job.AllowBidDocumentPreview"
+                          <b-form-checkbox v-model="job.allowBidDocumentPreview"
                                            value="true"
                                            unchecked-value="false">
                             Allow Job Document Preview
