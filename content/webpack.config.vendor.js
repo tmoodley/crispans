@@ -25,7 +25,7 @@ module.exports = () => {
       ]
     },
     entry: {
-      vendor: ['bootstrap', 'bootstrap/dist/css/bootstrap.css', 'event-source-polyfill', 'vue', 'vuex', 'axios', 'vue-router', 'jquery', 'vue2-dropzone/dist/vue2Dropzone.min.css']
+      vendor: ['bootstrap', 'bootstrap/dist/css/bootstrap.css','bootstrap-vue/dist/bootstrap-vue.css','event-source-polyfill', 'vue', 'vuex', 'axios', 'vue-router', 'jquery', 'vue2-dropzone/dist/vue2Dropzone.min.css','vue-wysiwyg/dist/vueWysiwyg.css']
     },
     output: {
       path: path.join(__dirname, 'wwwroot', 'dist'),

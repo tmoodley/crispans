@@ -41,6 +41,11 @@ namespace Vue2Spa.Areas.Portal.Models
 
         public string OpeningProcess { get; set; }
 
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Diameter { get; set; }
+        public int MinTolerance { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
 

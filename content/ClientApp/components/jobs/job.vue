@@ -74,6 +74,25 @@
                     <b-form-input v-model="job.Price" placeholder="Price"></b-form-input>
                   </div>
                 </div>
+                <div class="row"> 
+                  <div class="col-md-12"><h2>Workpiece Data</h2></div>
+                  <div class="col-md-12"><h3>Dimensions</h3></div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Length" placeholder="Length* mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Width" placeholder="Width mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Height" placeholder="Height  mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Diameter" placeholder="Diameter mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.MinTolerance" placeholder="Min Tolerance mm"></b-form-input>
+                  </div>
+                </div>
               </tab-content>
               <tab-content title="Question Info"
                            icon="fa fa-question">

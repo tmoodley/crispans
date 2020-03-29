@@ -20,8 +20,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 Vue.use(VueSweetalert2)
 import wysiwyg from "vue-wysiwyg"
-Vue.use(wysiwyg, {}); // config is optional. more below
-import "vue-wysiwyg/dist/vueWysiwyg.css";
+Vue.use(wysiwyg, {}); // config is optional. more below 
 Vue.use(Vue2Dropzone)
 Vue.use(BootstrapVue)
 Vue.use(VueFormWizard)
