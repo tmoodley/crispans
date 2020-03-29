@@ -37,6 +37,7 @@ namespace HelpingHands.Data
         public DbSet<Vue2Spa.Models.CustomerCertification> CustomerCertification { get; set; }
         public DbSet<CompanyType> CompanyTypes { get; set; }
         public DbSet<Vue2Spa.Models.CustomerCompanyType> CustomerCompanyType { get; set; }
+        public DbSet<PartnerCompanyType> PartnerCompanyType { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -238,6 +239,20 @@ namespace HelpingHands.Data
                 .HasOne(bc => bc.CompanyType)
                 .WithMany(c => c.JobCompanyTypes)
                 .HasForeignKey(bc => bc.CompanyTypeId);
+
+
+            // Partner Company Types
+            modelBuilder.Entity<PartnerCompanyType>()
+               .HasKey(x => new { x.PartnerId, x.CompanyTypeId });
+            modelBuilder.Entity<PartnerCompanyType>()
+                .HasOne(bc => bc.Partner)
+                .WithMany(b => b.PartnerCompanyTypes)
+                .HasForeignKey(bc => bc.PartnerId);
+
+            modelBuilder.Entity<PartnerCompanyType>()
+               .HasOne(bc => bc.CompanyType)
+               .WithMany(c => c.PartnerCompanyTypes)
+               .HasForeignKey(bc => bc.CompanyTypeId);
 
         }
 

@@ -15,5 +15,6 @@ namespace Vue2Spa.Models
         public int DisplayOrder { get; set; }
         public ICollection<CustomerCompanyType> CustomerCompanyTypes { get; set; }
         public ICollection<JobCompanyType> JobCompanyTypes { get; set; }
+        public ICollection<PartnerCompanyType> PartnerCompanyTypes { get; set; }
     }
 }
