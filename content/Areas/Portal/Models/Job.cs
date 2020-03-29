@@ -39,8 +39,14 @@ namespace Vue2Spa.Areas.Portal.Models
 
         public string Description { get; set; }
 
-        public string OpeningProcess { get; set; } 
+        public string OpeningProcess { get; set; }
 
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Diameter { get; set; }
+        public int MinTolerance { get; set; }
+        public int Quantity { get; set; }
         public decimal Price { get; set; }
 
         public decimal PricePickup { get; set; }
@@ -98,6 +104,7 @@ namespace Vue2Spa.Areas.Portal.Models
         public bool AllowBidDocumentPreview { get; set; }
 
         public string BondHeadingText { get; set; }
+        public string Title { get; set; }
 
         public string BondTitle { get; set; }
 

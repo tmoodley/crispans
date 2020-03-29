@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200329032219_added quantity")]
+    partial class addedquantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -438,8 +440,6 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Diameter");
-
                     b.Property<string>("EstimatedAnnualValue");
 
                     b.Property<string>("EstimatedValue");
@@ -451,8 +451,6 @@ namespace HelpingHands.Data.Migrations
                     b.Property<bool>("HasSubContractorTable");
 
                     b.Property<bool>("HasSummaryTable");
-
-                    b.Property<int>("Height");
 
                     b.Property<bool>("IncludeOtherDocument");
 
@@ -471,10 +469,6 @@ namespace HelpingHands.Data.Migrations
                     b.Property<string>("LastUpdatedBy");
 
                     b.Property<bool>("LeadAgency");
-
-                    b.Property<int>("Length");
-
-                    b.Property<int>("MinTolerance");
 
                     b.Property<string>("Name");
 
@@ -563,8 +557,6 @@ namespace HelpingHands.Data.Migrations
                     b.Property<decimal?>("TotalContractAmount");
 
                     b.Property<bool?>("UnsealManually");
-
-                    b.Property<int>("Width");
 
                     b.Property<bool>("isNda");
 

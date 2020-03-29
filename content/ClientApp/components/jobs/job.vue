@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="title">Create New Job</h5>
+            <h5 class="title">Create New Tender</h5>
           </div>
           <div class="card-body">
             <form-wizard @on-complete="onComplete" title="" subtitle="">
@@ -14,10 +14,10 @@
                   <div class="col-md-6">
                     <div class="card">
                       <div class="card-header">
-                        <h5 class="title">Create Job</h5>
+                        <h5 class="title">Details</h5>
                       </div>
                       <div class="card-body">
-                        <div class="form-group"> 
+                        <div class="form-group">
                           <b-form-group label="Job Classification">
                             <b-form-radio-group v-model="job.scope"
                                                 :options="options"
@@ -51,6 +51,46 @@
                         <certification></certification>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </tab-content>
+              <tab-content title="Description"
+                           icon="fa fa-list-alt">
+                <div class="row">
+                  <div class="col-md-12">
+                    <b-form-input v-model="job.Title" placeholder="Title"></b-form-input>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <wysiwyg v-model="job.Description" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <b-form-input v-model="job.Quantity" placeholder="Quantity"></b-form-input>
+                  </div>
+                  <div class="col-md-6">
+                    <b-form-input v-model="job.Price" placeholder="Price"></b-form-input>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col-md-12"><h2>Workpiece Data</h2></div>
+                  <div class="col-md-12"><h3>Dimensions</h3></div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Length" placeholder="Length* mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Width" placeholder="Width mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Height" placeholder="Height  mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.Diameter" placeholder="Diameter mm"></b-form-input>
+                  </div>
+                  <div class="col-md-2">
+                    <b-form-input v-model="job.MinTolerance" placeholder="Min Tolerance mm"></b-form-input>
                   </div>
                 </div>
               </tab-content>
@@ -111,7 +151,7 @@
                 </div>
               </tab-content>
               <tab-content title="Job Categories"
-                           icon="fa fa-list-alt"> 
+                           icon="fa fa-list-alt">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card">
@@ -318,7 +358,8 @@
       typeOptions: [
         { text: 'Request For Proposal', value: 'rfp' },
         { text: 'Request For Quotation', value: 'rfq' },
-        { text: 'Tender', value: 'tender' }
+        { text: 'Tender', value: 'tender' },
+        { text: 'Auction', value: 'auction' }
       ],
       statusOptions: [ 
         { value: 'design', text: 'Job Design' },
