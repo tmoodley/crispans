@@ -19,7 +19,7 @@
                       <div class="card-body">
                         <div class="form-group">
                           <b-form-group label="Job Classification">
-                            <b-form-radio-group v-model="job.Classification"
+                            <b-form-radio-group v-model="job.classification"
                                                 :options="options"
                                                 name="radios-stacked"
                                                 stacked></b-form-radio-group>
