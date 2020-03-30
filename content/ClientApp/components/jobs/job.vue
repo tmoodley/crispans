@@ -19,7 +19,7 @@
                       <div class="card-body">
                         <div class="form-group">
                           <b-form-group label="Job Classification">
-                            <b-form-radio-group v-model="job.scope"
+                            <b-form-radio-group v-model="job.Classification"
                                                 :options="options"
                                                 name="radios-stacked"
                                                 stacked></b-form-radio-group>
@@ -347,7 +347,7 @@
         name: '',
         number: '',
         status: 'design',
-        scope: 'goods',
+        Classification: 'goods',
         type: 'rfp'
       },
       options: [
@@ -469,5 +469,7 @@
     margin: 0;
     border-radius: 2.1875rem;
 }
- 
+ button.btn.btn-sm.btn-outline-secondary.border-0.flex-fill.p-1.mx-1 {
+    COLOR: blue;
+}
 </style>
