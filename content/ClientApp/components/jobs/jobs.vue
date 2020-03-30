@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="title">JOBS</h5>
+            <h5 class="title">TENDERS</h5>
           </div>
           <div class="card-body">
             <b-container fluid>
@@ -16,7 +16,7 @@
             </div>
             <template v-if="jobs">
               <b-table hover :items="jobs" :fields="fields">
-                <!-- Example scoped slot for select state illustrative purposes -->
+                <!-- Example Classificationd slot for select state illustrative purposes -->
                 <template v-slot:cell(actions)="row">
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
@@ -61,7 +61,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'scope','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
+      fields: ['name', 'number', 'Classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
       value: 45,
       max: 100, 
       selected: [],
