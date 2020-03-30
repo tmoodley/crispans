@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content"> 
     <div class="row">
       <div class="col-md-12">
         <div class="card">
@@ -39,10 +39,10 @@
               <job :selectedjob="infoModal.job" :action="edit" @hide="resetInfoModal"></job>
             </b-modal>
           </div>
-          </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
