@@ -144,6 +144,10 @@ namespace Vue2Spa.Controllers
             return View(job);
         }
 
+        public IActionResult SubmitQuestion(string id)
+        {
+            return RedirectToAction("Create", "JobQuestions", new { id = id });
+        }
 
         public IActionResult PageData(IDataTablesRequest request)
         {

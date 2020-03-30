@@ -73,12 +73,7 @@
                     @Html.DisplayFor(model => model.Name)
                 </dd>
 
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Scope)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Scope)
-                </dd>
+                
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Status)
                 </dt>
@@ -553,7 +548,7 @@
             <a asp-action="SubmitQuestion" asp-route-id="@Model.Id" class="btn btn-primary">Submit a Question</a>
             <a asp-action="RegisterToBid" asp-route-id="@Model.Id"  class="btn btn-success">Register For this Bid</a> 
             <a asp-action="DownloadBidDocuments" asp-route-id="@Model.Id"  class="btn btn-warning">Download Bid Documents</a> 
-            <a asp-action="Index"  class="btn btn-danger">Back to List</a>
+            <a asp-action="Index"  class="btn btn-danger">Back to Opprtunities List</a>
         </div>
 
     </div>
