@@ -24,6 +24,10 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20200329154803_added_bidder.cs" />
+    <Compile Remove="Data\Migrations\20200329154803_added_bidder.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
     <None Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
     <None Include="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />

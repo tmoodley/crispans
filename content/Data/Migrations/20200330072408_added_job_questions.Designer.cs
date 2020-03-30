@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200330072408_added_job_questions")]
+    partial class added_job_questions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,8 +414,6 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<Guid>("CadFileDocumentId");
 
-                    b.Property<string>("Classification");
-
                     b.Property<Guid>("ContractDocumentId");
 
                     b.Property<DateTime>("Created");
@@ -518,6 +518,8 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("ReferenceHeadingText");
 
+                    b.Property<string>("Scope");
+
                     b.Property<string>("SelectedTablesForSummary");
 
                     b.Property<bool>("ShowOnWebsite");
@@ -561,8 +563,6 @@ namespace HelpingHands.Data.Migrations
                     b.Property<string>("Title");
 
                     b.Property<decimal?>("TotalContractAmount");
-
-                    b.Property<string>("Type");
 
                     b.Property<bool?>("UnsealManually");
 
@@ -666,19 +666,6 @@ namespace HelpingHands.Data.Migrations
                     b.HasIndex("MaterialId");
 
                     b.ToTable("JobMaterial");
-                });
-
-            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PartnerCompanyType", b =>
-                {
-                    b.Property<Guid>("PartnerId");
-
-                    b.Property<Guid>("CompanyTypeId");
-
-                    b.HasKey("PartnerId", "CompanyTypeId");
-
-                    b.HasIndex("CompanyTypeId");
-
-                    b.ToTable("PartnerCompanyType");
                 });
 
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.JobQuestion", b =>

@@ -69,7 +69,7 @@
                     sortable: true,
                     searchable: false,
                     render: function (data, type, row) {
-                        return data ? moment(data).format('DD/MM/YYYY') : '';
+                        return data ? moment(data).format('MMMM Do YYYY') : '';
                     }
                 }, {
                     name: 'Status',
@@ -83,7 +83,7 @@
                     title: "Actions",
                     data: null, render: function (data, type, row) {
                         return '<div >' +
-                            '<a class="btn btn-primary" href="/tenders/details/' + data.id +'">' +
+                            '<a class="btn btn-primary" href="/tenders/details/'+data.id +'">' +
                             'View' +
                             '</a>' +
 

@@ -9,6 +9,7 @@ using HelpingHands.Data;
 using Vue2Spa.Areas.Portal.Models;
 using DataTables.AspNet.Core;
 using DataTables.AspNet.AspNetCore;
+using Vue2Spa.Areas.Portal.Models.DTO;
 
 namespace Vue2Spa.Controllers
 {
@@ -143,16 +144,27 @@ namespace Vue2Spa.Controllers
             return View(job);
         }
 
+        public IActionResult SubmitQuestion(string id)
+        {
+            return RedirectToAction("Create", "JobQuestions", new { id = id });
+        }
 
         public IActionResult PageData(IDataTablesRequest request)
         {
             // Nothing important here. Just creates some mock data.
 
-            var machines = _context.Jobs.ToList();
+            _context.Database.SetCommandTimeout(300);
+            var tenders = _context.Jobs.Select( a=> new JobDto {
+                Id = a.Id,
+                Name = a.Name,
+                DateClosing = a.DateClosing,
+                Status = a.Status,
+                Number = a.Number,
+            }).ToList();
 
-            ;
+            
 
-            var output = machines;
+            var output = tenders;
             var data = output;
 
             // Global filtering.
