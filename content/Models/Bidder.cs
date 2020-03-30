@@ -8,7 +8,7 @@ namespace Vue2Spa.Models
 {
     public class Bidder
     {
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
         public string  Website { get; set; }
         [Required]
         [Display(Name = "Address")]

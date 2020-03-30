@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200329155248_added_bidder")]
+    partial class added_bidder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -666,19 +668,6 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("JobMaterial");
                 });
 
-            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.JobQuestion", b =>
-                {
-                    b.Property<string>("JobId");
-
-                    b.Property<Guid>("QuestionId");
-
-                    b.HasKey("JobId", "QuestionId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("JobQuestions");
-                });
-
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PartnerCompanyType", b =>
                 {
                     b.Property<Guid>("PartnerId");
@@ -690,22 +679,6 @@ namespace HelpingHands.Data.Migrations
                     b.HasIndex("CompanyTypeId");
 
                     b.ToTable("PartnerCompanyType");
-                });
-
-            modelBuilder.Entity("Vue2Spa.Models.Answer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Body");
-
-                    b.Property<Guid>("QuestionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("Answer");
                 });
 
             modelBuilder.Entity("Vue2Spa.Models.Bidder", b =>
@@ -1015,22 +988,6 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("Naics");
                 });
 
-            modelBuilder.Entity("Vue2Spa.Models.Question", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Body");
-
-                    b.Property<int>("Score");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Question");
-                });
-
             modelBuilder.Entity("HelpingHands.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -1197,19 +1154,6 @@ namespace HelpingHands.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.JobQuestion", b =>
-                {
-                    b.HasOne("Vue2Spa.Areas.Portal.Models.Job", "Job")
-                        .WithMany("JobQuestions")
-                        .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Vue2Spa.Models.Question", "Question")
-                        .WithMany("JobQuestions")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PartnerCompanyType", b =>
                 {
                     b.HasOne("Vue2Spa.Models.CompanyType", "CompanyType")
@@ -1220,14 +1164,6 @@ namespace HelpingHands.Data.Migrations
                     b.HasOne("HelpingHands.Models.Partner", "Partner")
                         .WithMany("PartnerCompanyTypes")
                         .HasForeignKey("PartnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Vue2Spa.Models.Answer", b =>
-                {
-                    b.HasOne("Vue2Spa.Models.Question")
-                        .WithMany("Answers")
-                        .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
