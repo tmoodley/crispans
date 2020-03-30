@@ -61,7 +61,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'Classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
+      fields: ['name', 'number', 'type', 'classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
       value: 45,
       max: 100, 
       selected: [],
