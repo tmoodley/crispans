@@ -26,7 +26,7 @@
                ref="selectableTable"
                :select-mode="selectMode"
                @row-selected="onRowSelected">
-        <!-- Example scoped slot for select state illustrative purposes -->
+        <!-- Example Classificationd slot for select state illustrative purposes -->
         <template v-slot:cell(selected)="{ rowSelected }">
           <template v-if="rowSelected">
             <span aria-hidden="true">&check;</span>

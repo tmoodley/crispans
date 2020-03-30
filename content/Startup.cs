@@ -121,7 +121,7 @@ namespace Vue2Spa
                 options.Password.RequiredUniqueChars = 6;
 
                 // Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 options.Lockout.MaxFailedAccessAttempts = 10;
                 options.Lockout.AllowedForNewUsers = true;
 
@@ -129,12 +129,13 @@ namespace Vue2Spa
                 options.User.RequireUniqueEmail = true;
             });
 
+             
             //Setting the Account Login page
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.ExpireTimeSpan = TimeSpan.FromHours(10);
                 options.LoginPath = "/Account/Login"; // If the LoginPath is not set here,
                                                       // ASP.NET Core will default to /Account/Login
                 options.LogoutPath = "/Account/Logout"; // If the LogoutPath is not set here,
@@ -159,6 +160,7 @@ namespace Vue2Spa
                         options.SerializerSettings.ReferenceLoopHandling =
                             Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     });
+
 
             services.AddSession(options =>
             {

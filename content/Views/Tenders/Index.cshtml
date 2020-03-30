@@ -4,62 +4,65 @@
     ViewData["Title"] = "Index";
     //Layout = "_Layout";
 
-}
+} 
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="container-fluid">
 
-    <div class="container-fluid">
+                <h1 class="pt-5">Bid Opportunities</h1>
+                <em>Check out the latest bids opportunities below</em>
 
-        <h1 class="pt-5">Bid Opportunities</h1>
-        <em >Check out the latest bids opportunities below</em>
+                <div class="row pb-2 pt-2">
+                    <div class="col-md-6">
+                        <label></label>
+                        <input id="keyword" type="text" alt="Enter Keywords" />
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
 
-        <div class="row pb-2 pt-2">
-            <div class="col-md-6">
-                <label></label>
-                <input id="keyword" type="text" alt="Enter Keywords" />
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <button class="btn btn-primary">Search</button>
+                <div class="row pt-2 pb-2">
+                    <div class="col-md-4">
+                        <h4>Latest Bids</h4>
+                    </div>
+                    <div class="col-md-8"> 
+                    </div>
+
+                </div>
+
+                <table id="myTable" class="table">
+                </table>
             </div>
         </div>
-
-        <div class="row pt-2 pb-2">
-            <div class="col-md-4">
-                <h4>Latest Bids</h4> 
-            </div>
-            <div class="col-md-8">
-                <span class="float-right"><i class="fa fa-coins text-black-50"></i> This bid contains additional fees</span>
-            </div>
-            
-        </div>
-
-        <table id="myTable" class="table">
-        </table>
     </div>
-
+</section>
 @section Scripts{
 
 
-<script>
-    $('#myTable').dataTable({
+    <script>
+        $('#myTable').dataTable({
             serverSide: true,
             processing: true,
             ajax: "/Tenders/pagedata",
             columns: [
-                
+
                 {
                     name: 'Number',
                     data: "number",
                     title: "Number",
                     sortable: true,
                     searchable: false
-                },{
+                }, {
                     name: 'Name',
                     data: "name",
                     title: "Name",
                     sortable: true,
                     searchable: false
-                },{
+                }, {
                     name: 'DateClosing',
                     data: "dateClosing",
                     title: "Date Closing",
@@ -68,7 +71,7 @@
                     render: function (data, type, row) {
                         return data ? moment(data).format('MMMM Do YYYY') : '';
                     }
-                },{
+                }, {
                     name: 'Status',
                     data: "status",
                     title: "Status",
@@ -83,16 +86,21 @@
                             '<a class="btn btn-primary" href="/tenders/details/'+data.id +'">' +
                             'View' +
                             '</a>' +
-                            
+
                             '</div>';
-                        
+
                     },
                     sortable: false,
                     searchable: false
                 }
             ]
         });
-</script>
+    </script>
 
 
 }
+<style>
+    .trans-navigation {
+        background: black;
+    }
+</style>

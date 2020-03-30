@@ -29,7 +29,8 @@ namespace Vue2Spa.Areas.Portal.Models
 
         public string Number { get; set; }
 
-        public string Scope { get; set; }
+        public string Classification { get; set; }
+        public string Type { get; set; }
 
         public string Status { get; set; }
 
