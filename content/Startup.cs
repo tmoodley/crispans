@@ -249,6 +249,15 @@ namespace Vue2Spa
                     //create the roles and seed them to the database
                     roleResult = await RoleManager.CreateAsync(new IdentityRole("Partner"));
                 }
+
+                //Adding Partner Role
+                var roleCheck3 = await RoleManager.RoleExistsAsync("Bidder");
+                if (!roleCheck3)
+                {
+                    //create the roles and seed them to the database
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole("Bidder"));
+                }
+
                 //Assign Admin role to the main User here we have given our newly registered 
                 //login id for Admin management
                 ApplicationUser user = await UserManager.FindByEmailAsync("ty.moodley@gmail.com");
@@ -259,6 +268,10 @@ namespace Vue2Spa
 
                 await UserManager.AddToRoleAsync(user, "Partner");
                 await UserManager.AddToRoleAsync(user2, "Partner");
+
+
+                await UserManager.AddToRoleAsync(user, "Bidder");
+                await UserManager.AddToRoleAsync(user2, "Bidder");
             }
             catch (Exception ex)
             {
