@@ -10,14 +10,14 @@ namespace Vue2Spa.Models
     {
         public Guid Id { get; set; }
         public string  Website { get; set; }
-        [Required]
+        
         [Display(Name = "Address")]
         public string Address1 { get; set; }
         [Required]
         public string City { get; set; }
         [Required]
         public string State { get; set; }
-        [Required]
+        
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
         public string TermsOfService { get; set; }

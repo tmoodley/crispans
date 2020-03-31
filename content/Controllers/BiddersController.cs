@@ -272,7 +272,8 @@ namespace Vue2Spa.Controllers
 
 
                     // register for  this bid
-                    return View(nameof(Index));
+
+                    return RedirectToAction("Bid","Tenders",new { id = bidder.JobId, bidder = bidder.EmailAddress });
 
                 }
                 catch (Exception ex)
