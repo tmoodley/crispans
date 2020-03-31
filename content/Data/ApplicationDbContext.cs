@@ -39,6 +39,7 @@ namespace HelpingHands.Data
         public DbSet<Vue2Spa.Models.CustomerCompanyType> CustomerCompanyType { get; set; }
         public DbSet<PartnerCompanyType> PartnerCompanyType { get; set; }
         public DbSet<Bidder> Bidders { get; set; }
+        public DbSet<JobBid> JobBids { get; set; }
 
         public DbSet<JobQuestion> JobQuestions { get; set; }
 
@@ -259,7 +260,7 @@ namespace HelpingHands.Data
 
             //Job Questions
             modelBuilder.Entity<JobQuestion>()
-                   .HasKey(x => new { x.JobId, x.QuestionId });
+                   .HasKey(x => new { x.JobId, x.QuestionId,x.BidderId });
 
             modelBuilder.Entity<JobQuestion>()
                .HasOne(bc => bc.Job)
@@ -269,6 +270,25 @@ namespace HelpingHands.Data
                .HasOne(bc => bc.Question)
                .WithMany(c => c.JobQuestions)
                .HasForeignKey(bc => bc.QuestionId);
+            modelBuilder.Entity<JobQuestion>()
+               .HasOne(bc => bc.Bidder)
+               .WithMany(c => c.Questions)
+               .HasForeignKey(bc => bc.BidderId);
+
+            //JobBid
+            modelBuilder.Entity<JobBid>()
+                  .HasKey(x => new { x.JobId, x.BidderId });
+            modelBuilder.Entity<JobBid>()
+               .HasOne(bc => bc.Job)
+               .WithMany(b => b.JobBids)
+               .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobBid>()
+              .HasOne(bc => bc.Bidder)
+              .WithMany(c => c.Bids)
+              .HasForeignKey(bc => bc.BidderId);
+
+
+
 
         }
 

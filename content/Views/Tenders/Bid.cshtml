@@ -1,10 +1,24 @@
 
 @{
     ViewData["Title"] = "Bid";
+    Layout = "_Layout";
 }
 
-<h1>Bid to tender @ViewBag.TenderId</h1>
-called by @ViewBag.Bidder
-<hr/>
+
+    <section id="intro" class="section-padding">
+        <div class="container">
+            <h3>Bid to tender @ViewBag.TenderId</h3>
+            called by @ViewBag.Bidder
+
+        </div>
+        
+
+    </section>
+
+<style>
+    .trans-navigation {
+        background: black;
+    }
+</style>
 
 

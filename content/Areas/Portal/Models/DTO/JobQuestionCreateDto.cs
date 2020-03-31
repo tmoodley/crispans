@@ -9,6 +9,7 @@ namespace Vue2Spa.Areas.Portal.Models.DTO
     public class JobQuestionCreateDto
     {
         public string JobId { get; set; }
+        public Guid BidderId { get; set; }
         public string Number { get; set; }
         public string Name { get; set; }
 

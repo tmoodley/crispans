@@ -5,52 +5,57 @@
     Layout = "_Layout";
 }
 
+    <section id="intro" class="section-padding">
+        <div class="container">
 
-    <div class="container">
+            <h4 class="pt-2">Submit Bid Question</h4>
+            <hr />
+            <div class="row">
 
-        <h4 class="pt-5">Bid Question</h4>
-        <hr />
-        <div class="row">
-            
-            <form asp-action="Create">
+                <form asp-action="Create">
 
-                <input type="hidden" asp-for="JobId" value="@ViewBag.JobId" />
+                    <input type="hidden" asp-for="JobId" value="@ViewBag.JobId" />
 
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <label >Tender Number</label>
-                        <input value="@ViewBag.Number" readonly class="form-control" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Tender Number</label>
+                            <input value="@ViewBag.Number" readonly class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Tender Name</label>
+                            <input value="@ViewBag.Name" readonly class="form-control" />
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label >Tender Name</label>
-                        <input value="@ViewBag.Name" readonly class="form-control" />
+
+                    <div class="form-group">
+                        <label asp-for="QuestionTitle" class="control-label"></label>
+                        <input asp-for="QuestionTitle" class="form-control" />
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="QuestionBody" class="control-label"></label>
+                        <textarea asp-for="QuestionBody" class="form-control" cols="40" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        <a asp-action="Details" asp-controller="Tenders" asp-route-id="@ViewBag.JobId" class="btn btn-danger">Back to Tender</a>
+                    </div>
+                </form>
 
-                <div class="form-group">
-                    <label asp-for="QuestionTitle" class="control-label"></label>
-                    <input asp-for="QuestionTitle" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="QuestionBody" class="control-label"></label>
-                    <textarea asp-for="QuestionBody" class="form-control" cols="40" rows="5"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-primary" />
-                    <a asp-action="Details" asp-controller="Tenders" asp-route-id="@ViewBag.JobId" class="btn btn-danger">Back to Tender</a>
-                </div>
-            </form>
-           
+            </div>
+
+            <div>
+
+            </div>
+
         </div>
-
-        <div>
-            
-        </div>
-
-    </div>
-
+    </section>
+    <style>
+        .trans-navigation {
+            background: black;
+        }
+    </style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "_Layout";
+    var jobId = Model.Id.ToString();
+    var bidder = ViewBag.Bidder;
+
+    TempData["jobid"] = jobId;
+    TempData["bidder"] = bidder;
 }
 
 <div class="container">
@@ -79,9 +84,9 @@
                 </li>
             </ul>
 
-            <button asp-action="SubmitQuestion" asp-route-id="@Model.Id" class="btn btn-primary btn-block">
+            <a asp-action="SubmitQuestion" asp-route-id="@Model.Id" class="btn btn-primary btn-block">
                 Submit a Question
-            </button>
+            </a>
 
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Documents</span>
@@ -168,10 +173,18 @@
                     @Html.Raw(Model.Description)
                 </div>
             </div>
-            <hr class="mb-4">
-            <button asp-action="RegisterToBid" asp-route-id="@Model.Id" class="btn btn-success btn-block">
-                Register For this Bid
-            </button>
+
+            @if (!User.IsInRole("Bidder"))
+            {
+                @Html.ActionLink("Register For this Bid", "RegisterToBid","Tenders", null, new { @class = "btn btn-success btn-block text-white pb-3" })
+            }
+            else
+            {
+                
+
+                @Html.ActionLink("Place Bid", "Bid","Tenders",null, new { @class = "btn btn-success btn-block text-white pb-3" })
+            }
+
         </div>
     </div>
 

@@ -66,7 +66,7 @@ namespace Vue2Spa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("JobId,QuestionTite,QuestionBody")] JobQuestionCreateDto jobQuestionCreateDto)
+        public async Task<IActionResult> Create([Bind("JobId,QuestionTitle,QuestionBody")] JobQuestionCreateDto jobQuestionCreateDto)
         {
             if (ModelState.IsValid)
             {

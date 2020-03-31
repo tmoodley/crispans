@@ -10,16 +10,20 @@ using Vue2Spa.Areas.Portal.Models;
 using DataTables.AspNet.Core;
 using DataTables.AspNet.AspNetCore;
 using Vue2Spa.Areas.Portal.Models.DTO;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace Vue2Spa.Controllers
 {
     public class TendersController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public TendersController(ApplicationDbContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public TendersController(ApplicationDbContext context,
+            IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: Tenders
@@ -44,6 +48,17 @@ namespace Vue2Spa.Controllers
             {
                 return NotFound();
             }
+
+
+            if (_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name) != null)
+            {
+                ViewData["Bidder"] = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+            }else
+            {
+                ViewData["Bidder"] = "";
+            }
+
+            //ViewData["Bidder"] = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             return View(job);
         }
@@ -73,23 +88,28 @@ namespace Vue2Spa.Controllers
         }
 
 
-        public IActionResult RegisterToBid (string id,string bidder)
+        public IActionResult RegisterToBid ()
         {
-            ViewData["TenderId"] = id;
+            //ViewData["TenderId"] = jobid
+            string bidder = TempData["bidder"].ToString();
 
-            if (bidder == "gg")
+            //ViewData["TenderId"] = TempData["jobid"];
+            //ViewData["Bidder"] = TempData["bidder"];
+
+            if (string.IsNullOrEmpty(bidder))
             {
-                return RedirectToAction("Register", "Bidders", new { area="Bidder" ,returnurl = "/tenders/bid/?id" + id });
+                TempData["jobId"] = TempData["jobid"];
+                return RedirectToAction("Register", "Bidders");
             }
 
-            return RedirectToAction("Bid","Tenders", new { id = id });
+            return RedirectToAction("Bid","Tenders");
         }
 
 
-        public IActionResult Bid(string id,string bidder)
+        public IActionResult Bid()//string jobid,string bidder
         {
-            ViewData["TenderId"] = id;
-            ViewData["Bidder"] = bidder;
+            ViewData["TenderId"] = TempData["jobid"];
+            ViewData["Bidder"] = TempData["bidder"];
 
             return View();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Vue2Spa.Areas.Portal.Models;
 
 namespace Vue2Spa.Models
 {
@@ -10,14 +11,16 @@ namespace Vue2Spa.Models
     {
         public Guid Id { get; set; }
         public string  Website { get; set; }
-        
+
+        [Required]
         [Display(Name = "Address")]
         public string Address1 { get; set; }
         [Required]
         public string City { get; set; }
         [Required]
         public string State { get; set; }
-        
+
+        [Required]
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
         public string TermsOfService { get; set; }
@@ -42,5 +45,9 @@ namespace Vue2Spa.Models
         [Display(Name = "Email")]
         public string EmailAddress { get; set; }
 
+
+        public ICollection<JobBid> Bids { get; set; }
+
+        public ICollection<JobQuestion> Questions { get; set; }
     }
 }

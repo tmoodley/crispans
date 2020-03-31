@@ -172,9 +172,9 @@ namespace Vue2Spa.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Register(string id)
+        public IActionResult Register()
         {
-            ViewData["JobId"] = id;
+            ViewData["JobId"] = TempData["jobId"];
             return View();
         }
 
@@ -223,7 +223,9 @@ namespace Vue2Spa.Controllers
                     {
                         ContactPerson = bidder.ContactPerson,
                         LegalCompanyName = bidder.LegalCompanyName,
-                        EmailAddress = bidder.EmailAddress
+                        EmailAddress = bidder.EmailAddress,
+                        PostalCode = "",
+                        Address1 = "",City = "",State=""
                     };
 
                     _context.Add(profileDetails);
@@ -236,12 +238,25 @@ namespace Vue2Spa.Controllers
                         UserName = bidder.EmailAddress
                     };
 
-                    var identityResult = await _userManager.CreateAsync(user).ConfigureAwait(false);
-                    await _userManager.AddPasswordAsync(user, bidder.Password).ConfigureAwait(false);
 
-                    //add partner role
+
+                    IdentityResult identityResult = null;
+                    // add partner role
                     var RoleManager = _roleManager;
                     var UserManager = _userManager;
+
+                    ApplicationUser _user = await UserManager.FindByEmailAsync(bidder.EmailAddress).ConfigureAwait(false);
+
+                    if(_user == null)
+                    {
+                        identityResult = await _userManager.CreateAsync(user).ConfigureAwait(false);
+                        await _userManager.AddPasswordAsync(user, bidder.Password).ConfigureAwait(false);
+                    }
+
+                    
+                    
+
+                    
 
                     IdentityResult roleResult;
 
@@ -255,9 +270,13 @@ namespace Vue2Spa.Controllers
 
                     //Assign Admin role to the main User here we have given our newly registered 
                     //login id for Admin management
-                    ApplicationUser _user = await UserManager.FindByEmailAsync(bidder.EmailAddress).ConfigureAwait(false);
+                    bool userInRoleAlready = await _userManager.IsInRoleAsync(user, "Bidder");
 
-                    await UserManager.AddToRoleAsync(_user, "Bidder").ConfigureAwait(false);
+                    if (!userInRoleAlready)
+                    {
+                        await UserManager.AddToRoleAsync(_user, "Bidder").ConfigureAwait(false);
+                    }
+                    
 
                     //send email
                     await _emailSender.SendEmailAsync(
@@ -272,6 +291,9 @@ namespace Vue2Spa.Controllers
 
 
                     // register for  this bid
+
+
+                    
 
                     return RedirectToAction("Bid","Tenders",new { id = bidder.JobId, bidder = bidder.EmailAddress });
 

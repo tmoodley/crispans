@@ -5,94 +5,103 @@
     Layout = "_Layout";
 }
 
-    <div class="container">
+    <section id="intro" class="section-padding">
 
 
-        <h3 class="pt-5">Bidder Registration</h3>
+        <div class="container">
 
-        
-        <hr />
-        <div class="row">
-            <div class="col-md-6">
-                <form asp-action="Register">
 
-                    <input asp-for="JobId" value="@ViewBag.JobId" />
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h3 class="pt-5">Bidder Registration</h3>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="LegalCompanyName" class="control-label"></label>
-                                <input asp-for="LegalCompanyName" class="form-control" />
-                                <span asp-validation-for="LegalCompanyName" class="text-danger"></span>
+
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="Register">
+
+                        <input asp-for="JobId" value="@ViewBag.JobId" type="hidden" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="LegalCompanyName" class="control-label"></label>
+                                    <input asp-for="LegalCompanyName" class="form-control" />
+                                    <span asp-validation-for="LegalCompanyName" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label asp-for="ContactPerson" class="control-label"></label>
-                                <input asp-for="ContactPerson" class="form-control" />
-                                <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="ContactPerson" class="control-label"></label>
+                                    <input asp-for="ContactPerson" class="form-control" />
+                                    <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="EmailAddress" class="control-label"></label>
-                                <input asp-for="EmailAddress" class="form-control" />
-                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="EmailAddress" class="control-label"></label>
+                                    <input asp-for="EmailAddress" class="form-control" />
+                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="RetypedEmailAddress" class="control-label"></label>
+                                    <input asp-for="RetypedEmailAddress" class="form-control" />
+                                    <span asp-validation-for="RetypedEmailAddress" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="RetypedEmailAddress" class="control-label"></label>
-                                <input asp-for="RetypedEmailAddress" class="form-control" />
-                                <span asp-validation-for="RetypedEmailAddress" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input asp-for="Password" class="form-control" type="password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="RetypedPassword" class="control-label"></label>
+                                    <input asp-for="RetypedPassword" class="form-control" type="password" />
+                                    <span asp-validation-for="RetypedPassword" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Password" class="control-label"></label>
-                                <input asp-for="Password" class="form-control" type="password"/>
-                                <span asp-validation-for="Password" class="text-danger"></span>
+
+                        <div class="row">
+
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 pull-left">
+                                <div class="form-group">
+                                    <input type="submit" value="Register" class="btn btn-primary" />
+                                    <a href="/Identity/Account/Login" class="btn btn-success">Log in </a>
+                                    <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="RetypedPassword" class="control-label"></label>
-                                <input asp-for="RetypedPassword" class="form-control" type="password"/>
-                                <span asp-validation-for="RetypedPassword" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        
-                        If you are registered please log in to bid
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 pull-left">
-                            <div class="form-group">
-                                <input type="submit" value="Register" class="btn btn-primary" />
-                                <a asp-action="Index" class="btn btn-danger">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
 
 
 
 
 
-                </form>
+                    </form>
+                </div>
             </div>
+
         </div>
+    </section>
 
-    </div>
-
-
+    <style>
+        .trans-navigation {
+            background: black;
+        }
+    </style>

@@ -185,5 +185,7 @@ namespace Vue2Spa.Areas.Portal.Models
         public ICollection<JobMachine> JobMachines { get; set; }
         public ICollection<JobMaterial> JobMaterials { get; set; }
         public ICollection<JobQuestion> JobQuestions { get; set; }
+
+        public ICollection<JobBid> JobBids { get; set; }
     }
 }
