@@ -18,13 +18,13 @@
             </li>
             <li>
                 <a class="dropdown-item" href="/Card/Update/">Update Card</a>
-            </li> 
+            </li>
             @if (User.IsInRole("Administrator"))
             {
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
                 <li>
-                    <a class="dropdown-item" href="/Admin/">Admin Dashboard</a>
+                    <a class="dropdown-item" href="~/admin/dashboard">Admin Dashboard</a>
                 </li>
             }
             @if (User.IsInRole("Partner"))
@@ -34,6 +34,15 @@
                 <li>
                     <a class="dropdown-item" asp-action="Index" asp-controller="Dashboard" asp-area="Portal">Partner Dashboard</a>
                 </li>
+            }
+            @if (User.IsInRole("Bidder"))
+            {
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+                <li>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Dashboard" asp-area="Bidder">Bidder Dash</a>
+                </li>
+                
             }
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
