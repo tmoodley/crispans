@@ -9,16 +9,22 @@ using HelpingHands.Data;
 using Vue2Spa.Areas.Portal.Models;
 using Vue2Spa.Areas.Portal.Models.DTO;
 using Vue2Spa.Models;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Vue2Spa.Controllers
 {
     public class JobQuestionsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public JobQuestionsController(ApplicationDbContext context)
+
+
+        public JobQuestionsController(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: JobQuestions
@@ -49,9 +55,11 @@ namespace Vue2Spa.Controllers
         }
 
         // GET: JobQuestions/Create
-        public IActionResult Create(string id)
+        public IActionResult Create()
         {
-            ViewData["JobId"] = id;
+
+            string id = TempData["jobid"].ToString();
+            ViewData["JobId"] = TempData["jobid"];
             //ViewData["QuestionId"] = new SelectList(_context.Set<Question>(), "Id", "Id");
 
             var job = _context.Jobs.Where(a => a.Id == id).FirstOrDefault();
@@ -82,10 +90,16 @@ namespace Vue2Spa.Controllers
                 await _context.SaveChangesAsync();
 
 
+                var currentBidderEmail = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+                var currentBidder = await _context.Bidders.Where(a => a.EmailAddress == currentBidderEmail).FirstOrDefaultAsync();
+
+
+
                 var jobQuestion = new JobQuestion()
                 {
                     JobId = jobQuestionCreateDto.JobId,
-                    QuestionId = question.Id
+                    QuestionId = question.Id,
+                    BidderId = currentBidder.Id
                 };
 
                 _context.Add(jobQuestion);

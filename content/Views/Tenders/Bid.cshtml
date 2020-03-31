@@ -1,4 +1,4 @@
-
+@model Vue2Spa.Models.DTO.JobBidDto
 @{
     ViewData["Title"] = "Bid";
     Layout = "_Layout";
@@ -10,6 +10,26 @@
             <h3>Bid to tender @ViewBag.TenderId</h3>
             called by @ViewBag.Bidder
 
+
+            <hr />
+            <form asp-action="Bid">
+                <div class="row pb-3">
+                    <div class="col-md-4">
+                        <input type="text" value="@ViewBag.Bidder" asp-for="BidderId" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="text" value="@ViewBag.TenderId" asp-for="JobId" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Bid" class="btn btn-primary">
+                        <a href="/Tenders/" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
         </div>
         
 

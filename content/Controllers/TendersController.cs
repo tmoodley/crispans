@@ -12,6 +12,7 @@ using DataTables.AspNet.AspNetCore;
 using Vue2Spa.Areas.Portal.Models.DTO;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Vue2Spa.Models.DTO;
 
 namespace Vue2Spa.Controllers
 {
@@ -40,6 +41,7 @@ namespace Vue2Spa.Controllers
             {
                 return NotFound();
             }
+            
 
             var job = await _context.Jobs
                 .Include(j => j.Customers)
@@ -114,6 +116,56 @@ namespace Vue2Spa.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Bid (JobBidDto biddto)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var bidder = _context.Bidders.Where(a => a.EmailAddress == biddto.BidderId).FirstOrDefault();
+
+                if(bidder == null)
+                {
+                    ViewData["Error"] = "Couldnt match Bidder record";
+                    return View();
+                }
+
+                JobBid bid = new JobBid()
+                {
+                    JobId = biddto.JobId,
+                    BidderId = bidder.Id,
+                    Created = DateTime.Now,
+                    CreatedBy = "",
+                    Status = "draft",
+                    Deleted = false
+
+                };
+
+                var exisistingBid = _context.JobBids.Where(a => (a.JobId == biddto.JobId) && (a.BidderId == bidder.Id)).FirstOrDefault();
+
+                if (exisistingBid != null)
+                {
+
+                    ViewData["Error"] = "You have already bid for this Job";
+
+                    return View();
+
+                }
+
+
+                _context.Add(bid);
+               await _context.SaveChangesAsync();
+
+                return View();
+
+
+
+            }
+
+            return View();
+        }
 
         // GET: Tenders/Edit/5
         public async Task<IActionResult> Edit(string id)

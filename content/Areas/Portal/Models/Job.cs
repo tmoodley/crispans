@@ -1,4 +1,5 @@
 using HelpingHands.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -184,8 +185,10 @@ namespace Vue2Spa.Areas.Portal.Models
         public ICollection<JobIndustry> JobIndustries { get; set; }
         public ICollection<JobMachine> JobMachines { get; set; }
         public ICollection<JobMaterial> JobMaterials { get; set; }
+        [JsonIgnore]
         public ICollection<JobQuestion> JobQuestions { get; set; }
 
+        [JsonIgnore]
         public ICollection<JobBid> JobBids { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Vue2Spa.Models
         public string Body { get; set; }
         public int Score { get; set; }
         public List<Answer> Answers { get; set; }
-
+        [JsonIgnore]
         public ICollection<JobQuestion> JobQuestions { get; set; }
     }
 

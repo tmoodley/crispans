@@ -33,6 +33,8 @@
 
     <!-- Custom styles for this template-->
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <!--Data Tables-->
+    <link href="~/lib/datatables/datatables.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body id="page-top">
@@ -78,79 +80,80 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class=" py-2 collapse-inner rounded">
-                        <a class="collapse-item" asp-action="Index" asp-controller="Categories" asp-area="Admin">My Bids</a>
+                        <a class="collapse-item" href="/Bidder/MyBids">My Bids</a>
+                        <a class="collapse-item" href="/Bidder/MyQuestions">Questions</a>
                         <a class="collapse-item" asp-action="Index" asp-controller="Capabilities" asp-area="Admin">Messages</a>
                         @*<a class="collapse-item" asp-action="Index" asp-controller="Certifications" asp-area="Admin">Certifications</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="CompanyTypes" asp-area="Admin">Company Types</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="FileTypes" asp-area="Admin">File Types</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Industries" asp-area="Admin">Industries</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Machines" asp-area="Admin">Machines</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Materials" asp-area="Admin">Materials</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Naics" asp-area="Admin">Naics</a>*@
+                            <a class="collapse-item" asp-action="Index" asp-controller="CompanyTypes" asp-area="Admin">Company Types</a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="FileTypes" asp-area="Admin">File Types</a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Industries" asp-area="Admin">Industries</a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Machines" asp-area="Admin">Machines</a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Materials" asp-area="Admin">Materials</a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Naics" asp-area="Admin">Naics</a>*@
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             @*<li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Utilities</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Custom Utilities:</h6>
+                            <a class="collapse-item" href="utilities-color.html">Colors</a>
+                            <a class="collapse-item" href="utilities-border.html">Borders</a>
+                            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                            <a class="collapse-item" href="utilities-other.html">Other</a>
+                        </div>
                     </div>
-                </div>
-            </li>*@
+                </li>*@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             @*<div class="sidebar-heading">
-                Addons
-            </div>*@
+                    Addons
+                </div>*@
 
             <!-- Nav Item - Pages Collapse Menu -->
             @*<li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Pages</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Login Screens:</h6>
+                            <a class="collapse-item" href="login.html">Login</a>
+                            <a class="collapse-item" href="register.html">Register</a>
+                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                            <div class="collapse-divider"></div>
+                            <h6 class="collapse-header">Other Pages:</h6>
+                            <a class="collapse-item" href="404.html">404 Page</a>
+                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                        </div>
                     </div>
-                </div>
-            </li>*@
+                </li>*@
 
             <!-- Nav Item - Charts -->
             @*<li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
-                </a>
-            </li>*@
+                    <a class="nav-link" href="charts.html">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Charts</span>
+                    </a>
+                </li>*@
 
             <!-- Nav Item - Tables -->
             @*<li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>*@
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Tables</span>
+                    </a>
+                </li>*@
 
             <!-- Divider -->
             @*<hr class="sidebar-divider d-none d-md-block">*@
@@ -175,15 +178,15 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                     
+
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto"> 
+                    <ul class="navbar-nav ml-auto">
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow"> 
-                            <partial name="_LoginAdminPartial" /> 
+                        <li class="nav-item dropdown no-arrow">
+                            <partial name="~/Areas/Bidder/Views/Shared/_LoginBidderPartial" />
                         </li>
 
                     </ul>
@@ -191,11 +194,11 @@
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid">  
-                    <!-- Content Row --> 
-                    @RenderBody() 
+                <div class="container-fluid">
+                    <!-- Content Row -->
+                    @RenderBody()
                 </div>
-                <!-- /.container-fluid --> 
+                <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
@@ -254,8 +257,14 @@
 
     <!-- Page level custom scripts -->
     <script src="/admin/js/demo/chart-area-demo.js"></script>
-    <script src="/admin//admin/js/demo/chart-pie-demo.js"></script>
+    <script src="/admin/admin/js/demo/chart-pie-demo.js"></script>
+
+    <!--Moment js-->
+    <script src="~/lib/momentjs/moment.js"></script>
+
     <!-- endbuild -->
+    <!--Data tables-->
+    <script src="~/lib/datatables/datatables.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

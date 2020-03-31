@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -45,9 +46,9 @@ namespace Vue2Spa.Models
         [Display(Name = "Email")]
         public string EmailAddress { get; set; }
 
-
+        [JsonIgnore]
         public ICollection<JobBid> Bids { get; set; }
-
+        [JsonIgnore]
         public ICollection<JobQuestion> Questions { get; set; }
     }
 }

@@ -1,0 +1,84 @@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Bidder/Views/Shared/_Layout.cshtml";
+}
+
+<h3>My Bids</h3>
+<hr class="pb-2 pt-1"/>
+<section id="intro" class="section-padding">
+    <div class="container-fluid">
+
+        
+            <table id="myTable" class="pt-3 table">
+            </table>
+       
+       
+
+    </div>
+</section>
+
+<style>
+        table.dataTable thead tr {
+  background-color: black;
+  color: white;
+}
+</style>
+
+
+@section scripts{
+<script>
+    $('#myTable').dataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "/Bidder/MyBids/pagedata",
+            columns: [
+                {
+                    name: 'Name',
+                    data: "job.number",
+                    title: "Number",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Name',
+                    data: "job.name",
+                    title: "Name",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Name',
+                    data: "status",
+                    title: "Bid Status",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Name',
+                    data: "job.status",
+                    title: "Job Status",
+                    sortable: true,
+                    searchable: false
+                },
+                
+
+                {
+                    title: "Actions",
+                    data: null, render: function (data, type, row) {
+                        return '<div >' +
+                            '<a class="btn btn-primary" href="/tenders/details/'+data.id +'">' +
+                            'View' +
+                            '</a>' +
+
+                            '</div>';
+
+                    },
+                    sortable: false,
+                    searchable: false
+                }
+            ]
+        });
+</script>
+}
+
