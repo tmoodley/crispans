@@ -27,5 +27,20 @@ namespace Vue2Spa.Models
         public string TaxRegistrationHST { get; set; }
         public string TaxRegistrationGST { get; set; }
         public string TaxRegistrationFEIN { get; set; }
+        [Phone]
+        [Display(Name = "Cell Phone")]
+        public string CellPhone { get; set; }
+        [Phone]
+        [Display(Name = "Work Phone")]
+        public string WorkPhone { get; set; }
+        //[Required]
+        //[Display(Name = "Subscription Plan")]
+        //public string SubscriptionPlan { get; set; }
+        
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string EmailAddress { get; set; }
+
     }
 }

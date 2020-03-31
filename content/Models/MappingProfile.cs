@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vue2Spa.Models;
+using Vue2Spa.Models.DTO;
 
 namespace HelpingHands.Models
 {
@@ -37,6 +39,8 @@ namespace HelpingHands.Models
                             ; //1998-09-01T00:00:00-00:00`
             CreateMap<Square.Connect.Model.Customer, Models.Customer> ();
 
+
+            CreateMap<Bidder, BidderRegisterDto>();
 
         }
     }

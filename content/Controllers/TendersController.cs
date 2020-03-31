@@ -72,6 +72,29 @@ namespace Vue2Spa.Controllers
             return View(job);
         }
 
+
+        public IActionResult RegisterToBid (string id,string bidder)
+        {
+            ViewData["TenderId"] = id;
+
+            if (bidder == "gg")
+            {
+                return RedirectToAction("Register", "Bidders", new { area="Bidder" ,returnurl = "/tenders/bid/?id" + id });
+            }
+
+            return RedirectToAction("Bid","Tenders", new { id = id });
+        }
+
+
+        public IActionResult Bid(string id,string bidder)
+        {
+            ViewData["TenderId"] = id;
+            ViewData["Bidder"] = bidder;
+
+            return View();
+        }
+
+
         // GET: Tenders/Edit/5
         public async Task<IActionResult> Edit(string id)
         {

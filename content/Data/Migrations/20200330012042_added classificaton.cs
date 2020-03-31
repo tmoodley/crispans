@@ -7,10 +7,10 @@ namespace HelpingHands.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Type",
-                table: "Jobs",
-                nullable: true);
+            //migrationBuilder.AddColumn<string>(
+            //    name: "Type",
+            //    table: "Jobs",
+            //    nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "PartnerCompanyType",

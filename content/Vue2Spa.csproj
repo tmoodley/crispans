@@ -3773,6 +3773,7 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Bidder\Data\" />
     <Folder Include="Areas\Portal\Data\" />
     <Folder Include="Controllers\Admin\" />
     <Folder Include="wwwroot\dist\" />
