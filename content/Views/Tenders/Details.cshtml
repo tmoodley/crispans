@@ -5,550 +5,219 @@
     Layout = "_Layout";
 }
 
-    <div class="container">
+<div class="container">
+    <div class="py-5 text-center">
         <h1 class="pt-5">Tender Details</h1>
-
-        <div>
-            
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Number)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Number)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Tax)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Tax)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TaxPickup)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TaxPickup)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TaxShipping)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TaxShipping)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateAvailable)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateAvailable)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateAvailableUtc)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateAvailableUtc)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateClosing)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateClosing)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateClosingUtc)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateClosingUtc)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateClosingSecondary)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateClosingSecondary)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Name)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-
-                
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Status)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PickupLocation)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PickupLocation)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Summary)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Summary)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.OpeningProcess)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.OpeningProcess)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Length)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Length)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Width)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Width)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Height)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Height)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Diameter)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Diameter)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.MinTolerance)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.MinTolerance)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Quantity)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PricePickup)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PricePickup)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PriceShipping)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PriceShipping)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Procedure)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Procedure)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowUnofficial)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowUnofficial)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowSubmitted)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowSubmitted)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowPlanTakers)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowPlanTakers)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowTeamMembers)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowTeamMembers)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowTeamMembersContact)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowTeamMembersContact)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.HasReferenceTable)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.HasReferenceTable)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.HasSubContractorTable)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.HasSubContractorTable)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PreQualSubContractorsOnly)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PreQualSubContractorsOnly)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.NumReferencesRequired)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.NumReferencesRequired)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.HasSummaryTable)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.HasSummaryTable)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SummaryTableName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SummaryTableName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.IsSubTotalOnSummary)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IsSubTotalOnSummary)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SelectedTablesForSummary)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SelectedTablesForSummary)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BidFormsHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BidFormsHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TermsAndConditionsHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TermsAndConditionsHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ReferenceHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ReferenceHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SubContractorHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SubContractorHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.QuestionHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.QuestionHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SummaryTableHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SummaryTableHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SummaryTableFooterText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SummaryTableFooterText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.QuestionDeadline)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.QuestionDeadline)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.IsCloseQuestionsAfterDeadline)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IsCloseQuestionsAfterDeadline)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.IncludeOtherDocument)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IncludeOtherDocument)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.AllowBidDocumentPreview)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.AllowBidDocumentPreview)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BondHeadingText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BondHeadingText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Title)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BondTitle)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BondTitle)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BondTitle2)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BondTitle2)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TermsAndConditionsChevronLabel)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TermsAndConditionsChevronLabel)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.InstructionPageText)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.InstructionPageText)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ProvideInstructionsPage)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ProvideInstructionsPage)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.EstimatedValue)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.EstimatedValue)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TotalContractAmount)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TotalContractAmount)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowPurchasingRepsOnPublic)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowPurchasingRepsOnPublic)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.AllowFullBidDetailsUrl)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.AllowFullBidDetailsUrl)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.AllowMultipleSubmissions)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.AllowMultipleSubmissions)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ShowOnWebsite)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ShowOnWebsite)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Evaluations)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Evaluations)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BidNotApproved)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BidNotApproved)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateAwarded)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateAwarded)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.LeadAgency)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.LeadAgency)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ParticipatingAgencies)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ParticipatingAgencies)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.NumberOfAgencies)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.NumberOfAgencies)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.EstimatedAnnualValue)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.EstimatedAnnualValue)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ActualContractValue)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ActualContractValue)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ActualAnnualValue)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ActualAnnualValue)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PostCloseBidException)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PostCloseBidException)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.UnsealManually)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.UnsealManually)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PlannedIssueDate)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PlannedIssueDate)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.IsAttendanceTrackingOn)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IsAttendanceTrackingOn)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.IsCloseRegistrationAfterMeetingDate)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IsCloseRegistrationAfterMeetingDate)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Deleted)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Deleted)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CreationTime)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.CreationTime)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Created)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Created)
-                </dd>
-                @*<dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.CreatedBy)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.LastUpdated)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.LastUpdated)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.LastUpdatedBy)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.LastUpdatedBy)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Customers)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Customers.Id)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.isNda)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.isNda)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TermsDocumentId)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TermsDocumentId)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.NdaDocumentId)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.NdaDocumentId)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ContractDocumentId)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ContractDocumentId)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CadFileDocumentId)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.CadFileDocumentId)
-                </dd>*@
-            </dl>
-        </div>
-        <div class="pt-2">
-            <a asp-action="SubmitQuestion" asp-route-id="@Model.Id" class="btn btn-primary">Submit a Question</a>
-            <a asp-action="RegisterToBid" asp-route-id="@Model.Id"  class="btn btn-success">Register For this Bid</a> 
-            <a asp-action="DownloadBidDocuments" asp-route-id="@Model.Id"  class="btn btn-warning">Download Bid Documents</a> 
-            <a asp-action="Index"  class="btn btn-danger">Back to Opprtunities List</a>
-        </div>
-
+        <p class="lead">
+            @Model.Name
+        </p>
     </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-1 mb-4">
+            <button asp-action="Index" class="btn btn-danger btn-block">Back to Opprtunities List</button>
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Specifications</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.Length)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">@Html.DisplayFor(model => model.Length) mm</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.Width)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">@Html.DisplayFor(model => model.Width) mm</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.Height)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">@Html.DisplayFor(model => model.Height) mm</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.Diameter)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">@Html.DisplayFor(model => model.Diameter) mm</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.MinTolerance)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">@Html.DisplayFor(model => model.MinTolerance) mm</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.Quantity)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">@Html.DisplayFor(model => model.Quantity)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.Price)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">$@Html.DisplayFor(model => model.Price)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@Html.DisplayNameFor(model => model.PricePickup)</h6>
+                        <small class="text-muted"></small>
+                    </div>
+                    <span class="text-muted">$@Html.DisplayFor(model => model.PricePickup)</span>
+                </li>
+            </ul>
+
+            <button asp-action="SubmitQuestion" asp-route-id="@Model.Id" class="btn btn-primary btn-block">
+                Submit a Question
+            </button>
+
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Documents</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">NDA</h6>
+                        <small class="text-muted">Non Disclosure Agreement</small>
+                    </div>
+                    <button class="btn-sm btn btn-outline-primary" " onclick="download('@Model.NdaDocumentId')">Download</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Terms</h6>
+                        <small class="text-muted">Terms and Conditions</small>
+                    </div>
+                    <button class="btn-sm btn btn-outline-primary" " onclick="download('@Model.TermsDocumentId')">Download</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Contract</h6>
+                        <small class="text-muted">Supply Contract for lawyers</small>
+                    </div>
+                    <button class="btn-sm btn btn-outline-primary" " onclick="download('@Model.ContractDocumentId')">Download</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div class="text-success">
+                        <h6 class="my-0">Visualizations File</h6>
+                        <small>Technical files (CAD Drawings, Pictures, Etc)</small>
+                    </div>
+                    <button class="btn-sm btn btn-outline-primary" onclick="download('@Model.CadFileDocumentId')">Download</button>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-8 order-md-2">
+            <h4 class="mb-3">Project Details</h4>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Project">Project</label>
+                    <div>@Model.Name</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Ref">Ref. #:</label>
+                    <div>@Model.Number</div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Type">Type</label>
+                    <div>@Model.Type</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Status">Status</label>
+                    <div>@Model.Status</div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Type">Open Date</label>
+                    <div>@Model.DateAvailable.ToLongDateString()</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Status">Questions Due Date</label>
+                    <div>@Model.QuestionDeadline.Value.ToLongDateString()</div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Type">Close Date</label>
+                    <div>@Model.DateClosing.ToLongDateString()</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Status">Days Left</label>
+                    <div>@((Model.DateClosing - Model.DateAvailable).TotalDays)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+            <hr class="mb-4">
+            <button asp-action="RegisterToBid" asp-route-id="@Model.Id" class="btn btn-success btn-block">
+                Register For this Bid
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .trans-navigation {
+        background: black;
+    }
+</style>
+@section Scripts {
+
+    <script>
+        function download(id) {
+            axios({
+
+                url: '/portal/api/documents/' + id,
+
+                method: 'GET',
+
+            }).then(function (doc) {
+                axios({
+
+                    url: '/portal/api/document/' + id,
+
+                    method: 'GET',
+
+                    responseType: 'blob',
+
+                }).then((response) => {
+
+                    var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+
+                    var fileLink = document.createElement('a');
+
+                    fileLink.href = fileURL;
+
+                    fileLink.setAttribute('download', doc.data.name);
+
+                    document.body.appendChild(fileLink);
+
+                    fileLink.click();
+
+                })
+            });
+        }
+    </script>
+
+}
