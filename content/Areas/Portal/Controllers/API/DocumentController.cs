@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Vue2Spa.Models;
 
 namespace Vue2Spa.Areas.Portal.Controllers.API
-{
-    [Authorize(Roles = "Partner,Administrator")]
+{ 
     [Route("/portal/api/[controller]")]
     [ApiController]
     public class DocumentController : ControllerBase

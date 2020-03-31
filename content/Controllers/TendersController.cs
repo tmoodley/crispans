@@ -177,7 +177,7 @@ namespace Vue2Spa.Controllers
             // Nothing important here. Just creates some mock data.
 
             _context.Database.SetCommandTimeout(300);
-            var tenders = _context.Jobs.Select( a=> new JobDto {
+            var tenders = _context.Jobs.Where(x => x.Status == "start").Select( a=> new JobDto {
                 Id = a.Id,
                 Name = a.Name,
                 DateClosing = a.DateClosing,
