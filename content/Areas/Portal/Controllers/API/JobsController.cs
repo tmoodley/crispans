@@ -26,7 +26,8 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string id)
         {
-            return await _context.Jobs.Where(x => x.CustomerId == id).ToListAsync().ConfigureAwait(false);
+            _context.Database.SetCommandTimeout(300);
+            return await _context.Jobs.Where(x => x.CustomerId == id).ToListAsync().ConfigureAwait(false);//
         }
 
         // GET: api/Jobs/5
