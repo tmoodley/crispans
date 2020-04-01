@@ -180,12 +180,10 @@ namespace Vue2Spa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register( BidderRegisterDto bidder)
+        public async Task<IActionResult> Register(BidderRegisterDto bidder)
         {
-
             if (ModelState.IsValid)
             {
-                
                 if (string.IsNullOrEmpty(bidder.EmailAddress))
                 {
                     ViewBag.Error = "Valid Email is Required.";
@@ -206,9 +204,7 @@ namespace Vue2Spa.Controllers
                     return View();
 
                 }
-
-
-
+                 
                 var _bidder = await _context.Bidders.FirstOrDefaultAsync(m => m.EmailAddress == bidder.EmailAddress);
                 if (_bidder != null)
                 {
@@ -230,16 +226,13 @@ namespace Vue2Spa.Controllers
 
                     _context.Add(profileDetails);
                     await _context.SaveChangesAsync();
-
-
+                     
                     var user = new HelpingHands.Models.ApplicationUser
                     {
                         Email = bidder.EmailAddress,
                         UserName = bidder.EmailAddress
                     };
-
-
-
+                     
                     IdentityResult identityResult = null;
                     // add partner role
                     var RoleManager = _roleManager;
@@ -252,12 +245,7 @@ namespace Vue2Spa.Controllers
                         identityResult = await _userManager.CreateAsync(user).ConfigureAwait(false);
                         await _userManager.AddPasswordAsync(user, bidder.Password).ConfigureAwait(false);
                     }
-
-                    
-                    
-
-                    
-
+                     
                     IdentityResult roleResult;
 
                     //Adding Partner Role
@@ -274,7 +262,7 @@ namespace Vue2Spa.Controllers
 
                     if (!userInRoleAlready)
                     {
-                        await UserManager.AddToRoleAsync(_user, "Bidder").ConfigureAwait(false);
+                        await UserManager.AddToRoleAsync(user, "Bidder").ConfigureAwait(false);
                     }
                     
 
@@ -284,29 +272,22 @@ namespace Vue2Spa.Controllers
                         "New Bidder",
                         "There is a new contact " + bidder.EmailAddress + "<br /> Name:" + bidder.ContactPerson + "<br />");
 
-                    await _emailAttachmentSender.SendEmailAttachmentAsync(
+                    await _emailSender.SendEmailAsync( 
                         bidder.EmailAddress,
                         "Thank you for joining Capacitym",
-                        "Congratulations!<br />You are eligible for services on the 1st of the month. but in the meantime look out for your welcome kit. If you haven't registered already, please register now by clicking on the link below. <br />  <a href='https://capacitym.com/Identity/Account/Login'>Login</a> - using default password 'Password123456' and your email " + bidder.EmailAddress + " for maintenance of your account.", true);
+                        "You can now submit questions to your bid.  Stay tuned and log in see updates to your bid. <br />  <a href='https://capacitym.com/Identity/Account/Login'>Login</a> - using default password 'Password123456' and your email " + bidder.EmailAddress + " for maintenance of your account.");
 
 
-                    // register for  this bid
-
-
-                    
-
+                    // register for this bid 
                     return RedirectToAction("Bid","Tenders",new { id = bidder.JobId, bidder = bidder.EmailAddress });
 
                 }
                 catch (Exception ex)
                 {
                     Debug.Print("Exception when Registering new Bidder to the system");
-                }
-
-
+                } 
             }
-
-            return View(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
 
