@@ -3,52 +3,78 @@
 @{
     ViewData["Title"] = "Details";
 }
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="purchase overflow-auto"> 
+                    <main>
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-3 to-details">
+                                <div>PURCHASED ORDER FOR :</div>
+                                <div class="to-name">Company A</div>
+                                <div class="to-address">Company A Address</div>
+                                <div class="to-city">City, Postal</div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 purchase-info">
+                                <h4 class="info-code">@Html.DisplayFor(model => model.PurchaseOrderNumber)</h4>
+                                <div class="info-date">Purchase Date : @Html.DisplayFor(model => model.PurchaseDate)</div>
+                                <div class="info-date">Delivery Date : @Html.DisplayFor(model => model.DeliveryDate)</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 table-responsive">
+                                <table class="table table-condensed" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center col-xs-1 col-sm-1">#</th>
+                                            <th class="text-center col-xs-7 col-sm-7">Description</th>
+                                            <th class="text-center col-xs-1 col-sm-1">Qty</th>
+                                            <th class="text-center col-xs-3 col-sm-3">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-xs-1 col-sm-1 text-center">1</td>
+                                            <td class="text-center">Item bought number 1</td>
+                                            <td class="text-center">5 Pcs</td>
+                                            <td class="text-right">50.000,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">Item bought number 2</td>
+                                            <td class="text-center">10 Pcs</td>
+                                            <td class="text-right">100.000,00</td>
+                                        </tr>
 
-<h1>Details</h1>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2">
+                                                Information<br>
+                                                Information content
+                                            </th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-right">150.000,00</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <style>
+                .trans-navigation {
+                    background: black;
+                }
 
-<div>
-    <h4>PurchaseOrder</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchaseDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchaseOrderNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchaseOrderNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Customers)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customers.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                table.dataTable thead tr {
+                    background-color: black;
+                    color: white;
+                }
+            </style>
