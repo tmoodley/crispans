@@ -80,5 +80,6 @@ namespace HelpingHands.Models
         public ICollection<CustomerIndustry> CustomerIndustries { get; set; }
         public ICollection<CustomerMachine> CustomerMachines { get; set; }
         public ICollection<CustomerMaterial> CustomerMaterials { get; set; }
+        public List<PurchaseOrder> PurchaseOrders { get; set; }
     }
 }

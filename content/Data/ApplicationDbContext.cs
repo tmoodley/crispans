@@ -40,9 +40,9 @@ namespace HelpingHands.Data
         public DbSet<PartnerCompanyType> PartnerCompanyType { get; set; }
         public DbSet<Bidder> Bidders { get; set; }
         public DbSet<JobBid> JobBids { get; set; }
-
         public DbSet<JobQuestion> JobQuestions { get; set; }
-
+        public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
+        public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

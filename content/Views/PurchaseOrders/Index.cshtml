@@ -1,0 +1,99 @@
+@model IEnumerable<HelpingHands.Models.PurchaseOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="container-fluid">
+
+                <h1 class="pt-5">Purchase Orders</h1>
+                <em>Check out the latest P.O. opportunities below</em>
+
+                <div class="row pt-2 pb-2">
+                    <div class="col-md-4">
+                        <h4>Latest P.O's</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <a asp-controller="PurchaseOrders" asp-action="Create" class="btn btn-primary pull-right">Create New Purchase Order</a>
+                    </div>
+
+                </div>
+
+                <table id="myTable" class="table">
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+
+
+    <script>
+        $('#myTable').dataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "/PurchaseOrders/pagedata",
+            columns: [
+
+                {
+                    name: 'PurchaseOrderNumber',
+                    data: "purchaseOrderNumber",
+                    title: "Purchase Order Number",
+                    sortable: true,
+                    searchable: false
+                }, {
+                    name: 'Name',
+                    data: "name",
+                    title: "Name",
+                    sortable: true,
+                    searchable: false
+                }, {
+                    name: 'PaymentDate',
+                    data: "paymentDate",
+                    title: "Payment Date",
+                    sortable: true,
+                    searchable: false,
+                    render: function (data, type, row) {
+                        return data ? moment(data).format('MMMM Do YYYY') : '';
+                    }
+                }, {
+                    name: 'Status',
+                    data: "status",
+                    title: "Status",
+                    sortable: true,
+                    searchable: false
+                },
+
+                {
+                    title: "Actions",
+                    data: null, render: function (data, type, row) {
+                        return '<div >' +
+                            '<a class="btn btn-primary" href="/tenders/details/'+data.id +'">' +
+                            'View' +
+                            '</a>' +
+
+                            '</div>';
+
+                    },
+                    sortable: false,
+                    searchable: false
+                }
+            ]
+        });
+    </script>
+
+
+}
+<style>
+    .trans-navigation {
+        background: black;
+    }
+
+    table.dataTable thead tr {
+        background-color: black;
+        color: white;
+    }
+</style>
