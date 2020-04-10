@@ -169,7 +169,7 @@ namespace Vue2Spa.Controllers
             {
                 Id = a.Id,
                 Notes = a.Notes,
-                PaymentDate = a.PaymentDate,
+                PurchaseDate = a.PurchaseDate,
                 Status = a.Status,
                 PurchaseOrderNumber = a.PurchaseOrderNumber,
             }).ToList();
