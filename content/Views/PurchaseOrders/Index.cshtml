@@ -45,33 +45,27 @@
                     sortable: true,
                     searchable: false
                 }, {
-                    name: 'Name',
-                    data: "name",
-                    title: "Name",
+                    name: 'Notes',
+                    data: "notes",
+                    title: "Notes",
                     sortable: true,
                     searchable: false
                 }, {
-                    name: 'PaymentDate',
-                    data: "paymentDate",
-                    title: "Payment Date",
+                    name: 'PurchaseDate',
+                    data: "purchaseDate",
+                    title: "Purchase Date",
                     sortable: true,
                     searchable: false,
                     render: function (data, type, row) {
                         return data ? moment(data).format('MMMM Do YYYY') : '';
                     }
-                }, {
-                    name: 'Status',
-                    data: "status",
-                    title: "Status",
-                    sortable: true,
-                    searchable: false
-                },
+                }, 
 
                 {
                     title: "Actions",
                     data: null, render: function (data, type, row) {
                         return '<div >' +
-                            '<a class="btn btn-primary" href="/tenders/details/'+data.id +'">' +
+                            '<a class="btn btn-primary" href="/PurchaseOrders/details/'+data.id +'">' +
                             'View' +
                             '</a>' +
 

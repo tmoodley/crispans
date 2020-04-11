@@ -165,7 +165,7 @@ namespace Vue2Spa.Controllers
             // Nothing important here. Just creates some mock data.
 
             _context.Database.SetCommandTimeout(300);
-            var orders = _context.PurchaseOrder.Where(x => x.Status == "start").Select(a => new PurchaseOrder
+            var orders = _context.PurchaseOrder.Where(x => x.Status == null).Select(a => new PurchaseOrder
             {
                 Id = a.Id,
                 Notes = a.Notes,
