@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace Vue2Spa.Controllers.api
         [HttpGet("{id}")]
         public async Task<ActionResult<PurchaseOrder>> GetPurchaseOrder(Guid id)
         {
-            var purchaseOrder = await _context.PurchaseOrder.FindAsync(id);
+            var purchaseOrder = await _context.PurchaseOrder.Include(x => x.PurchaseOrderItems).FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
 
             if (purchaseOrder == null)
             {

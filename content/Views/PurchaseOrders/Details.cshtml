@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var total = 0;
 }
 <section id="intro" class="section-padding">
     <div class="container">
@@ -11,10 +12,8 @@
                     <main>
                         <div class="row">
                             <div class="col-sm-3 col-xs-3 to-details">
-                                <div>PURCHASED ORDER FOR :</div>
-                                <div class="to-name">Company A</div>
-                                <div class="to-address">Company A Address</div>
-                                <div class="to-city">City, Postal</div>
+                                <div>PURCHASE ORDER FOR :</div>
+                                <div class="to-name">REDACTED</div> 
                             </div>
                             <div class="col-sm-9 col-xs-9 purchase-info">
                                 <h4 class="info-code">@Html.DisplayFor(model => model.PurchaseOrderNumber)</h4>
@@ -34,19 +33,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="col-xs-1 col-sm-1 text-center">1</td>
-                                            <td class="text-center">Item bought number 1</td>
-                                            <td class="text-center">5 Pcs</td>
-                                            <td class="text-right">50.000,00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">Item bought number 2</td>
-                                            <td class="text-center">10 Pcs</td>
-                                            <td class="text-right">100.000,00</td>
-                                        </tr>
-
+                                        @if (Model.PurchaseOrderItems != null)
+                                        {
+                                            @foreach (var item in Model.PurchaseOrderItems)
+                                            {
+                                                <tr>
+                                                    <td class="col-xs-1 col-sm-1 text-center">1</td>
+                                                    <td class="text-center">@item.Description</td>
+                                                    <td class="text-center">@item.Quantity Pcs</td>
+                                                    <td class="text-right">@item.Amount</td>
+                                                    total += (double)item.Quantity * item.Amount;
+                                                </tr> 
+                                            }
+                                        }
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -55,7 +54,7 @@
                                                 Information content
                                             </th>
                                             <th class="text-center">Total</th>
-                                            <th class="text-right">150.000,00</th>
+                                            <th class="text-right">@total</th>
                                         </tr>
                                     </tfoot>
                                 </table>

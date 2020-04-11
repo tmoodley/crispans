@@ -69,7 +69,7 @@ namespace Vue2Spa.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PaymentDate,Notes,PurchaseOrderNumber,CustomerId,Email,Amount")] PurchaseOrder purchaseOrder)
+        public async Task<IActionResult> Create(PurchaseOrder purchaseOrder)
         {
             if (ModelState.IsValid)
             {
@@ -175,7 +175,7 @@ namespace Vue2Spa.Controllers
             // Nothing important here. Just creates some mock data.
 
             _context.Database.SetCommandTimeout(300);
-            var orders = _context.PurchaseOrder.Where(x => x.Status == null).Select(a => new PurchaseOrder
+            var orders = _context.PurchaseOrder.Where(x => string.IsNullOrEmpty(x.Status)).Select(a => new PurchaseOrder
             {
                 Id = a.Id,
                 Notes = a.Notes,
