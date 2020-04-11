@@ -9,6 +9,8 @@ using HelpingHands.Data;
 using HelpingHands.Models;
 using DataTables.AspNet.Core;
 using DataTables.AspNet.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Vue2Spa.Controllers
 {
@@ -38,7 +40,7 @@ namespace Vue2Spa.Controllers
 
             var purchaseOrder = await _context.PurchaseOrder
                 .Include(p => p.Customers)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id).ConfigureAwait(false);
             if (purchaseOrder == null)
             {
                 return NotFound();
@@ -47,16 +49,24 @@ namespace Vue2Spa.Controllers
             return View(purchaseOrder);
         }
 
+        [Authorize]
         // GET: PurchaseOrders/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-            return View();
+            string userId = this.User.FindFirstValue(ClaimTypes.Name);
+
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.EmailAddress == userId).ConfigureAwait(false);
+            ViewBag.CustomerId = customer.Id;
+            ViewBag.Email = userId;
+            return View("Create");
         }
 
         // POST: PurchaseOrders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PaymentDate,Notes,PurchaseOrderNumber,CustomerId,Email,Amount")] PurchaseOrder purchaseOrder)
@@ -165,7 +175,7 @@ namespace Vue2Spa.Controllers
             // Nothing important here. Just creates some mock data.
 
             _context.Database.SetCommandTimeout(300);
-            var orders = _context.PurchaseOrder.Where(x => x.Status == "start").Select(a => new PurchaseOrder
+            var orders = _context.PurchaseOrder.Where(x => x.Status == null).Select(a => new PurchaseOrder
             {
                 Id = a.Id,
                 Notes = a.Notes,
