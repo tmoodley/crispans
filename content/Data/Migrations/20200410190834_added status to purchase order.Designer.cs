@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200410190834_added status to purchase order")]
+    partial class addedstatustopurchaseorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,35 +226,19 @@ namespace HelpingHands.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("CompanyName");
-
-                    b.Property<string>("Country");
+                    b.Property<double>("Amount");
 
                     b.Property<string>("CustomerId");
-
-                    b.Property<DateTime>("DeliveryDate");
 
                     b.Property<string>("Email");
 
                     b.Property<string>("Notes");
 
-                    b.Property<string>("Province");
-
-                    b.Property<DateTime>("PurchaseDate");
+                    b.Property<DateTime>("PaymentDate");
 
                     b.Property<string>("PurchaseOrderNumber");
 
                     b.Property<string>("Status");
-
-                    b.Property<double>("SubTotal");
-
-                    b.Property<double>("Tax");
-
-                    b.Property<double>("Total");
 
                     b.HasKey("Id");
 
@@ -272,13 +258,15 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("Item");
 
-                    b.Property<Guid>("PurchaseOrderId");
+                    b.Property<string>("PurchaseOrderId");
+
+                    b.Property<Guid?>("PurchaseOrderId1");
 
                     b.Property<int>("Quantity");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PurchaseOrderId");
+                    b.HasIndex("PurchaseOrderId1");
 
                     b.ToTable("PurchaseOrderItem");
                 });
@@ -1169,8 +1157,7 @@ namespace HelpingHands.Data.Migrations
                 {
                     b.HasOne("HelpingHands.Models.PurchaseOrder", "PurchaseOrder")
                         .WithMany("PurchaseOrderItems")
-                        .HasForeignKey("PurchaseOrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PurchaseOrderId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

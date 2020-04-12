@@ -36,6 +36,27 @@
 
         gtag('config', 'UA-158813007-1');
     </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '732721283858129');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=732721283858129&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
     @RenderSection("Styles", required: false)
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
@@ -58,33 +79,11 @@
                     <li class="nav-item">
                         <a class="nav-link smoth-scroll" href="/about">About</a>
                     </li>
-                    <li id="theme_selector" class="dropdown" style="cursor: pointer;">
-                        <a class="nav-link smoth-scroll" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span>Functions</span>
-                        </a>
-                        <ul id="theme" class="dropdown-menu" role="menu">
-                            <li>
-                                <a class="dropdown-item" href="/functions/ordersearch/" title="Search for orders">Search for orders</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/functions/ordermanagement/" title="Order Management">Order Management</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/functions/createbids/" title="Create Bids">Create Bids</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/functions/quotemanagement/" title="Quote Management">Quote Management</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link smoth-scroll" href="/tenders">Tenders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/pricing">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/partner">Partner</a>
+                        <a class="nav-link smoth-scroll" href="/PurchaseOrders">Purchase Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link smoth-scroll" href="/contact">Contact</a>
@@ -137,7 +136,7 @@
                     <div class="footer-widget footer-text">
                         <h4>Our location</h4>
                         <p class="mail"><span>Mail:</span> support@capacitym.com</p>
-                        <p><span>Phone :</span>+226-750-5643</p>
+                        <p><span>Phone :</span>+1-519-803-6990</p>
                         <p><span>Location:</span> 102 Hickory Hollow Cres, ON N2N 1X9</p>
                     </div>
                 </div>
@@ -190,18 +189,19 @@
     <script src="/plugins/counterup/jquery.counterup.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--Moment js-->
-    <script src="~/lib/momentjs/moment.js"></script>
-    <!-- Google Map -->
-    <script src="/plugins/google-map/gmap3.min.js"></script>
+    <script src="~/lib/momentjs/moment.js"></script> 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
-    <!-- Contact Form -->
-    <script src="/plugins/jquery/contact.js"></script>
+    
     <script src="/js/custom.js"></script>
 
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     <!--Data Tables-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
     <script src="~/lib/datatables/datatables.js"></script>
-
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8b22aec8b95b8e"></script>
     @RenderSection("Scripts", required: false)
     <style>
         div#cookieConsent {

@@ -1,0 +1,82 @@
+@model HelpingHands.Models.PurchaseOrder
+
+@{
+    ViewData["Title"] = "Details";
+    var total = 0.00;
+    var i = 1;
+}
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="purchase overflow-auto"> 
+                    <main>
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-3 to-details">
+                                <div>PURCHASE ORDER FOR :</div>
+                                <div class="to-name">REDACTED</div> 
+                            </div>
+                            <div class="col-sm-9 col-xs-9 purchase-info">
+                                <h4 class="info-code">@Html.DisplayFor(model => model.PurchaseOrderNumber)</h4>
+                                <div class="info-date">Purchase Date : @Html.DisplayFor(model => model.PurchaseDate)</div>
+                                <div class="info-date">Delivery Date : @Html.DisplayFor(model => model.DeliveryDate)</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 table-responsive">
+                                <table class="table table-condensed" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left col-xs-1 col-sm-1">#</th>
+                                            <th class="text-center col-xs-7 col-sm-7">Description</th>
+                                            <th class="text-center col-xs-1 col-sm-1">Qty</th>
+                                            <th class="text-center col-xs-3 col-sm-3">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.PurchaseOrderItems != null)
+                                        {
+                                            @foreach (var item in Model.PurchaseOrderItems)
+                                            {
+                                                <tr>
+                                                    <td class="text-left">@(i++)</td>
+                                                    <td class="text-center">@item.Description</td>
+                                                    <td class="text-center">@item.Quantity Pcs</td>
+                                                    <td class="text-right">@item.Amount</td>
+                                                    @{total += (double)item.Quantity * item.Amount;}
+                                                </tr> 
+                                            }
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>
+                                                Information<br>
+                                                Information content
+                                            </th> 
+                                            <th>
+                                            </th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-right">@total</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <style>
+                .trans-navigation {
+                    background: black;
+                }
+
+                table.dataTable thead tr {
+                    background-color: black;
+                    color: white;
+                }
+            </style>

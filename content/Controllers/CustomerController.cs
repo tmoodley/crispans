@@ -13,6 +13,7 @@ using Square.Connect.Model;
 using System.Diagnostics;
 using AutoMapper;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpingHands.Controllers
 {
@@ -32,9 +33,30 @@ namespace HelpingHands.Controllers
             //this.configuration = new Configuration(new ApiClient("https://connect.squareup.com"));
             this.configuration.AccessToken = "EAAAEPifucqbA8vreB6MeiFuDhKfgNou57029RQFvaOawHiX_JZkUtHea7Qseztf"; 
         }
-         
-          
+        // GET: Customers/Create
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: Customers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("PartnerId,PrimarySourceMemberId,Username,Gender,Address1,City,State,PostalCode,StartDate,PhoneNumber,CellPhone,WorkPhone,SubscriptionPlan,Id,CreatedAt,UpdatedAt,GivenName,FamilyName,Nickname,CompanyName,EmailAddress,Birthday,ReferenceId,Note")] Models.Customer customer)
+        { 
+            if (ModelState.IsValid)
+            {
+                _context.Add(customer);
+                await _context.SaveChangesAsync().ConfigureAwait(false);
+                return RedirectToAction("Index","PurchaseOrders");
+            }
+            return View(customer);
+        }
+        
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit()
         {
