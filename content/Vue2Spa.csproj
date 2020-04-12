@@ -3779,7 +3779,6 @@
     <Folder Include="Controllers\Admin\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\img\banner\" />
-    <Folder Include="wwwroot\dist-po\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
   <ItemGroup>
