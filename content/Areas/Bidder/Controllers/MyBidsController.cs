@@ -34,6 +34,20 @@ namespace Vue2Spa.Areas.Bidder.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Details(string jobid)
+        {
+
+            var currentBidderEmail = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+            var currentBidder = await _context.Bidders.Where(a => a.EmailAddress == currentBidderEmail).FirstOrDefaultAsync();
+
+            Guid currentBidderId = currentBidder.Id;
+
+            var model = await _context.JobBids.Include(a => a.Job).Where(a => a.BidderId == currentBidderId&&a.JobId == jobid).FirstOrDefaultAsync();
+
+
+            return View(model);
+        }
+
     public async Task<IActionResult> PageData(IDataTablesRequest request)
     {
         // Nothing important here. Just creates some mock data.

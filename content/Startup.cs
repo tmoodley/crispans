@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Vue2Spa.Hubs;
 using Vue2Spa.Providers;
 
 namespace Vue2Spa
@@ -163,6 +164,7 @@ namespace Vue2Spa
                             Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     });
 
+            services.AddSignalR();
 
             services.AddSession(options =>
             {
@@ -210,6 +212,12 @@ namespace Vue2Spa
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSignalR(routes =>
+            {
+                // the url most start with lower letter
+                routes.MapHub<NotificationHub>("/notificationHub");
+            });
+
             app.UseMvc(routes =>
             { 
                 routes.MapRoute(
@@ -225,6 +233,8 @@ namespace Vue2Spa
                     name: "spa-fallback",
                     defaults: new { controller = "Portal", action = "Index" });
             });
+
+           
         }
 
         private async Task CreateUserRoles(IServiceProvider serviceProvider)

@@ -1,0 +1,98 @@
+@model Vue2Spa.Areas.Portal.Models.JobBid
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Bidder/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <section id="intro" class="section-padding">
+        <h1> Bid Details</h1>
+
+        <form id="sendMessageForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="">Message</label>
+                    <input type="text" id="message" name="message" class="form-control">
+                </div>
+
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-4">
+
+                    <input  type="submit" id="submit" class="btn btn-primary" value="Send">
+                </div>
+
+            </div>
+        </form>
+
+        <div class="row">
+            <ul id="messages"></ul>
+        </div>
+
+    </section>
+</div>
+
+@section scripts{
+
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notificationHub")
+        .build();
+ 
+       
+ 
+    connection.on('SendNoticeEventToClient', (message) => {
+        alert(message);    
+    });
+
+
+        async function start() {
+    try {
+        await connection.start();
+        console.log("connected");
+    } catch (err) {
+        console.log(err);
+        setTimeout(() => start(), 5000);
+    }
+        };
+
+ start();
+
+connection.onclose(async () => {
+    await start();
+});
+
+    document.getElementById('sendMessageForm').addEventListener('submit', event => {
+        let message = document.getElementById('message').value;
+        document.getElementById('message').value = '';
+
+         connection.invoke('Send', 'bidderid',message); 
+
+        //connection.start().then(() => {
+             
+        //})
+        
+        event.preventDefault();
+    });
+
+
+ 
+    function appendLine(line, color) {
+        let li = document.createElement('li');
+        li.innerText = line;
+        document.getElementById('messages').appendChild(li);
+        };
+
+
+
+    </script>
+
+}
+
+<style>
+
+</style>

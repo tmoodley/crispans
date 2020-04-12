@@ -72,27 +72,47 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Bids</span>
+                <a class="nav-link" href="/Bidder/MyBids">
+
+                    <span>My Bids</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class=" py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Bidder/MyBids">My Bids</a>
-                        <a class="collapse-item" href="/Bidder/MyQuestions">Questions</a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Capabilities" asp-area="Admin">Messages</a>
-                        @*<a class="collapse-item" asp-action="Index" asp-controller="Certifications" asp-area="Admin">Certifications</a>
-                            <a class="collapse-item" asp-action="Index" asp-controller="CompanyTypes" asp-area="Admin">Company Types</a>
-                            <a class="collapse-item" asp-action="Index" asp-controller="FileTypes" asp-area="Admin">File Types</a>
-                            <a class="collapse-item" asp-action="Index" asp-controller="Industries" asp-area="Admin">Industries</a>
-                            <a class="collapse-item" asp-action="Index" asp-controller="Machines" asp-area="Admin">Machines</a>
-                            <a class="collapse-item" asp-action="Index" asp-controller="Materials" asp-area="Admin">Materials</a>
-                            <a class="collapse-item" asp-action="Index" asp-controller="Naics" asp-area="Admin">Naics</a>*@
-                    </div>
-                </div>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Bidder/MyQuestions">Questions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="Capabilities" asp-area="Admin">Messages</a>
+            </li>
+
+
+
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            @*<li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Bids</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class=" py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="/Bidder/MyBids">My Bids</a>
+                                <a class="collapse-item" href="/Bidder/MyQuestions">Questions</a>
+                                <a class="collapse-item" asp-action="Index" asp-controller="Capabilities" asp-area="Admin">Messages</a>
+                                <a class="collapse-item" asp-action="Index" asp-controller="Certifications" asp-area="Admin">Certifications</a>
+                                    <a class="collapse-item" asp-action="Index" asp-controller="CompanyTypes" asp-area="Admin">Company Types</a>
+                                    <a class="collapse-item" asp-action="Index" asp-controller="FileTypes" asp-area="Admin">File Types</a>
+                                    <a class="collapse-item" asp-action="Index" asp-controller="Industries" asp-area="Admin">Industries</a>
+                                    <a class="collapse-item" asp-action="Index" asp-controller="Machines" asp-area="Admin">Machines</a>
+                                    <a class="collapse-item" asp-action="Index" asp-controller="Materials" asp-area="Admin">Materials</a>
+                                    <a class="collapse-item" asp-action="Index" asp-controller="Naics" asp-area="Admin">Naics</a>
+                </div>
+                                </div>
+                            </li>*@
+
+
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             @*<li class="nav-item">
@@ -261,6 +281,9 @@
 
     <!--Moment js-->
     <script src="~/lib/momentjs/moment.js"></script>
+
+   
+    <script src="~/lib/signalr/signalr.js"></script>
 
     <!-- endbuild -->
     <!--Data tables-->
