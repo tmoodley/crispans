@@ -4,18 +4,20 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200411024524_adde new propertity")]
+    partial class addenewpropertity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -272,13 +274,15 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("Item");
 
-                    b.Property<Guid>("PurchaseOrderId");
+                    b.Property<string>("PurchaseOrderId");
+
+                    b.Property<Guid?>("PurchaseOrderId1");
 
                     b.Property<int>("Quantity");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PurchaseOrderId");
+                    b.HasIndex("PurchaseOrderId1");
 
                     b.ToTable("PurchaseOrderItem");
                 });
@@ -1169,8 +1173,7 @@ namespace HelpingHands.Data.Migrations
                 {
                     b.HasOne("HelpingHands.Models.PurchaseOrder", "PurchaseOrder")
                         .WithMany("PurchaseOrderItems")
-                        .HasForeignKey("PurchaseOrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PurchaseOrderId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
