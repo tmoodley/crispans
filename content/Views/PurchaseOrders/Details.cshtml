@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
-    var total = 0;
+    var total = 0.00;
+    var i = 1;
 }
 <section id="intro" class="section-padding">
     <div class="container">
@@ -26,7 +27,7 @@
                                 <table class="table table-condensed" border="0" cellspacing="0" cellpadding="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-center col-xs-1 col-sm-1">#</th>
+                                            <th class="text-left col-xs-1 col-sm-1">#</th>
                                             <th class="text-center col-xs-7 col-sm-7">Description</th>
                                             <th class="text-center col-xs-1 col-sm-1">Qty</th>
                                             <th class="text-center col-xs-3 col-sm-3">Amount</th>
@@ -38,20 +39,22 @@
                                             @foreach (var item in Model.PurchaseOrderItems)
                                             {
                                                 <tr>
-                                                    <td class="col-xs-1 col-sm-1 text-center">1</td>
+                                                    <td class="text-left">@(i++)</td>
                                                     <td class="text-center">@item.Description</td>
                                                     <td class="text-center">@item.Quantity Pcs</td>
                                                     <td class="text-right">@item.Amount</td>
-                                                    total += (double)item.Quantity * item.Amount;
+                                                    @{total += (double)item.Quantity * item.Amount;}
                                                 </tr> 
                                             }
                                         }
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colspan="2">
+                                            <th>
                                                 Information<br>
                                                 Information content
+                                            </th> 
+                                            <th>
                                             </th>
                                             <th class="text-center">Total</th>
                                             <th class="text-right">@total</th>

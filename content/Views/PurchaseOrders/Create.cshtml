@@ -149,8 +149,7 @@
             },
             methods: {
                 save: function () {
-                    event.preventDefault();
-                    debugger;
+                    event.preventDefault(); 
                     fetch('/api/purchaseorders/', {
                         method: 'post',
                         headers: {

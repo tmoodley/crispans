@@ -39,7 +39,7 @@ namespace Vue2Spa.Controllers
             }
 
             var purchaseOrder = await _context.PurchaseOrder
-                .Include(p => p.Customers)
+                .Include(p => p.Customers).Include(p => p.PurchaseOrderItems)
                 .FirstOrDefaultAsync(m => m.Id == id).ConfigureAwait(false);
             if (purchaseOrder == null)
             {
