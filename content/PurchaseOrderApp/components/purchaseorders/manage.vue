@@ -15,7 +15,7 @@
                   </a>
                 </h4>
               </div>
-              <div id="collapseOne" class="panel-collapse collapse in">
+              <div id="collapseOne" class="panel-collapse in collapse show">
                 <div class="panel-body">
                   <form v-on:submit="onComplete">
                     <div class="row">
@@ -30,13 +30,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="PurchaseDate" class="control-label">Purchase Date</label>
-                          <input v-model="purchaseOrder.purchaseDate" type="date" class="form-control" />
+                          <input v-model="purchaseOrder.purchaseDate" type="datetime-local" class="form-control" />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="DeliveryDate" class="control-label">Delivery Date</label>
-                          <input v-model="purchaseOrder.deliveryDate" type="date" class="form-control" />
+                          <input v-model="purchaseOrder.deliveryDate" type="datetime-local" class="form-control" />
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -91,7 +91,7 @@
                       <div class="col-md-8 total-footer">
                         <div class="total-footer__notes grid-5 grid-item">
                           <label for="notes" class="control-label">Notes / Memo</label>
-                          <textarea name="notes" id="notes" class="form-control" v-model="purchaseOrder.Notes"></textarea>
+                          <textarea name="notes" id="notes" class="form-control" v-model="purchaseOrder.notes"></textarea>
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -100,7 +100,7 @@
                             <h5 class="total-label">
                               Total
                             </h5>
-                            <span id="Total" class="PurchaseOrderTotal">{{purchaseOrder.Total  | currency}}</span>
+                            <span id="Total" class="PurchaseOrderTotal">{{purchaseOrder.total  | currency}}</span>
                           </div>
                         </div>
                         <div class="form-group">
@@ -225,7 +225,11 @@
                   var self = this;   
                   return axios
                     .put('/api/purchaseorders/' + self.purchaseOrder.id , self.purchaseOrder)
-                    .then(response => { self.purchaseOrder = response.data }) 
+                    .then(response => { 
+                     console.log(response)
+                    }).then(function (data) {
+                       self.purchaseOrder = data
+                    })
                   },
                   onComplete: function () {
                         var self = this;
@@ -234,31 +238,34 @@
                             'Saved',
                             'Job Saved',
                             'success'
-                          ).then(function () {
-                              window.location.href = "/purchaseorders/details/" + self.purchaseOrder.id;
-                          })
+                          )
                         });
                   }, 
                   addLine() {
-                      this.purchaseOrder.PurchaseOrderItems.push({
-                          Item: '',
-                          Description: '',
-                          Quantity: 0,
-                          Amount: 0.00
+                      this.purchaseOrder.purchaseOrderItems.push({
+                          item: '',
+                          description: '',
+                          quantity: 0,
+                          amount: 0.00
                       });
 
                   },
                   addTotal() {
                       var _this = this;
-                      this.purchaseOrder.PurchaseOrderItems.map(item => {
-                          _this.purchaseOrder.Total += item.quantity * item.amount;
+                      this.purchaseOrder.purchaseOrderItems.map(item => {
+                          _this.purchaseOrder.total += item.quantity * item.amount;
                       })
                   },
                   removeLine(index) {
-                      const _index = this.purchaseOrder.PurchaseOrderItems.indexOf(index);
+                      var _this = this;
+                      const _index = this.purchaseOrder.purchaseOrderItems.indexOf(index);
                       if (index > -1) {
-                        this.purchaseOrder.PurchaseOrderItems.splice(_index, 1);
+                        this.purchaseOrder.purchaseOrderItems.splice(_index, 1);
                       }
+                      this.purchaseOrder.total = 0;
+                      this.purchaseOrder.purchaseOrderItems.map(item => {
+                            _this.purchaseOrder.total += item.quantity * item.amount;
+                      })
                   }
             },
     created: function () { 
@@ -274,8 +281,8 @@
     mounted: function () {  
       this.getCompany(this.email);
       var self = this;
-      this.getPurchaseOrder(this.$route.params.id).then(function () {
-        self.purchaseOrder = self.store;
+      this.getPurchaseOrder(this.$route.params.id).then(function () { 
+        self.purchaseOrder = self.store.purchaseOrder;
       })
     },
     computed: mapState({
