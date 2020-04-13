@@ -135,6 +135,11 @@ namespace Vue2Spa.Controllers
             return View(purchaseOrder);
         }
 
+        public async Task<IActionResult> Manage(Guid? id)
+        {
+            return View();
+        }
+
         // GET: PurchaseOrders/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {

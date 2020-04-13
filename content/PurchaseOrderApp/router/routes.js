@@ -1,9 +1,7 @@
-const Partner = () => import(/* webpackChunkName: "home" */ 'components/partner.vue')
-const Job = () => import(/* webpackChunkName: "about" */ 'components/jobs/job.vue')
-const Jobs = () => import(/* webpackChunkName: "contact" */ 'components/jobs/jobs.vue')
+const CreatePurchaseOrder = () => import(/* webpackChunkName: "home" */ 'components/purchaseorders/create.vue')
+const ManagePurchaseOrder = () => import(/* webpackChunkName: "home" */ 'components/purchaseorders/manage.vue')
 
 export const routes = [
-  { name: 'dashboard', path: '/portal/dashboard', component: Partner, display: 'My Profile', icon: 'home' },
-  { name: 'createtender', path: '/portal/tender/create', component: Job, display: 'Create Tender', icon: 'info' },
-  { name: 'searchtender', path: '/portal/tender/search', component: Jobs, display: 'Search Tenders', icon: 'list' }
+  { name: 'CreatePO', path: '/PurchaseOrders/Create', component: CreatePurchaseOrder, display: 'Create Purchase Order', icon: 'home' },
+  { name: 'ManagePO', path: '/PurchaseOrders/Manage/:id', component: ManagePurchaseOrder, display: 'Manage Purchase Order', icon: 'home' }
 ]

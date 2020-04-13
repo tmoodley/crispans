@@ -1,0 +1,41 @@
+
+@{
+    ViewData["Title"] = "Manage";
+}
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div id="app"></div>
+    </div>
+</section>
+<style>
+    .input_height {
+        height: 50px !important;
+    }
+
+    .form-section {
+        margin-bottom: 1.875em !important;
+    }
+
+    .form-header {
+        border-bottom: 1px solid #dfe3e8;
+        margin-bottom: 1.875em;
+    }
+
+    .trans-navigation {
+        background: black;
+    }
+
+    table.dataTable thead tr {
+        background-color: black;
+        color: white;
+    }
+</style>
+@section Scripts {
+
+    <script>
+        var _user = '@User.Identity.Name';
+    </script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/dist/vendor.js" asp-append-version="true"></script>
+    <script src="~/dist-po/po-main.js" asp-append-version="true"></script>
+}

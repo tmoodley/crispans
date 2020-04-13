@@ -1,26 +1,23 @@
 <template>
-  <div class="sidebar" data-color="blue">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-  -->
-
-    <router-link class="navbar-brand" to="/"><icon :icon="['fab', 'microsoft']" />Portal</router-link>
-    <div class="logo">
-      <a href="https://capacitym.com/Portal/Dashboard/" class="simple-text logo-normal">
-        Portal
-      </a>
-    </div>
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item" v-for="(route, index) in routes" :key="index">
-          <router-link :to="route.path" exact-active-class="active">
-            <icon :icon="route.icon" class="mr-2 menu-icon" /><span>{{ route.display }}</span>
-          </router-link>
-        </li>
-      </ul>
-    </div>
-  </div>
-   
+  <div>
+    <ul class="nav nav-pills">
+     <li class="nav-item" v-for="(route, index) in routes" :key="index">
+        <router-link :to="route.path" exact-active-class="active" class="nav-link">
+          {{ route.display }}
+        </router-link>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Documents</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">NDA</a>
+          <a class="dropdown-item" href="#">Contact</a>
+          <a class="dropdown-item" href="#">Terms And Conditions</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">3D Files</a>
+        </div>
+      </li>
+    </ul> 
+  </div> 
 </template>
 
 <script>

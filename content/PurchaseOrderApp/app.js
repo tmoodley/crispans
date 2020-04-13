@@ -12,7 +12,9 @@ import Vue2Dropzone from 'vue2-dropzone'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Vue2Filters from 'vue2-filters'
 
+Vue.use(Vue2Filters);
 import VueSweetalert2 from 'vue-sweetalert2';
 
 // If you don't need the styles, do not connect
