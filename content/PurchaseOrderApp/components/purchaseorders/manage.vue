@@ -290,9 +290,10 @@
                 this.debouncedGetAnswer = _.debounce(this.addTotal, 500)
     },
     mounted: function () {  
-      this.getCompany(this.email) 
+      this.getCompany(this.email);
+      var self = this;
       this.getPurchaseOrder(this.$route.params.id).then(function () {
-        this.purchaseOrder = this.store.purchaseOrder;
+        self.purchaseOrder = self.store;
       })
     },
     computed: mapState({

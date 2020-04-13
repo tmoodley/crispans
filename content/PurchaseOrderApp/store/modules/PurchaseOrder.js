@@ -2,7 +2,7 @@
 import axios from 'axios'
 // initial state
 const state = {
-  purchaseOrder: []
+  purchaseOrder: {}
 }
 
 // getters
