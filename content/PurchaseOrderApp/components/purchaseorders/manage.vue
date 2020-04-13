@@ -30,19 +30,19 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="PurchaseDate" class="control-label">Purchase Date</label>
-                          <input v-model="purchaseOrder.PurchaseDate" type="date" class="form-control" />
+                          <input v-model="purchaseOrder.purchaseDate" type="date" class="form-control" />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="DeliveryDate" class="control-label">Delivery Date</label>
-                          <input v-model="purchaseOrder.DeliveryDate" type="date" class="form-control" />
+                          <input v-model="purchaseOrder.deliveryDate" type="date" class="form-control" />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="PurchaseOrderNumber" class="control-label">Purchase Order Number</label>
-                          <input v-model="purchaseOrder.PurchaseOrderNumber" class="form-control" />
+                          <input v-model="purchaseOrder.purchaseOrderNumber" class="form-control" />
                         </div>
                       </div>
                     </div>
@@ -54,7 +54,7 @@
                         <span>STEP 2 OF 2</span>
                       </div>
                     </div>
-                    <div class="row" v-for="(item, index) in purchaseOrder.PurchaseOrderItems">
+                    <div class="row" v-for="(item, index) in purchaseOrder.purchaseOrderItems">
                       <div class="col-md-3">
                         <div class="form-group">
                           <input type="text" class="form-control" placeholder="Item" v-model="item.item" />
@@ -104,7 +104,7 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <input type="submit" value="Create" class="btn btn-primary" :disabled="purchaseOrder.PurchaseOrderItems.length == 0" />
+                          <input type="submit" value="Update" class="btn btn-primary" />
                         </div>
                       </div>
                     </div>
@@ -210,24 +210,7 @@
            return {
                 email: _user,
                 loading: false,
-                purchaseOrder: {
-                  PurchaseDate: '',
-                  DeliveryDate: '',
-                  Notes: '',
-                  PurchaseOrderNumber: '',
-                  CustomerId: '',
-                  Email: _user,
-                  Status: '',
-                  SubTotal: 0,
-                  Tax: 0,
-                  Total: 0,
-                  PurchaseOrderItems: [{
-                    Item: '',
-                    Description: '',
-                    Quantity: 0,
-                    Amount: 0.00
-                  }],
-                }
+                purchaseOrder: {}
               }
             }, 
        methods: {
@@ -239,10 +222,9 @@
                  ]),
                  save() {
                   event.preventDefault();
-                  var self = this;  
-                  this.purchaseOrder.CustomerId = this.store.company.id;
+                  var self = this;   
                   return axios
-                    .post('/api/purchaseorders/', self.purchaseOrder)
+                    .put('/api/purchaseorders/' + self.purchaseOrder.id , self.purchaseOrder)
                     .then(response => { self.purchaseOrder = response.data }) 
                   },
                   onComplete: function () {
