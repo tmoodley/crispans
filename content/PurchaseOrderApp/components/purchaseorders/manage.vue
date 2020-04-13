@@ -291,7 +291,7 @@
     },
     mounted: function () {  
       this.getCompany(this.email) 
-      this.getPurchaseOrder($route.params.id).then(function () {
+      this.getPurchaseOrder(this.$route.params.id).then(function () {
         this.purchaseOrder = this.store.purchaseOrder;
       })
     },
