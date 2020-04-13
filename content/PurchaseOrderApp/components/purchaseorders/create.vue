@@ -103,7 +103,7 @@
 <script>
   import axios from 'axios' 
   import { mapState, mapActions } from 'vuex'
-  export default {
+  export default { 
         data() {
            return {
                 email: _user,

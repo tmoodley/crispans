@@ -125,29 +125,54 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Title" required />
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Description" required />
-                      </div>
-                      <div class="form-group">
-                        <textarea class="form-control" placeholder="Keywords" required></textarea>
-                      </div>
+                      <b-form-checkbox switch size="lg" class="float-left">NDA (NON DISCLOSURE AGREEMENT)</b-form-checkbox>
+                      <i id="tooltip-nda" class="fas fa-info-circle float-left"></i>
+                      <b-tooltip target="tooltip-nda">NON DISCLOSURE AGREEMENT</b-tooltip>
                     </div>
+                    <div class="col-md-12">If you upload and NDA, bidding companies need to first sign the uploaded NDA before viewing documents.</div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="well well-sm well-primary">
-                        <form class="form form-inline " role="form">
-                          <div class="form-group">
-                            <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-sm">
-                              <span class="glyphicon glyphicon-floppy-disk">
-                              </span>Save
-                            </a>
-                          </div>
-                        </form>
-                      </div>
+                      <h3>File Upload</h3>
+                      <p>In this section, you can upload your JOB related documents such as NDA's, Contracts, General Terms and Conditions, etc</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      NDA File
+                    </div>
+                    <div class="col-md-6">
+                      <b-button class="float-right" v-if="purchaseOrder.ndaDocumentId" @click="download(purchaseOrder.ndaDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                    </div>
+                    <div class="col-md-12">
+                      <upload @setid="setNda"></upload>
+                    </div>
+                    <div class="col-md-6">
+                      Contract File
+                    </div>
+                    <div class="col-md-6">
+                      <b-button class="float-right" v-if="purchaseOrder.termsDocumentId" @click="download(purchaseOrder.termsDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                    </div>
+                    <div class="col-md-12">
+                      <upload @setid="setContract"></upload>
+                    </div>
+                    <div class="col-md-6">
+                      Terms and Conditions File
+                    </div>
+                    <div class="col-md-6">
+                      <b-button class="float-right" v-if="purchaseOrder.contractDocumentId" @click="download(purchaseOrder.contractDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                    </div>
+                    <div class="col-md-12">
+                      <upload @setid="setTerms"></upload>
+                    </div>
+                    <div class="col-md-6">
+                      3D Visualizations File
+                    </div>
+                    <div class="col-md-6">
+                      <b-button class="float-right" v-if="purchaseOrder.cadFileDocumentId " @click="download(purchaseOrder.cadFileDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                    </div>
+                    <div class="col-md-12">
+                      <upload @setid="setCadFile"></upload>
                     </div>
                   </div>
                 </div>
@@ -166,31 +191,14 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Title" required />
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Description" required />
-                      </div>
-                      <div class="form-group">
-                        <textarea class="form-control" placeholder="Keywords" required></textarea>
+                      <div class="card card-user">
+                        <div class="card-body">
+                          <category></category> 
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="well well-sm well-primary">
-                        <form class="form form-inline " role="form">
-                          <div class="form-group">
-                            <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-sm">
-                              <span class="glyphicon glyphicon-floppy-disk">
-                              </span>Save
-                            </a>
-                          </div>
-                        </form>
-                      </div>
                     </div>
-                  </div>
+                  </div> 
                 </div>
               </div>
             </div>
@@ -204,8 +212,14 @@
 
 <script>
   import axios from 'axios' 
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapActions } from 'vuex' 
+  import category from '../categories/category' 
+  import upload from '../purchaseorders/document'
   export default {
+        components: {
+          upload,
+          category, 
+        },
         data() {
            return {
                 email: _user,
@@ -266,7 +280,52 @@
                       this.purchaseOrder.purchaseOrderItems.map(item => {
                             _this.purchaseOrder.total += item.quantity * item.amount;
                       })
-                  }
+         },
+                  download(id) {
+        axios({
+
+          url: '/portal/api/documents/' + id,
+
+          method: 'GET', 
+
+        }).then(function (doc) {
+          axios({
+
+            url: '/portal/api/document/' + id,
+
+            method: 'GET',
+
+            responseType: 'blob',
+
+          }).then((response) => {
+
+            var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+
+            var fileLink = document.createElement('a');
+             
+            fileLink.href = fileURL;
+
+            fileLink.setAttribute('download', doc.data.name);
+
+            document.body.appendChild(fileLink);
+             
+            fileLink.click();
+
+          })
+        });
+         }, 
+              setNda(id) { 
+                this.purchaseOrder.ndaDocumentId = id;
+              },
+              setTerms(id){
+                  this.purchaseOrder.termsDocumentId = id;
+              },
+              setContract(id){
+                  this.purchaseOrder.contractDocumentId = id;
+              },
+              setCadFile(id){
+                  this.purchaseOrder.cadFileDocumentId = id;
+              }
             },
     created: function () { 
                 // _.debounce is a function provided by lodash to limit how
