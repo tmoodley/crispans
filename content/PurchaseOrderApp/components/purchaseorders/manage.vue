@@ -2,6 +2,7 @@
   <div> 
     <nav-menu params="route: route"></nav-menu>
     <h1>Manage</h1>
+    <hr />
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -193,12 +194,121 @@
                     <div class="col-md-12">
                       <div class="card card-user">
                         <div class="card-body">
-                          <category></category> 
+                          <category></category>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <span class="glyphicon glyphicon-th-list">
+                    </span>Messages
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-user">
+                        <div class="card-body">
+                        </div>
+                      </div>
                     </div>
-                  </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                    <span class="glyphicon glyphicon-th-list">
+                    </span>Questions/Answer
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-user">
+                        <div class="card-body">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                    <span class="glyphicon glyphicon-th-list">
+                    </span>Notifications
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-user">
+                        <div class="card-body">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                    <span class="glyphicon glyphicon-th-list">
+                    </span>Notes
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseSeven" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-user">
+                        <div class="card-body">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+                    <span class="glyphicon glyphicon-th-list">
+                    </span>Bids
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseEight" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-user">
+                        <div class="card-body">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -206,7 +316,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 

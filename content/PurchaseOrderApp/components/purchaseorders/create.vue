@@ -55,12 +55,12 @@
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <input type="number" class="form-control" placeholder="Quantity" v-model="item.quantity" />
+          <input type="number" class="form-control input_height" placeholder="Quantity" v-model="item.quantity" />
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Amount" v-model="item.amount" @change="debouncedGetAnswer()" />
+          <input type="text" class="form-control" placeholder="Price" v-model="item.amount" @change="debouncedGetAnswer()" />
         </div>
       </div>
       <div class="col-md-1">
@@ -184,7 +184,8 @@
                 // _.throttle), visit: https://lodash.com/docs#debounce
                 this.debouncedGetAnswer = _.debounce(this.addTotal, 500)
     },
-    mounted: function () {  
+    mounted: function () {
+      debugger;
       this.getCompany(this.email)
     },
     computed: mapState({
