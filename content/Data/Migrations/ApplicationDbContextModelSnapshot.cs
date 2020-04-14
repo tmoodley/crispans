@@ -63,8 +63,7 @@ namespace HelpingHands.Data.Migrations
                     b.Property<string>("FamilyName")
                         .IsRequired();
 
-                    b.Property<string>("Gender")
-                        .IsRequired();
+                    b.Property<string>("Gender");
 
                     b.Property<string>("GivenName")
                         .IsRequired();
@@ -91,8 +90,7 @@ namespace HelpingHands.Data.Migrations
                     b.Property<string>("State")
                         .IsRequired();
 
-                    b.Property<string>("SubscriptionPlan")
-                        .IsRequired();
+                    b.Property<string>("SubscriptionPlan");
 
                     b.Property<DateTime>("UpdatedAt");
 
