@@ -3,204 +3,40 @@
 @{
     ViewData["Title"] = "Create";
 }
-<section id="intro" class="section-padding" >
-    <div class="container" id="app">
-        <h1>Create</h1>
-
-        <h4>Purchase Order</h4>
-        <hr /> 
-        <form  v-on:submit="save">
-            <div class="row">
-                <div class="col-md-9 pull-left">
-                    <span>Enter the details for your order</span>
-                </div>
-                <div class="col-md-3 pull-right">
-                    <span>STEP 1 OF 2</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="PurchaseDate" class="control-label"></label>
-                        <input v-model="purchaseOrder.PurchaseDate" type="date" class="form-control" />
-                        <span asp-validation-for="PurchaseDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DeliveryDate" class="control-label"></label>
-                        <input v-model="purchaseOrder.DeliveryDate" type="date" class="form-control" />
-                        <span asp-validation-for="DeliveryDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Notes" class="control-label"></label>
-                        <input v-model="purchaseOrder.Notes" class="form-control" />
-                        <span asp-validation-for="Notes" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PurchaseOrderNumber" class="control-label"></label>
-                        <input v-model="purchaseOrder.PurchaseOrderNumber" class="form-control" />
-                        <span asp-validation-for="PurchaseOrderNumber" class="text-danger"></span>
-                    </div> 
-
-                    <div class="form-group">
-                        <label asp-for="Total" class="control-label"></label>
-                        <input v-model="purchaseOrder.Total" class="form-control" />
-                        <span asp-validation-for="Total" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9 pull-left">
-                    <span>Enter the items you wish to order</span>
-                </div>
-                <div class="col-md-3 pull-right">
-                    <span>STEP 2 OF 2</span>
-                </div>
-            </div>
-            <div class="row" v-for="(item, index) in purchaseOrder.PurchaseOrderItems">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Item" v-model="item.item" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Description" v-model="item.description" />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Quantity" v-model="item.quantity" />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Amount" v-model="item.amount" @@change="debouncedGetAnswer()" />
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group" v-if="item.amount > 0">
-                        {{item.amount * item.quantity}}
-                    </div>
-                    <i class="fa fa-minus-circle" @@click="removeLine(index)"></i>
-                </div> 
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <i class="fa fa-plus-circle" @@click="addLine()"> Add New Line</i>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div> 
-                </div>
-            </div> 
-</form>
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div id="app"></div>
     </div>
 </section>
+        <style>
+            .input_height {
+                height: 50px !important;
+            }
 
-<style>
-    .input_height{
-        height:50px !important;
-    }
-    .form-section {
-        margin-bottom: 1.875em !important;
-    }
-    .form-header {
-        border-bottom: 1px solid #dfe3e8;
-        margin-bottom: 1.875em;
-    }
+            .form-section {
+                margin-bottom: 1.875em !important;
+            }
 
-    .trans-navigation {
-        background: black;
-    }
+            .form-header {
+                border-bottom: 1px solid #dfe3e8;
+                margin-bottom: 1.875em;
+            }
 
-    table.dataTable thead tr {
-        background-color: black;
-        color: white;
-    }
-</style>
-@section Scripts {
-    <script> 
-        var app = new Vue({
-            el: '#app',
-            data: {
-                loading: false,
-                purchaseOrder: {
-                    PurchaseDate: '',
-                    DeliveryDate: '',
-                    Notes: '',
-                    PurchaseOrderNumber: '',
-                    CustomerId: '@ViewBag.CustomerId', 
-                    Email: '@ViewBag.Email',
-                    Status: '',     
-                    SubTotal: 0,
-                    Tax: 0,
-                    Total: 0,
-                    PurchaseOrderItems: [{
-                        Item: '',
-                        Description: '',
-                        Quantity: 0,
-                        Amount: 0.00
-                    }],
-                }
-            },
-            methods: {
-                save: function () {
-                    event.preventDefault(); 
-                    fetch('/api/purchaseorders/', {
-                        method: 'post',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(this.purchaseOrder)
-                      })
-                       .then(function (res) {
-                        return res.json();
-                    })
-                    .then(function (data) { 
-                                            window.location.href = "/purchaseorders/details/" + data.id;
-                                            console.log('Request succeeded with JSON response', data);
-                       })           
-                      .catch(function (error) {
-                        console.log('Request failed', error);
-                      }); 
-                },
-                addLine: function () {
-                    this.purchaseOrder.PurchaseOrderItems.push({
-                        Item: '',
-                        Description: '',
-                        Quantity: 0,
-                        Amount: 0.00
-                    });
-                   
-                },
-                addTotal: function () {
-                    var _this = this;
-                    this.purchaseOrder.PurchaseOrderItems.map(item => { 
-                        _this.purchaseOrder.Total += item.quantity * item.amount;
-                    }) 
-                },
-                removeLine: function (index) {
-                    const _index = this.purchaseOrder.PurchaseOrderItems.indexOf(index);
-                    if (index > -1) {
-                      this.purchaseOrder.PurchaseOrderItems.splice(_index, 1);
-                    } 
-                }
-            }, 
-             created: function () {
-                // _.debounce is a function provided by lodash to limit how
-                // often a particularly expensive operation can be run.
-                // In this case, we want to limit how often we access
-                // yesno.wtf/api, waiting until the user has completely
-                // finished typing before making the ajax request. To learn
-                // more about the _.debounce function (and its cousin
-                // _.throttle), visit: https://lodash.com/docs#debounce
-                this.debouncedGetAnswer = _.debounce(this.addTotal, 500)
-              }, 
-        })
-    </script>
-}
+            .trans-navigation {
+                background: black;
+            }
+
+            table.dataTable thead tr {
+                background-color: black;
+                color: white;
+            }
+        </style>
+        @section Scripts {
+           
+            <script>
+        var _user = '@User.Identity.Name';
+            </script>
+            <!-- Custom scripts for all pages-->
+            <script src="~/dist/vendor.js" asp-append-version="true"></script>
+            <script src="~/dist-po/po-main.js" asp-append-version="true"></script>
+        }

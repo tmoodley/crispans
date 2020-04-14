@@ -171,7 +171,19 @@ namespace HelpingHands.Data
                 .HasOne(bc => bc.Category)
                 .WithMany(c => c.JobCategories)
                 .HasForeignKey(bc => bc.CategoryId);
-              
+
+            modelBuilder.Entity<PurchaseOrderCategory>()
+                .HasKey(x => new { x.PurchaseOrderId, x.CategoryId });
+
+            modelBuilder.Entity<PurchaseOrderCategory>()
+                .HasOne(bc => bc.PurchaseOrder)
+                .WithMany(b => b.PurchaseOrderCategories)
+                .HasForeignKey(bc => bc.PurchaseOrderId);
+            modelBuilder.Entity<PurchaseOrderCategory>()
+                .HasOne(bc => bc.Category)
+                .WithMany(c => c.PurchaseOrderCategories)
+                .HasForeignKey(bc => bc.CategoryId);
+
             modelBuilder.Entity<JobMachine>()
                     .HasKey(x => new { x.JobId, x.MachineId });
 

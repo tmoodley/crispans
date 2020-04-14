@@ -8,11 +8,11 @@
                     <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
                         <div class="banner-content content-padding">
                             <h1 class="banner-title">
-                                Access Quality Manufacturers through our Platform
+                                Access Quality Supply and Manufacturing through our Platform
                             </h1>
-                            <p>Submit a Tender and get a Bid For Free</p>
+                            <p>Submit a P.O and get a Bid For Free</p>
                             <a href="~/purchaseorders" class="btn btn-white btn-circled">View Open Purchase Orders</a>
-                            <a href="~/tenders" class="btn btn-white btn-circled">View Bid Opportunities</a>
+                            <a href="~/tenders" class="btn btn-white btn-circled">View Supplies</a>
                         </div>
                     </div>
                 </div>
@@ -21,6 +21,44 @@
     </div>
 </div>
 <!--MAIN HEADER AREA END -->
+<!--  SERVICE AREA START  -->
+<section id="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-md-6">
+                <div class="service-box">
+                    <div class="service-img-icon">
+                        <img src="~/assets/img/job.png" alt="service-icon" class="img-fluid">
+                    </div>
+                    <div class="service-inner">
+                        <a href="~/tenders" class="btn btn-primary btn-circled">I am a Supplier</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-md-6">
+                <div class="service-box">
+                    <div class="service-img-icon">
+                        <img src="~/assets/img/quote2.svg" alt="service-icon" class="img-fluid">
+                    </div>
+                    <div class="service-inner">
+                        <a href="~/tenders" class="btn btn-primary btn-circled">I am a Buyer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-md-6">
+                <div class="service-box">
+                    <div class="service-img-icon">
+                        <img src="~/assets/img/shaking-hands-icon-2.png" alt="service-icon" class="img-fluid">
+                    </div>
+                    <div class="service-inner">
+                        <a href="~/tenders" class="btn btn-primary btn-circled">I am a Broker</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  SERVICE AREA END  -->
 <!--  ABOUT AREA START  -->
 <section id="intro" class="section-padding">
     <div class="container">
@@ -96,10 +134,10 @@
 <!--  SERVICE AREA START  -->
 <section id="service">
     <div class="container">
-        <div class="row">  
+        <div class="row">
             <div class="col-lg-4 col-sm-6 col-md-6">
                 <div class="service-box">
-                    <div class="service-img-icon"> 
+                    <div class="service-img-icon">
                         <img src="~/assets/img/job.png" alt="service-icon" class="img-fluid">
                     </div>
                     <div class="service-inner">
@@ -135,7 +173,7 @@
         </div>
     </div>
 </section>
-<!--  SERVICE AREA END  -->   
+<!--  SERVICE AREA END  -->
 <!--  SERVICE AREA START  -->
 <section id="about" class="bg-light">
     <div class="about-bg-img d-none d-lg-block d-md-block"></div>
@@ -148,7 +186,8 @@
                     <p>Capacitym provides an online platform that connects manufacturers with other manufacturers with excess capacity. Excess capacity refers to a situation in which the demand for a company's goods and services is less than its productive capacity. The situation can arise during the low point in a seasonal industry, where capacity is maintained to match the peak part of the season. Excess capacity can also arise when customer demand has permanently declined, which could be an opportunity for a firm to cut back on the amount of its capacity to reduce costs.</p>
 
                     <ul class="about-list">
-                        <li><i class="icofont icofont-check-circled"></i> Reduce Carrying Costs
+                        <li>
+                            <i class="icofont icofont-check-circled"></i> Reduce Carrying Costs
                         </li>
                         <li>
                             <i class="icofont icofont-check-circled"> </i> Innovate Faster
@@ -171,12 +210,12 @@
         </div>
     </div>
 </section>
-<!--  SERVICE AREA END  -->  
+<!--  SERVICE AREA END  -->
 <section id="contact" class="contact-wrapper banner-area banner-2">
     <div class="container" data-aos="fade-up" data-aos-delay="200">
-        <br/>
+        <br />
         <h1 class="text-uppercase text-center text-white">Contact Capacitym</h1>
-        <br/>
+        <br />
         <form asp-controller="Contacts" asp-action="Create" class="contact-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">

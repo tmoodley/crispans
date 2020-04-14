@@ -17,7 +17,9 @@ module.exports = () => {
   return [{
     mode: (isDevBuild ? 'development' :'production'  ),
     stats: { modules: false },
-    entry: { 'main': './ClientApp/boot-app.js' },
+    entry: {
+      'main': './ClientApp/boot-app.js'
+    },
     resolve: {
       extensions: ['.js', '.vue'],
       alias: isDevBuild ? {

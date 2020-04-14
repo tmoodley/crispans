@@ -12,9 +12,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run",
-    "build": "npm run build-vendor:prod && npm run build:prod",
+    "build": "npm run build-vendor:prod && npm run build-po:prod && npm run build:prod",
     "build:prod": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "build-vendor:prod": "cross-env NODE_ENV=production webpack --config webpack.config.vendor.js --progress",
+    "build-po:prod": "cross-env NODE_ENV=production webpack --config webpack.config.purchaseorder.js --progress",
     "build-vendor:dev": "cross-env NODE_ENV=development webpack --config webpack.config.vendor.js --progress",
     "lint": "eslint -c ./.eslintrc.js ClientApp/**/*.js  ClientApp/**/*.vue  ClientApp/**/*.json webpack*.js",
     "install": "npm run build-vendor:dev",
@@ -33,6 +34,7 @@
     "vue-template-compiler": "^2.6.10",
     "vue-wysiwyg": "^1.7.2",
     "vue2-dropzone": "^3.6.0",
+    "vue2-filters": "^0.10.0",
     "vuex": "^3.1.0",
     "vuex-router-sync": "^5.0.0"
   },

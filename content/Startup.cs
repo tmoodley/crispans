@@ -190,7 +190,8 @@ namespace Vue2Spa
                 // Webpack initialization with hot-reload.
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
-                    HotModuleReplacement = true,
+                    ConfigFile = "webpack.config.purchaseorder.js", //this is defualt value
+                    HotModuleReplacement = true, 
                 });
             }
             else

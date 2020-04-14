@@ -226,9 +226,13 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<Guid>("CadFileDocumentId");
+
                     b.Property<string>("City");
 
                     b.Property<string>("CompanyName");
+
+                    b.Property<Guid>("ContractDocumentId");
 
                     b.Property<string>("Country");
 
@@ -237,6 +241,8 @@ namespace HelpingHands.Data.Migrations
                     b.Property<DateTime>("DeliveryDate");
 
                     b.Property<string>("Email");
+
+                    b.Property<Guid>("NdaDocumentId");
 
                     b.Property<string>("Notes");
 
@@ -252,7 +258,11 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<double>("Tax");
 
+                    b.Property<Guid>("TermsDocumentId");
+
                     b.Property<double>("Total");
+
+                    b.Property<bool>("isNda");
 
                     b.HasKey("Id");
 
@@ -787,6 +797,19 @@ namespace HelpingHands.Data.Migrations
                     b.HasIndex("CompanyTypeId");
 
                     b.ToTable("PartnerCompanyType");
+                });
+
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory", b =>
+                {
+                    b.Property<Guid>("PurchaseOrderId");
+
+                    b.Property<Guid>("CategoryId");
+
+                    b.HasKey("PurchaseOrderId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("PurchaseOrderCategory");
                 });
 
             modelBuilder.Entity("Vue2Spa.Models.Answer", b =>
@@ -1357,6 +1380,19 @@ namespace HelpingHands.Data.Migrations
                     b.HasOne("HelpingHands.Models.Partner", "Partner")
                         .WithMany("PartnerCompanyTypes")
                         .HasForeignKey("PartnerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory", b =>
+                {
+                    b.HasOne("Vue2Spa.Models.Category", "Category")
+                        .WithMany("PurchaseOrderCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HelpingHands.Models.PurchaseOrder", "PurchaseOrder")
+                        .WithMany("PurchaseOrderCategories")
+                        .HasForeignKey("PurchaseOrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
