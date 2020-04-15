@@ -119,9 +119,7 @@
     <script src="../portal/assets/js/core/jquery.min.js"></script>
     <script src="../portal/assets/js/core/popper.min.js"></script>
     <script src="../portal/assets/js/core/bootstrap.min.js"></script>
-    <script src="../portal/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <script src="../portal/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script> 
     <!-- Chart JS -->
     <script src="../portal/assets/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
@@ -129,13 +127,14 @@
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../portal/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="../portal/assets/demo/demo.js"></script>
- 
+    <script src="https://cdn.jsdelivr.net/npm/vue2-dropzone@3.6.0/dist/vue2Dropzone.min.js"></script>
+    
     <script>
         var _user = '@User.Identity.Name';
     </script>
     <!-- Custom scripts for all pages-->
     <script src="~/dist/vendor.js" asp-append-version="true"></script>
-    <script src="~/dist/main.js" asp-append-version="true"></script> 
+    <script src="~/dist/main.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

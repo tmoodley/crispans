@@ -5,7 +5,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {  
-   <li id="theme_selector" class="dropdown">
+   <li id="theme_selector" class="dropdown nav-item">
                 <button class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span><i class="fa fa-user"></i> @User.Identity.Name</span>
                 </button>
@@ -18,10 +18,7 @@
                     </li>
                     <li>
                         <a class="dropdown-item" href="/Card/Update/">Update Card</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/Dependents/">Dependents</a>
-                    </li>
+                    </li> 
                     @if (User.IsInRole("Administrator"))
                     {
                         <!-- Divider -->
