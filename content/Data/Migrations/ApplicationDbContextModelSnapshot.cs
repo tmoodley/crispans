@@ -217,6 +217,42 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("Partners");
                 });
 
+            modelBuilder.Entity("HelpingHands.Models.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomerId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Diameter");
+
+                    b.Property<int>("Height");
+
+                    b.Property<string>("Image");
+
+                    b.Property<int>("Length");
+
+                    b.Property<int>("MinTolerance");
+
+                    b.Property<string>("Name");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("Stock");
+
+                    b.Property<string>("Upc");
+
+                    b.Property<int>("Width");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("HelpingHands.Models.PurchaseOrder", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1176,6 +1212,13 @@ namespace HelpingHands.Data.Migrations
                 {
                     b.HasOne("HelpingHands.Models.Customer", "Customers")
                         .WithMany("Invoices")
+                        .HasForeignKey("CustomerId");
+                });
+
+            modelBuilder.Entity("HelpingHands.Models.Product", b =>
+                {
+                    b.HasOne("HelpingHands.Models.Customer", "Customers")
+                        .WithMany()
                         .HasForeignKey("CustomerId");
                 });
 
