@@ -13,6 +13,7 @@ using Vue2Spa.Areas.Portal.Models.DTO;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Vue2Spa.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vue2Spa.Controllers
 {
@@ -66,10 +67,17 @@ namespace Vue2Spa.Controllers
         }
 
         // GET: Tenders/Create
-        public IActionResult Create()
+        [Authorize]
+        // GET: PurchaseOrders/Create
+        public async Task<IActionResult> Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-            return View();
+            string userId = this.User.FindFirstValue(ClaimTypes.Name);
+
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.EmailAddress == userId).ConfigureAwait(false);
+            ViewBag.CustomerId = customer.Id;
+            ViewBag.Email = userId;
+            return View("Create");
         }
 
         // POST: Tenders/Create
@@ -89,6 +97,11 @@ namespace Vue2Spa.Controllers
             return View(job);
         }
 
+        [Authorize]
+        public async Task<IActionResult> Manage(Guid? id)
+        {
+            return View();
+        }
 
         public IActionResult RegisterToBid ()
         {

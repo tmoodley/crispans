@@ -1,0 +1,156 @@
+@model HelpingHands.Models.Customer
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="banner-area banner-4">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
+                        <div class="details-bg">
+                            <div class="details left" style="margin-top:100px; margin-bottom:100px;">
+                                <img class="details-text-image" src="~/images/landing-page-buyer.gif" alt="">
+
+                                <p class="animated fadeInDown">
+                                    <a class="btn btn-white btn-circled" href="/buyer#register" title="Learn More about our Services">Learn More</a>
+                                </p><p class="animated fadeInDown">
+
+                                </p>
+                            </div><!-- /.details -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="banner-area banner-2" id="register">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="banner-content content-padding">
+                    <h1 data-aos="fade-up" data-aos-delay="200" class="text-capitalize text-center font3">
+                        Register As A Buyer
+                    </h1>
+                    <div class="row justify-content-md-center">
+                        <div class="col-lg-6">
+                            <form asp-action="Create" class="contact-form form-dark mt-5 ">
+                                <div class="text-danger">@ViewBag.Error</div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group row">
+                                    <label asp-for="CompanyName" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="CompanyName" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="GivenName" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="GivenName" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="GivenName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="FamilyName" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="FamilyName" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="FamilyName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="EmailAddress" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="EmailAddress" class="form-dark form-control form-control-plaintext" value="@ViewBag.Email" disabled="@(ViewBag.Email != null ? "disabled" : null)" />
+                                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Address1" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Address1" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="Address1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="City" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="City" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="State" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="State" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="PostalCode" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="PostalCode" class="form-dark form-control form-control-plaintext" />
+                                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="CellPhone" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="CellPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
+                                        <small>Required cell number format: ### ###-####</small>
+                                        <span asp-validation-for="CellPhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="WorkPhone" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="WorkPhone" class="form-dark form-control form-control-plaintext" placeholder="### ###-####">
+                                        <small>Required work number format: ### ###-####</small>
+                                        <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-block btn-lg btn-dark">Register</button>
+                                <div class="text-center"> <small>Only registered users can see this information.</small></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<style>
+    .form-control {
+        background: white;
+    }
+
+    small {
+        color: white;
+    }
+
+    label.font-weight-bold {
+        color: white;
+    }
+
+    label.form-check-label {
+        color: white;
+    }
+
+    h1.text-capitalize.text-center.font3 {
+        color: white;
+    }
+
+    label.col-sm-3.col-form-label {
+        color: white;
+    }
+
+    .banner-area.banner-2 {
+        background-size: auto;
+    }
+</style>

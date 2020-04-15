@@ -14,12 +14,11 @@ namespace HelpingHands.Models
         [Display(Name = "Partner Id")]
         public string PartnerId { get; set;} 
         [Display(Name = "Primary Source Member Id")]
-        public string PrimarySourceMemberId { get; set; } 
-        [Required]
+        public string PrimarySourceMemberId { get; set; }  
         [Display(Name = "Number of Employees")]
         public int NumberOfEmployees { get; set; }
         public string Username { get; set; }
-        [BindProperty, Required]
+        [BindProperty]
         public string Gender { get; set; }
         public string[] Genders = new[] { "Male", "Female", "Unspecified" };
         [Required]
@@ -31,8 +30,7 @@ namespace HelpingHands.Models
         public string State { get; set; }
         [Required]
         [Display(Name= "Postal Code")]
-        public string PostalCode { get; set; }
-        [Required]
+        public string PostalCode { get; set; } 
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
         [Phone]
@@ -43,8 +41,7 @@ namespace HelpingHands.Models
         public string CellPhone { get; set; }
         [Phone]
         [Display(Name = "Work Phone")]
-        public string WorkPhone { get; set; }
-        [Required]
+        public string WorkPhone { get; set; } 
         [Display(Name = "Subscription Plan")]
         public string SubscriptionPlan { get; set; }
         public string Id {get; set;}
@@ -63,8 +60,7 @@ namespace HelpingHands.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string EmailAddress {get; set; }
-        [Required]
+        public string EmailAddress {get; set; } 
         public DateTime Birthday {get; set;}
         public string ReferenceId {get; set;}
         public string Note {get; set;} 

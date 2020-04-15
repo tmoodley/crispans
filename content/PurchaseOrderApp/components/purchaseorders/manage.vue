@@ -11,7 +11,7 @@
                 <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                     <span class="glyphicon glyphicon-file">
-                    </span>Purchase Order
+                    </span>Manage Purchase Order
                   </a>
                 </h4>
               </div>
@@ -205,9 +205,7 @@
           </div>
         </div>
       </div>
-    </div>
-
-  </div>
+    </div> 
 </template>
 
 <script>
