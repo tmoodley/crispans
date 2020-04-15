@@ -57,7 +57,7 @@ namespace Vue2Spa.Controllers
 
             var customer = await _context.Customers
                 .FirstOrDefaultAsync(m => m.EmailAddress == userId).ConfigureAwait(false);
-            //ViewBag.CustomerId = customer.Id;
+            ViewBag.CustomerId = customer.Id;
             ViewBag.Email = userId;
             return View("Create");
         }
