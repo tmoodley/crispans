@@ -135,6 +135,7 @@ namespace Vue2Spa.Controllers
             return View(purchaseOrder);
         }
 
+        [Authorize]
         public async Task<IActionResult> Manage(Guid? id)
         {
             return View();

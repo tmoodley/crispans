@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158813007-1"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -41,7 +42,7 @@
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -56,7 +57,7 @@
         <img height="1" width="1" style="display:none"
              src="https://www.facebook.com/tr?id=732721283858129&ev=PageView&noscript=1" />
     </noscript>
-    <!-- End Facebook Pixel Code -->
+    <!-- End Facebook Pixel Code --> 
     @RenderSection("Styles", required: false)
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
@@ -189,9 +190,9 @@
     <script src="/plugins/counterup/jquery.counterup.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--Moment js-->
-    <script src="~/lib/momentjs/moment.js"></script> 
+    <script src="~/lib/momentjs/moment.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
-    
+
     <script src="/js/custom.js"></script>
 
     <script src="https://unpkg.com/vue"></script>
@@ -202,6 +203,8 @@
     <script src="~/lib/datatables/datatables.js"></script>
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8b22aec8b95b8e"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-dropzone@3.6.0/dist/vue2Dropzone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.js"></script> 
     @RenderSection("Scripts", required: false)
     <style>
         div#cookieConsent {

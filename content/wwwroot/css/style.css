@@ -582,6 +582,12 @@ h5.subtitle {
   position: relative;
 }
 
+.banner-4 {
+    background: url("../images/slider-4.jpg");
+    background-size: cover;
+    position: relative;
+}
+
 .section-heading h2 {
   margin-bottom: 20px;
   font-weight: 400;
