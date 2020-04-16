@@ -18,5 +18,10 @@ namespace HelpingHands.Models
         public int MinTolerance { get; set; }
         public string CustomerId { get; set; }
         public Customer Customers { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public string Color { get; set; }
+        public double Weight { get; set; }
+        public string Dimension { get; set; }
     }
 }
