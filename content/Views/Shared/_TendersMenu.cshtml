@@ -1,0 +1,33 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li id="theme_selector" class="dropdown" style="cursor: pointer;">
+        <a class="nav-link smoth-scroll" id="dropdownTenders" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Tenders</span>
+        </a>
+        <ul id="theme" class="dropdown-menu" role="menu">
+            <li>
+                <a class="dropdown-item" asp-action="Manage" asp-controller="Tenders">My Tenders</a>
+            </li>
+            <li>
+                <a class="dropdown-item" asp-action="Create" asp-controller="Tenders">Add New Tender</a>
+            </li>
+            <li>
+                <a class="dropdown-item" asp-action="Index" asp-controller="Products">My Products</a>
+            </li>
+            <li>
+                <a class="dropdown-item" asp-action="Create" asp-controller="Products">Add New Product</a>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li class="nav-item mt-0">
+        <a class="nav-link smoth-scroll" href="/tenders">Tenders</a>
+    </li>
+}
