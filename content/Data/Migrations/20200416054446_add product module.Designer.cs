@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200416054446_add product module")]
+    partial class addproductmodule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,10 +224,6 @@ namespace HelpingHands.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("CreatedBy");
-
                     b.Property<string>("Brand");
 
                     b.Property<string>("Color");
@@ -252,17 +250,11 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<double>("Price");
 
-                    b.Property<string>("Sku");
-
                     b.Property<int>("Stock");
 
                     b.Property<string>("Upc");
 
                     b.Property<double>("Weight");
-
-                    b.Property<DateTime>("Updated");
-
-                    b.Property<string>("UpdatedBy");
 
                     b.Property<int>("Width");
 

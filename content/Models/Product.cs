@@ -24,5 +24,10 @@ namespace HelpingHands.Models
         public string CreatedBy { get; set; }
         public DateTime Updated { get; set; }
         public string UpdatedBy { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public string Color { get; set; }
+        public double Weight { get; set; }
+        public string Dimension { get; set; }
     }
 }
