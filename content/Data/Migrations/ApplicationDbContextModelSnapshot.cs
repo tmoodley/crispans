@@ -222,6 +222,10 @@ namespace HelpingHands.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
                     b.Property<string>("CustomerId");
 
                     b.Property<string>("Description");
@@ -236,13 +240,21 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<int>("MinTolerance");
 
+                    b.Property<string>("Mpn");
+
                     b.Property<string>("Name");
 
                     b.Property<double>("Price");
 
+                    b.Property<string>("Sku");
+
                     b.Property<int>("Stock");
 
                     b.Property<string>("Upc");
+
+                    b.Property<DateTime>("Updated");
+
+                    b.Property<string>("UpdatedBy");
 
                     b.Property<int>("Width");
 
