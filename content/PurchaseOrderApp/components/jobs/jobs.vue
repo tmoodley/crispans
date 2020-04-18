@@ -4,8 +4,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="title">My Supplies</h5>
-            <router-link to="/products/create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
+            <h5 class="title">Manage Tenders</h5>
+            <router-link to="/Tenders/Create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
           </div>
           <div class="card-body">
             <b-container fluid>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex' 
+import { mapState, mapActions } from 'vuex' 
 import job from './job'
 export default {
   components: {
@@ -55,6 +55,7 @@ export default {
   },
   data () {
     return {
+      email: _user,
       jobs: null,
       selectedJob: null,
       total: 0,
@@ -73,7 +74,10 @@ export default {
       }
     }
   }, 
-  methods: {
+    methods: {
+      ...mapActions('company', [
+        'getCompany'
+    ]),
     resetInfoModal() {
       this.$bvModal.hide(this.infoModal.id)
     },
@@ -97,9 +101,12 @@ export default {
     ...mapState({
       store: state => state.company
     }),
-  },
-  async created () {
-    this.loadPage()
+    }, 
+    async created() {
+      var self = this;
+      this.getCompany(this.email).then(function () { 
+          self.loadPage() 
+      });
   }
 }
 </script>

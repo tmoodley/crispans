@@ -1,49 +1,76 @@
 @model IEnumerable<HelpingHands.Models.Product>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-
-    <section id="intro" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <a class="btn btn-outline-dark ml-auto p-3" asp-action="Create" style="border-color:#343a40;">Create New</a>
-            </div>
-            <hr />
-            <div class="container">
-                <div id="accordion">
-                    @foreach (var item in Model)
-                    {
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>
-                                    <a href="#collapse1" data-parent="#accordion" data-toggle="collapse">
-                                        <!-- this parent should contain whatever the id of the div-->
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </a>
-                                </h5>
-                            </div>
-
-                            <div id="collapse1" class="collapse show">
-                                <!-- add a show means we want the first one to show by default-->
-                                <img class="card-img" src="@Html.DisplayFor(modelItem => item.Image)" alt="" />
-                                <div class="card-body">
-                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a class="btn btn-outline-dark p-1 mr-2" style="border-color:#343a40;" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                    <a class="btn btn-outline-dark p-1 mr-2" style="border-color:#343a40;" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-outline-dark p-1" style="border-color:#343a40;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
+<section id="intro" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="container-fluid"> 
+                <h1 class="pt-5">Products</h1> 
+                <div class="row pt-2 pb-2">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                        <a asp-controller="Products" asp-action="Create" class="btn btn-primary pull-right">Create New Product</a>
+                    </div>
+                </div> 
+                <table id="myTable" class="table">
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+@section Scripts{
 
+
+    <script>
+        $('#myTable').dataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "/Products/pagedata",
+            columns: [
+
+                {
+                    name: 'PurchaseOrderNumber',
+                    data: "purchaseOrderNumber",
+                    title: "Purchase Order Number",
+                    sortable: true,
+                    searchable: false
+                }, {
+                    name: 'Notes',
+                    data: "notes",
+                    title: "Notes",
+                    sortable: true,
+                    searchable: false
+                }, {
+                    name: 'PurchaseDate',
+                    data: "purchaseDate",
+                    title: "Purchase Date",
+                    sortable: true,
+                    searchable: false,
+                    render: function (data, type, row) {
+                        return data ? moment(data).format('MMMM Do YYYY') : '';
+                    }
+                },
+
+                {
+                    title: "Actions",
+                    data: null, render: function (data, type, row) {
+                        return '<div >' +
+                            '<a class="btn btn-primary" href="/Products/details/'+data.id +'">' +
+                            'View' +
+                            '</a>' +
+
+                            '</div>';
+
+                    },
+                    sortable: false,
+                    searchable: false
+                }
+            ]
+        });
+    </script>
+
+
+}
 <style>
     .trans-navigation {
         background: black;

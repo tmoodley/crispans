@@ -79,11 +79,10 @@
                     </li>
                     <li class="nav-item mt-0">
                         <a class="nav-link smoth-scroll" href="/about">About</a>
-                    </li> 
-                    <partial name="_TendersMenu" />
-                    <li class="nav-item mt-0">
-                        <a class="nav-link smoth-scroll" href="/PurchaseOrders">Purchase Orders</a>
                     </li>
+                    <partial name="_ProductsMenu" />
+                    <partial name="_TendersMenu" />
+                    <partial name="_PurchaseOrdersMenu" />
                     <li class="nav-item mt-0">
                         <a class="nav-link smoth-scroll" href="/contact">Contact</a>
                     </li>
@@ -202,12 +201,15 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8b22aec8b95b8e"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue2-dropzone@3.6.0/dist/vue2Dropzone.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.js"></script>
     @RenderSection("Scripts", required: false)
     <style>
         div#cookieConsent {
             z-index: 10000;
         }
     </style>
+    <script>
+        var _user = '@User.Identity.Name';
+    </script>
 </body>
 </html>

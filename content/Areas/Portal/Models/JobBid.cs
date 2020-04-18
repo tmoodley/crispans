@@ -27,7 +27,5 @@ namespace Vue2Spa.Areas.Portal.Models
         public DateTime LastUpdated { get; set; }
 
         public string LastUpdatedBy { get; set; }
-
-        // need to have references of the files that are uploaded for bid
     }
 }

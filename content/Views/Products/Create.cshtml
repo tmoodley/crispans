@@ -15,7 +15,10 @@
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#Product_main" role="tab" aria-controls="Product_main" aria-selected="true">Main</a>
+                                    <a class="nav-link active" href="#Product_main" role="tab" aria-controls="Product_main" aria-selected="true">Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#Product_Dimensions" role="tab" aria-controls="Product_Dimensions" aria-selected="false">Dimensions</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#Product_Images" role="tab" aria-controls="Product_Images" aria-selected="false">Images</a>
@@ -61,6 +64,12 @@
                                             <label asp-for="Stock" class="col-lg-2">Stock</label>
                                             <div class="col-lg-4">
                                                 <input asp-for="Stock" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 form-group">
+                                            <label asp-for="Price" class="col-lg-2">Price</label>
+                                            <div class="col-lg-4">
+                                                <input asp-for="Price" type="text" id="price" name="Price" placeholder="" class="form-control price">
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-12">
@@ -110,93 +119,90 @@
                                             </div>
                                         </div>
 
-                                        <h3>Default Variant Information</h3>
 
-                                        <div class="col-lg-12 form-group">
-                                            <label asp-for="Price" class="col-lg-2">Price</label>
-                                            <div class="col-lg-4">
-                                                <input asp-for="Price" type="text" id="price" name="Price" placeholder="" class="form-control price">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label asp-for="Height" class="col-lg-2">Height</label>
-                                            <div class="col-lg-4">
-                                                <input asp-for="Height" type="text" id="Height" name="Height" placeholder="" class="form-control price">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label asp-for="Length" class="col-lg-2">Length</label>
-                                            <div class="col-lg-4">
-                                                <input asp-for="Length" type="text" id="price" name="Price" placeholder="" class="form-control price">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label asp-for="Width" class="col-lg-2">Width</label>
-                                            <div class="col-lg-4">
-                                                <input asp-for="Width" type="text" id="Width" name="Width" placeholder="" class="form-control price">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="SalePrice">Sale Price</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="saleprice" name="SalePrice" placeholder="" class="form-control sale-price">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="Weight">Weight</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="weight" name="Weight" placeholder="" class="form-control weight">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label asp-for="Diameter" class="col-lg-2" for="Dimentions">Dimentions(Width x Height X Depth)</label>
-                                            <div class="col-lg-10">
-                                                <div class="col-lg-3"><input type="text" id="dimentionsWidth" name="DimentionsWidth" placeholder="" class="form-control dimentions-width">  X</div>
-                                                <div class="col-lg-3"><input type="text" id="dimentionsHeight" name="DimentionsHeight" placeholder="" class="form-control dimentions-height">  X</div>
-                                                <div class="col-lg-3"><input type="text" id="dimentionsDepth" name="DimentionsDepth" placeholder="" class="form-control dimentions-depth"></div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-lg-12">
-                                            <label asp-for="MinTolerance" class="control-label"></label>
-                                            <input asp-for="MinTolerance" class="form-control" />
-                                            <span asp-validation-for="MinTolerance" class="text-danger"></span>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="CurrentInventory">Current Inventory</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="currentInventory" name="CurrentInventory" placeholder="" class="form-control current-inventory">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="Colors">Colors</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="colors" name="Colors" placeholder="" class="form-control colors">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="ColorSKUModifier">Color SKU Modifiers</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="colorModifier" name="ColorSKUModifier" placeholder="" class="form-control color-modifier">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="Sizes">Sizes</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="sizes" name="Sizes" placeholder="" class="form-control sizes">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 form-group">
-                                            <label class="col-lg-2" for="SizeSKUModifier">Size SKU Modifiers</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="sizeModifier" name="SizeSKUModifier" placeholder="" class="form-control size-modifier">
-                                            </div>
-                                        </div>
+
                                         <div class="form-group col-lg-12">
                                             <input type="submit" value="Create" class="btn btn-dark p-3 float-right" />
                                         </div>
                                     </form>
                                 </div>
-
+                                
+                                <div class="tab-pane" id="Product_Dimensions" role="tabpanel" aria-labelledby="history-tab">
+                                    <h3>Default Variant Information</h3> 
+                                    <div class="col-lg-12 form-group">
+                                        <label asp-for="Height" class="col-lg-2">Height</label>
+                                        <div class="col-lg-4">
+                                            <input asp-for="Height" type="text" id="Height" name="Height" placeholder="" class="form-control price">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label asp-for="Length" class="col-lg-2">Length</label>
+                                        <div class="col-lg-4">
+                                            <input asp-for="Length" type="text" id="price" name="Price" placeholder="" class="form-control price">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label asp-for="Width" class="col-lg-2">Width</label>
+                                        <div class="col-lg-4">
+                                            <input asp-for="Width" type="text" id="Width" name="Width" placeholder="" class="form-control price">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="SalePrice">Sale Price</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="saleprice" name="SalePrice" placeholder="" class="form-control sale-price">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="Weight">Weight</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="weight" name="Weight" placeholder="" class="form-control weight">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label asp-for="Diameter" class="col-lg-2" for="Dimentions">Dimentions(Width x Height X Depth)</label>
+                                        <div class="col-lg-10">
+                                            <div class="col-lg-3"><input type="text" id="dimentionsWidth" name="DimentionsWidth" placeholder="" class="form-control dimentions-width">  X</div>
+                                            <div class="col-lg-3"><input type="text" id="dimentionsHeight" name="DimentionsHeight" placeholder="" class="form-control dimentions-height">  X</div>
+                                            <div class="col-lg-3"><input type="text" id="dimentionsDepth" name="DimentionsDepth" placeholder="" class="form-control dimentions-depth"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label asp-for="MinTolerance" class="control-label"></label>
+                                        <input asp-for="MinTolerance" class="form-control" />
+                                        <span asp-validation-for="MinTolerance" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="CurrentInventory">Current Inventory</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="currentInventory" name="CurrentInventory" placeholder="" class="form-control current-inventory">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="Colors">Colors</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="colors" name="Colors" placeholder="" class="form-control colors">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="ColorSKUModifier">Color SKU Modifiers</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="colorModifier" name="ColorSKUModifier" placeholder="" class="form-control color-modifier">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="Sizes">Sizes</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="sizes" name="Sizes" placeholder="" class="form-control sizes">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label class="col-lg-2" for="SizeSKUModifier">Size SKU Modifiers</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" id="sizeModifier" name="SizeSKUModifier" placeholder="" class="form-control size-modifier">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="tab-pane" id="Product_Images" role="tabpanel" aria-labelledby="history-tab">
                                     <div class="col-lg-12 form-group margin50">
                                         <label asp-for="Image" class="col-sm-2" for="FilenameOverride">Image Filename Override</label>
