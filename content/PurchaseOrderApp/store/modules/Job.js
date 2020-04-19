@@ -2,13 +2,17 @@
 import axios from 'axios'
 // initial state
 const state = {
-  job: []
+  jobs: [],
+  job: ''
 }
 
 // getters
 const getters = {
   job: (state) => {
     return state.job
+  },
+  jobs: (state) => {
+    return state.jobs
   }
 }
 
@@ -16,9 +20,17 @@ const getters = {
 const actions = {
   getJob({ commit }, payload) {
     return axios
-      .get('/portal/api/jobs/' + payload)
+      .get('/portal/api/Jobs/GetJob/?id=' + payload)
       .then(function (response) {
         commit('setJob', response.data);
+        return response.data;
+      })
+  },
+  getJobs({ commit }, payload) {
+    return axios
+      .get('/portal/api/jobs/' + payload)
+      .then(function (response) {
+        commit('setJobs', response.data);
         return response.data;
       })
   },
@@ -194,6 +206,9 @@ const actions = {
 const mutations = {
   setJob(state, job) {
     state.job = job
+  },
+  setJobs(state, jobs) {
+    state.jobs = jobs
   },
   addCategory(state, category) {
     if (state.company.customerCategories == null) {

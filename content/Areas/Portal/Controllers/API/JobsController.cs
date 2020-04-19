@@ -31,7 +31,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         }
 
         // GET: api/Jobs/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<ActionResult<Job>> GetJob(string id)
         {
             var job = await _context.Jobs.FindAsync(id).ConfigureAwait(false);

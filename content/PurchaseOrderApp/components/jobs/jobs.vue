@@ -36,7 +36,7 @@
               </b-table>
             </template>
             <!-- Info modal -->
-            <b-modal :id="infoModal.id" :title="infoModal.title" size="xl" hide-footer @hide="resetInfoModal">
+            <b-modal :id="infoModal.id" :title="infoModal.title" size="xl" hide-footer @hide="resetInfoModal" class="modal-lg">
               <job :selectedjob="infoModal.job" :action="edit" @hide="resetInfoModal"></job>
             </b-modal>
           </div>
@@ -81,10 +81,8 @@ export default {
     resetInfoModal() {
       this.$bvModal.hide(this.infoModal.id)
     },
-    info(item, index, button) {
-      this.infoModal.title = `View RFQ: Job`;
-      this.infoModal.job = item;
-      this.$root.$emit('bv::show::modal', this.infoModal.id, button);
+    info(item, index, button) { 
+      this.$router.push({ path: '/tenders/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 

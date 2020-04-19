@@ -89,9 +89,15 @@
   import upload from '../jobs/document'
   export default {
     props: ['selectedjob'],
-  computed: mapState({
-    store: state => state.company
-  }), 
+ 
+    computed: { 
+        ...mapState({
+          store: state => state.company
+        }),
+        ...mapState({
+          job: state => state.job.job
+        })
+    }, 
     components: {
     upload,
     category,
@@ -108,13 +114,13 @@
     return {
       action: '',
       email: _user,
-      job: {
-        name: '',
-        number: '',
-        status: 'design',
-        Classification: 'goods',
-        type: 'rfp'
-      },
+      //job: {
+      //  name: '',
+      //  number: '',
+      //  status: 'design',
+      //  Classification: 'goods',
+      //  type: 'rfp'
+      //},
       options: [
         { text: 'Goods', value: 'goods' },
         { text: 'Service', value: 'service' },
@@ -137,6 +143,9 @@
     methods: {
     ...mapActions('company', [
         'getCompany'
+    ]),
+    ...mapActions('job', [
+        'getJob'
     ]),
       download(id) {
         axios({
@@ -212,13 +221,14 @@
       }
   },
     mounted: function () {
-      if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
-        this.job = this.selectedjob;
-        this.action = 'edit';
+      var self = this; 
+      this.action = 'add'; 
+      if (this.$route.params.id != undefined) {
+          this.getJob(this.$route.params.id).then(function () { 
+             self.action = 'edit';
+          })
       }
-      else {
-        this.action = 'add';
-      }
+     
       this.getCompany(this.email)
   }
 }

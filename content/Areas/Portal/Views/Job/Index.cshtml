@@ -1,0 +1,569 @@
+﻿@model IEnumerable<Vue2Spa.Areas.Portal.Models.Job>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxPickup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxShipping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAvailableUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateClosing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateClosingUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateClosingSecondary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Classification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PickupLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpeningProcess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diameter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinTolerance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricePickup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceShipping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Procedure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowUnofficial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowSubmitted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowPlanTakers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowTeamMembers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowTeamMembersContact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasReferenceTable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasSubContractorTable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreQualSubContractorsOnly)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumReferencesRequired)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasSummaryTable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SummaryTableName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSubTotalOnSummary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SelectedTablesForSummary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BidFormsHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TermsAndConditionsHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubContractorHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SummaryTableHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SummaryTableFooterText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionDeadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCloseQuestionsAfterDeadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncludeOtherDocument)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowBidDocumentPreview)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BondHeadingText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BondTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BondTitle2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TermsAndConditionsChevronLabel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstructionPageText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProvideInstructionsPage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalContractAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowPurchasingRepsOnPublic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowFullBidDetailsUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowMultipleSubmissions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowOnWebsite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evaluations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BidNotApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAwarded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeadAgency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipatingAgencies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAgencies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedAnnualValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualContractValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualAnnualValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostCloseBidException)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnsealManually)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlannedIssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAttendanceTrackingOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCloseRegistrationAfterMeetingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isNda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TermsDocumentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NdaDocumentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractDocumentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CadFileDocumentId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxPickup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxShipping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAvailableUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosingUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosingSecondary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningProcess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinTolerance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PricePickup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceShipping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Procedure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowUnofficial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowSubmitted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowPlanTakers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowTeamMembers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowTeamMembersContact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasReferenceTable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasSubContractorTable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreQualSubContractorsOnly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumReferencesRequired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasSummaryTable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SummaryTableName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSubTotalOnSummary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SelectedTablesForSummary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BidFormsHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermsAndConditionsHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferenceHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubContractorHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SummaryTableHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SummaryTableFooterText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionDeadline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCloseQuestionsAfterDeadline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncludeOtherDocument)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllowBidDocumentPreview)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BondHeadingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BondTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BondTitle2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermsAndConditionsChevronLabel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstructionPageText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProvideInstructionsPage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalContractAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowPurchasingRepsOnPublic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllowFullBidDetailsUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllowMultipleSubmissions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowOnWebsite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evaluations)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BidNotApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAwarded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeadAgency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParticipatingAgencies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAgencies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedAnnualValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualContractValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualAnnualValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostCloseBidException)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnsealManually)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlannedIssueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAttendanceTrackingOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCloseRegistrationAfterMeetingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isNda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermsDocumentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NdaDocumentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractDocumentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CadFileDocumentId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
