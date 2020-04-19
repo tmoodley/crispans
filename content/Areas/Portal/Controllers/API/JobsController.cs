@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Vue2Spa.Areas.Portal.Controllers.API
 {
-    [Authorize(Roles = "Partner,Administrator")] 
+    [Authorize] 
     [Route("/portal/api/[controller]/[action]")]
     [ApiController]
     public class JobsController : ControllerBase
@@ -27,7 +27,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string id)
         {
             _context.Database.SetCommandTimeout(300);
-            return await _context.Jobs.Where(x => x.CustomerId == id).ToListAsync().ConfigureAwait(false);//
+            return await _context.Jobs.Where(x => x.CustomerId == id).Include(x => x.JobCategories).ToListAsync().ConfigureAwait(false);//
         }
 
         // GET: api/Jobs/5

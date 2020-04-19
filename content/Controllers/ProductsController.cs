@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelpingHands.Data;
 using HelpingHands.Models;
+using Microsoft.AspNetCore.Authorization;
+using DataTables.AspNet.Core;
+using System.Security.Claims;
+using DataTables.AspNet.AspNetCore;
 
 namespace Vue2Spa.Controllers
 {
@@ -19,6 +23,11 @@ namespace Vue2Spa.Controllers
             _context = context;
         }
 
+        [Authorize]
+        public async Task<IActionResult> Manage(Guid? id)
+        {
+            return View();
+        }
         // GET: Products
         public async Task<IActionResult> Index()
         {
@@ -156,6 +165,77 @@ namespace Vue2Spa.Controllers
         private bool ProductExists(Guid id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+
+        public IActionResult PageData(IDataTablesRequest request)
+        {
+            // Nothing important here. Just creates some mock data.
+
+            _context.Database.SetCommandTimeout(300);
+            var orders = _context.Products.ToList();
+             
+            var output = orders;
+            var data = output;
+
+            // Global filtering.
+            // Filter is being manually applied due to in-memmory (IEnumerable) data.
+            // If you want something rather easier, check IEnumerableExtensions Sample.
+            var filteredData = String.IsNullOrWhiteSpace(request.Search.Value)
+                ? data
+               :
+               data.Where(_item =>
+               _item.Name.ToLower().Contains(request.Search.Value.ToLower()) 
+               );
+
+            // Paging filtered data.
+            // Paging is rather manual due to in-memmory (IEnumerable) data.
+            var dataPage = filteredData.Skip(request.Start).Take(request.Length);
+
+            // Response creation. To create your response you need to reference your request, to avoid
+            // request/response tampering and to ensure response will be correctly created.
+            var response = DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
+
+            // Easier way is to return a new 'DataTablesJsonResult', which will automatically convert your
+            // response to a json-compatible content, so DataTables can read it when received.
+            return new DataTablesJsonResult(response, true);
+        }
+
+        public async Task<IActionResult> PageDataManageAsync(IDataTablesRequest request)
+        {
+            // Nothing important here. Just creates some mock data.
+            string userId = this.User.FindFirstValue(ClaimTypes.Name);
+
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.EmailAddress == userId).ConfigureAwait(false);
+
+            _context.Database.SetCommandTimeout(300);
+            var products = _context.Products.Where(x => x.CustomerId == customer.Id).ToList();
+             
+            var output = products;
+            var data = output;
+
+            // Global filtering.
+            // Filter is being manually applied due to in-memmory (IEnumerable) data.
+            // If you want something rather easier, check IEnumerableExtensions Sample.
+            var filteredData = String.IsNullOrWhiteSpace(request.Search.Value)
+                ? data
+               :
+               data.Where(_item =>
+               _item.Name.ToLower().Contains(request.Search.Value.ToLower())
+
+               );
+
+            // Paging filtered data.
+            // Paging is rather manual due to in-memmory (IEnumerable) data.
+            var dataPage = filteredData.Skip(request.Start).Take(request.Length);
+
+            // Response creation. To create your response you need to reference your request, to avoid
+            // request/response tampering and to ensure response will be correctly created.
+            var response = DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
+
+            // Easier way is to return a new 'DataTablesJsonResult', which will automatically convert your
+            // response to a json-compatible content, so DataTables can read it when received.
+            return new DataTablesJsonResult(response, true);
         }
     }
 }

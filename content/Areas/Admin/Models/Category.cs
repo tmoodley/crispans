@@ -26,5 +26,6 @@ namespace Vue2Spa.Models
         public ICollection<CustomerCategory> CustomerCategories { get; set; }
         public ICollection<JobCategory> JobCategories { get; set; }
         public ICollection<PurchaseOrderCategory> PurchaseOrderCategories { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }

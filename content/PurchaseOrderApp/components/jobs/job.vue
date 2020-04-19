@@ -50,11 +50,10 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" v-if="action == 'edit'">
                         <div class="card card-user">
                           <div class="card-body">
-                            <category></category>
-                            <certification></certification>
+                            <category :job="selectedjob"></category>
                           </div>
                         </div>
                       </div>
@@ -78,7 +77,7 @@
 <script>
   import axios from 'axios' 
   import { mapState, mapActions } from 'vuex'
-  import category from '../categories/category'
+  import category from './category'
   import certification from '../categories/certification'
   import capability from '../categories/capability'
   import companytype from '../categories/companytype'
@@ -212,7 +211,7 @@
           this.job.cadFileDocumentId = id;
       }
   },
-    mounted: function () { 
+    mounted: function () {
       if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
         this.job = this.selectedjob;
         this.action = 'edit';

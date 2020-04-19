@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using HelpingHands.Models;
@@ -40,10 +40,12 @@ namespace HelpingHands.Data
         public DbSet<PartnerCompanyType> PartnerCompanyType { get; set; }
         public DbSet<Bidder> Bidders { get; set; }
         public DbSet<JobBid> JobBids { get; set; }
+        public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<JobQuestion> JobQuestions { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
         public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -160,6 +162,20 @@ namespace HelpingHands.Data
             .HasOne(bc => bc.CompanyType)
             .WithMany(c => c.CustomerCompanyTypes)
             .HasForeignKey(bc => bc.CompanyTypeId);
+
+
+            modelBuilder.Entity<ProductCategory>()
+              .HasKey(x => new { x.ProductId, x.CategoryId });
+
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(bc => bc.Product)
+                .WithMany(b => b.ProductCategories)
+                .HasForeignKey(bc => bc.ProductId);
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(bc => bc.Category)
+                .WithMany(c => c.ProductCategories)
+                .HasForeignKey(bc => bc.CategoryId);
+
 
             modelBuilder.Entity<JobCategory>()
                 .HasKey(x => new { x.JobId, x.CategoryId });

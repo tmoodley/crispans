@@ -15,7 +15,7 @@ namespace HelpingHands.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -222,13 +222,13 @@ namespace HelpingHands.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("CreatedBy");
-
                     b.Property<string>("Brand");
 
                     b.Property<string>("Color");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("CustomerId");
 
@@ -248,6 +248,8 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("Model");
 
+                    b.Property<string>("Mpn");
+
                     b.Property<string>("Name");
 
                     b.Property<double>("Price");
@@ -258,11 +260,11 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("Upc");
 
-                    b.Property<double>("Weight");
-
                     b.Property<DateTime>("Updated");
 
                     b.Property<string>("UpdatedBy");
+
+                    b.Property<double>("Weight");
 
                     b.Property<int>("Width");
 
@@ -853,6 +855,19 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("PartnerCompanyType");
                 });
 
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.ProductCategory", b =>
+                {
+                    b.Property<Guid>("ProductId");
+
+                    b.Property<Guid>("CategoryId");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategory");
+                });
+
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory", b =>
                 {
                     b.Property<Guid>("PurchaseOrderId");
@@ -1196,6 +1211,38 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("Naics");
                 });
 
+            modelBuilder.Entity("Vue2Spa.Models.ProductBOM", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BOMQty");
+
+                    b.Property<string>("BOMType");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Line");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid>("ProductId");
+
+                    b.Property<DateTime>("Updated");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductBOM");
+                });
+
             modelBuilder.Entity("Vue2Spa.Models.Question", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1444,6 +1491,19 @@ namespace HelpingHands.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.ProductCategory", b =>
+                {
+                    b.HasOne("Vue2Spa.Models.Category", "Category")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HelpingHands.Models.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory", b =>
                 {
                     b.HasOne("Vue2Spa.Models.Category", "Category")
@@ -1601,6 +1661,14 @@ namespace HelpingHands.Data.Migrations
                     b.HasOne("Vue2Spa.Models.Naics", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("Vue2Spa.Models.ProductBOM", b =>
+                {
+                    b.HasOne("HelpingHands.Models.Product", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

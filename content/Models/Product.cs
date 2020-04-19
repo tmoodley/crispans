@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Vue2Spa.Areas.Portal.Models;
 
 namespace HelpingHands.Models
 {
@@ -29,5 +31,6 @@ namespace HelpingHands.Models
         public string Color { get; set; }
         public double Weight { get; set; }
         public string Dimension { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }
