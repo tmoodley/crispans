@@ -6,19 +6,19 @@
 
     <router-link class="navbar-brand" to="/"><icon :icon="['fab', 'microsoft']" />Portal</router-link>
     <div class="logo">
-      <a href="https://capacitym.com/Portal/Dashboard/" class="simple-text logo-normal">
-        Portal
+      <a href="/" class="simple-text logo-normal">
+        Home
       </a>
-    </div>
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item" v-for="(route, index) in routes" :key="index">
-          <router-link :to="route.path" exact-active-class="active">
-            <icon :icon="route.icon" class="mr-2 menu-icon" /><span>{{ route.display }}</span>
-          </router-link>
-        </li>
-      </ul>
-    </div>
+    </div>  
+      <perfect-scrollbar class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item" v-for="(route, index) in routes" :key="index">
+            <router-link :to="route.path" exact-active-class="active" v-if="route.showOnMenu">
+              <icon :icon="route.icon" class="mr-2 menu-icon" /><span>{{ route.display }}</span>
+            </router-link>
+          </li>
+        </ul>
+        </perfect-scrollbar> 
   </div>
    
 </template>
@@ -52,4 +52,5 @@
     .slide-enter-to, .slide-leave {
     max-height: 20em;
     }
+
 </style>

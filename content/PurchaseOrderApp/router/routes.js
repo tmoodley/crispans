@@ -1,7 +1,7 @@
 const CreatePurchaseOrder = () => import(/* webpackChunkName: "home" */ 'components/purchaseorders/create.vue')
 const ManagePurchaseOrder = () => import(/* webpackChunkName: "home" */ 'components/purchaseorders/manage.vue')
-const Job = () => import(/* webpackChunkName: "about" */ 'components/jobs/job.vue')
-const Jobs = () => import(/* webpackChunkName: "contact" */ 'components/jobs/jobs.vue')
+const Job = () => import(/* webpackChunkName: "about" */ 'components/tenders/job.vue')
+const Jobs = () => import(/* webpackChunkName: "contact" */ 'components/tenders/jobs.vue')
 const PurchaseOrders = () => import(/* webpackChunkName: "home" */ 'components/purchaseorders/orders.vue')
 
 export const routes = [

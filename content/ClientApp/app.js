@@ -18,8 +18,12 @@ import VueSweetalert2 from 'vue-sweetalert2';
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-Vue.use(VueSweetalert2)
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 import wysiwyg from "vue-wysiwyg"
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+
+Vue.use(VueSweetalert2)
+Vue.use(PerfectScrollbar)
 Vue.use(wysiwyg, {}); // config is optional. more below 
 Vue.use(Vue2Dropzone)
 Vue.use(BootstrapVue)
