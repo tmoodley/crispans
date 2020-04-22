@@ -5,12 +5,9 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h5 class="title">Create New Tender</h5>
+              <h5 class="title">Create New Purchase Order</h5>
             </div>
-            <div class="card-body">
-
-              <h4>Purchase Order</h4>
-              <hr />
+            <div class="card-body"> 
               <form v-on:submit="onComplete">
                 <div class="row">
                   <div class="col-md-9 pull-left">

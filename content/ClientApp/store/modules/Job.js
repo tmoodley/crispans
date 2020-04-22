@@ -2,41 +2,48 @@
 import axios from 'axios'
 // initial state
 const state = {
-  purchaseOrder: {}
+  jobs: [],
+  job: ''
 }
 
 // getters
 const getters = {
-  purchaseOrder: (state) => {
-    return state.purchaseOrder
+  job: (state) => {
+    return state.job
+  },
+  jobs: (state) => {
+    return state.jobs
   }
 }
 
 // actions
 const actions = {
-  getPurchaseOrder({ commit }, payload) {
+  getJob({ commit }, payload) {
     return axios
-      .get('/api/purchaseorders/?id=' + payload)
+      .get('/portal/api/Jobs/GetJob/?id=' + payload)
       .then(function (response) {
-        commit('setPurchaseOrder', response.data);
+        commit('setJob', response.data);
         return response.data;
       })
   },
-  addCategory({ commit }, payload) { 
-    var customerCategory = {
-      CategoryId: payload[0].id,
-      CustomerId: state.company.id
-    }
-
+  getJobs({ commit }, payload) {
     return axios
-      .post('/portal/api/customercategories/', customerCategory)
+      .get('/portal/api/jobs/' + payload)
+      .then(function (response) {
+        commit('setJobs', response.data);
+        return response.data;
+      })
+  },
+  addCategory({ commit }, payload) {
+    return axios
+      .post('/portal/api/jobcategories/', payload)
       .then(function (response) {
         return response.data;
       })
   },
   removeCategory({ commit }, payload) {
     return axios
-      .delete('/portal/api/customercategories/?categoryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobcategories/?categoryId=' + payload[0].id + '&jobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
@@ -197,8 +204,11 @@ const actions = {
 
 // mutations
 const mutations = {
-  setPurchaseOrder(state, purchaseOrder) {
-    state.purchaseOrder = purchaseOrder
+  setJob(state, job) {
+    state.job = job
+  },
+  setJobs(state, jobs) {
+    state.jobs = jobs
   },
   addCategory(state, category) {
     if (state.company.customerCategories == null) {

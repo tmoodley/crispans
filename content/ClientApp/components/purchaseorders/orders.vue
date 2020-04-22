@@ -69,13 +69,11 @@ export default {
       this.$bvModal.hide(this.infoModal.id)
     },
     info(item, index, button) {
-      this.infoModal.title = `View RFQ: Job`;
-      this.infoModal.job = item;
-      this.$root.$emit('bv::show::modal', this.infoModal.id, button);
+       this.$router.push({ path: '/purchaseorders/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 
-        let response = await this.$http.get(`/portal/api/Jobs/GetJobs/?id=` + this.store.company.id) 
+        let response = await this.$http.get(`/api/mypurchaseorders/?id=` + this.store.company.id) 
         this.jobs = response.data
         this.total = response.data.length
       } catch (err) {
