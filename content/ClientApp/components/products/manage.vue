@@ -4,17 +4,17 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="title">Product</h5>
+            <h5 class="title">{{action | capitalize}} Product</h5>
           </div>
           <div class="card-body">
             <b-card>
               <b-tabs pills card>
                 <b-tab body title="Details">
                   <form v-on:submit="save">
-                    <div class="row">
+                    <div class="row"> 
                       <div class="col-lg-6 form-group">
                         <b-form-group label="Product Type">
-                          <b-form-radio-group v-model="product.productType"
+                          <b-form-radio-group v-model="product.type"
                                               :options="typeOptions"
                                               name="radios-stacked"
                                               stacked></b-form-radio-group>
@@ -29,25 +29,25 @@
                       <div class="col-lg-6 form-group">
                         <label for="Upc" class="col-lg-12">Upc Code</label>
                         <div class="col-lg-12">
-                          <input v-model="product.Upc" placeholder="" class="form-control">
+                          <input v-model="product.upc" placeholder="" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-6 form-group">
                         <label for="Stock" class="col-lg-12">Stock</label>
                         <div class="col-lg-12">
-                          <input v-model="product.Stock" placeholder="" class="form-control">
+                          <input v-model="product.stock" placeholder="" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-6 form-group">
                         <label class="col-lg-12" for="ManufacturerPart">Manufacturer Part</label>
                         <div class="col-lg-12">
-                          <input type="text" id="manufacturerPart" name="ManufacturerPart" placeholder="" class="form-control manufacturer-part">
+                          <input type="text" v-model="product.mpn" id="manufacturerPart" name="ManufacturerPart" placeholder="" class="form-control manufacturer-part">
                         </div>
                       </div>
                       <div class="col-lg-6 form-group">
                         <label for="Price" class="col-lg-12">Price</label>
                         <div class="col-lg-12">
-                          <input v-model="product.Price" type="text" id="price" name="Price" placeholder="" class="form-control price">
+                          <input v-model="product.price" type="text" id="price" name="Price" placeholder="" class="form-control price">
                         </div>
                       </div> 
                       <div class="form-group col-lg-12">
@@ -56,7 +56,7 @@
                     </div>
                   </form>
                 </b-tab>
-                <b-tab no-body title="Dimensions" v-if="action == 'edit'">
+                <b-tab no-body title="Dimensions" :disabled="action == 'add'">
                   <div class="row">
                     <div class="col-lg-6 form-group">
                       <label for="Height" class="col-lg-12">Height</label>
@@ -136,16 +136,16 @@
                     </div>
                   </div>
                 </b-tab>
-                <b-tab no-body title="Images">
+                <b-tab no-body title="Images" :disabled="action == 'add'">
                   <certification></certification>
                 </b-tab>
-                <b-tab no-body title="Manufacturer">
+                <b-tab no-body title="Manufacturer" :disabled="action == 'add'">
                   <certification></certification>
                 </b-tab>
-                <b-tab no-body title="Distributor">
+                <b-tab no-body title="Distributor" :disabled="action == 'add'">
                   <certification></certification>
                 </b-tab>
-                <b-tab no-body title="Bill Of Materials">
+                <b-tab no-body title="Bill Of Materials" :disabled="action == 'add'">
                   <capability></capability>
                 </b-tab>
               </b-tabs>
@@ -212,16 +212,42 @@
         event.preventDefault();
         var self = this;
         this.product.customerId = this.store.company.id;
-        return axios
-          .post('/portal/api/product/', this.product)
-          .then(response => { self.product = response.data })
+        if (this.action == "add") {
+          return axios
+            .post('/portal/api/product/', self.product)
+            .then(function (response) {
+              self.product = response.data;
+              self.$swal.fire(
+                'Saved',
+                'Product Saved',
+                'success'
+              ).then(function () {
+                self.$emit("hide");
+              })
+            });
+        }
+        else {
+          return axios
+            .put('/portal/api/product/' + self.product.id, self.product)
+            .then(function (response) {
+              self.product = response.data;
+              self.$swal.fire(
+                'Saved',
+                'Product Saved',
+                'success'
+              ).then(function () {
+                self.$router.push({ path: '/portal/Products/Manage' })
+              })
+            }); 
+        }
       }
     },
     mounted: function () {
+      var self = this;
        if (this.$route.params.id != undefined) {
           this.getproduct(this.$route.params.id).then(function () { 
             self.action = 'edit'; 
-            self.product = self._product;
+            self.product = self._product.product;
           })
       }
       this.getCompany(this.email)

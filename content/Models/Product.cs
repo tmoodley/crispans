@@ -13,6 +13,7 @@ namespace HelpingHands.Models
         public string Sku { get; set; }
         public string Upc { get; set; }  
         public string Mpn { get; set; }
+        public string Type { get; set; }
         public string Image { get; set; }
         public int Stock { get; set; }
         public int Length { get; set; }
