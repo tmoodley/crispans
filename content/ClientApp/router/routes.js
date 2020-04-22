@@ -10,10 +10,10 @@ export const routes = [
   { name: 'dashboard', path: '/portal/dashboard', component: Partner, display: 'My Profile', icon: 'home', showOnMenu: true },
   { name: 'createtender', path: '/portal/tender/create', component: Job, display: 'Create Tender', icon: 'info', showOnMenu: true },
   { name: 'searchtender', path: '/portal/tender/search', component: Jobs, display: 'Search Tenders', icon: 'list', showOnMenu: true },
-  { name: 'CreatePO', path: '/PurchaseOrders/Create', component: CreatePurchaseOrder, display: 'Create Purchase Order', icon: 'home', showOnMenu: true },
-  { name: 'ManagePO', path: '/PurchaseOrders/Manage/:id', component: ManagePurchaseOrder, display: 'Manage Purchase Order', icon: 'home', showOnMenu: false }, 
-  { name: 'Orders', path: '/PurchaseOrders/Manage', component: PurchaseOrders, display: 'Purchase Orders', icon: 'home', showOnMenu: true },
-  { name: 'CreateTender', path: '/Tenders/Create', component: Tender, display: 'Create Product', icon: 'info', showOnMenu: true },
-  { name: 'SearchTenders', path: '/Tenders/Manage', component: Tenders, display: 'Search Products', icon: 'list', showOnMenu: true },
-  { name: 'ManageTenders', path: '/Tenders/Manage/:id', component: Tender, display: 'Manage Products', icon: 'list', showOnMenu: false }
+  { name: 'CreatePO', path: '/portal/PurchaseOrders/Create', component: CreatePurchaseOrder, display: 'Create Purchase Order', icon: 'home', showOnMenu: true },
+  { name: 'ManagePO', path: '/portal/PurchaseOrders/Manage/:id', component: ManagePurchaseOrder, display: 'Manage Purchase Order', icon: 'home', showOnMenu: false }, 
+  { name: 'Orders', path: '/portal/PurchaseOrders/Manage', component: PurchaseOrders, display: 'Purchase Orders', icon: 'home', showOnMenu: true },
+  { name: 'CreateTender', path: '/portal/Tenders/Create', component: Tender, display: 'Create Product', icon: 'info', showOnMenu: true },
+  { name: 'SearchTenders', path: '/portal/Tenders/Manage', component: Tenders, display: 'Search Products', icon: 'list', showOnMenu: true },
+  { name: 'ManageTenders', path: '/portal/Tenders/Manage/:id', component: Tender, display: 'Manage Products', icon: 'list', showOnMenu: false }
 ] 

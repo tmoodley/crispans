@@ -20,18 +20,8 @@
                 <template v-slot:cell(actions)="row">
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
-                  </b-button>
-                  <b-button size="sm" @click="row.toggleDetails">
-                    {{ row.detailsShowing ? 'Hide' : 'Show' }} View Bids
-                  </b-button>
-                </template>
-                <template v-slot:row-details="row">
-                  <b-card>
-                    <ul>
-                      <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-                    </ul>
-                  </b-card>
-                </template>
+                  </b-button> 
+                </template> 
               </b-table>
             </template> 
           </div>
@@ -53,7 +43,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'type', 'classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
+      fields: ['notes', 'purchaseOrderNumber','status','total', 'purchaseDate', 'deliveryDate','actions'],
       value: 45,
       max: 100, 
       selected: [],
@@ -69,7 +59,7 @@ export default {
       this.$bvModal.hide(this.infoModal.id)
     },
     info(item, index, button) {
-       this.$router.push({ path: '/purchaseorders/manage/' + item.id }) 
+       this.$router.push({ path: '/portal/purchaseorders/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 

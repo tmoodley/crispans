@@ -185,7 +185,6 @@
                 this.debouncedGetAnswer = _.debounce(this.addTotal, 500)
     },
     mounted: function () {
-      debugger;
       this.getCompany(this.email)
     },
     computed: mapState({
