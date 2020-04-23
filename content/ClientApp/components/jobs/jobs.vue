@@ -20,8 +20,12 @@
                 <template v-slot:cell(actions)="row">
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
-                  </b-button> 
-                </template> 
+                  </b-button>
+                </template>
+                <template v-slot:cell(dateClosing)="row">
+                  {{new Date(row.item.dateClosing) | dateFormat('YYYY.MM.DD')}}
+                </template>
+
               </b-table>
             </template>
             <!-- Info modal -->

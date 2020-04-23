@@ -22,33 +22,28 @@ const actions = {
         return response.data;
       })
   },
-  addCategory({ commit }, payload) { 
-    var customerCategory = {
-      CategoryId: payload[0].id,
-      CustomerId: state.company.id
-    }
-
+  addCategory({ commit }, payload) {
     return axios
-      .post('/portal/api/customercategories/', customerCategory)
+      .post('/portal/api/productcategories/', payload)
       .then(function (response) {
         return response.data;
       })
   },
   removeCategory({ commit }, payload) {
     return axios
-      .delete('/portal/api/customercategories/?categoryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/productcategories/?categoryId=' + payload.CategoryId + '&productId=' + payload.ProductId)
       .then(function (response) {
         return response.data;
       });
   },
   addCertification({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       CertificationId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customercertifications/', customerCategory)
+      .post('/portal/api/customercertifications/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -61,13 +56,13 @@ const actions = {
       });
   },
   addCapability({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       CapabilityId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customercapabilities/', customerCategory)
+      .post('/portal/api/customercapabilities/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -80,13 +75,13 @@ const actions = {
       });
   },
   addCompanyType({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       CompanyTypeId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customerCompanyTypes/', customerCategory)
+      .post('/portal/api/customerCompanyTypes/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -99,13 +94,13 @@ const actions = {
       });
   },
   addFileType({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       FileTypeId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customerfileTypes/', customerCategory)
+      .post('/portal/api/customerfileTypes/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -118,13 +113,13 @@ const actions = {
       });
   },
   addIndustry({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       IndustryId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customerIndustries/', customerCategory)
+      .post('/portal/api/customerIndustries/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -137,13 +132,13 @@ const actions = {
       });
   },
   addMachine({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       MachineId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customerMachines/', customerCategory)
+      .post('/portal/api/customerMachines/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -156,13 +151,13 @@ const actions = {
       });
   },
   addMaterial({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       MaterialId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customerMaterials/', customerCategory)
+      .post('/portal/api/customerMaterials/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -175,13 +170,13 @@ const actions = {
       });
   },
   addNaics({ commit }, payload) {
-    var customerCategory = {
+    var productCategory = {
       NaicsId: payload[0].id,
       CustomerId: state.company.id
     }
 
     return axios
-      .post('/portal/api/customerNaics/', customerCategory)
+      .post('/portal/api/customerNaics/', productCategory)
       .then(function (response) {
         return response.data;
       })
@@ -201,18 +196,18 @@ const mutations = {
     state.product = product
   },
   addCategory(state, category) {
-    if (state.company.customerCategories == null) {
-      state.company.customerCategories = []
+    if (state.company.productcategories == null) {
+      state.company.productcategories = []
     }
-    var customerCategory = {
+    var productCategory = {
       CategoryId: category[0].id,
       CustomerId: state.company.id
     } 
-    state.company.customerCategories.push(customerCategory);
+    state.company.productcategories.push(productCategory);
   },
   removeCategory(state, category) {
-    var index = state.company.customerCategories.indexOf(x => x.name === category);
-    state.company.customerCategories.splice(index, 1);
+    var index = state.company.productcategories.indexOf(x => x.name === category);
+    state.company.productcategories.splice(index, 1);
   },
 }
 

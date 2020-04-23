@@ -21,7 +21,10 @@
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
                   </b-button> 
-                </template> 
+                </template>
+                <template v-slot:cell(price)="row">
+                  {{row.item.price | currency}}
+                </template>
               </b-table>
             </template> 
           </div>
@@ -43,7 +46,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'type', 'classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
+      fields: ['name', 'upc', 'type', 'stock', 'price','actions'],
       value: 45,
       max: 100, 
       selected: [],

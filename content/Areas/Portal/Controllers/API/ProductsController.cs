@@ -34,7 +34,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(x => x.ProductCategories).Where(x => x.Id == id).FirstOrDefaultAsync().ConfigureAwait(false);
 
             if (product == null)
             {

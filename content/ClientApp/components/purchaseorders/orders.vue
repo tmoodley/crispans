@@ -16,12 +16,18 @@
             </div>
             <template v-if="jobs">
               <b-table hover :items="jobs" :fields="fields">
+                <template v-slot:cell(purchaseDate)="row">
+                  {{new Date(row.item.purchaseDate) | dateFormat('YYYY.MM.DD')}}
+                </template>
+                <template v-slot:cell(deliveryDate)="row">
+                  {{new Date(row.item.deliveryDate) | dateFormat('YYYY.MM.DD')}}
+                </template>
                 <!-- Example Classificationd slot for select state illustrative purposes -->
                 <template v-slot:cell(actions)="row">
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
-                  </b-button> 
-                </template> 
+                  </b-button>
+                </template>
               </b-table>
             </template> 
           </div>
