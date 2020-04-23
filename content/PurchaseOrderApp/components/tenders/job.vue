@@ -85,8 +85,7 @@
   import industry from '../categories/industry'
   import machine from '../categories/machine'
   import material from '../categories/material'
-  import naics from '../categories/naics'
-  import upload from '../jobs/document'
+  import naics from '../categories/naics' 
   export default {
     props: ['selectedjob'],
  
@@ -98,8 +97,7 @@
           job: state => state.job.job
         })
     }, 
-    components: {
-    upload,
+    components: { 
     category,
     certification,
     capability,
