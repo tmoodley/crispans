@@ -27,5 +27,10 @@ namespace Vue2Spa.Areas.Portal.Models
         public DateTime LastUpdated { get; set; }
 
         public string LastUpdatedBy { get; set; }
+
+        public Guid TermsDocumentId { get; set; }
+        public Guid ContractDocumentId { get; set; }
+        public Guid NdaDocumentId { get; set; }
+
     }
 }
