@@ -21,7 +21,13 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 import wysiwyg from "vue-wysiwyg"
 import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import Vue2Filters from 'vue2-filters'
+import VueCurrencyInput from 'vue-currency-input'
+import VueFilterDateFormat from 'vue-filter-date-format';
 
+Vue.use(VueFilterDateFormat)
+Vue.use(VueCurrencyInput)
+Vue.use(Vue2Filters);
 Vue.use(VueSweetalert2)
 Vue.use(PerfectScrollbar)
 Vue.use(wysiwyg, {}); // config is optional. more below 

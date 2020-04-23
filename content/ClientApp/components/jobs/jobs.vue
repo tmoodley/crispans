@@ -21,17 +21,11 @@
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
                   </b-button>
-                  <b-button size="sm" @click="row.toggleDetails">
-                    {{ row.detailsShowing ? 'Hide' : 'Show' }} View Bids
-                  </b-button>
                 </template>
-                <template v-slot:row-details="row">
-                  <b-card>
-                    <ul>
-                      <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-                    </ul>
-                  </b-card>
+                <template v-slot:cell(dateClosing)="row">
+                  {{new Date(row.item.dateClosing) | dateFormat('YYYY.MM.DD')}}
                 </template>
+
               </b-table>
             </template>
             <!-- Info modal -->

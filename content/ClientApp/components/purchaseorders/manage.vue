@@ -1,322 +1,232 @@
 <template>
-  <div> 
-    <nav-menu params="route: route"></nav-menu>
-    <h1>Manage</h1>
-    <hr />
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    <span class="glyphicon glyphicon-file">
-                    </span>Manage Purchase Order
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse in collapse show">
-                <div class="panel-body">
-                  <form v-on:submit="onComplete">
-                    <div class="row">
-                      <div class="col-md-9 pull-left">
-                        <span>Enter the details for your order</span>
-                      </div>
-                      <div class="col-md-3 pull-right">
-                        <span>STEP 1 OF 2</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="PurchaseDate" class="control-label">Purchase Date</label>
-                          <input v-model="purchaseOrder.purchaseDate" type="datetime-local" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="DeliveryDate" class="control-label">Delivery Date</label>
-                          <input v-model="purchaseOrder.deliveryDate" type="datetime-local" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="PurchaseOrderNumber" class="control-label">Purchase Order Number</label>
-                          <input v-model="purchaseOrder.purchaseOrderNumber" class="form-control" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-9 pull-left">
-                        <span>Enter the items you wish to order</span>
-                      </div>
-                      <div class="col-md-3 pull-right">
-                        <span>STEP 2 OF 2</span>
-                      </div>
-                    </div>
-                    <div class="row" v-for="(item, index) in purchaseOrder.purchaseOrderItems">
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Item" v-model="item.item" />
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Description" v-model="item.description" />
-                        </div>
-                      </div>
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <input type="number" class="form-control" placeholder="Quantity" v-model="item.quantity" />
-                        </div>
-                      </div>
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Amount" v-model="item.amount" @change="debouncedGetAnswer()" />
-                        </div>
-                      </div>
-                      <div class="col-md-1">
-                        <div class="form-group" v-if="item.amount > 0">
-                          {{item.amount * item.quantity | currency}}
-                        </div>
-                        <i class="fa fa-minus-circle" @click="removeLine(index)"></i>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <i class="fa fa-plus-circle" @click="addLine()"> Add New Line</i>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-8 total-footer">
-                        <div class="total-footer__notes grid-5 grid-item">
-                          <label for="notes" class="control-label">Notes / Memo</label>
-                          <textarea name="notes" id="notes" class="form-control" v-model="purchaseOrder.notes"></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="summary-grid">
-                          <div class="summary-total">
-                            <h5 class="total-label">
-                              Total
-                            </h5>
-                            <span id="Total" class="PurchaseOrderTotal">{{purchaseOrder.total  | currency}}</span>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <input type="submit" value="Update" class="btn btn-primary" />
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+  <div>
+    <div role="tablist">
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-1 variant="info">Manage Purchase Order</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <form v-on:submit="onComplete">
+              <div class="row">
+                <div class="col-md-9 pull-left">
+                  <span>Enter the details for your order</span>
+                </div>
+                <div class="col-md-3 pull-right">
+                  <span>STEP 1 OF 2</span>
                 </div>
               </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Documents
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <b-form-checkbox switch size="lg" class="float-left">NDA (NON DISCLOSURE AGREEMENT)</b-form-checkbox>
-                      <i id="tooltip-nda" class="fas fa-info-circle float-left"></i>
-                      <b-tooltip target="tooltip-nda">NON DISCLOSURE AGREEMENT</b-tooltip>
-                    </div>
-                    <div class="col-md-12">If you upload and NDA, bidding companies need to first sign the uploaded NDA before viewing documents.</div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="PurchaseDate" class="control-label">Purchase Date</label>
+                    <input v-model="purchaseOrder.purchaseDate" type="datetime-local" class="form-control" />
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h3>File Upload</h3>
-                      <p>In this section, you can upload your JOB related documents such as NDA's, Contracts, General Terms and Conditions, etc</p>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="DeliveryDate" class="control-label">Delivery Date</label>
+                    <input v-model="purchaseOrder.deliveryDate" type="datetime-local" class="form-control" />
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      NDA File
-                    </div>
-                    <div class="col-md-6">
-                      <b-button class="float-right" v-if="purchaseOrder.ndaDocumentId" @click="download(purchaseOrder.ndaDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
-                    </div>
-                    <div class="col-md-12">
-                      <upload @setid="setNda"></upload>
-                    </div>
-                    <div class="col-md-6">
-                      Contract File
-                    </div>
-                    <div class="col-md-6">
-                      <b-button class="float-right" v-if="purchaseOrder.termsDocumentId" @click="download(purchaseOrder.termsDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
-                    </div>
-                    <div class="col-md-12">
-                      <upload @setid="setContract"></upload>
-                    </div>
-                    <div class="col-md-6">
-                      Terms and Conditions File
-                    </div>
-                    <div class="col-md-6">
-                      <b-button class="float-right" v-if="purchaseOrder.contractDocumentId" @click="download(purchaseOrder.contractDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
-                    </div>
-                    <div class="col-md-12">
-                      <upload @setid="setTerms"></upload>
-                    </div>
-                    <div class="col-md-6">
-                      3D Visualizations File
-                    </div>
-                    <div class="col-md-6">
-                      <b-button class="float-right" v-if="purchaseOrder.cadFileDocumentId " @click="download(purchaseOrder.cadFileDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
-                    </div>
-                    <div class="col-md-12">
-                      <upload @setid="setCadFile"></upload>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="PurchaseOrderNumber" class="control-label">Purchase Order Number</label>
+                    <input v-model="purchaseOrder.purchaseOrderNumber" class="form-control" />
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Categories
-                  </a>
-                </h4>
+              <div class="row">
+                <div class="col-md-9 pull-left">
+                  <span>Enter the items you wish to order</span>
+                </div>
+                <div class="col-md-3 pull-right">
+                  <span>STEP 2 OF 2</span>
+                </div>
               </div>
-              <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-user">
-                        <div class="card-body">
-                          <category></category>
-                        </div>
-                      </div>
+              <div class="row" v-for="(item, index) in purchaseOrder.purchaseOrderItems">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Item" v-model="item.item" />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Description" v-model="item.description" />
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Quantity" v-model="item.quantity" />
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Amount" v-model="item.amount" @change="debouncedGetAnswer()" />
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group" v-if="item.amount > 0">
+                    {{item.amount * item.quantity | currency}}
+                  </div>
+                  <i class="fa fa-minus-circle" @click="removeLine(index)"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <i class="fa fa-plus-circle" @click="addLine()"> Add New Line</i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 total-footer">
+                  <div class="total-footer__notes grid-5 grid-item">
+                    <label for="notes" class="control-label">Notes / Memo</label>
+                    <textarea name="notes" id="notes" class="form-control" v-model="purchaseOrder.notes"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="summary-grid">
+                    <div class="summary-total">
+                      <h5 class="total-label">
+                        Total
+                      </h5>
+                      <span id="Total" class="PurchaseOrderTotal">{{purchaseOrder.total  | currency}}</span>
                     </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary" />
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Messages
-                  </a>
-                </h4>
+            </form>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-2 variant="info">Documents</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>
+              <div class="row">
+                <div class="col-md-12">
+                  <b-form-checkbox switch size="lg" class="float-left">NDA (NON DISCLOSURE AGREEMENT)</b-form-checkbox>
+                  <i id="tooltip-nda" class="fas fa-info-circle float-left"></i>
+                  <b-tooltip target="tooltip-nda">NON DISCLOSURE AGREEMENT</b-tooltip>
+                </div>
+                <div class="col-md-12">If you upload and NDA, bidding companies need to first sign the uploaded NDA before viewing documents.</div>
               </div>
-              <div id="collapseFour" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-user">
-                        <div class="card-body">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h3>File Upload</h3>
+                  <p>In this section, you can upload your JOB related documents such as NDA's, Contracts, General Terms and Conditions, etc</p>
                 </div>
               </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Questions/Answer
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseFive" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-user">
-                        <div class="card-body">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col-md-6">
+                  NDA File
+                </div>
+                <div class="col-md-6">
+                  <b-button class="float-right" v-if="purchaseOrder.ndaDocumentId" @click="download(purchaseOrder.ndaDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                </div>
+                <div class="col-md-12">
+                  <upload @setid="setNda"></upload>
+                </div>
+                <div class="col-md-6">
+                  Contract File
+                </div>
+                <div class="col-md-6">
+                  <b-button class="float-right" v-if="purchaseOrder.termsDocumentId" @click="download(purchaseOrder.termsDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                </div>
+                <div class="col-md-12">
+                  <upload @setid="setContract"></upload>
+                </div>
+                <div class="col-md-6">
+                  Terms and Conditions File
+                </div>
+                <div class="col-md-6">
+                  <b-button class="float-right" v-if="purchaseOrder.contractDocumentId" @click="download(purchaseOrder.contractDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                </div>
+                <div class="col-md-12">
+                  <upload @setid="setTerms"></upload>
+                </div>
+                <div class="col-md-6">
+                  3D Visualizations File
+                </div>
+                <div class="col-md-6">
+                  <b-button class="float-right" v-if="purchaseOrder.cadFileDocumentId " @click="download(purchaseOrder.cadFileDocumentId)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                </div>
+                <div class="col-md-12">
+                  <upload @setid="setCadFile"></upload>
                 </div>
               </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Notifications
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseSix" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-user">
-                        <div class="card-body">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Notes
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseSeven" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-user">
-                        <div class="card-body">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
-                    <span class="glyphicon glyphicon-th-list">
-                    </span>Bids
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseEight" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-user">
-                        <div class="card-body">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            </b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-3 variant="info">Categories</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text><category></category></b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-4 variant="info">Messages</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>Messages</b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-5 variant="info">Questions/Answer</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>Questions/Answer</b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-6 variant="info">Notifications</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-6" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>Notifications</b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-7 variant="info">Notes</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-7" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>Notes</b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-1">
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block href="#" v-b-toggle.accordion-8 variant="info">Bids</b-button>
+        </b-card-header>
+        <b-collapse id="accordion-8" accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>Bids</b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card> 
+    </div> 
+  </div> 
 </template>
 
 <script>

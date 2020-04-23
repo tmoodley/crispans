@@ -16,21 +16,17 @@
             </div>
             <template v-if="jobs">
               <b-table hover :items="jobs" :fields="fields">
+                <template v-slot:cell(purchaseDate)="row">
+                  {{new Date(row.item.purchaseDate) | dateFormat('YYYY.MM.DD')}}
+                </template>
+                <template v-slot:cell(deliveryDate)="row">
+                  {{new Date(row.item.deliveryDate) | dateFormat('YYYY.MM.DD')}}
+                </template>
                 <!-- Example Classificationd slot for select state illustrative purposes -->
                 <template v-slot:cell(actions)="row">
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
                   </b-button>
-                  <b-button size="sm" @click="row.toggleDetails">
-                    {{ row.detailsShowing ? 'Hide' : 'Show' }} View Bids
-                  </b-button>
-                </template>
-                <template v-slot:row-details="row">
-                  <b-card>
-                    <ul>
-                      <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-                    </ul>
-                  </b-card>
                 </template>
               </b-table>
             </template> 
@@ -53,7 +49,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'type', 'classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
+      fields: ['notes', 'purchaseOrderNumber','status','total', 'purchaseDate', 'deliveryDate','actions'],
       value: 45,
       max: 100, 
       selected: [],
@@ -69,13 +65,11 @@ export default {
       this.$bvModal.hide(this.infoModal.id)
     },
     info(item, index, button) {
-      this.infoModal.title = `View RFQ: Job`;
-      this.infoModal.job = item;
-      this.$root.$emit('bv::show::modal', this.infoModal.id, button);
+       this.$router.push({ path: '/portal/purchaseorders/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 
-        let response = await this.$http.get(`/portal/api/Jobs/GetJobs/?id=` + this.store.company.id) 
+        let response = await this.$http.get(`/api/mypurchaseorders/?id=` + this.store.company.id) 
         this.jobs = response.data
         this.total = response.data.length
       } catch (err) {

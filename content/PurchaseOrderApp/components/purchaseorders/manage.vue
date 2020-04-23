@@ -1,6 +1,5 @@
 <template>
   <div> 
-    <nav-menu params="route: route"></nav-menu>
     <h1>Manage</h1>
     <hr />
     <div class="container">

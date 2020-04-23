@@ -4,8 +4,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="title">Manage Tenders</h5>
-            <router-link to="/Tenders/Create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
+            <h5 class="title">PRODUCTS</h5>
           </div>
           <div class="card-body">
             <b-container fluid>
@@ -22,13 +21,12 @@
                   <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
                     Edit
                   </b-button> 
-                </template> 
+                </template>
+                <template v-slot:cell(price)="row">
+                  {{row.item.price | currency}}
+                </template>
               </b-table>
-            </template>
-            <!-- Info modal -->
-            <b-modal :id="infoModal.id" :title="infoModal.title" size="xl" hide-footer @hide="resetInfoModal" class="modal-lg">
-              <job :selectedjob="infoModal.job" :action="edit" @hide="resetInfoModal"></job>
-            </b-modal>
+            </template> 
           </div>
         </div>
       </div>
@@ -37,15 +35,10 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex' 
-import job from './job'
-export default {
-  components: {
-    job
-  },
+import { mapState } from 'vuex'  
+export default { 
   data () {
     return {
-      email: _user,
       jobs: null,
       selectedJob: null,
       total: 0,
@@ -53,7 +46,7 @@ export default {
       currentPage: 1,
       date1: '',
       selectMode: 'multi',
-      fields: ['name', 'number', 'type', 'classification','status','totalContractAmount', 'dateClosing', 'awarded','actions'],
+      fields: ['name', 'upc', 'type', 'stock', 'price','actions'],
       value: 45,
       max: 100, 
       selected: [],
@@ -64,19 +57,16 @@ export default {
       }
     }
   }, 
-    methods: {
-      ...mapActions('company', [
-        'getCompany'
-    ]),
+  methods: {
     resetInfoModal() {
       this.$bvModal.hide(this.infoModal.id)
     },
-    info(item, index, button) { 
-      this.$router.push({ path: '/tenders/manage/' + item.id }) 
+    info(item, index, button) {
+      this.$router.push({ path: '/portal/products/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 
-        let response = await this.$http.get(`/portal/api/Jobs/GetJobs/?id=` + this.store.company.id) 
+        let response = await this.$http.get(`/portal/api/Product/` + this.store.company.id) 
         this.jobs = response.data
         this.total = response.data.length
       } catch (err) {
@@ -89,12 +79,9 @@ export default {
     ...mapState({
       store: state => state.company
     }),
-    }, 
-    async created() {
-      var self = this;
-      this.getCompany(this.email).then(function () { 
-          self.loadPage() 
-      });
+  },
+  async created () {
+    this.loadPage()
   }
 }
 </script>

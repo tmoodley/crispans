@@ -16,7 +16,7 @@ const getters = {
 const actions = {
   getPurchaseOrder({ commit }, payload) {
     return axios
-      .get('/api/purchaseorders/?id=' + payload)
+      .get('/api/PurchaseOrders/' + payload)
       .then(function (response) {
         commit('setPurchaseOrder', response.data);
         return response.data;
