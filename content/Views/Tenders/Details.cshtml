@@ -9,7 +9,7 @@
     TempData["jobid"] = jobId;
     TempData["bidder"] = bidder;
 }
-@section Styles { 
+@section Styles {
     <!-- Open Graph data -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Name" />
@@ -30,6 +30,8 @@
 
     <div class="row">
         <div class="col-md-4 order-md-1 mb-4">
+            <!-- Display the countdown timer in an element -->
+            <p id="countdown"></p> 
             <a asp-action="Index" class="btn btn-danger btn-block">Back to Opprtunities List</a>
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Specifications</span>
@@ -205,8 +207,37 @@
         background: black;
     }
 </style>
-@section Scripts {
+@section Scripts { 
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("@Model.DateClosing.ToLongDateString()").getTime();
 
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
     <script>
         function download(id) {
             axios({
