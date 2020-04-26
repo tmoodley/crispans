@@ -83,7 +83,59 @@
                   </b-tab>
                   <b-tab no-body title="Categories" :disabled="action == 'add'" lazy>
                     <category></category>
-                  </b-tab> 
+                  </b-tab>
+                  <b-tab no-body title="Pictures" :disabled="action == 'add'" lazy>
+                    <div class="row">
+                      <div class="col-md-6">
+                        Image 1
+                      </div>
+                      <div class="col-md-6">
+                        <b-button class="float-right" v-if="product.picture1Id" @click="download(product.picture1Id)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                      </div>
+                      <div class="col-md-6">
+                        <upload @setid="setImage1"></upload>
+                      </div>
+                      <div class="col-md-6">
+                        <img :src="image1">
+                      </div>
+                      <div class="col-md-6">
+                        Image 2
+                      </div>
+                      <div class="col-md-6">
+                        <b-button class="float-right" v-if="product.picture2Id" @click="download(product.picture2Id)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                      </div>
+                      <div class="col-md-6">
+                        <upload @setid="setImage2"></upload>
+                      </div>
+                      <div class="col-md-6">
+                        <img :src="image2">
+                      </div>
+                      <div class="col-md-6">
+                        Image 3
+                      </div>
+                      <div class="col-md-6">
+                        <b-button class="float-right" v-if="product.picture3Id" @click="download(product.picture3Id)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                      </div>
+                      <div class="col-md-6">
+                        <upload @setid="setImage3"></upload>
+                      </div>
+                      <div class="col-md-6">
+                        <img :src="image3">
+                      </div>
+                      <div class="col-md-6">
+                        Image 4
+                      </div>
+                      <div class="col-md-6">
+                        <b-button class="float-right" v-if="product.picture4Id" @click="download(product.picture4Id)"><i class="fa fa-download" aria-hidden="true"></i> Download</b-button>
+                      </div>
+                      <div class="col-md-6">
+                        <upload @setid="setImage4"></upload>
+                      </div>
+                      <div class="col-md-6">
+                        <img :src="image4">
+                      </div>
+                    </div>
+                  </b-tab>
                 </b-tabs>
               </form>
             </b-card>
@@ -106,21 +158,8 @@
   import machine from '../categories/machine'
   import material from '../categories/material'
   import naics from '../categories/naics'
-  export default { 
-      computed: { 
-        ...mapState({
-          store: state => state.company
-        }),
-        ...mapState({
-          _product: state => state.product
-        }),
-        options() {
-          return {
-            locale: this.locale,
-            currency: this.currency
-          }
-        }
-    }, 
+  import upload from './document'
+  export default {  
     components: {
       category,
       certification,
@@ -130,7 +169,8 @@
       industry,
       machine,
       material,
-      naics
+      naics,
+      upload
     },
     data() {
       return {
@@ -153,6 +193,39 @@
       ...mapActions('product', [
         'getproduct'
       ]),
+      download(id) {
+        axios({
+
+          url: '/portal/api/documents/' + id,
+
+          method: 'GET', 
+
+        }).then(function (doc) {
+          axios({
+
+            url: '/portal/api/document/' + id,
+
+            method: 'GET',
+
+            responseType: 'blob',
+
+          }).then((response) => {
+
+            var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+
+            var fileLink = document.createElement('a');
+             
+            fileLink.href = fileURL;
+
+            fileLink.setAttribute('download', doc.data.name);
+
+            document.body.appendChild(fileLink);
+             
+            fileLink.click();
+
+          })
+        });
+    },
       save() {
         event.preventDefault();
         var self = this;
@@ -185,6 +258,18 @@
               })
             }); 
         }
+      },
+      setImage1(id) { 
+          this.product.picture1Id = id;
+      },
+      setImage2(id) { 
+          this.product.picture2Id = id;
+      },
+      setImage3(id) { 
+          this.product.picture3Id = id;
+      },
+      setImage4(id) { 
+          this.product.picture4Id = id;
       }
     },
     mounted: function () {
@@ -196,6 +281,33 @@
           })
       }
       this.getCompany(this.email)
+    },
+     computed: { 
+        ...mapState({
+          store: state => state.company
+        }),
+        ...mapState({
+          _product: state => state.product
+        }),
+        options() {
+          return {
+            locale: this.locale,
+            currency: this.currency
+          }
+       },
+       image1() {
+         return "/api/image/" + this.product.picture1Id;
+       },
+       image2() {
+         return "/api/image/" + this.product.picture2Id;
+       },
+       image3() {
+         return "/api/image/" + this.product.picture3Id;
+       },
+       image4() {
+         return "/api/image/" + this.product.picture4Id;
+       },
+
     }
   }
 </script>
