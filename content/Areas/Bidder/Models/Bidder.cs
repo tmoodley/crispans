@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Vue2Spa.Areas.Bidder.Models;
 using Vue2Spa.Areas.Portal.Models;
 
 namespace Vue2Spa.Models
@@ -48,6 +49,10 @@ namespace Vue2Spa.Models
 
         [JsonIgnore]
         public ICollection<JobBid> Bids { get; set; }
+
+        [JsonIgnore]
+        public ICollection<POBid> POBids { get; set; }
+
         [JsonIgnore]
         public ICollection<JobQuestion> Questions { get; set; }
     }
