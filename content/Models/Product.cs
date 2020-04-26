@@ -33,5 +33,9 @@ namespace HelpingHands.Models
         public double Weight { get; set; }
         public string Dimension { get; set; }
         public ICollection<ProductCategory> ProductCategories { get; set; }
+        public Guid Picture1Id { get; set; }
+        public Guid Picture2Id { get; set; }
+        public Guid Picture3Id { get; set; }
+        public Guid Picture4Id { get; set; }
     }
 }
