@@ -22,21 +22,16 @@ const actions = {
         return response.data;
       })
   },
-  addCategory({ commit }, payload) { 
-    var customerCategory = {
-      CategoryId: payload[0].id,
-      CustomerId: state.company.id
-    }
-
+  addCategory({ commit }, payload) {   
     return axios
-      .post('/portal/api/customercategories/', customerCategory)
+      .post('/portal/api/purchaseOrderCategories/', payload)
       .then(function (response) {
         return response.data;
       })
   },
   removeCategory({ commit }, payload) {
     return axios
-      .delete('/portal/api/customercategories/?categoryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/purchaseOrderCategories/?categoryId=' + payload.CategoryId + '&purchaseOrderId=' + payload.PurchaseOrderId)
       .then(function (response) {
         return response.data;
       });

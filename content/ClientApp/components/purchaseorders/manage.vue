@@ -232,7 +232,7 @@
 <script>
   import axios from 'axios' 
   import { mapState, mapActions } from 'vuex' 
-  import category from '../categories/category' 
+  import category from './category' 
   import upload from '../purchaseorders/document'
   export default {
         components: {
