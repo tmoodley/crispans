@@ -53,6 +53,13 @@
                       </div>
                     </div>
                   </b-tab>
+                  <b-tab no-body title="Description" :disabled="action == 'add'"> 
+                    <div class="row">
+                      <div class="col-md-12">
+                        <wysiwyg v-model="product.description" />
+                      </div>
+                    </div>
+                  </b-tab>
                   <b-tab no-body title="Dimensions" :disabled="action == 'add'">
                     <div class="row">
                       <div class="col-lg-6 form-group">
