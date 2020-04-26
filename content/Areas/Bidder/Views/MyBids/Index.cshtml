@@ -34,44 +34,66 @@
             ajax: "/Bidder/MyBids/pagedata",
             columns: [
                 {
-                    name: 'Name',
-                    data: "job.number",
+                    name: 'number',
+                    data: "number",
                     title: "Number",
                     sortable: true,
                     searchable: false
                 },
                 {
                     name: 'Name',
-                    data: "job.name",
+                    data: "name",
                     title: "Name",
                     sortable: true,
                     searchable: false
                 },
                 {
-                    name: 'Name',
-                    data: "status",
+                    name: 'bs',
+                    data: "bidStatus",
                     title: "Bid Status",
                     sortable: true,
                     searchable: false
                 },
                 {
-                    name: 'Name',
-                    data: "job.status",
+                    name: 'js',
+                    data: "jobStatus",
                     title: "Job Status",
+                    sortable: true,
+                    searchable: false,
+                    defaultContent: '<i>Not set</i>'
+                },
+                ,
+                {
+                    name: 'src',
+                    data: "source",
+                    title: "Source",
                     sortable: true,
                     searchable: false
                 },
-                
 
                 {
                     title: "Actions",
                     data: null, render: function (data, type, row) {
-                        return '<div >' +
-                            '<a class="btn btn-primary" href="/Bidder/MyBids/Details/'+data.jobId +'">' +
-                            'View' +
-                            '</a>' +
 
-                            '</div>';
+                        var returnValue = '';
+
+                        if (data.source === 'Tender') {
+                            returnValue = '<div >' +
+                                '<a class="btn btn-primary" href="/Bidder/MyBids/Details/' + data.id + '">' +
+                                'View' +
+                                '</a>' +
+
+                                '</div>';
+                        } else {
+                            returnValue = '<div >' +
+                                '<a class="btn btn-primary" href="/Bidder/MyBids/POBidDetails/' + data.id + '">' +
+                                'View' +
+                                '</a>' +
+
+                                '</div>';
+                        }
+
+                        return returnValue;
 
                     },
                     sortable: false,

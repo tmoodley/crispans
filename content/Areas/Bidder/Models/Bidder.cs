@@ -55,5 +55,8 @@ namespace Vue2Spa.Models
 
         [JsonIgnore]
         public ICollection<JobQuestion> Questions { get; set; }
+
+        [JsonIgnore]
+        public ICollection<POQuestion> POQuestions { get; set; }
     }
 }

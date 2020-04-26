@@ -175,6 +175,7 @@ namespace Vue2Spa.Controllers
         public IActionResult Register()
         {
             ViewData["JobId"] = TempData["jobId"];
+            ViewData["Source"] = TempData["source"];
             return View();
         }
 

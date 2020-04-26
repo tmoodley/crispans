@@ -322,7 +322,7 @@ namespace HelpingHands.Data
               .HasForeignKey(bc => bc.BidderId);
 
 
-
+            //Purchase order bids
             modelBuilder.Entity<POBid>()
                   .HasKey(x => new { x.PurchaseOrderId, x.BidderId });
 
@@ -339,6 +339,23 @@ namespace HelpingHands.Data
              modelBuilder.Entity<POBidLineItem>()
                   .HasKey(x => new { x.PurchaseOrderId, x.BidderId,x.PurchaseOrderItemId });
 
+
+            //PO Questions
+            modelBuilder.Entity<POQuestion>()
+                   .HasKey(x => new { x.PurchaseOrderId, x.QuestionId, x.BidderId });
+
+            modelBuilder.Entity<POQuestion>()
+               .HasOne(bc => bc.PurchaseOrder)
+               .WithMany(b => b.PurchaseOrderQuestions)
+               .HasForeignKey(bc => bc.PurchaseOrderId);
+            modelBuilder.Entity<POQuestion>()
+               .HasOne(bc => bc.Question)
+               .WithMany(c => c.PurchaseOrderQuestions)
+               .HasForeignKey(bc => bc.QuestionId);
+            modelBuilder.Entity<POQuestion>()
+               .HasOne(bc => bc.Bidder)
+               .WithMany(c => c.POQuestions)
+               .HasForeignKey(bc => bc.BidderId);
 
         }
 

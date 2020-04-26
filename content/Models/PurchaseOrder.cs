@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Vue2Spa.Areas.Bidder.Models;
 using Vue2Spa.Areas.Portal.Models;
+using Vue2Spa.Models;
 
 namespace HelpingHands.Models
 {
@@ -35,7 +36,7 @@ namespace HelpingHands.Models
         public Guid ContractDocumentId { get; set; }
         public Guid CadFileDocumentId { get; set; }
         public ICollection<PurchaseOrderCategory> PurchaseOrderCategories { get; set; }
-
+        public ICollection<POQuestion> PurchaseOrderQuestions { get; set; }
 
 
         public List<POBid> Bids { get; set; }

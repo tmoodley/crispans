@@ -4,14 +4,16 @@ using HelpingHands.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelpingHands.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200426153907_bids_update")]
+    partial class bids_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1295,23 +1297,6 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("Naics");
                 });
 
-            modelBuilder.Entity("Vue2Spa.Models.POQuestion", b =>
-                {
-                    b.Property<Guid>("PurchaseOrderId");
-
-                    b.Property<Guid>("QuestionId");
-
-                    b.Property<Guid?>("BidderId");
-
-                    b.HasKey("PurchaseOrderId", "QuestionId", "BidderId");
-
-                    b.HasIndex("BidderId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("POQuestion");
-                });
-
             modelBuilder.Entity("Vue2Spa.Models.ProductBOM", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1796,24 +1781,6 @@ namespace HelpingHands.Data.Migrations
                     b.HasOne("Vue2Spa.Models.Naics", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
-                });
-
-            modelBuilder.Entity("Vue2Spa.Models.POQuestion", b =>
-                {
-                    b.HasOne("Vue2Spa.Models.Bidder", "Bidder")
-                        .WithMany("POQuestions")
-                        .HasForeignKey("BidderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HelpingHands.Models.PurchaseOrder", "PurchaseOrder")
-                        .WithMany("PurchaseOrderQuestions")
-                        .HasForeignKey("PurchaseOrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Vue2Spa.Models.Question", "Question")
-                        .WithMany("PurchaseOrderQuestions")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Vue2Spa.Models.ProductBOM", b =>

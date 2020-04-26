@@ -125,6 +125,7 @@ namespace Vue2Spa.Controllers
         {
             ViewData["TenderId"] = TempData["jobid"];
             ViewData["Bidder"] = TempData["bidder"];
+            ViewData["Source"] = TempData["source"];
 
             return View();
         }

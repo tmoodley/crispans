@@ -32,5 +32,7 @@ namespace Vue2Spa.Areas.Bidder.Models
         public Guid ContractDocumentId { get; set; }
         public Guid NdaDocumentId { get; set; }
 
+        public List<POBidLineItem> LineItems { get; set; }
+
     }
 }

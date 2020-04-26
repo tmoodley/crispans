@@ -18,7 +18,10 @@ namespace Vue2Spa.Areas.Bidder.Models
         public Guid PurchaseOrderItemId { get; set; }
 
 
-
+        public string Item { get; set; }
+        public string Description { get; set; }
+        public int Quantity { get; set; }
+        public double Amount { get; set; }
 
 
     }

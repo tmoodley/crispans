@@ -16,6 +16,8 @@ namespace Vue2Spa.Models
         public List<Answer> Answers { get; set; }
         [JsonIgnore]
         public ICollection<JobQuestion> JobQuestions { get; set; }
+        public ICollection<POQuestion> PurchaseOrderQuestions { get; set; }
+
     }
 
     public class Answer

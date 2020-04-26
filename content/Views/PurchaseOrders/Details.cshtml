@@ -4,6 +4,14 @@
     ViewData["Title"] = "Details";
     var total = 0.00;
     var i = 1;
+
+     var jobId = Model.Id.ToString();
+    var bidder = ViewBag.Bidder;
+
+     TempData["jobid"] = jobId;
+    TempData["bidder"] = bidder;
+    TempData["source"] = "PurchaseOrders";
+
 }
 <section id="intro" class="section-padding">
     <div class="container">
@@ -68,6 +76,23 @@
                                                 </tr>
                                             </tfoot>
                                         </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            
+
+                                            @if (!User.IsInRole("Bidder"))
+                                            {
+                                                @Html.ActionLink("Register For this Bid", "RegisterToBid", "Tenders", null, new { @class = "btn btn-success btn-block text-white pb-3" })
+                                            }
+                                            else
+                                            {
+
+
+                                                @Html.ActionLink("Place Bid", "Bid", "PurchaseOrders", null, new { @class = "btn btn-success btn-block text-white pb-3" })
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </main>
