@@ -195,9 +195,9 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  import { mapState, mapActions } from 'vuex'
-  import category from '../categories/category'
+  import axios from 'axios' 
+  import { mapState, mapActions } from 'vuex' 
+  import category from './category' 
   import upload from '../purchaseorders/document'
   export default {
     components: {
@@ -388,7 +388,8 @@
     color: #9A9A9A;
   }
 
-    li.nav-item a:hover {
-      color: black;
-    }
+  li.nav-item a:hover {
+    color: black;
+  }
+
 </style>

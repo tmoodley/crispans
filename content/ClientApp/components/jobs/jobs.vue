@@ -15,18 +15,20 @@
               <h1><icon icon="spinner" pulse /></h1>
             </div>
             <template v-if="jobs">
-              <b-table hover :items="jobs" :fields="fields">
-                <!-- Example Classificationd slot for select state illustrative purposes -->
-                <template v-slot:cell(actions)="row">
-                  <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-                    Edit
-                  </b-button>
-                </template>
-                <template v-slot:cell(dateClosing)="row">
-                  {{new Date(row.item.dateClosing) | dateFormat('YYYY.MM.DD')}}
-                </template>
+              <b-card>
+                <b-table hover :items="jobs" :fields="fields">
+                  <!-- Example Classificationd slot for select state illustrative purposes -->
+                  <template v-slot:cell(actions)="row">
+                    <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+                      Edit
+                    </b-button>
+                  </template>
+                  <template v-slot:cell(dateClosing)="row">
+                    {{new Date(row.item.dateClosing) | dateFormat('YYYY.MM.DD')}}
+                  </template>
 
-              </b-table>
+                </b-table>
+              </b-card>
             </template>
             <!-- Info modal -->
             <b-modal :id="infoModal.id" :title="infoModal.title" size="xl" hide-footer @hide="resetInfoModal">
