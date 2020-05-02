@@ -72,7 +72,7 @@ export default {
       this.$bvModal.hide(this.infoModal.id)
     },
     info(item, index, button) { 
-      this.$router.push({ path: '/tenders/manage/' + item.id }) 
+      this.$router.push({ path: '/portal/tender/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 

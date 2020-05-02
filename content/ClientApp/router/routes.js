@@ -1,7 +1,7 @@
 const Dashboard = () => import(/* webpackChunkName: "Partner" */ 'components/dashboard.vue')
 const Partner = () => import(/* webpackChunkName: "Partner" */ 'components/partner.vue')
 const Job = () => import(/* webpackChunkName: "Job" */ 'components/jobs/job.vue')
-const Jobs = () => import(/* webpackChunkName: "Jobs" */ 'components/jobs/jobs.vue')
+const Jobs = () => import(/* webpackChunkName: "Jobs" */ 'components/tenders/jobs.vue')
 const TenderEdit = () => import(/* webpackChunkName: "Job" */ 'components/tenders/edit.vue')
 const CreatePurchaseOrder = () => import(/* webpackChunkName: "CreatePurchaseOrder" */ 'components/purchaseorders/create.vue')
 const ManagePurchaseOrder = () => import(/* webpackChunkName: "ManagePurchaseOrder" */ 'components/purchaseorders/manage.vue')

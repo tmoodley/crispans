@@ -473,7 +473,8 @@
     color: #9A9A9A;
   }
 
-    li.nav-item a:hover {
-      color: black;
-    }
+  li.nav-item a:hover {
+    color: black;
+  }
+
 </style>
