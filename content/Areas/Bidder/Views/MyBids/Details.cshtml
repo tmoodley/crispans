@@ -45,6 +45,12 @@
 
 @section scripts{
 
+    
+
+    
+
+
+
     <script>
         const connection = new signalR.HubConnectionBuilder()
         .withUrl("/notificationHub")
@@ -77,7 +83,7 @@ connection.onclose(async () => {
         let message = document.getElementById('message').value;
         document.getElementById('message').value = '';
 
-         connection.invoke('Send', 'bidderid',message); 
+         connection.invoke('SendPOQuestion', 'bidderid',message,'0000-990-BIDID'); 
 
         //connection.start().then(() => {
              

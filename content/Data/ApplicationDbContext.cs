@@ -49,6 +49,7 @@ namespace HelpingHands.Data
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<POBid> POBids { get; set; }
         public DbSet<POBidLineItem> POBidLineItems { get; set; }
+        public DbSet<POQuestion> POQuestion { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -360,6 +361,8 @@ namespace HelpingHands.Data
         }
 
         public DbSet<Vue2Spa.Models.ProductBOM> ProductBOM { get; set; }
+
+        public DbSet<Vue2Spa.Models.Question> Question { get; set; }
 
     }
 }

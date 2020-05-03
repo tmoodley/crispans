@@ -62,7 +62,6 @@
                     searchable: false,
                     defaultContent: '<i>Not set</i>'
                 },
-                ,
                 {
                     name: 'src',
                     data: "source",
@@ -76,7 +75,7 @@
                     data: null, render: function (data, type, row) {
 
                         var returnValue = '';
-
+                       
                         if (data.source === 'Tender') {
                             returnValue = '<div >' +
                                 '<a class="btn btn-primary" href="/Bidder/MyBids/Details/' + data.id + '">' +
