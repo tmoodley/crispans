@@ -24,6 +24,7 @@ import PerfectScrollbar from 'vue2-perfect-scrollbar'
 import Vue2Filters from 'vue2-filters'
 import VueCurrencyInput from 'vue-currency-input'
 import VueFilterDateFormat from 'vue-filter-date-format'
+import Vuelidate from 'vuelidate'
 
 Vue.use(VueFilterDateFormat)
 Vue.use(VueCurrencyInput)
@@ -34,6 +35,7 @@ Vue.use(wysiwyg, {}) // config is optional. more below
 Vue.use(Vue2Dropzone)
 Vue.use(BootstrapVue)
 Vue.use(VueFormWizard)
+Vue.use(Vuelidate)
 // Registration of global components
 Vue.component('icon', FontAwesomeIcon)
 Vue.prototype.$http = axios

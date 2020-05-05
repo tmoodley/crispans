@@ -27,16 +27,20 @@
                           <input v-model="product.name" placeholder="" class="form-control">
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.upc.$error}">
                         <label for="Upc" class="col-lg-12">Upc Code</label>
                         <div class="col-lg-12">
-                          <input v-model="product.upc" placeholder="" class="form-control">
+                          <input v-model="product.upc" placeholder="" class="form-control" @blur="$v.product.upc.$touch()">
+                          <p v-if="!$v.product.upc.numeric || !$v.product.upc.minLen || !$v.product.upc.maxLen"> Please provide a valid 12-digit upc code.</p>
+                          <p v-if="!$v.product.upc.required && $v.product.upc.$error"> This field must not be empty</p>
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
+                      <div class="col-lg-6 form-group"  :class="{invalid: $v.product.stock.$error}">
                         <label for="Stock" class="col-lg-12">Stock</label>
                         <div class="col-lg-12">
-                          <input v-model="product.stock" placeholder="" class="form-control">
+                          <input v-model="product.stock" placeholder="" class="form-control" @blur="$v.product.stock.$touch()">
+                          <p v-if="!$v.product.stock.required && $v.product.stock.$error"> This field must not be empty</p>
+                          <p v-if="!$v.product.stock.numeric"> Please provide a valid stock</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group">
@@ -45,10 +49,12 @@
                           <input type="text" v-model="product.mpn" id="manufacturerPart" name="ManufacturerPart" placeholder="" class="form-control manufacturer-part">
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.price.$error}">
                         <label for="Price" class="col-lg-12">Price</label>
                         <div class="col-lg-12">
-                          <currency-input v-model="product.price" v-currency="options" class="form-control price" />
+                          <currency-input v-model="product.price" v-currency="options" class="form-control price" @blur="$v.product.price.$touch()" />
+                          <p v-if="!$v.product.price.required && $v.product.price.$error"> This field must not be empty</p>
+                          <p v-if="!$v.product.price.decimal"> Please provide a valid price</p>
                         </div>
                       </div>
                     </div>
@@ -62,28 +68,36 @@
                   </b-tab>
                   <b-tab no-body title="Dimensions" :disabled="action == 'add'">
                     <div class="row">
-                      <div class="col-lg-6 form-group">
-                        <label for="Height" class="col-lg-12">Height</label>
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.height.$error}">
+                        <label for="Height" class="col-lg-12">Height (cm)</label>
                         <div class="col-lg-12">
-                          <input v-model="product.height" type="number" id="Height" name="Height" placeholder="" class="form-control price">
+                          <input v-model="product.height" type="number" id="Height" name="Height" placeholder="" class="form-control price" @blur="$v.product.height.$touch()">
+                          <p v-if="!$v.product.height.required && $v.product.height.$error"> This field must not be empty</p>
+                          <p v-if="!$v.product.height.decimal"> Please provide a valid height</p>
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
-                        <label for="Length" class="col-lg-12">Length</label>
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.length.$error}">
+                        <label for="Length" class="col-lg-12">Length (cm)</label>
                         <div class="col-lg-12">
-                          <input v-model="product.length" type="number" id="price" name="Price" placeholder="" class="form-control price">
+                          <input v-model="product.length" type="number" id="price" name="Price" placeholder="" class="form-control price" @blur="$v.product.length.$touch()">
+                          <p v-if="!$v.product.length.required && $v.product.length.$error"> This field must not be empty</p>
+                          <p v-if="!$v.product.length.decimal"> Please provide a valid length</p>
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
-                        <label for="Width" class="col-lg-12">Width</label>
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.width.$error}">
+                        <label for="Width" class="col-lg-12">Width (cm)</label>
                         <div class="col-lg-12">
-                          <input v-model="product.width" type="number" id="Width" name="Width" placeholder="" class="form-control price">
+                          <input v-model="product.width" type="number" id="Width" name="Width" placeholder="" class="form-control price" @blur="$v.product.width.$touch()">
+                          <p v-if="!$v.product.width.required && $v.product.width.$error"> This field must not be empty</p>
+                          <p v-if="!$v.product.width.decimal"> Please provide a valid width</p>
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
-                        <label class="col-lg-12" for="Weight">Weight</label>
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.weight.$error}">
+                        <label class="col-lg-12" for="Weight">Weight (lb)</label>
                         <div class="col-lg-12">
-                          <input type="text" v-model="product.weight" id="number" name="Weight" placeholder="" class="form-control weight">
+                          <input type="text" v-model="product.weight" id="number" name="Weight" placeholder="" class="form-control weight" @blur="$v.product.weight.$touch()">
+                          <p v-if="!$v.product.weight.required && $v.product.weight.$error"> This field must not be empty</p>
+                          <p v-if="!$v.product.weight.decimal"> Please provide a valid weight</p>
                         </div>
                       </div>
                     </div>
@@ -166,6 +180,7 @@
   import material from '../categories/material'
   import naics from '../categories/naics'
   import upload from './document'
+  import { required, numeric, minLength, maxLength, decimal } from 'vuelidate/lib/validators'
   export default {  
     components: {
       category,
@@ -279,6 +294,40 @@
           this.product.picture4Id = id;
       }
     },
+    validations: {
+      product: {
+        upc: {
+          required,
+          numeric,
+          minLen: minLength(12),
+          maxLen: maxLength(12)
+        },
+        price: {
+          required,
+          decimal
+        },
+        stock: {
+          required,
+          numeric
+        },
+        height: {
+          required,
+          decimal
+        },
+        width: {
+          required,
+          decimal
+        },
+        length: {
+          required,
+          decimal
+        },
+        weight: {
+          required,
+          decimal
+        }
+      }
+    },
     mounted: function () {
       var self = this;
        if (this.$route.params.id != undefined) {
@@ -319,12 +368,21 @@
   }
 </script>
 
-<style>
+<style scoped>
   li.nav-item a {
     color: #9A9A9A;
   }
 
-    li.nav-item a:hover {
+  li.nav-item a:hover {
       color: black;
-    }
+  }
+
+  .col-lg-6.form-group.invalid label {
+    color: red;
+  }
+
+  .col-lg-6.form-group.invalid input {
+    border: 1px solid red;
+    background-color: #ffc9aa;
+  }
 </style>

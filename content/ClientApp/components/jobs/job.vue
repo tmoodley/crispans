@@ -33,9 +33,10 @@
                           <label for="Name" class="control-label">Name</label>
                           <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{invalid: $v.job.number.$error}">
                           <label for="Number" class="control-label">Job Number</label>
-                          <input v-model="job.number" class="form-control" placeholder="JobXYZ" />
+                          <input v-model="job.number" class="form-control" placeholder="JobXYZ" @blur="$v.job.number.$touch()" />
+                          <p v-if="!$v.job.number.required && $v.job.number.$error"> This field must not be empty</p>
                         </div>
                         <div class="form-group">
                           <label for="Status" class="control-label">Job Status</label>
@@ -263,17 +264,23 @@
                         <h5 class="title">Job Value</h5>
                       </div>
                       <div class="card-body">
-                        <div class="form-group">
+                        <div class="form-group" :class="{invalid: $v.job.estimatedAnnualValue.$error}">
                           <label for="EstimatedAnnualValue" class="control-label">Estimated Annual Value</label>
-                          <input v-model="job.estimatedAnnualValue" class="form-control" />
+                          <input v-model="job.estimatedAnnualValue" class="form-control" @blur="$v.job.estimatedAnnualValue.$touch()" />
+                          <p v-if="!$v.job.estimatedAnnualValue.required && $v.job.estimatedAnnualValue.$error"> This field must not be empty</p>
+                          <p v-if="!$v.job.estimatedAnnualValue.decimal"> Please provide a valid estimatedAnnualValue</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{invalid: $v.job.actualContractValue.$error}">
                           <label for="ActualContractValue" class="control-label">Actual Contract Value</label>
-                          <input v-model="job.actualContractValue" class="form-control" />
+                          <input v-model="job.actualContractValue" class="form-control" @blur="$v.job.actualContractValue.$touch()" />
+                          <p v-if="!$v.job.actualContractValue.required && $v.job.actualContractValue.$error"> This field must not be empty</p>
+                          <p v-if="!$v.job.actualContractValue.decimal"> Please provide a valid actualContractValue</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{invalid: $v.job.actualAnnualValue.$error}">
                           <label for="ActualAnnualValue" class="control-label">Actual Annual Value</label>
-                          <input v-model="job.actualAnnualValue" class="form-control" />
+                          <input v-model="job.actualAnnualValue" class="form-control" @blur="$v.job.actualAnnualValue.$touch()" />
+                          <p v-if="!$v.job.actualAnnualValue.required && $v.job.actualAnnualValue.$error"> This field must not be empty</p>
+                          <p v-if="!$v.job.actualAnnualValue.decimal"> Please provide a valid actualAnnualValue</p>
                         </div>
                       </div>
                     </div>
@@ -322,6 +329,7 @@
   import material from '../categories/material'
   import naics from '../categories/naics'
   import upload from '../jobs/document'
+  import { required, numeric, minLength, maxLength, decimal } from 'vuelidate/lib/validators'
   export default {
     props: ['selectedjob'],
   computed: mapState({
@@ -450,7 +458,26 @@
       setCadFile(id){
           this.job.cadFileDocumentId = id;
       }
-  },
+    },
+    validations: {
+      job: {
+        number: {
+          required
+        },
+        estimatedAnnualValue: {
+          required,
+          decimal
+        },
+        actualContractValue: {
+          required,
+          decimal
+        },
+        actualAnnualValue: {
+          required,
+          decimal
+        }
+      }
+    },
     mounted: function () { 
       if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
         this.job = this.selectedjob;
@@ -464,12 +491,20 @@
 }
 </script>
 
-<style>
+<style scoped>
   button.b-form-datepicker {
     margin: 0;
     border-radius: 2.1875rem;
 }
- button.btn.btn-sm.btn-outline-secondary.border-0.flex-fill.p-1.mx-1 {
+  button.btn.btn-sm.btn-outline-secondary.border-0.flex-fill.p-1.mx-1 {
     COLOR: blue;
 }
+  .form-group.invalid label {
+    color: red;
+  }
+
+  .form-group.invalid input {
+    border: 1px solid red;
+    background-color: #ffc9aa;
+  }
 </style>
