@@ -46,7 +46,6 @@
                     <span>STEP 2 OF 2</span>
                   </div>
                 </div>
-
                 <div class="row" v-for="(item, index) in purchaseOrder.PurchaseOrderItems">
                   <div class="col-md-3">
                     <div class="form-group" :class="{invalid: $v.purchaseOrder.PurchaseOrderItems.$each[index].item.$error}">
@@ -80,8 +79,6 @@
                     <i class="fa fa-minus-circle" @click="removeLine(index)"></i>
                   </div>
                 </div>
-
-
                 <div class="row">
                   <div class="col-md-12">
                     <i class="fa fa-plus-circle" @click="addLine()"> Add New Line</i>
@@ -122,75 +119,75 @@
   import { mapState, mapActions } from 'vuex'
   import { required, numeric, minLength, maxLength, decimal } from 'vuelidate/lib/validators'
   export default { 
-        data() {
-           return {
-                email: _user,
-                loading: false,
-                purchaseOrder: {
-                  PurchaseDate: '',
-                  DeliveryDate: '',
-                  Notes: '',
-                  PurchaseOrderNumber: '',
-                  CustomerId: '',
-                  Email: _user,
-                  Status: '',
-                  SubTotal: 0,
-                  Tax: 0,
-                  Total: 0,
-                  PurchaseOrderItems: [{
-                    Item: '',
-                    Description: '',
-                    Quantity: 0,
-                    Amount: 0.00
-                  }],
-                }
+      data() {
+          return {
+              email: _user,
+              loading: false,
+              purchaseOrder: {
+                PurchaseDate: '',
+                DeliveryDate: '',
+                Notes: '',
+                PurchaseOrderNumber: '',
+                CustomerId: '',
+                Email: _user,
+                Status: '',
+                SubTotal: 0,
+                Tax: 0,
+                Total: 0,
+                PurchaseOrderItems: [{
+                  Item: '',
+                  Description: '',
+                  Quantity: 0,
+                  Amount: 0.00
+                }],
               }
-            },
-       methods: {
-            ...mapActions('company', [
-              'getCompany'
-            ]),
-            save() {
-            event.preventDefault();
-            var self = this;  
-            this.purchaseOrder.CustomerId = this.store.company.id;
-            return axios
-              .post('/api/purchaseorders/', self.purchaseOrder)
-              .then(response => { self.purchaseOrder = response.data }) 
-            },
-            onComplete: function () {
-                  var self = this;
-                  this.save().then(function () { 
-                    self.$swal.fire(
-                      'Saved',
-                      'Job Saved',
-                      'success'
-                    ).then(function () { 
-                      self.$router.push({ path: '/purchaseorders/manage/' + self.purchaseOrder.id })
-                    })
-                  });
-            }, 
-            addLine() {
-                this.purchaseOrder.PurchaseOrderItems.push({
-                    Item: '',
-                    Description: '',
-                    Quantity: 0,
-                    Amount: 0.00
-                });
-
-            },
-            addTotal() {
-                var _this = this;
-                this.purchaseOrder.PurchaseOrderItems.map(item => {
-                    _this.purchaseOrder.Total += item.quantity * item.amount;
-                })
-            },
-            removeLine(index) {
-                const _index = this.purchaseOrder.PurchaseOrderItems.indexOf(index);
-                if (index > -1) {
-                  this.purchaseOrder.PurchaseOrderItems.splice(_index, 1);
-                }
             }
+          },
+      methods: {
+          ...mapActions('company', [
+            'getCompany'
+          ]),
+          save() {
+          event.preventDefault();
+          var self = this;  
+          this.purchaseOrder.CustomerId = this.store.company.id;
+          return axios
+            .post('/api/purchaseorders/', self.purchaseOrder)
+            .then(response => { self.purchaseOrder = response.data }) 
+          },
+          onComplete: function () {
+                var self = this;
+                this.save().then(function () { 
+                  self.$swal.fire(
+                    'Saved',
+                    'Job Saved',
+                    'success'
+                  ).then(function () { 
+                    self.$router.push({ path: '/purchaseorders/manage/' + self.purchaseOrder.id })
+                  })
+                });
+          }, 
+          addLine() {
+              this.purchaseOrder.PurchaseOrderItems.push({
+                  Item: '',
+                  Description: '',
+                  Quantity: 0,
+                  Amount: 0.00
+              });
+
+          },
+          addTotal() {
+              var _this = this;
+              this.purchaseOrder.PurchaseOrderItems.map(item => {
+                  _this.purchaseOrder.Total += item.quantity * item.amount;
+              })
+          },
+          removeLine(index) {
+              const _index = this.purchaseOrder.PurchaseOrderItems.indexOf(index);
+              if (index > -1) {
+                this.purchaseOrder.PurchaseOrderItems.splice(_index, 1);
+              }
+          }
       },
       validations: {
         purchaseOrder: {
@@ -215,23 +212,23 @@
           }
         }
       },
-    created: function () { 
-                // _.debounce is a function provided by lodash to limit how
-                // often a particularly expensive operation can be run.
-                // In this case, we want to limit how often we access
-                // yesno.wtf/api, waiting until the user has completely
-                // finished typing before making the ajax request. To learn
-                // more about the _.debounce function (and its cousin
-                // _.throttle), visit: https://lodash.com/docs#debounce
-                this.debouncedGetAnswer = _.debounce(this.addTotal, 500)
-    },
-    mounted: function () {
-      this.getCompany(this.email)
-    },
-    computed: mapState({
-      store: state => state.company
-    }), 
-}
+      created: function () { 
+            // _.debounce is a function provided by lodash to limit how
+            // often a particularly expensive operation can be run.
+            // In this case, we want to limit how often we access
+            // yesno.wtf/api, waiting until the user has completely
+            // finished typing before making the ajax request. To learn
+            // more about the _.debounce function (and its cousin
+            // _.throttle), visit: https://lodash.com/docs#debounce
+            this.debouncedGetAnswer = _.debounce(this.addTotal, 500)
+      },
+      mounted: function () {
+        this.getCompany(this.email)
+      },
+      computed: mapState({
+        store: state => state.company
+      }), 
+  }
 </script>
 
 <style scoped>
