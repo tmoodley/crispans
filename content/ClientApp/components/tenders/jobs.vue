@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header">
             <h5 class="title">Manage Tenders</h5>
-            <router-link to="/Tenders/Create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
+            <router-link to="/portal/tender/create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
           </div>
           <div class="card-body">
             <b-container fluid>
