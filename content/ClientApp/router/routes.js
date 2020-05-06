@@ -13,7 +13,6 @@ export const routes = [
   { name: 'Profile', path: '/portal/Profile', component: Partner, display: 'My Profile', icon: 'home', showOnMenu: true },
   { name: 'createtender', path: '/portal/tender/create', component: Job, display: 'Create Tender', icon: 'info', showOnMenu: true },
   { name: 'searchtender', path: '/portal/tender/search', component: Jobs, display: 'Search Tenders', icon: 'list', showOnMenu: true },
-  { name: 'managetenders', path: '/portal/tender/manage', component: Jobs, display: 'Manage Tenders', icon: 'list', showOnMenu: true },
   { name: 'managetender', path: '/portal/tender/manage/:id', component: TenderEdit, display: 'Edit Tenders', icon: 'list', showOnMenu: false },
   { name: 'CreatePO', path: '/portal/PurchaseOrders/Create', component: CreatePurchaseOrder, display: 'Create Purchase Order', icon: 'home', showOnMenu: true },
   { name: 'ManagePO', path: '/portal/PurchaseOrders/Manage/:id', component: ManagePurchaseOrder, display: 'Manage Purchase Order', icon: 'home', showOnMenu: false },
