@@ -192,6 +192,13 @@
         <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
           <b-card-body>
             <b-card-text>Questions/Answer</b-card-text>
+            <b-table :fields="questionAnswerFields" :items="purchaseOrder.purchaseOrderQuestions">
+              <template v-slot:cell(actions)="row">
+                <b-button size="sm" @click="viewQuestion(row.item.question.id)"  class="mr-1">
+                  View
+                </b-button>
+              </template>
+            </b-table>
           </b-card-body>
         </b-collapse>
       </b-card>
@@ -222,6 +229,15 @@
         <b-collapse id="accordion-8" accordion="my-accordion" role="tabpanel">
           <b-card-body>
             <b-card-text>Bids</b-card-text>
+
+            <b-table :fields="bidfields" :items="purchaseOrder.bids">
+              <template v-slot:cell(actions)="row">
+                <b-button size="sm" @click="viewBid(row.item.purchaseOrderId,row.item.bidderId)" class="mr-1">
+                  View Bid
+                </b-button>
+              </template>
+            </b-table>
+
           </b-card-body>
         </b-collapse>
       </b-card> 
@@ -234,6 +250,7 @@
   import { mapState, mapActions } from 'vuex' 
   import category from '../categories/category' 
   import upload from '../purchaseorders/document'
+  import router from '../../router/index';
   export default {
         components: {
           upload,
@@ -243,7 +260,34 @@
            return {
                 email: _user,
                 loading: false,
-                purchaseOrder: {}
+                purchaseOrder: {},
+                bidfields:[
+                            { key: 'creationTime',
+                            label:'Bid Date'},
+                            {
+                              key: 'status',
+                              label:'status'
+                            },{
+                              key: 'bidder.contactPerson',
+                              label:'Contact'
+                            },
+                            'actions'
+                            ],
+             questionAnswerFields: [
+               {
+                 key: 'question.title',
+                 label: 'Title'
+               },
+               {
+                 key: 'question.body',
+                 label: 'Body'
+               },
+               {
+                 key: 'question.answers.count',
+                 label: 'Answers'
+               },
+                'actions'
+             ]
               }
             }, 
        methods: {
@@ -344,7 +388,19 @@
               },
               setCadFile(id){
                   this.purchaseOrder.cadFileDocumentId = id;
-              }
+              },
+              viewBid(poid,bidderid){
+                  alert(poid);
+
+                  var link = '/portal/Bids/Manage/'+poid+'/'+bidderid;
+                  router.push(link);
+               },
+         viewQuestion(id) {
+
+          
+                   var link = '/portal/Question/Manage/'+id;
+                  router.push(link);
+               }
             },
     created: function () { 
                 // _.debounce is a function provided by lodash to limit how
@@ -360,6 +416,7 @@
       this.getCompany(this.email);
       var self = this;
       this.getPurchaseOrder(this.$route.params.id).then(function () { 
+         
         self.purchaseOrder = self.store.purchaseOrder;
       })
     },

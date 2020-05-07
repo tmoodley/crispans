@@ -7,6 +7,8 @@ const ManagePurchaseOrder = () => import(/* webpackChunkName: "ManagePurchaseOrd
 const PurchaseOrders = () => import(/* webpackChunkName: "PurchaseOrders" */ 'components/purchaseorders/orders.vue')
 const Product = () => import(/* webpackChunkName: "ManageProducts" */ 'components/Products/manage.vue')
 const Products = () => import(/* webpackChunkName: "SearchProduct" */ 'components/Products/list.vue')
+const Bid = () => import(/* webpackChunkName: "ManageBids" */'components/bids/details.vue')
+const Question = () => import('components/question/details.vue')
 export const routes = [
   { name: 'dashboard', path: '/portal/dashboard', component: Dashboard, display: 'Dashboard', icon: 'home', showOnMenu: true },
   { name: 'Profile', path: '/portal/Profile', component: Partner, display: 'My Profile', icon: 'home', showOnMenu: true },
@@ -18,5 +20,8 @@ export const routes = [
   { name: 'Orders', path: '/portal/PurchaseOrders/Manage', component: PurchaseOrders, display: 'Purchase Orders', icon: 'home', showOnMenu: true },
   { name: 'CreateProduct', path: '/portal/Products/Create', component: Product, display: 'Create Product', icon: 'info', showOnMenu: true },
   { name: 'SearchProduct', path: '/portal/Products/Manage', component: Products, display: 'Search Products', icon: 'list', showOnMenu: true },
-  { name: 'ManageProducts', path: '/portal/Products/Manage/:id', component: Product, display: 'Manage Products', icon: 'list', showOnMenu: false }
+  { name: 'ManageProducts', path: '/portal/Products/Manage/:id', component: Product, display: 'Manage Products', icon: 'list', showOnMenu: false },
+  { name: 'ManageBid', path: '/portal/Bids/Manage/:poid/:bidderid', component: Bid, display: 'Manage Bid', icon: 'list', showOnMenu: false },
+  { name: 'ManageQuestion', path: '/portal/Question/Manage/:id', component: Question, display: 'Manage Question', icon: 'list', showOnMenu: false }
+
 ]

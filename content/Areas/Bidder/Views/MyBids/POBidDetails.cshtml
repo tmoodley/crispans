@@ -65,7 +65,7 @@
 
             <div id="vueApp">
                 <div class="row pt-1">
-                    <div class="container">
+                    <div class="container-fluid">
 
                         <div class="row pt-2">
 
@@ -142,7 +142,7 @@
 
 
                             <div class="message-wrap col-lg-12 col-md-12">
-                                <div class="msg-wrap">
+                                <div class="">
 
                                     
 
@@ -274,8 +274,8 @@
 
 
                     //signalR post
-                   
 
+                   
 
                     this.connection.invoke('SendPOQuestion', this.bidderId, this.purchaseOrderId, this.questiontitle, this.questiontext); 
 
@@ -330,12 +330,12 @@
                 },
 
                 start: async function () { // starting SignalR Connection
-
+                    debugger;
                     var _self = this;
 
                                     try {
                                         await _self.connection.start();
-                                        console.log("connected");
+                                        //alert('Connected');
                                     } catch (err) {
                                         console.log(err);
                                         setTimeout(() => start(), 5000);
@@ -362,6 +362,7 @@
                   });
 
                 this.connection.onclose(async () => {
+                            //alert('closed restarting');
                                         await _self.start();
                                     });
 

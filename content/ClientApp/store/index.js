@@ -4,6 +4,8 @@ import company from './modules/Company'
 import job from './modules/Job'
 import purchaseOrder from './modules/PurchaseOrder'
 import product from './modules/Product'
+import bid from './modules/Bid'
+import question from './modules/Question'
 
 Vue.use(Vuex)
 
@@ -14,7 +16,9 @@ export default new Vuex.Store({
     company,
     purchaseOrder,
     job,
-    product
+    product,
+    bid,
+    question,
   },
   strict: debug,
 })
