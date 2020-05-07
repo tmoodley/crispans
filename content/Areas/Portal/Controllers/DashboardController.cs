@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Vue2Spa.Areas.Portal.Controllers 
+namespace Vue2Spa.Areas.Portal.Controllers
 {
-    [Authorize(Roles = "Partner,Administrator")]
+    [Authorize(Roles = "Partner, Supplier, Broker, Buyer")]
     [Area("Portal")]
     public class DashboardController : Controller
     {
