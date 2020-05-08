@@ -6,6 +6,7 @@
           <div class="card-header">
             <h5 class="title">Create New Tender</h5>
           </div>
+          {{$v.$dirty}}
           <div class="card-body">
             <form-wizard @on-complete="onComplete" title="" subtitle="">
               <tab-content title="Job details"
@@ -264,6 +265,7 @@
                         <h5 class="title">Job Value</h5>
                       </div>
                       <div class="card-body">
+                        {{$v.job.estimatedAnnualValue.$error}}
                         <div class="form-group" :class="{invalid: $v.job.estimatedAnnualValue.$error}">
                           <label for="EstimatedAnnualValue" class="control-label">Estimated Annual Value</label>
                           <input v-model="job.estimatedAnnualValue" class="form-control" @blur="$v.job.estimatedAnnualValue.$touch()" />
@@ -431,20 +433,24 @@
       },
       onComplete: function () {
         var self = this;
-        this.save().then(function () { 
-          self.$swal.fire(
-            'Saved',
-            'Job Saved',
-            'success'
-          ).then(function () {
-            if (self.action == 'edit') {
-              self.$emit("hide");
-            }
-            else {
-              self.$router.push({ path: '/portal/rfq/' })
-            }
-          })
-        });
+        if (this.$v.$invalid == true) {
+          self.$swal.fire('Please fill in the required filed');
+        } else {
+          this.save().then(function () {
+            self.$swal.fire(
+              'Saved',
+              'Job Saved',
+              'success'
+            ).then(function () {
+              if (self.action == 'edit') {
+                self.$emit("hide");
+              }
+              else {
+                self.$router.push({ path: '/portal/rfq/' })
+              }
+            })
+          });
+        }
       },
       setNda(id) { 
         this.job.ndaDocumentId = id;

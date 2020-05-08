@@ -101,7 +101,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="submit" value="Create" class="btn btn-primary" :disabled="purchaseOrder.PurchaseOrderItems.length == 0" />
+                      <input type="submit" value="Create" class="btn btn-primary" :disabled="$v.$invalid" />
                     </div>
                   </div>
                 </div>

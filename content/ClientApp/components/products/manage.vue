@@ -9,7 +9,7 @@
           <div class="card-body">
             <b-card>
               <form v-on:submit="save">
-                <b-button variant="primary" type="submit" class="pull-right">SAVE</b-button>
+                <b-button variant="primary" type="submit" class="pull-right" :disabled="$v.$invalid">SAVE</b-button>
                 <b-tabs pills card>
                   <b-tab body title="Details">
                     <div class="row">
@@ -196,7 +196,7 @@
     },
     data() {
       return {
-        action: 'add',
+        action: 'edit',
         email: _user,
         product: {},
         typeOptions: [
