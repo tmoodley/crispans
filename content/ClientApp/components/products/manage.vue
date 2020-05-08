@@ -196,7 +196,7 @@
     },
     data() {
       return {
-        action: 'edit',
+        action: 'add',
         email: _user,
         product: {},
         typeOptions: [
