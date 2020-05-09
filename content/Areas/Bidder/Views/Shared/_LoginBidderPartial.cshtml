@@ -6,9 +6,9 @@
 @if (SignInManager.IsSignedIn(User))
 {  
    <li id="theme_selector" class="dropdown">
-                <button class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link smoth-scroll" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span><i class="fa fa-user"></i> @User.Identity.Name</span>
-                </button>
+                </a>
                 <ul id="theme" class="dropdown-menu" role="menu">
                     <li>
                         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>

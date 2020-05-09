@@ -4,6 +4,7 @@ using System.Text;
 using HelpingHands.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Vue2Spa.Areas.Bidder.Models;
 using Vue2Spa.Areas.Portal.Models;
 using Vue2Spa.Models;
 
@@ -46,6 +47,11 @@ namespace HelpingHands.Data
         public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<POBid> POBids { get; set; }
+        public DbSet<POBidLineItem> POBidLineItems { get; set; }
+        public DbSet<POQuestion> POQuestion { get; set; }
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -317,11 +323,46 @@ namespace HelpingHands.Data
               .HasForeignKey(bc => bc.BidderId);
 
 
+            //Purchase order bids
+            modelBuilder.Entity<POBid>()
+                  .HasKey(x => new { x.PurchaseOrderId, x.BidderId });
 
+
+            modelBuilder.Entity<POBid>()
+                .HasOne(a => a.PurchaseOrder)
+                .WithMany(b => b.Bids)
+                .HasForeignKey(c => c.PurchaseOrderId);
+            modelBuilder.Entity<POBid>()
+                .HasOne(a => a.Bidder)
+                .WithMany(b => b.POBids)
+                .HasForeignKey(c => c.BidderId);
+
+             modelBuilder.Entity<POBidLineItem>()
+                  .HasKey(x => new { x.PurchaseOrderId, x.BidderId,x.PurchaseOrderItemId });
+
+
+            //PO Questions
+            modelBuilder.Entity<POQuestion>()
+                   .HasKey(x => new { x.PurchaseOrderId, x.QuestionId, x.BidderId });
+
+            modelBuilder.Entity<POQuestion>()
+               .HasOne(bc => bc.PurchaseOrder)
+               .WithMany(b => b.PurchaseOrderQuestions)
+               .HasForeignKey(bc => bc.PurchaseOrderId);
+            modelBuilder.Entity<POQuestion>()
+               .HasOne(bc => bc.Question)
+               .WithMany(c => c.PurchaseOrderQuestions)
+               .HasForeignKey(bc => bc.QuestionId);
+            modelBuilder.Entity<POQuestion>()
+               .HasOne(bc => bc.Bidder)
+               .WithMany(c => c.POQuestions)
+               .HasForeignKey(bc => bc.BidderId);
 
         }
 
         public DbSet<Vue2Spa.Models.ProductBOM> ProductBOM { get; set; }
+
+        public DbSet<Vue2Spa.Models.Question> Question { get; set; }
 
         public DbSet<Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory> PurchaseOrderCategory { get; set; }
 

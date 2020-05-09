@@ -1,0 +1,76 @@
+@model Vue2Spa.Models.DTO.POBidDto
+@{
+    ViewData["Title"] = "PlaceBid";
+    TempData["source"] = ViewBag.Source;
+    var count = 0;
+}
+
+<section id="intro" class="section-padding">
+    <div class="container">
+        <h3>Bid to Purchase Order @Model.PurchaseOrder.PurchaseOrderNumber</h3>
+        
+
+
+        <hr />
+        <form asp-action="Bid">
+            <div class="row pb-3">
+                <div class="col-md-4">
+                    <input type="hidden" value="@Model.BidderId" asp-for="BidderId" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <input type="hidden" value="@Model.PurchaseOrderId" asp-for="PurchaseOrderId" class="form-control">
+                </div>
+            </div>
+
+
+            <table class="table">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <td>Item</td>
+                        <td>Description</td>
+                        <td>Quantity</td>
+                        <td>Bid Quantity</td>
+                        <td>Bid Price</td>
+                        <td>Total</td>
+                        <td>Bid</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.LineItems)
+                    {
+                    <tr>
+                        <td>@item.Item <input type="hidden" class="form-control" name="LineItems[@count].PurchaseOrderId" value="@item.PurchaseOrderId"/></td>
+                        <td>@item.Description <input type="hidden" class="form-control" name="LineItems[@count].PurchaseOrderItemId" value="@item.PurchaseOrderItemId" /></td>
+                        <td>@item.Quantity</td>
+                        <td><input type="text" class="form-control" name="LineItems[@count].Quantity" /></td>
+                        <td><input type="text" class="form-control" name="LineItems[@count].Amount" /></td>
+                        <td></td>
+                        <td><input type="checkbox" class="form-control" name="LineItems[@count].Bid" /></td>
+
+                    </tr>
+                        count++;
+                    }
+                </tbody>
+            </table>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" value="Bid" class="btn btn-primary">
+                    <a href="/PurchaseOrders/" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</section>
+
+<style>
+    .trans-navigation {
+        background: black;
+    }
+</style>
+
+

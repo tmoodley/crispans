@@ -13,9 +13,15 @@ namespace Vue2Spa.Models
         public string Title { get; set; }
         public string Body { get; set; }
         public int Score { get; set; }
-        public List<Answer> Answers { get; set; }
+
+        public DateTime CreationTime { get; set; }
+        [JsonIgnore]
+        public ICollection<Answer> Answers { get; set; }
         [JsonIgnore]
         public ICollection<JobQuestion> JobQuestions { get; set; }
+        [JsonIgnore]
+        public ICollection<POQuestion> PurchaseOrderQuestions { get; set; }
+
     }
 
     public class Answer

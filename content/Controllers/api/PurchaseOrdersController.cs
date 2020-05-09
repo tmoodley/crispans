@@ -32,7 +32,7 @@ namespace Vue2Spa.Controllers.api
         [HttpGet("{id}")]
         public async Task<ActionResult<PurchaseOrder>> GetPurchaseOrder(Guid id)
         {
-            var purchaseOrder = await _context.PurchaseOrder.Include(x => x.PurchaseOrderItems).Include(x => x.PurchaseOrderCategories).FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
+            var purchaseOrder = await _context.PurchaseOrder.Include(x => x.PurchaseOrderItems).Include(a=>a.Bids).ThenInclude(s=>s.Bidder).Include(a=>a.PurchaseOrderQuestions).ThenInclude(a=>a.Question).ThenInclude(a=>a.Answers).FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
 
             if (purchaseOrder == null)
             {

@@ -23,7 +23,7 @@
             <div class="row mt-2">
                 <div class="col-md-4">
 
-                    <input  type="submit" id="submit" class="btn btn-primary" value="Send">
+                    <input type="submit" id="submit" class="btn btn-primary" value="Send">
                 </div>
 
             </div>
@@ -33,10 +33,23 @@
             <ul id="messages"></ul>
         </div>
 
+
+        <div class="row">
+            <div class="col-md-6">
+                <a asp-action="Index" asp-controller="MyBids" asp-area="Bidder" class="btn btn-danger">Back</a>
+            </div>
+        </div>
+
     </section>
 </div>
 
 @section scripts{
+
+    
+
+    
+
+
 
     <script>
         const connection = new signalR.HubConnectionBuilder()
@@ -70,7 +83,7 @@ connection.onclose(async () => {
         let message = document.getElementById('message').value;
         document.getElementById('message').value = '';
 
-         connection.invoke('Send', 'bidderid',message); 
+         connection.invoke('SendPOQuestion', 'bidderid',message,'0000-990-BIDID'); 
 
         //connection.start().then(() => {
              
