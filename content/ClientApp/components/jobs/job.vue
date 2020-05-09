@@ -22,25 +22,29 @@
                             <b-form-radio-group v-model="job.classification"
                                                 :options="options"
                                                 name="radios-stacked"
-                                                stacked></b-form-radio-group>
+                                                stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
                           </b-form-group>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
                         </div>
-                        <div class="form-group">
-                          <label for="Status" class="control-label">Type</label> 
-                          <b-form-select v-model="job.type" :options="typeOptions" class="form-control"></b-form-select>
+                        <div class="form-group" :class="{invalid: $v.job.type.$error}">
+                          <label for="Status" class="control-label">Type</label>
+                          <b-form-select v-model="job.type" :options="typeOptions" class="form-control" @blur="$v.job.type.$touch()"></b-form-select>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.type.required"> This field must not be empty</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{invalid: $v.job.name.$error}">
                           <label for="Name" class="control-label">Name</label>
-                          <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" />
+                          <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" @blur="$v.job.name.$touch()" />
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.name.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group" :class="{invalid: $v.job.number.$error}">
                           <label for="Number" class="control-label">Job Number</label>
                           <input v-model="job.number" class="form-control" placeholder="JobXYZ" @blur="$v.job.number.$touch()" />
-                          <p v-if="!$v.job.number.required && $v.job.number.$error"> This field must not be empty</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.number.required"> This field must not be empty</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{invalid: $v.job.status.$error}">
                           <label for="Status" class="control-label">Job Status</label>
-                          <b-form-select v-model="job.status" :options="statusOptions" class="form-control"></b-form-select>
+                          <b-form-select v-model="job.status" :options="statusOptions" class="form-control" @blur="$v.job.status.$touch()"></b-form-select>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.status.required"> This field must not be empty</p>
                         </div>
                       </div>
                     </div>
@@ -79,19 +83,24 @@
                   <div class="col-md-12"><h2>Workpiece Data</h2></div>
                   <div class="col-md-12"><h3>Dimensions</h3></div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.length" placeholder="Length* mm"></b-form-input>
+                    <b-form-input v-model="job.length" placeholder="Length* mm" @blur="$v.job.length.$touch()"></b-form-input>
+                    <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.length.required"> This field must not be empty</p>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.width" placeholder="Width mm"></b-form-input>
+                    <b-form-input v-model="job.width" placeholder="Width mm" @blur="$v.job.width.$touch()"></b-form-input>
+                    <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.width.required"> This field must not be empty</p>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.height" placeholder="Height  mm"></b-form-input>
+                    <b-form-input v-model="job.height" placeholder="Height  mm" @blur="$v.job.height.$touch()"></b-form-input>
+                    <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.height.required"> This field must not be empty</p>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.diameter" placeholder="Diameter mm"></b-form-input>
+                    <b-form-input v-model="job.diameter" placeholder="Diameter mm" @blur="$v.job.diameter.$touch()"></b-form-input>
+                    <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.diameter.required"> This field must not be empty</p>
                   </div>
                   <div class="col-md-2">
-                    <b-form-input v-model="job.minTolerance" placeholder="Min Tolerance mm"></b-form-input>
+                    <b-form-input v-model="job.minTolerance" placeholder="Min Tolerance mm" @blur="$v.job.minTolerance.$touch()"></b-form-input>
+                    <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.minTolerance.required"> This field must not be empty</p>
                   </div>
                 </div>
               </tab-content>
@@ -136,15 +145,18 @@
                       <div class="card-body">
                         <div class="form-group">
                           <label for="DateAvailable" class="control-label">Date Available</label>
-                          <b-form-datepicker id="DateAvailable" v-model="job.dateAvailable" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="DateAvailable" v-model="job.dateAvailable" class="mb-2" @blur="$v.job.dateAvailable.$touch()"></b-form-datepicker>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.dateAvailable.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group">
                           <label for="DateClosing" class="control-label">Date Closing</label>
-                          <b-form-datepicker id="DateClosing" v-model="job.dateClosing" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="DateClosing" v-model="job.dateClosing" class="mb-2" @blur="$v.job.dateClosing.$touch()"></b-form-datepicker>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.diameter.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group">
                           <label for="question-deadline" class="control-label">Question Deadline</label>
-                          <b-form-datepicker id="question-deadline" v-model="job.questionDeadline" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="question-deadline" v-model="job.questionDeadline" class="mb-2" @blur="$v.job.questionDeadline.$touch()"></b-form-datepicker>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.diameter.required"> This field must not be empty</p>
                         </div>
                       </div>
                     </div>
@@ -267,20 +279,20 @@
                         <div class="form-group" :class="{invalid: $v.job.estimatedAnnualValue.$error}">
                           <label for="EstimatedAnnualValue" class="control-label">Estimated Annual Value</label>
                           <input v-model="job.estimatedAnnualValue" class="form-control" @blur="$v.job.estimatedAnnualValue.$touch()" />
-                          <p v-if="!$v.job.estimatedAnnualValue.required && $v.job.estimatedAnnualValue.$error"> This field must not be empty</p>
                           <p v-if="!$v.job.estimatedAnnualValue.decimal"> Please provide a valid estimatedAnnualValue</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.estimatedAnnualValue.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group" :class="{invalid: $v.job.actualContractValue.$error}">
                           <label for="ActualContractValue" class="control-label">Actual Contract Value</label>
                           <input v-model="job.actualContractValue" class="form-control" @blur="$v.job.actualContractValue.$touch()" />
-                          <p v-if="!$v.job.actualContractValue.required && $v.job.actualContractValue.$error"> This field must not be empty</p>
                           <p v-if="!$v.job.actualContractValue.decimal"> Please provide a valid actualContractValue</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.actualContractValue.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group" :class="{invalid: $v.job.actualAnnualValue.$error}">
                           <label for="ActualAnnualValue" class="control-label">Actual Annual Value</label>
                           <input v-model="job.actualAnnualValue" class="form-control" @blur="$v.job.actualAnnualValue.$touch()" />
-                          <p v-if="!$v.job.actualAnnualValue.required && $v.job.actualAnnualValue.$error"> This field must not be empty</p>
                           <p v-if="!$v.job.actualAnnualValue.decimal"> Please provide a valid actualAnnualValue</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.actualAnnualValue.required"> This field must not be empty</p>
                         </div>
                       </div>
                     </div>
@@ -293,15 +305,18 @@
                       <div class="card-body">
                         <div class="form-group">
                           <label for="DateAvailable" class="control-label">Date Available</label>
-                          <b-form-datepicker id="DateAvailable" v-model="job.dateAvailable" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="DateAvailable" v-model="job.dateAvailable" class="mb-2" @blur="$v.job.dateAvailable.$touch()"></b-form-datepicker>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.dateAvailable.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group">
                           <label for="DateClosing" class="control-label">Date Closing</label>
-                          <b-form-datepicker id="DateClosing" v-model="job.dateClosing" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="DateClosing" v-model="job.dateClosing" class="mb-2" @blur="$v.job.dateClosing.$touch()"></b-form-datepicker>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.dateAvailable.required"> This field must not be empty</p>
                         </div>
                         <div class="form-group">
                           <label for="question-deadline" class="control-label">Question Deadline</label>
-                          <b-form-datepicker id="question-deadline" v-model="job.questionDeadline" class="mb-2"></b-form-datepicker>
+                          <b-form-datepicker id="question-deadline" v-model="job.questionDeadline" class="mb-2" @blur="$v.job.questionDeadline.$touch()"></b-form-datepicker>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.dateAvailable.required"> This field must not be empty</p>
                         </div>
                       </div>
                     </div>
@@ -329,7 +344,7 @@
   import material from '../categories/material'
   import naics from '../categories/naics'
   import upload from '../jobs/document'
-  import { required, numeric, minLength, maxLength, decimal } from 'vuelidate/lib/validators'
+  import { required, decimal } from 'vuelidate/lib/validators'
   export default {
     props: ['selectedjob'],
   computed: mapState({
@@ -349,6 +364,7 @@
   },
   data () {
     return {
+      validate: true,
       action: '',
       email: _user,
       job: {
@@ -431,20 +447,25 @@
       },
       onComplete: function () {
         var self = this;
-        this.save().then(function () { 
-          self.$swal.fire(
-            'Saved',
-            'Job Saved',
-            'success'
-          ).then(function () {
-            if (self.action == 'edit') {
-              self.$emit("hide");
-            }
-            else {
-              self.$router.push({ path: '/portal/rfq/' })
-            }
-          })
-        });
+        if (this.$v.$invalid == true) {
+          this.validate = false;
+          self.$swal.fire('Please make sure the required field is filled properly');
+        } else {
+          this.save().then(function () {
+            self.$swal.fire(
+              'Saved',
+              'Job Saved',
+              'success'
+            ).then(function () {
+              if (self.action == 'edit') {
+                self.$emit("hide");
+              }
+              else {
+                self.$router.push({ path: '/portal/rfq/' })
+              }
+            })
+          });
+        }
       },
       setNda(id) { 
         this.job.ndaDocumentId = id;
@@ -461,21 +482,22 @@
     },
     validations: {
       job: {
-        number: {
-          required
-        },
-        estimatedAnnualValue: {
-          required,
-          decimal
-        },
-        actualContractValue: {
-          required,
-          decimal
-        },
-        actualAnnualValue: {
-          required,
-          decimal
-        }
+        number: { required },
+        estimatedAnnualValue: { required, decimal },
+        actualContractValue: { required, decimal },
+        actualAnnualValue: { required, decimal },
+        type: { required },
+        classification: { required },
+        name: { required },
+        status: { required },
+        length: { required },
+        width: { required },
+        height: { required },
+        diameter: { required },
+        minTolerance: { required },
+        dateAvailable: { required },
+        dateClosing: { required },
+        questionDeadline: { required }
       }
     },
     mounted: function () { 
@@ -506,5 +528,9 @@
   .form-group.invalid input {
     border: 1px solid red;
     background-color: #ffc9aa;
+  }
+
+  .form-group p.invalided, .col-md-2 p.invalided{
+      display: none;
   }
 </style>

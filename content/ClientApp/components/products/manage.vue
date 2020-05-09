@@ -18,13 +18,15 @@
                           <b-form-radio-group v-model="product.type"
                                               :options="typeOptions"
                                               name="radios-stacked"
-                                              stacked></b-form-radio-group>
+                                              stacked @blur="$v.product.type.$touch()"></b-form-radio-group>
                         </b-form-group>
+                        <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.type.required"> This field must not be empty</p>
                       </div>
-                      <div class="col-lg-6 form-group">
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.name.$error}">
                         <label for="Name" class="col-lg-12">Name</label>
                         <div class="col-lg-12">
-                          <input v-model="product.name" placeholder="" class="form-control">
+                          <input v-model="product.name" placeholder="" class="form-control" @blur="$v.product.name.$touch()">
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.name.required"> This field must not be empty</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group" :class="{invalid: $v.product.upc.$error}">
@@ -32,29 +34,30 @@
                         <div class="col-lg-12">
                           <input v-model="product.upc" placeholder="" class="form-control" @blur="$v.product.upc.$touch()">
                           <p v-if="!$v.product.upc.numeric || !$v.product.upc.minLen || !$v.product.upc.maxLen"> Please provide a valid 12-digit upc code.</p>
-                          <p v-if="!$v.product.upc.required && $v.product.upc.$error"> This field must not be empty</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.upc.required"> This field must not be empty</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group"  :class="{invalid: $v.product.stock.$error}">
                         <label for="Stock" class="col-lg-12">Stock</label>
                         <div class="col-lg-12">
                           <input v-model="product.stock" placeholder="" class="form-control" @blur="$v.product.stock.$touch()">
-                          <p v-if="!$v.product.stock.required && $v.product.stock.$error"> This field must not be empty</p>
                           <p v-if="!$v.product.stock.numeric"> Please provide a valid stock</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.stock.required"> This field must not be empty</p>
                         </div>
                       </div>
-                      <div class="col-lg-6 form-group">
+                      <div class="col-lg-6 form-group" :class="{invalid: $v.product.mpn.$error}">
                         <label class="col-lg-12" for="ManufacturerPart">Manufacturer Part</label>
                         <div class="col-lg-12">
-                          <input type="text" v-model="product.mpn" id="manufacturerPart" name="ManufacturerPart" placeholder="" class="form-control manufacturer-part">
+                          <input type="text" v-model="product.mpn" id="manufacturerPart" name="ManufacturerPart" placeholder="" class="form-control manufacturer-part" @blur="$v.product.mpn.$touch()">
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.mpn.required"> This field must not be empty</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group" :class="{invalid: $v.product.price.$error}">
                         <label for="Price" class="col-lg-12">Price</label>
                         <div class="col-lg-12">
                           <currency-input v-model="product.price" v-currency="options" class="form-control price" @blur="$v.product.price.$touch()" />
-                          <p v-if="!$v.product.price.required && $v.product.price.$error"> This field must not be empty</p>
                           <p v-if="!$v.product.price.decimal"> Please provide a valid price</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.price.required"> This field must not be empty</p>
                         </div>
                       </div>
                     </div>
@@ -72,32 +75,32 @@
                         <label for="Height" class="col-lg-12">Height (cm)</label>
                         <div class="col-lg-12">
                           <input v-model="product.height" type="number" id="Height" name="Height" placeholder="" class="form-control price" @blur="$v.product.height.$touch()">
-                          <p v-if="!$v.product.height.required && $v.product.height.$error"> This field must not be empty</p>
                           <p v-if="!$v.product.height.decimal"> Please provide a valid height</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.height.required"> This field must not be empty</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group" :class="{invalid: $v.product.length.$error}">
                         <label for="Length" class="col-lg-12">Length (cm)</label>
                         <div class="col-lg-12">
                           <input v-model="product.length" type="number" id="price" name="Price" placeholder="" class="form-control price" @blur="$v.product.length.$touch()">
-                          <p v-if="!$v.product.length.required && $v.product.length.$error"> This field must not be empty</p>
                           <p v-if="!$v.product.length.decimal"> Please provide a valid length</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.length.required"> This field must not be empty</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group" :class="{invalid: $v.product.width.$error}">
                         <label for="Width" class="col-lg-12">Width (cm)</label>
                         <div class="col-lg-12">
                           <input v-model="product.width" type="number" id="Width" name="Width" placeholder="" class="form-control price" @blur="$v.product.width.$touch()">
-                          <p v-if="!$v.product.width.required && $v.product.width.$error"> This field must not be empty</p>
                           <p v-if="!$v.product.width.decimal"> Please provide a valid width</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.width.required"> This field must not be empty</p>
                         </div>
                       </div>
                       <div class="col-lg-6 form-group" :class="{invalid: $v.product.weight.$error}">
                         <label class="col-lg-12" for="Weight">Weight (lb)</label>
                         <div class="col-lg-12">
                           <input type="text" v-model="product.weight" id="number" name="Weight" placeholder="" class="form-control weight" @blur="$v.product.weight.$touch()">
-                          <p v-if="!$v.product.weight.required && $v.product.weight.$error"> This field must not be empty</p>
                           <p v-if="!$v.product.weight.decimal"> Please provide a valid weight</p>
+                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.product.weight.required"> This field must not be empty</p>
                         </div>
                       </div>
                     </div>
@@ -196,6 +199,7 @@
     },
     data() {
       return {
+        validate: true,
         action: 'add',
         email: _user,
         product: {},
@@ -252,33 +256,38 @@
         event.preventDefault();
         var self = this;
         this.product.customerId = this.store.company.id;
-        if (this.action == "add") {
-          return axios
-            .post('/portal/api/product/', self.product)
-            .then(function (response) {
-              self.product = response.data;
-              self.$swal.fire(
-                'Saved',
-                'Product Saved',
-                'success'
-              ).then(function () {
-                self.$emit("hide");
-              })
-            });
-        }
-        else {
-          return axios
-            .put('/portal/api/product/' + self.product.id, self.product)
-            .then(function (response) {
-              self.product = response.data;
-              self.$swal.fire(
-                'Saved',
-                'Product Saved',
-                'success'
-              ).then(function () {
-                self.$router.push({ path: '/portal/Products/Manage' })
-              })
-            }); 
+        if (this.$v.$invalid == true) {
+          this.validate = false;
+          self.$swal.fire('Please make sure the required field is filled properly');
+        } else {
+          if (this.action == "add") {
+            return axios
+              .post('/portal/api/product/', self.product)
+              .then(function (response) {
+                self.product = response.data;
+                self.$swal.fire(
+                  'Saved',
+                  'Product Saved',
+                  'success'
+                ).then(function () {
+                  self.$emit("hide");
+                })
+              });
+          }
+          else {
+            return axios
+              .put('/portal/api/product/' + self.product.id, self.product)
+              .then(function (response) {
+                self.product = response.data;
+                self.$swal.fire(
+                  'Saved',
+                  'Product Saved',
+                  'success'
+                ).then(function () {
+                  self.$router.push({ path: '/portal/Products/Manage' })
+                })
+              });
+          }
         }
       },
       setImage1(id) { 
@@ -325,6 +334,15 @@
         weight: {
           required,
           decimal
+        },
+        type: {
+          required
+        },
+        name: {
+          required
+        },
+        mpn: {
+          required
         }
       }
     },
@@ -384,5 +402,9 @@
   .col-lg-6.form-group.invalid input {
     border: 1px solid red;
     background-color: #ffc9aa;
+  }
+
+  .col-lg-12 p.invalided, .col-lg-6.form-group p.invalided{
+    display: none;
   }
 </style>
