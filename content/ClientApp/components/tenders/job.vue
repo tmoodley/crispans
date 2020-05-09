@@ -54,6 +54,7 @@
                         <div class="card card-user">
                           <div class="card-body">
                             <category :job="selectedjob"></category>
+                            <questions></questions>
                           </div>
                         </div>
                       </div>
@@ -87,6 +88,7 @@
   import material from '../categories/material'
   import naics from '../categories/naics'
   import upload from '../jobs/document'
+  import questions from './questions'
   export default {
     props: ['selectedjob'],
  
@@ -108,7 +110,8 @@
     industry,
     machine,
     material,
-    naics
+    naics,
+    questions
   },
   data () {
     return {

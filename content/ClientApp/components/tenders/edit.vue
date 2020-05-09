@@ -1,15 +1,14 @@
 <template>
-  <div class="content"> 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="title">Create New Tender</h5>
-          </div>
-          <div class="card-body">
-            <form-wizard @on-complete="onComplete" title="" subtitle="">
-              <tab-content title="Job details"
-                           icon="fa fa-user">
+  <div class="content">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Edit Tender</h5>
+      </div>
+      <div class="card-body">
+        <form @on-complete="onComplete" title="" subtitle="">
+          <b-card class="mb-1">
+            <b-tabs pills card>
+              <b-tab body title="Job details">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="card">
@@ -26,17 +25,16 @@
                           </b-form-group>
                         </div>
                         <div class="form-group">
-                          <label for="Status" class="control-label">Type</label> 
+                          <label for="Status" class="control-label">Type</label>
                           <b-form-select v-model="job.type" :options="typeOptions" class="form-control"></b-form-select>
                         </div>
                         <div class="form-group">
                           <label for="Name" class="control-label">Name</label>
                           <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" />
                         </div>
-                        <div class="form-group" :class="{invalid: $v.job.number.$error}">
+                        <div class="form-group">
                           <label for="Number" class="control-label">Job Number</label>
-                          <input v-model="job.number" class="form-control" placeholder="JobXYZ" @blur="$v.job.number.$touch()" />
-                          <p v-if="!$v.job.number.required && $v.job.number.$error"> This field must not be empty</p>
+                          <input v-model="job.number" class="form-control" placeholder="JobXYZ" />
                         </div>
                         <div class="form-group">
                           <label for="Status" class="control-label">Job Status</label>
@@ -54,9 +52,8 @@
                     </div>
                   </div>
                 </div>
-              </tab-content>
-              <tab-content title="Description"
-                           icon="fa fa-list-alt">
+              </b-tab>
+              <b-tab body title="Description">
                 <div class="row">
                   <div class="col-md-12">
                     <b-form-input v-model="job.title" placeholder="Title"></b-form-input>
@@ -75,7 +72,7 @@
                     <b-form-input v-model="job.price" placeholder="Price"></b-form-input>
                   </div>
                 </div>
-                <div class="row"> 
+                <div class="row">
                   <div class="col-md-12"><h2>Workpiece Data</h2></div>
                   <div class="col-md-12"><h3>Dimensions</h3></div>
                   <div class="col-md-2">
@@ -94,9 +91,8 @@
                     <b-form-input v-model="job.minTolerance" placeholder="Min Tolerance mm"></b-form-input>
                   </div>
                 </div>
-              </tab-content>
-              <tab-content title="Question Info"
-                           icon="fa fa-question">
+              </b-tab>
+              <b-tab body title="Question Info">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="card">
@@ -150,9 +146,8 @@
                     </div>
                   </div>
                 </div>
-              </tab-content>
-              <tab-content title="Job Categories"
-                           icon="fa fa-list-alt">
+              </b-tab>
+              <b-tab body title="Job Categories">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card">
@@ -199,9 +194,8 @@
                     </div>
                   </div>
                 </div>
-              </tab-content>
-              <tab-content title="Documents step"
-                           icon="fa fa-file">
+              </b-tab>
+              <b-tab body title="Documents step">
                 <div class="row">
                   <div class="col-md-12">
                     <b-form-checkbox switch size="lg" class="float-left">NDA (NON DISCLOSURE AGREEMENT)</b-form-checkbox>
@@ -254,9 +248,8 @@
                     <upload @setid="setCadFile"></upload>
                   </div>
                 </div>
-              </tab-content>
-              <tab-content title="Last step"
-                           icon="fa fa-check">
+              </b-tab>
+              <b-tab body title="Last step">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="card">
@@ -264,23 +257,17 @@
                         <h5 class="title">Job Value</h5>
                       </div>
                       <div class="card-body">
-                        <div class="form-group" :class="{invalid: $v.job.estimatedAnnualValue.$error}">
+                        <div class="form-group">
                           <label for="EstimatedAnnualValue" class="control-label">Estimated Annual Value</label>
-                          <input v-model="job.estimatedAnnualValue" class="form-control" @blur="$v.job.estimatedAnnualValue.$touch()" />
-                          <p v-if="!$v.job.estimatedAnnualValue.required && $v.job.estimatedAnnualValue.$error"> This field must not be empty</p>
-                          <p v-if="!$v.job.estimatedAnnualValue.decimal"> Please provide a valid estimatedAnnualValue</p>
+                          <input v-model="job.estimatedAnnualValue" class="form-control" />
                         </div>
-                        <div class="form-group" :class="{invalid: $v.job.actualContractValue.$error}">
+                        <div class="form-group">
                           <label for="ActualContractValue" class="control-label">Actual Contract Value</label>
-                          <input v-model="job.actualContractValue" class="form-control" @blur="$v.job.actualContractValue.$touch()" />
-                          <p v-if="!$v.job.actualContractValue.required && $v.job.actualContractValue.$error"> This field must not be empty</p>
-                          <p v-if="!$v.job.actualContractValue.decimal"> Please provide a valid actualContractValue</p>
+                          <input v-model="job.actualContractValue" class="form-control" />
                         </div>
-                        <div class="form-group" :class="{invalid: $v.job.actualAnnualValue.$error}">
+                        <div class="form-group">
                           <label for="ActualAnnualValue" class="control-label">Actual Annual Value</label>
-                          <input v-model="job.actualAnnualValue" class="form-control" @blur="$v.job.actualAnnualValue.$touch()" />
-                          <p v-if="!$v.job.actualAnnualValue.required && $v.job.actualAnnualValue.$error"> This field must not be empty</p>
-                          <p v-if="!$v.job.actualAnnualValue.decimal"> Please provide a valid actualAnnualValue</p>
+                          <input v-model="job.actualAnnualValue" class="form-control" />
                         </div>
                       </div>
                     </div>
@@ -307,17 +294,18 @@
                     </div>
                   </div>
                 </div>
-              </tab-content>
-            </form-wizard>
-          </div>
-        </div>
+              </b-tab>
+            </b-tabs>
+          </b-card>
+          <b-button variant="success" type="submit">SAVE</b-button>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import axios from 'axios' 
+  import axios from 'axios'
   import { mapState, mapActions } from 'vuex'
   import category from '../categories/category'
   import certification from '../categories/certification'
@@ -329,64 +317,63 @@
   import material from '../categories/material'
   import naics from '../categories/naics'
   import upload from '../jobs/document'
-  import { required, numeric, minLength, maxLength, decimal } from 'vuelidate/lib/validators'
   export default {
     props: ['selectedjob'],
-  computed: mapState({
-    store: state => state.company
-  }), 
+    computed: mapState({
+      store: state => state.company
+    }),
     components: {
-    upload,
-    category,
-    certification,
-    capability,
-    companytype,
-    filetype,
-    industry,
-    machine,
-    material,
-    naics
-  },
-  data () {
-    return {
-      action: '',
-      email: _user,
-      job: {
-        name: '',
-        number: '',
-        status: 'design',
-        Classification: 'goods',
-        type: 'rfp'
-      },
-      options: [
-        { text: 'Goods', value: 'goods' },
-        { text: 'Service', value: 'service' },
-        { text: 'Construction', value: 'construction' }
-      ],
-      typeOptions: [
-        { text: 'Request For Proposal', value: 'rfp' },
-        { text: 'Request For Quotation', value: 'rfq' },
-        { text: 'Tender', value: 'tender' },
-        { text: 'Auction', value: 'auction' }
-      ],
-      statusOptions: [ 
-        { value: 'design', text: 'Job Design' },
-        { value: 'start', text: 'Job Started' },  
-        { value: 'completed', text: 'Job Completed' },  
-        { value: 'awarded', text: 'Job Awarded' },  
-      ]
+      upload,
+      category,
+      certification,
+      capability,
+      companytype,
+      filetype,
+      industry,
+      machine,
+      material,
+      naics
+    },
+    data() {
+      return {
+        action: '',
+        email: _user,
+        job: {
+          name: '',
+          number: '',
+          status: 'design',
+          Classification: 'goods',
+          type: 'rfp'
+        },
+        options: [
+          { text: 'Goods', value: 'goods' },
+          { text: 'Service', value: 'service' },
+          { text: 'Construction', value: 'construction' }
+        ],
+        typeOptions: [
+          { text: 'Request For Proposal', value: 'rfp' },
+          { text: 'Request For Quotation', value: 'rfq' },
+          { text: 'Tender', value: 'tender' },
+          { text: 'Auction', value: 'auction' }
+        ],
+        statusOptions: [
+          { value: 'design', text: 'Job Design' },
+          { value: 'start', text: 'Job Started' },
+          { value: 'completed', text: 'Job Completed' },
+          { value: 'awarded', text: 'Job Awarded' },
+        ]
       }
     },
     methods: {
-    ...mapActions('company', [
+      ...mapActions('company', [
         'getCompany'
-    ]),
+      ]),
       download(id) {
         axios({
 
           url: '/portal/api/documents/' + id,
 
-          method: 'GET', 
+          method: 'GET',
 
         }).then(function (doc) {
           axios({
@@ -402,22 +389,22 @@
             var fileURL = window.URL.createObjectURL(new Blob([response.data]));
 
             var fileLink = document.createElement('a');
-             
+
             fileLink.href = fileURL;
 
             fileLink.setAttribute('download', doc.data.name);
 
             document.body.appendChild(fileLink);
-             
+
             fileLink.click();
 
           })
         });
-    },
-    save() {
-      event.preventDefault();
-      var self = this; 
-        if (self.action == "edit") { 
+      },
+      save() {
+        event.preventDefault();
+        var self = this;
+        if (self.action == "edit") {
           return axios
             .put('/portal/api/jobs/PutJob/' + self.job.id, self.job)
             .then(response => { console.log(response.data) })
@@ -427,11 +414,11 @@
           return axios
             .post('/portal/api/jobs/PostJob/', self.job)
             .then(response => { console.log(response.data) })
-        } 
+        }
       },
       onComplete: function () {
         var self = this;
-        this.save().then(function () { 
+        this.save().then(function () {
           self.$swal.fire(
             'Saved',
             'Job Saved',
@@ -446,39 +433,20 @@
           })
         });
       },
-      setNda(id) { 
+      setNda(id) {
         this.job.ndaDocumentId = id;
       },
-      setTerms(id){
-          this.job.termsDocumentId = id;
+      setTerms(id) {
+        this.job.termsDocumentId = id;
       },
-      setContract(id){
-          this.job.contractDocumentId = id;
+      setContract(id) {
+        this.job.contractDocumentId = id;
       },
-      setCadFile(id){
-          this.job.cadFileDocumentId = id;
+      setCadFile(id) {
+        this.job.cadFileDocumentId = id;
       }
     },
-    validations: {
-      job: {
-        number: {
-          required
-        },
-        estimatedAnnualValue: {
-          required,
-          decimal
-        },
-        actualContractValue: {
-          required,
-          decimal
-        },
-        actualAnnualValue: {
-          required,
-          decimal
-        }
-      }
-    },
-    mounted: function () { 
+    mounted: function () {
       if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
         this.job = this.selectedjob;
         this.action = 'edit';
@@ -487,24 +455,26 @@
         this.action = 'add';
       }
       this.getCompany(this.email)
+    }
   }
-}
 </script>
 
-<style scoped>
+<style>
   button.b-form-datepicker {
     margin: 0;
     border-radius: 2.1875rem;
-}
-  button.btn.btn-sm.btn-outline-secondary.border-0.flex-fill.p-1.mx-1 {
-    COLOR: blue;
-}
-  .form-group.invalid label {
-    color: red;
   }
 
-  .form-group.invalid input {
-    border: 1px solid red;
-    background-color: #ffc9aa;
+  button.btn.btn-sm.btn-outline-secondary.border-0.flex-fill.p-1.mx-1 {
+    COLOR: blue;
   }
+
+  li.nav-item a {
+    color: #9A9A9A;
+  }
+
+  li.nav-item a:hover {
+    color: black;
+  }
+
 </style>

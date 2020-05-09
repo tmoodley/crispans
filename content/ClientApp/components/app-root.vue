@@ -97,5 +97,5 @@
     }
 </script>
 
-<style>  
+<style>
 </style>

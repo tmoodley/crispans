@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header">
             <h5 class="title">Manage Tenders</h5>
-            <router-link to="/Tenders/Create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
+            <router-link to="/portal/tender/create" class="btn btn-primary pull-right"><icon :icon="plus" />Create</router-link>
           </div>
           <div class="card-body">
             <b-container fluid>
@@ -72,7 +72,7 @@ export default {
       this.$bvModal.hide(this.infoModal.id)
     },
     info(item, index, button) { 
-      this.$router.push({ path: '/tenders/manage/' + item.id }) 
+      this.$router.push({ path: '/portal/tender/manage/' + item.id }) 
     },
     async loadPage () { 
       try { 

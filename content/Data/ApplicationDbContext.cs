@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using HelpingHands.Models;
@@ -363,6 +363,8 @@ namespace HelpingHands.Data
         public DbSet<Vue2Spa.Models.ProductBOM> ProductBOM { get; set; }
 
         public DbSet<Vue2Spa.Models.Question> Question { get; set; }
+
+        public DbSet<Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory> PurchaseOrderCategory { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HelpingHands.Controllers
 {
-    [Authorize(Roles = "Partner, Administration")]
+    [Authorize(Roles = "Partner, Supplier, Broker, Buyer")]
     [Area("Partner")]
     public class DashboardController : Controller
     {
