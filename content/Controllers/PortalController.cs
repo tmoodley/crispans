@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HelpingHands.Controllers
 {
-    [Authorize(Roles = "Partner, Administration")] 
+    [Authorize(Roles = "Partner, Supplier, Broker, Buyer")]
     public class PortalController : Controller
     {
         public IActionResult Index()
