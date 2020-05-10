@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using HelpingHands.Data;
 using Vue2Spa.Areas.Bidder.Models;
 using Microsoft.AspNetCore.Authorization;
+using Vue2Spa.Areas.Bidder.Models.DTO;
+using AutoMapper;
+using Vue2Spa.Models.DTO;
+using Vue2Spa.Areas.Portal.Models;
 
 namespace Vue2Spa.Areas.Portal.Controllers.API
 {
@@ -15,35 +19,73 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
     //[Authorize(Roles = "Partner,Administrator")]
     [Area("Portal")]
     [ApiController]
-    public class POBidsController : ControllerBase
+    public class BidsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
-        public POBidsController(ApplicationDbContext context)
+        
+        public BidsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: api/POBids
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<POBid>>> GetPOBids()
+        public async Task<ActionResult<IEnumerable<POBid>>> GetBids()
         {
             return await _context.POBids.ToListAsync();
         }
 
         // GET: api/POBids/5
-        [HttpGet("{poid}/{bidderid}")]
-        public async Task<ActionResult<POBid>> GetPOBid(Guid poid,Guid bidderid)
+        [HttpGet("{docid}/{bidderid}/{src}")]
+        public async Task<ActionResult<BidDto>> GetBid(Guid docid, Guid bidderid, string src)
         {
-            var pOBid = await _context.POBids.Include(a=>a.PurchaseOrder).ThenInclude(b=>b.PurchaseOrderQuestions).ThenInclude(c=>c.Question) .Where(a=>((a.PurchaseOrderId == poid)&&(a.BidderId == bidderid)))
+            BidDto bidDto = null;
+
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<POBid, BidDto>();
+                cfg.CreateMap<POBidLineItem, POBidLineItemDto>();
+
+                cfg.CreateMap<JobBid, BidDto>();
+                //cfg.CreateMap<POBidLineItem, POBidLineItemDto>();
+
+            });
+            // only during development, validate your mappings; remove it before release
+            //configuration.AssertConfigurationIsValid();
+            // use DI (http://docs.automapper.org/en/latest/Dependency-injection.html) or create the mapper yourself
+            var mapper = configuration.CreateMapper();
+
+            
+
+
+            if (src == "PurchaseOrder")
+            {
+                var pOBid = await _context.POBids.Include(a => a.PurchaseOrder).ThenInclude(b => b.PurchaseOrderQuestions).ThenInclude(c => c.Question).Where(a => ((a.PurchaseOrderId == docid) && (a.BidderId == bidderid)))
                 .FirstOrDefaultAsync().ConfigureAwait(false);
 
-            if (pOBid == null)
+                bidDto = mapper.Map<BidDto>(pOBid);
+                bidDto.Source = BidSourceType.PurchaseOrder.ToString();
+            }
+            else
+            {
+                var jobBid = await _context.JobBids.Include(a=>a.Job).ThenInclude(b=>b.JobQuestions).Where(a => ((a.JobId == docid.ToString()) && (a.BidderId == bidderid)))
+                .FirstOrDefaultAsync().ConfigureAwait(false);
+
+                bidDto = mapper.Map<BidDto>(jobBid);
+                bidDto.Source = BidSourceType.Tender.ToString();
+            }
+
+
+
+
+            
+
+            if (bidDto == null)
             {
                 return NotFound();
             }
 
-            return pOBid;
+            return bidDto;
         }
 
         // PUT: api/POBids/5

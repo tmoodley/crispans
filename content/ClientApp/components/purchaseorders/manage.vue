@@ -390,7 +390,7 @@
                   this.purchaseOrder.cadFileDocumentId = id;
               },
               viewBid(poid,bidderid){
-                  alert(poid);
+                  //alert(poid);
 
                   var link = '/portal/Bids/Manage/'+poid+'/'+bidderid;
                   router.push(link);

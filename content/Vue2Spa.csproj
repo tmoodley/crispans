@@ -3777,6 +3777,7 @@
     <Folder Include="Areas\Bidder\Data\" />
     <Folder Include="Areas\Portal\Data\" />
     <Folder Include="ClientApp\components\bids\" />
+    <Folder Include="ClientApp\components\mybids\" />
     <Folder Include="Controllers\Admin\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\img\banner\" />

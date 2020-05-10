@@ -110,7 +110,8 @@ namespace Vue2Spa
                 return JsonConvert.DeserializeObject<IDictionary<string, object>>(appJson);
             }, true);
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
 
             //Password Strength Setting
             services.Configure<IdentityOptions>(options =>

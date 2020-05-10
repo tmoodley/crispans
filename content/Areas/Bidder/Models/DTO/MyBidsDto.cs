@@ -13,6 +13,8 @@ namespace Vue2Spa.Areas.Bidder.Models.DTO
         public string BidStatus { get; set; }
         public string JobStatus { get; set; }
         public string Source { get; set; }
+        
+        public Guid BidderId { get; set; }
 
     }
 }

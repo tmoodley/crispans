@@ -34,7 +34,7 @@ namespace Vue2Spa.Hubs
 
         public async Task SendPOQuestion(string bidderId,string purchaseOrderId, string title, string message)
         {
-            Debug.Print("Server Received message "+message);
+            //Debug.Print("Server Received message "+message);
 
             var bidderObject = _context.Bidders.Where(a => a.Id == Guid.Parse(bidderId)).FirstOrDefault();//(a => a.EmailAddress== bidderEmailAddress).FirstOrDefault();
             var purchaseOrderObject = _context.PurchaseOrder.Where(a => a.Id == Guid.Parse(purchaseOrderId)).FirstOrDefault();

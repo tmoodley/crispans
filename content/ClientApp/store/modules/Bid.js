@@ -16,9 +16,9 @@ const actions = {
   getBid({ commit }, payload) {
     
     return axios
-      .get('/portal/api/pobids/' + payload)
+      .get('/portal/api/bids/' + payload)
       .then(function (response) {
-        debugger;
+       
         commit('setBid', response.data);
         return response.data;
       })
