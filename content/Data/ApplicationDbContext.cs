@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using HelpingHands.Models;
@@ -22,26 +22,34 @@ namespace HelpingHands.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Vue2Spa.Models.CustomerCategory> CustomerCategory { get; set; }
+        public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<Naics> Naics { get; set; }
         public DbSet<Vue2Spa.Models.CustomerNaics> CustomerNaics { get; set; }
+        public DbSet<JobNaics> JobNaics { get; set; }
         public DbSet<Capability> Capabilities { get; set; }
         public DbSet<Vue2Spa.Models.CustomerCapability> CustomerCapability { get; set; }
+        public DbSet<JobCapability> JobCapability { get; set; }
         public DbSet<Machine> Machines { get; set; }
         public DbSet<Vue2Spa.Models.CustomerMachine> CustomerMachine { get; set; }
+        public DbSet<JobMachine> JobMachine { get; set; }
         public DbSet<Industry> Industries { get; set; }
         public DbSet<Vue2Spa.Models.CustomerIndustry> CustomerIndustry { get; set; }
+        public DbSet<JobIndustry> JobIndustry { get; set; }
         public DbSet<FileType> FileTypes { get; set; }
         public DbSet<Vue2Spa.Models.CustomerFileType> CustomerFileType { get; set; }
+        public DbSet<JobFileType> JobFileType { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<Vue2Spa.Models.CustomerMaterial> CustomerMaterial { get; set; }
+        public DbSet<JobMaterial> JobMaterial { get; set; }
         public DbSet<Certification> Certifications { get; set; }
         public DbSet<Vue2Spa.Models.CustomerCertification> CustomerCertification { get; set; }
+        public DbSet<JobCertification> JobCertification { get; set; }
         public DbSet<CompanyType> CompanyTypes { get; set; }
         public DbSet<Vue2Spa.Models.CustomerCompanyType> CustomerCompanyType { get; set; }
+        public DbSet<JobCompanyType> JobCompanyType { get; set; }
         public DbSet<PartnerCompanyType> PartnerCompanyType { get; set; }
         public DbSet<Bidder> Bidders { get; set; }
-        public DbSet<JobBid> JobBids { get; set; }
-        public DbSet<JobCategory> JobCategory { get; set; }
+        public DbSet<JobBid> JobBids { get; set; } 
         public DbSet<JobQuestion> JobQuestions { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
         public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
@@ -279,7 +287,44 @@ namespace HelpingHands.Data
                 .WithMany(c => c.JobCompanyTypes)
                 .HasForeignKey(bc => bc.CompanyTypeId);
 
+            //Job Certification
+            modelBuilder.Entity<JobCertification>()
+        .HasKey(x => new { x.JobId, x.CertificationId });
 
+            modelBuilder.Entity<JobCertification>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobCertifications)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobCertification>()
+                .HasOne(bc => bc.Certification)
+                .WithMany(c => c.JobCertifications)
+                .HasForeignKey(bc => bc.CertificationId);
+
+            //Job Naics
+            modelBuilder.Entity<JobNaics>()
+        .HasKey(x => new { x.JobId, x.NaicsId });
+
+            modelBuilder.Entity<JobNaics>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobNaics)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobNaics>()
+                .HasOne(bc => bc.Naics)
+                .WithMany(c => c.JobNaics)
+                .HasForeignKey(bc => bc.NaicsId);
+
+            //Job Capability
+            modelBuilder.Entity<JobCapability>()
+        .HasKey(x => new { x.JobId, x.CapabilityId });
+
+            modelBuilder.Entity<JobCapability>()
+                .HasOne(bc => bc.Job)
+                .WithMany(b => b.JobCapabilities)
+                .HasForeignKey(bc => bc.JobId);
+            modelBuilder.Entity<JobCapability>()
+                .HasOne(bc => bc.Capability)
+                .WithMany(c => c.JobCapabilities)
+                .HasForeignKey(bc => bc.CapabilityId);
             // Partner Company Types
             modelBuilder.Entity<PartnerCompanyType>()
                .HasKey(x => new { x.PartnerId, x.CompanyTypeId });
