@@ -3779,6 +3779,7 @@
     <Folder Include="ClientApp\components\bids\" />
     <Folder Include="ClientApp\components\mybids\" />
     <Folder Include="Controllers\Admin\" />
+    <Folder Include="Models\Job\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\img\banner\" />
     <Folder Include="wwwroot\uploads\" />

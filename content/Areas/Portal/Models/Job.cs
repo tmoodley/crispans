@@ -178,12 +178,14 @@ namespace Vue2Spa.Areas.Portal.Models
         public Guid ContractDocumentId { get; set; }
         public Guid CadFileDocumentId { get; set; }
 
+        public ICollection<JobCapability> JobCapabilities { get; set; }
         public ICollection<JobCategory> JobCategories { get; set; }
         public ICollection<JobCertification> JobCertifications { get; set; }
         public ICollection<JobCompanyType> JobCompanyTypes { get; set; }
         public ICollection<JobFileType> JobFileTypes { get; set; }
         public ICollection<JobIndustry> JobIndustries { get; set; }
         public ICollection<JobMachine> JobMachines { get; set; }
+        public ICollection<JobNaics> JobNaics { get; set; }
         public ICollection<JobMaterial> JobMaterials { get; set; }
         [JsonIgnore]
         public ICollection<JobQuestion> JobQuestions { get; set; }

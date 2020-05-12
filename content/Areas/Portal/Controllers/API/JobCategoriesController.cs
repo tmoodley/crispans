@@ -12,7 +12,7 @@ using Vue2Spa.Areas.Portal.Models;
 
 namespace Vue2Spa.Areas.Portal.Controllers.API
 {
-    [Authorize]
+    [Authorize(Roles = "Partner, Supplier, Broker, Buyer")]
     [Route("/portal/api/[controller]")]
     [ApiController]
     public class JobCategoriesController : ControllerBase
