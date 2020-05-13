@@ -7,7 +7,7 @@
     <router-link class="navbar-brand" to="/"><icon :icon="['fab', 'microsoft']" />Portal</router-link>
     <div class="logo">
       <a href="/" class="simple-text logo-normal">
-        <img src="../../wwwroot/assets/img/LOGO.png" alt="" style="width:100%; max-width:170px; min-width:130px;" class="img-fluid b-logo">
+        <img src="../../wwwroot/images/logo-new.gif" alt="" style="width:100%; max-width:170px; min-width:130px;" class="img-fluid b-logo">
       </a>
     </div>  
       <perfect-scrollbar class="sidebar-wrapper" id="sidebar-wrapper">
@@ -27,7 +27,7 @@
     import { routes } from '../router/routes'
 
     export default {
-      data () {
+    data() {
         return {
           routes,
           collapsed: true

@@ -124,10 +124,13 @@
   import machine from './categories/machine'
   import material from './categories/material'
   import naics from './categories/naics'
-  export default {
-  computed: mapState({
-    store: state => state.company
-  }), 
+  const _user = JSON.parse(localStorage.getItem('user'));
+  export default { 
+    computed: {
+        ...mapState({
+          store: state => state.company
+        }) 
+    },
   components: {
     category,
     certification,
@@ -141,7 +144,7 @@
   },
   data () {
     return {
-      email: _user, 
+      email: _user.username, 
       }
     },
     methods: {

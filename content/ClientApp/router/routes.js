@@ -11,6 +11,8 @@ const Products = () => import(/* webpackChunkName: "SearchProduct" */ 'component
 const Bid = () => import(/* webpackChunkName: "ManageBids" */'components/bids/details.vue')
 const Question = () => import('components/question/details.vue')
 const MyBids = () => import('components/mybids/manage.vue')
+const LoginPage = () => import('components/login/LoginPage.vue')
+
 export const routes = [
   { name: 'dashboard', path: '/portal/dashboard', component: Dashboard, display: 'Dashboard', icon: 'home', showOnMenu: true },
   { name: 'Profile', path: '/portal/Profile', component: Partner, display: 'My Profile', icon: 'home', showOnMenu: true },
@@ -25,6 +27,6 @@ export const routes = [
   { name: 'ManageProducts', path: '/portal/Products/Manage/:id', component: Product, display: 'Manage Products', icon: 'list', showOnMenu: false },
   { name: 'ManageBid', path: '/portal/Bids/Manage/:docid/:bidderid/:src', component: Bid, display: 'Manage Bid', icon: 'list', showOnMenu: false },
   { name: 'ManageQuestion', path: '/portal/Question/Manage/:id', component: Question, display: 'Manage Question', icon: 'list', showOnMenu: false },
-  { name: 'ManageMyBids', path: '/portal/mybids/', component: MyBids, display: 'My Bids', icon: 'list', showOnMenu: true }
- 
+  { name: 'ManageMyBids', path: '/portal/mybids/', component: MyBids, display: 'My Bids', icon: 'list', showOnMenu: true },
+  { path: '/login', component: LoginPage, showOnMenu: false }
 ]

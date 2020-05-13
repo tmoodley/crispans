@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import { authHeader } from '../../_helpers';
 // initial state
 const state = {
   company: []
@@ -15,8 +16,12 @@ const getters = {
 // actions
 const actions = {
   getCompany({ commit }, payload) {
+    const requestOptions = {
+      headers: authHeader()
+    };
+
     return axios
-      .get('/portal/api/customers/' + payload)
+      .get('/portal/api/customers/' + payload, requestOptions)
       .then(function (response) {
         commit('setCompany', response.data);
         return response.data;
