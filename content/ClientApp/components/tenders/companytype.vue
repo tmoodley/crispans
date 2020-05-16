@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form-group label="Choose Category">
+    <b-form-group label="Choose Company Type">
       <b-form-tags v-model="value" no-outer-focus class="mb-2">
         <template v-slot="{ tags, disabled, addTag, removeTag }">
           <ul v-if="tags.length > 0" class="list-inline d-inline-block mb-2">
@@ -10,7 +10,7 @@
                           :disabled="disabled"
                           variant="info">{{ tag }}</b-form-tag>
             </li>
-          </ul>
+          </ul> 
           <b-dropdown size="sm" variant="primary" block menu-class="w-100">
             <template v-slot:button-content>
               <b-icon icon="tag-fill"></b-icon> Choose tags
@@ -48,8 +48,10 @@
 <script>
   import axios from 'axios'
   import { mapState, mapActions } from 'vuex' 
-  export default { 
-    props: ['job'],
+  export default {
+    computed: mapState({
+      store: state => state.company
+    }), 
     data() {
       return {
         options: [],
@@ -60,8 +62,8 @@
     },
     computed: {
       ...mapState({
-        store: state => state.job
-      }),  
+        store: state => state.company
+      }), 
       criteria() {
         // Compute the search criteria
         return this.search.trim().toLowerCase()
@@ -84,33 +86,29 @@
         return ''
       }
     },
-    methods: { 
+    methods: {
       ...mapActions('tenderjob', [
-        'addCategory',
-        'removeCategory'
+        'addCompanyType',
+        'removeCompanyType'
       ]), 
       onOptionClick({ option, addTag }) {
         addTag(option); 
-        var category = this.categories.filter(x => x.name == option); 
-        var payload = {
-          CategoryId: category[0].id,
-          JobId: this.job.id
-        } 
-        this.addCategory(payload);
+        var category = this.categories.filter(x => x.name == option);
+        this.addCompanyType(category);
         this.search = '';
       },
       onRemoveClick(tag) { 
         var category = this.categories.filter(x => x.name == tag);
-        this.removeCategory(category);
+        this.removeCompanyType(category);
       },
-      getCategories() {
+      getCompanyTypes() {
         var self = this; 
         var cats = [];
-        if (self.job.jobCategories != null) {
-          cats = self.job.jobCategories.map(x => x.categoryId);
+        if (self.store.company.customerCompanyTypes != null) {
+          cats = self.store.company.customerCompanyTypes.map(x => x.companyTypeId);
         }
         return axios
-          .get('/portal/api/categories/')
+          .get('/portal/api/companytypes/')
           .then(function (response) {
             self.categories = response.data;
             self.options = response.data.map(function (x) { 
@@ -125,7 +123,7 @@
     mounted: function () {
       var self = this;
       setTimeout(function () {
-        self.getCategories();
+        self.getCompanyTypes();
       }, 2000);   
     }
   }
