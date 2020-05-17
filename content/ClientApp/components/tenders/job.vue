@@ -28,7 +28,7 @@
                             </b-form-group>
                             <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
                           </div>
-                          <div class="col-md-4 form-group">
+                          <!--<div class="col-md-4 form-group">
                             <b-form-group label="Supply Sub Classification">
                               <b-form-radio-group v-model="job.supplyClassification"
                                                   :options="supplyOptions"
@@ -45,7 +45,7 @@
                                                   stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
                             </b-form-group>
                             <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
-                          </div>
+                          </div>-->
                           </div>
                           <div class="form-group" :class="{invalid: $v.job.type.$error}">
                             <label for="Status" class="control-label">Type</label>
