@@ -16,8 +16,9 @@ export const authentication = {
             userService.login(username, password)
                 .then(
                     user => {
-                        commit('loginSuccess', user); 
-                        router.push('/portal/dashboard');
+                    commit('loginSuccess', user);
+                    //router.push('/portal/dashboard');
+                    window.location.pathname = '/portal/dashboard';
                     },
                     error => {
                         commit('loginFailure', error);

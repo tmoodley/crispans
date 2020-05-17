@@ -123,8 +123,7 @@
   import industry from './categories/industry'
   import machine from './categories/machine'
   import material from './categories/material'
-  import naics from './categories/naics'
-  const _user = JSON.parse(localStorage.getItem('user'));
+  import naics from './categories/naics' 
   export default { 
     computed: {
         ...mapState({
@@ -144,7 +143,7 @@
   },
   data () {
     return {
-      email: _user.username, 
+      email: JSON.parse(localStorage.getItem('user')).username
       }
     },
     methods: {

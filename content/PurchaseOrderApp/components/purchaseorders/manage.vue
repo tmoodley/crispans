@@ -330,7 +330,7 @@
         },
         data() {
            return {
-                email: _user,
+                email: JSON.parse(localStorage.getItem('user')).username,
                 loading: false,
                 purchaseOrder: {}
               }

@@ -16,18 +16,14 @@ const getters = {
 // actions
 const actions = {
   getCompany({ commit }, payload) {
-    const requestOptions = {
-      headers: authHeader()
-    };
-
     return axios
-      .get('/portal/api/customers/' + payload, requestOptions)
+      .get('/portal/api/customers/' + payload)
       .then(function (response) {
         commit('setCompany', response.data);
         return response.data;
       })
   },
-  addCategory({ commit }, payload) { 
+  addCategory({ commit }, payload) {
     var customerCategory = {
       CategoryId: payload[0].id,
       CustomerId: state.company.id

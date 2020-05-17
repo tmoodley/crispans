@@ -33,6 +33,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         public async Task<IActionResult> Authenticate([FromBody]User userParam)
         {
             var token = await _userService.AuthenticateAsync(userParam.Username, userParam.Password).ConfigureAwait(false);
+        
 
             if (token == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
