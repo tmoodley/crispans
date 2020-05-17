@@ -33,7 +33,6 @@ const ifNotAuthenticated = (to, from, next) => {
 }
 
 const ifAuthenticated = (to, from, next) => {
-  debugger;
   const loggedIn = localStorage.getItem('user');
   if (loggedIn) {
     next()
