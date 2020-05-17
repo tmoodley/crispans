@@ -195,7 +195,7 @@
                   </div>
                 </div>
               </b-tab>
-              <b-tab body title="Documents step">
+              <b-tab body title="Documents">
                 <div class="row">
                   <div class="col-md-12">
                     <b-form-checkbox switch size="lg" class="float-left">NDA (NON DISCLOSURE AGREEMENT)</b-form-checkbox>
@@ -444,7 +444,18 @@
       },
       setCadFile(id) {
         this.job.cadFileDocumentId = id;
-      }
+      },
+      async loadPage () { 
+        try {
+            if (this.$route.params.id != undefined) {
+              let response = await this.$http.get(`/portal/api/Jobs/GetJob/?id=` + this.$route.params.id) 
+              this.job = response.data;
+            } 
+        } catch (err) {
+          window.alert(err)
+          console.log(err)
+        } 
+      }, 
     },
     mounted: function () {
       if (typeof (this.selectedjob) !== "undefined" && this.selectedjob !== null) {
@@ -454,7 +465,10 @@
       else {
         this.action = 'add';
       }
-      this.getCompany(this.email)
+      var self = this;
+      this.getCompany(this.email).then(function () { 
+          self.loadPage() 
+      });
     }
   }
 </script>
