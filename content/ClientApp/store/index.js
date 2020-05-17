@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import company from './modules/Company'
+import tenderjob from './modules/TenderJob'
 import job from './modules/Job'
 import purchaseOrder from './modules/PurchaseOrder'
 import product from './modules/Product'
@@ -17,6 +18,7 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   modules: {
     company,
+    tenderjob,
     purchaseOrder,
     job,
     product,

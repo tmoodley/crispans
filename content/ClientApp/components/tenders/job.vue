@@ -7,7 +7,7 @@
             <h5 class="title">Create New Tender</h5>
           </div>
           <div class="card-body">
-            <form-wizard @on-complete="onComplete" title="" subtitle="">
+            <form-wizard @on-complete="onComplete" title="" subtitle="" color="green">
               <tab-content title="Job details"
                            icon="fa fa-user">
                 <div class="row">
@@ -18,36 +18,56 @@
                         <h5 class="title">Details</h5>
                       </div>
                       <div class="card-body">
-                        <div class="form-group">
-                          <b-form-group label="Job Classification">
-                            <b-form-radio-group v-model="job.classification"
-                                                :options="options"
-                                                name="radios-stacked"
-                                                stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
-                          </b-form-group>
-                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                        <div class="row">
+                          <div class="col-md-4 form-group">
+                            <b-form-group label="Job Classification">
+                              <b-form-radio-group v-model="job.classification"
+                                                  :options="options"
+                                                  name="job classification"
+                                                  stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
+                            </b-form-group>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                          </div>
+                          <div class="col-md-4 form-group">
+                            <b-form-group label="Supply Sub Classification">
+                              <b-form-radio-group v-model="job.supplyClassification"
+                                                  :options="supplyOptions"
+                                                  name="supply sub classification"
+                                                  stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
+                            </b-form-group>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                          </div>
+                          <div class="col-md-4 form-group">
+                            <b-form-group label="Manufacturing Sub Classification">
+                              <b-form-radio-group v-model="job.manfacturedClassification"
+                                                  :options="manufactureOptions"
+                                                  name="manufacturing sub classification"
+                                                  stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
+                            </b-form-group>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                          </div>
+                          </div>
+                          <div class="form-group" :class="{invalid: $v.job.type.$error}">
+                            <label for="Status" class="control-label">Type</label>
+                            <b-form-select v-model="job.type" :options="typeOptions" class="form-control" @blur="$v.job.type.$touch()"></b-form-select>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.type.required"> This field must not be empty</p>
+                          </div>
+                          <div class="form-group" :class="{invalid: $v.job.name.$error}">
+                            <label for="Name" class="control-label">Name</label>
+                            <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" @blur="$v.job.name.$touch()" />
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.name.required"> This field must not be empty</p>
+                          </div>
+                          <div class="form-group" :class="{invalid: $v.job.number.$error}">
+                            <label for="Number" class="control-label">Job Number</label>
+                            <input v-model="job.number" class="form-control" placeholder="JobXYZ" @blur="$v.job.number.$touch()" />
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.number.required"> This field must not be empty</p>
+                          </div>
+                          <div class="form-group" :class="{invalid: $v.job.status.$error}">
+                            <label for="Status" class="control-label">Job Status</label>
+                            <b-form-select v-model="job.status" :options="statusOptions" class="form-control" @blur="$v.job.status.$touch()"></b-form-select>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.status.required"> This field must not be empty</p>
+                          </div>
                         </div>
-                        <div class="form-group" :class="{invalid: $v.job.type.$error}">
-                          <label for="Status" class="control-label">Type</label>
-                          <b-form-select v-model="job.type" :options="typeOptions" class="form-control" @blur="$v.job.type.$touch()"></b-form-select>
-                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.type.required"> This field must not be empty</p>
-                        </div>
-                        <div class="form-group" :class="{invalid: $v.job.name.$error}">
-                          <label for="Name" class="control-label">Name</label>
-                          <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" @blur="$v.job.name.$touch()" />
-                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.name.required"> This field must not be empty</p>
-                        </div>
-                        <div class="form-group" :class="{invalid: $v.job.number.$error}">
-                          <label for="Number" class="control-label">Job Number</label>
-                          <input v-model="job.number" class="form-control" placeholder="JobXYZ" @blur="$v.job.number.$touch()" />
-                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.number.required"> This field must not be empty</p>
-                        </div>
-                        <div class="form-group" :class="{invalid: $v.job.status.$error}">
-                          <label for="Status" class="control-label">Job Status</label>
-                          <b-form-select v-model="job.status" :options="statusOptions" class="form-control" @blur="$v.job.status.$touch()"></b-form-select>
-                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.status.required"> This field must not be empty</p>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -69,90 +89,60 @@
                   <div class="col-md-2"></div>
                 </div>
               </tab-content>
-              <tab-content title="Company Type"
+              <tab-content title="Industry Type"
                            icon="fa fa-list-alt">
                 <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                    <h2>What type of company are you?</h2>
+                    <h2>What type of Industry are you?</h2>
                     <div class="card">
                       <div class="card-body">
-                        <companytype></companytype>
+                        <industry></industry>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-2"></div>
                 </div>
               </tab-content>
-              <tab-content title="Job Company Type"
+              <tab-content title="NAICS"
                            icon="fa fa-list-alt">
                 <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                    <h2>What type of company are you?</h2>
+                    <h2>Please select your NAICS code?</h2>
                     <div class="card">
                       <div class="card-body">
-                        <companytype></companytype>
+                        <naics></naics>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-2"></div>
                 </div>
               </tab-content>
-              <tab-content title="Job Company Type"
+              <tab-content title="Materials"
                            icon="fa fa-list-alt">
                 <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                    <h2>What type of company are you?</h2>
+                    <h2>What type of materials are needed?</h2>
                     <div class="card">
                       <div class="card-body">
-                        <companytype></companytype>
+                        <material></material>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-2"></div>
                 </div>
               </tab-content>
-              <tab-content title="Job Company Type"
+              <tab-content title="Machines"
                            icon="fa fa-list-alt">
                 <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
-                    <h2>What type of company are you?</h2>
+                    <h2>What type of machinery is needed?</h2>
                     <div class="card">
                       <div class="card-body">
-                        <companytype></companytype>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
-              </tab-content>
-              <tab-content title="Job Company Type"
-                           icon="fa fa-list-alt">
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="col-md-8">
-                    <h2>What type of company are you?</h2>
-                    <div class="card">
-                      <div class="card-body">
-                        <companytype></companytype>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
-              </tab-content>
-              <tab-content title="Job Company Type"
-                           icon="fa fa-list-alt">
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="col-md-8">
-                    <h2>What type of company are you?</h2>
-                    <div class="card">
-                      <div class="card-body">
-                        <companytype></companytype>
+                        <machine></machine>
                       </div>
                     </div>
                   </div>
@@ -388,12 +378,12 @@
   import category from '../categories/category'
   import certification from '../categories/certification'
   import capability from '../categories/capability'
-  import companytype from '../categories/companytype'
+  import companytype from './companytype.vue'
   import filetype from '../categories/filetype'
-  import industry from '../categories/industry'
-  import machine from '../categories/machine'
-  import material from '../categories/material'
-  import naics from '../categories/naics'
+  import industry from './industry.vue'
+  import machine from './machine.vue'
+  import material from './material.vue'
+  import naics from './naics.vue'
   import upload from '../jobs/document'
   import { required, decimal } from 'vuelidate/lib/validators'
   export default {
@@ -423,6 +413,8 @@
           number: '',
           status: 'design',
           Classification: 'goods',
+          supplyClassification: '',
+          manfacturedClassification: '',
           type: 'rfp'
         },
         options: [
@@ -441,12 +433,22 @@
           { value: 'start', text: 'Job Started' },
           { value: 'completed', text: 'Job Completed' },
           { value: 'awarded', text: 'Job Awarded' },
+        ],
+        supplyOptions: [
+          { text: 'Raw Materials', value: 'raw materials' },
+          { text: 'Unfinished Goods', value: 'unfinished goods' },
+          { text: 'Finished Goods', value: 'finished goods' }
+        ],
+        manufactureOptions: [
+          { text: 'Prototype', value: 'prototype' },
+          { text: 'Onetime Production', value: 'onetime production' },
+          { text: 'Ongoing Production', value: 'ongoing production' }
         ]
       }
     },
     methods: {
-      ...mapActions('company', [
-        'getCompany'
+      ...mapActions('tenderjob', [
+        'getCompany',
       ]),
       download(id) {
         axios({
