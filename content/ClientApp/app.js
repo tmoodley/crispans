@@ -38,6 +38,29 @@ Vue.use(VueFormWizard)
 Vue.use(Vuelidate)
 // Registration of global components
 Vue.component('icon', FontAwesomeIcon)
+
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+  let user = JSON.parse(localStorage.getItem('user'));
+  if (user != null) {
+    config.headers.Authorization = 'Bearer ' + user.token;
+  }
+
+  return config;
+})
+
+axios.interceptors.response.use(undefined, function (err) {
+  return new Promise(function (resolve, reject) {
+    if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+      // if you ever get an unauthorized, logout the user
+      this.$store.dispatch('authentication/logout')
+
+      // you can also redirect to /login if needed !
+    }
+    throw err;
+  });
+});
+
 Vue.prototype.$http = axios
 
 sync(store, router)

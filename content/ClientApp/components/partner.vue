@@ -123,11 +123,13 @@
   import industry from './categories/industry'
   import machine from './categories/machine'
   import material from './categories/material'
-  import naics from './categories/naics'
-  export default {
-  computed: mapState({
-    store: state => state.company
-  }), 
+  import naics from './categories/naics' 
+  export default { 
+    computed: {
+        ...mapState({
+          store: state => state.company
+        }) 
+    },
   components: {
     category,
     certification,
@@ -141,7 +143,7 @@
   },
   data () {
     return {
-      email: _user, 
+      email: JSON.parse(localStorage.getItem('user')).username
       }
     },
     methods: {

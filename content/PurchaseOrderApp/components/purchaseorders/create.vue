@@ -106,7 +106,7 @@
   export default { 
         data() {
            return {
-                email: _user,
+                email: JSON.parse(localStorage.getItem('user')).username,
                 loading: false,
                 purchaseOrder: {
                   PurchaseDate: '',
@@ -114,7 +114,7 @@
                   Notes: '',
                   PurchaseOrderNumber: '',
                   CustomerId: '',
-                  Email: _user,
+                  email: JSON.parse(localStorage.getItem('user')).username,
                   Status: '',
                   SubTotal: 0,
                   Tax: 0,

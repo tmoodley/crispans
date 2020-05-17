@@ -111,7 +111,7 @@
   data () {
     return {
       action: '',
-      email: _user,
+      email: JSON.parse(localStorage.getItem('user')).username,
       //job: {
       //  name: '',
       //  number: '',

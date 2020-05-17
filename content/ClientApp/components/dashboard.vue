@@ -83,7 +83,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return { 
-      email: _user, 
+      email: JSON.parse(localStorage.getItem('user')).username, 
       totalProducts: 0,
       totalPurchaseorders: 0,
       totalTenders: 0

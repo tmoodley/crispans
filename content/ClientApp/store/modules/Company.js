@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import { authHeader } from '../../_helpers';
 // initial state
 const state = {
   company: []
@@ -22,7 +23,7 @@ const actions = {
         return response.data;
       })
   },
-  addCategory({ commit }, payload) { 
+  addCategory({ commit }, payload) {
     var customerCategory = {
       CategoryId: payload[0].id,
       CustomerId: state.company.id

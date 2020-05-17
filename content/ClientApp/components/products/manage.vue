@@ -201,7 +201,7 @@
       return {
         validate: true,
         action: 'add',
-        email: _user,
+        email: JSON.parse(localStorage.getItem('user')).username,
         product: {},
         typeOptions: [
           { text: 'Assembled', value: 'assembled' },

@@ -7,6 +7,9 @@ import purchaseOrder from './modules/PurchaseOrder'
 import product from './modules/Product'
 import bid from './modules/Bid'
 import question from './modules/Question'
+import { alert } from './modules/alert.module'
+import { authentication } from './modules/authentication.module'
+import { users } from './modules/users.module'
 
 Vue.use(Vuex)
 
@@ -21,6 +24,9 @@ export default new Vuex.Store({
     product,
     bid,
     question,
+    alert,
+    authentication,
+    users
   },
   strict: debug,
 })

@@ -34,12 +34,12 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <Search></Search>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav"> 
               <li class="nav-item">
-                <router-link :to="{ name: 'Dashboard' }">
+                <router-link :to="'/Login'">
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Account</span>
+                    <span class="d-lg-none d-md-block">Logout</span>
                   </p>
                 </router-link>
               </li>
@@ -50,8 +50,9 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-      <div class="content"> 
-          <router-view></router-view> 
+      <div class="content">
+        <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div> 
+        <router-view></router-view>
       </div>
         <!-- End Content -->
         <footer class="footer">
@@ -93,7 +94,18 @@
 
       data () {
         return {}
-      }
+    },
+    computed: {
+        alert () {
+            return this.$store.state.alert
+        }
+    },
+    watch:{
+        $route (to, from){
+            // clear alert on location change
+            this.$store.dispatch('alert/clear');
+        }
+    } 
     }
 </script>
 

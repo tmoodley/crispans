@@ -55,7 +55,7 @@ export default {
   },
   data () {
     return {
-      email: _user,
+      email: JSON.parse(localStorage.getItem('user')).username,
       jobs: null,
       selectedJob: null,
       total: 0,
