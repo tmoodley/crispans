@@ -34,7 +34,18 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         [HttpGet("{id}")]
         public async Task<ActionResult<Job>> GetJob(string id)
         {
-            var job = await _context.Jobs.FindAsync(id);
+            var job = await _context.Jobs
+                .Include(x => x.JobFileTypes)
+                .Include(x => x.JobCapabilities)
+                .Include(x => x.JobCertifications)
+                .Include(x => x.JobCompanyTypes)
+                .Include(x => x.JobCategories)
+                .Include(x => x.JobIndustries)
+                .Include(x => x.JobMachines)
+                .Include(x => x.JobMaterials)
+                .Include(x => x.JobNaics)
+                .Include(x => x.JobQuestions)
+                .FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
 
             if (job == null)
             {

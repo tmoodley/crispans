@@ -27,14 +27,27 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string id)
         {
             _context.Database.SetCommandTimeout(300);
-            return await _context.Jobs.Where(x => x.CustomerId == id).Include(x => x.JobCategories).ToListAsync().ConfigureAwait(false);//
+            return await _context.Jobs.Where(x => x.CustomerId == id)
+              
+                .ToListAsync().ConfigureAwait(false);//
         }
 
         // GET: api/Jobs/5
         [HttpGet]
         public async Task<ActionResult<Job>> GetJob(string id)
         {
-            var job = await _context.Jobs.FindAsync(id).ConfigureAwait(false);
+            var job = await _context.Jobs
+                  .Include(x => x.JobFileTypes)
+                .Include(x => x.JobCapabilities)
+                .Include(x => x.JobCertifications)
+                .Include(x => x.JobCompanyTypes)
+                .Include(x => x.JobCategories)
+                .Include(x => x.JobIndustries)
+                .Include(x => x.JobMachines)
+                .Include(x => x.JobMaterials)
+                .Include(x => x.JobNaics)
+                .Include(x => x.JobQuestions)
+                .FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
 
             if (job == null)
             {

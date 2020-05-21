@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form-group label="Choose Company Type">
+    <b-form-group label="Choose File Type">
       <b-form-tags v-model="value" no-outer-focus class="mb-2">
         <template v-slot="{ tags, disabled, addTag, removeTag }">
           <ul v-if="tags.length > 0" class="list-inline d-inline-block mb-2">
@@ -87,28 +87,29 @@
       }
     },
     methods: {
-      ...mapActions('tenderjob', [
-        'addCompanyType',
-        'removeCompanyType'
+      ...mapActions('company', [
+        'addFileType',
+        'removeFileType'
       ]), 
       onOptionClick({ option, addTag }) {
         addTag(option); 
         var category = this.categories.filter(x => x.name == option);
-        this.addCompanyType(category);
+        this.addFileType(category);
         this.search = '';
       },
       onRemoveClick(tag) { 
         var category = this.categories.filter(x => x.name == tag);
-        this.removeCompanyType(category);
+        this.removeFileType(category);
       },
-      getCompanyTypes() {
+      getFileTypes() {
         var self = this; 
         var cats = [];
-        if (self.store.company.customerCompanyTypes != null) {
-          cats = self.store.company.customerCompanyTypes.map(x => x.companyTypeId);
+        if (self.store.company.customerFileTypes != null) {
+          cats = self.store.company.customerFileTypes.map(x => x.fileTypeId);
         }
+        
         return axios
-          .get('/portal/api/companytypes/')
+          .get('/portal/api/filetypes/')
           .then(function (response) {
             self.categories = response.data;
             self.options = response.data.map(function (x) { 
@@ -123,7 +124,7 @@
     mounted: function () {
       var self = this;
       setTimeout(function () {
-        self.getCompanyTypes();
+        self.getFileTypes();
       }, 2000);   
     }
   }

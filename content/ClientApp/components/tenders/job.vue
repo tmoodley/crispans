@@ -392,22 +392,27 @@
 <script>
   import axios from 'axios'
   import { mapState, mapActions } from 'vuex'
-  import category from '../categories/category'
-  import certification from '../categories/certification'
-  import capability from '../categories/capability'
-  import companytype from './companytype.vue'
-  import filetype from '../categories/filetype'
-  import industry from './industry.vue'
-  import machine from './machine.vue'
-  import material from './material.vue'
-  import naics from './naics.vue'
-  import upload from '../jobs/document'
+  import category from './categories/category'
+  import certification from './categories/certification'
+  import capability from './categories/capability'
+  import companytype from './categories/companytype'
+  import filetype from './categories/filetype'
+  import industry from './categories/industry'
+  import machine from './categories/machine'
+  import material from './categories/material'
+  import naics from './categories/naics'
+  import upload from './document'
   import { required, decimal } from 'vuelidate/lib/validators'
   export default {
     props: ['selectedjob'],
-    computed: mapState({
-      store: state => state.company
-    }),
+    computed: { 
+        ...mapState({
+            jobStore: state => state.job
+        }),
+        ...mapState({
+            store: state => state.company
+        })
+    },
     components: {
       upload,
       category,
@@ -465,7 +470,8 @@
     },
     methods: {
       ...mapActions('tenderjob', [
-        'getCompany',
+        'getJob',
+        'saveJob'
       ]),
       download(id) {
         axios({
@@ -511,10 +517,8 @@
         else {
           this.job.CustomerId = this.store.company.id;
           var self = this;
-          return axios
-            .post('/portal/api/jobs/PostJob/', self.job)
-            .then(response => {
-              self.job = response.data;
+          this.saveJob(this.job).then(response => {
+              self.job = response;
               self.$bvModal.show("wizard");
               self.action = "edit";
             })

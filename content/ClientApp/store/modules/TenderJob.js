@@ -2,30 +2,38 @@
 import axios from 'axios'
 // initial state
 const state = {
-  company: []
+  job: {}
 }
 
 // getters
 const getters = {
-  company: (state) => {
-    return state.company
+  job: (state) => {
+    return state.job
   }
 }
 
 // actions
 const actions = {
-  getCompany({ commit }, payload) {
+  getJob({ commit }, payload) { 
     return axios
-      .get('/portal/api/customers/' + payload)
+      .get('/portal/api/Jobs/GetJob/?id=' + payload)
       .then(function (response) {
-        commit('setCompany', response.data);
+        commit('setJob', response.data);
         return response.data;
       })
   },
-  addCategory({ commit }, payload) { 
+  saveJob({ commit }, payload) {
+    return axios
+      .post('/portal/api/jobs/PostJob/', payload)
+      .then(function (response) {
+        commit('setJob', response.data);
+        return response.data;
+      })
+  },
+  addCategory({ commit }, payload) {
     var jobCategory = {
       CategoryId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
@@ -82,7 +90,7 @@ const actions = {
   addCompanyType({ commit }, payload) {
     var jobCategory = {
       CompanyTypeId: payload[0].id,
-      CompanyType: payload[0].name,
+      JobId: state.job.id,
     }
 
     return axios
@@ -197,8 +205,8 @@ const actions = {
 
 // mutations
 const mutations = {
-  setCompany(state, company) {
-    state.company = company
+  setJob(state, job) {
+    state.job = job
   },
   addCategory(state, category) {
     if (state.company.customerCategories == null) {

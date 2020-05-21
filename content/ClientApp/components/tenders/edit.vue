@@ -45,7 +45,8 @@
                   </div>
                   <div class="col-md-6">
                     <div class="card card-user">
-                      <div class="card-body">
+                      <div class="card-body"> 
+                        <companytype></companytype> 
                         <category></category>
                         <certification></certification>
                       </div>
@@ -148,14 +149,7 @@
                 </div>
               </b-tab>
               <b-tab body title="Job Categories">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card">
-                      <div class="card-body">
-                        <companytype></companytype>
-                      </div>
-                    </div>
-                  </div>
+                <div class="row"> 
                   <div class="col-md-4">
                     <div class="card">
                       <div class="card-body">
@@ -310,7 +304,7 @@
   import category from '../categories/category'
   import certification from '../categories/certification'
   import capability from '../categories/capability'
-  import companytype from '../categories/companytype'
+  import companytype from './categories/companytype'
   import filetype from '../categories/filetype'
   import industry from '../categories/industry'
   import machine from '../categories/machine'
@@ -319,9 +313,14 @@
   import upload from '../jobs/document'
   export default {
     props: ['selectedjob'],
-    computed: mapState({
-      store: state => state.company
-    }),
+    computed: {
+      ...mapState({
+        job: state => state.tenderjob.job
+      }),
+      ...mapState({
+        store: state => state.company
+      }),
+    },
     components: {
       upload,
       category,
@@ -337,14 +336,7 @@
     data() {
       return {
         action: '',
-        email: JSON.parse(localStorage.getItem('user')).username,
-        job: {
-          name: '',
-          number: '',
-          status: 'design',
-          Classification: 'goods',
-          type: 'rfp'
-        },
+        email: JSON.parse(localStorage.getItem('user')).username, 
         options: [
           { text: 'Goods', value: 'goods' },
           { text: 'Service', value: 'service' },
@@ -367,6 +359,9 @@
     methods: {
       ...mapActions('company', [
         'getCompany'
+      ]),
+      ...mapActions('tenderjob', [
+        'getJob'
       ]),
       download(id) {
         axios({
@@ -448,8 +443,11 @@
       async loadPage () { 
         try {
             if (this.$route.params.id != undefined) {
-              let response = await this.$http.get(`/portal/api/Jobs/GetJob/?id=` + this.$route.params.id) 
-              this.job = response.data;
+              this.getJob(this.$route.params.id).then(response => { 
+                  self.job = response;
+                  self.$bvModal.show("wizard");
+                  self.action = "edit";
+               })
             } 
         } catch (err) {
           window.alert(err)
