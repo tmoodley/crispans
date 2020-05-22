@@ -9,7 +9,8 @@
           <div class="card-body">
             <form-wizard @on-complete="onComplete" title="" subtitle="" color="green">
               <tab-content title="Job details"
-                           icon="fa fa-user">
+                           icon="fa fa-user"
+                           :before-change="beforeTabSwitch">
                 <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-8">
@@ -33,18 +34,18 @@
                               <b-form-radio-group v-model="job.supplyClassification"
                                                   :options="supplyOptions"
                                                   name="supply sub classification"
-                                                  stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
+                                                  stacked @blur="$v.job.supplyClassification.$touch()"></b-form-radio-group>
                             </b-form-group>
-                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.supplyClassification.required"> This field must not be empty</p>
                           </div>
                           <div class="col-md-4 form-group">
                             <b-form-group label="Manufacturing Sub Classification">
                               <b-form-radio-group v-model="job.manfacturedClassification"
                                                   :options="manufactureOptions"
                                                   name="manufacturing sub classification"
-                                                  stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
+                                                  stacked @blur="$v.job.manfacturedClassification.$touch()"></b-form-radio-group>
                             </b-form-group>
-                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                            <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.manfacturedClassification.required"> This field must not be empty</p>
                           </div>
                           </div>
                           <div class="form-group" :class="{invalid: $v.job.type.$error}">
@@ -82,7 +83,7 @@
                     <h2>What type of company are you?</h2>
                     <div class="card">
                       <div class="card-body">
-                        <companytype></companytype>
+                        <companytype :jobid="jobid"></companytype>
                       </div>
                     </div>
                   </div>
@@ -405,6 +406,7 @@
     },
     data() {
       return {
+        jobid:'',
         validate: true,
         action: '',
         email: _user,
@@ -450,6 +452,31 @@
       ...mapActions('tenderjob', [
         'getCompany',
       ]),
+      beforeTabSwitch() {
+        event.preventDefault();
+        var self = this;
+        if (self.action == "edit") {
+          axios
+            .put('/portal/api/jobs/PutJob/' + self.job.id, self.job)
+            .then(function (response) {
+              console.log(response.data)
+              self.jobid = self.job.id;
+            })
+        }
+        else {
+          this.job.CustomerId = this.store.company.id;
+          axios
+            .post('/portal/api/jobs/PostJob/', self.job)
+            .then(function (response) {
+              console.log(response.data)
+              self.jobid = response.data.id
+            })
+        }
+        self.$swal.fire(
+          "Job Saved"
+        )
+        return true;
+      },
       download(id) {
         axios({
 
@@ -495,7 +522,9 @@
           this.job.CustomerId = this.store.company.id;
           return axios
             .post('/portal/api/jobs/PostJob/', self.job)
-            .then(response => { console.log(response.data) })
+            .then(function (response) {
+              console.log(response.data)
+            })
         }
       },
       onComplete: function () {
@@ -541,6 +570,8 @@
         actualAnnualValue: { required, decimal },
         type: { required },
         classification: { required },
+        supplyClassification: { required },
+        manfacturedClassification: { required },
         name: { required },
         status: { required },
         length: { required },

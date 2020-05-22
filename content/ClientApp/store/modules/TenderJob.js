@@ -80,9 +80,11 @@ const actions = {
       });
   },
   addCompanyType({ commit }, payload) {
+    debugger
     var jobCategory = {
-      CompanyTypeId: payload[0].id,
-      CompanyType: payload[0].name,
+      CompanyTypeId: payload.category[0].id,
+      CompanyType: payload.category[0],
+      JobId: payload.id
     }
 
     return axios

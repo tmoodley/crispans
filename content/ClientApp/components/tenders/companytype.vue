@@ -49,9 +49,7 @@
   import axios from 'axios'
   import { mapState, mapActions } from 'vuex' 
   export default {
-    computed: mapState({
-      store: state => state.company
-    }), 
+    props:['jobid'],
     data() {
       return {
         options: [],
@@ -94,7 +92,10 @@
       onOptionClick({ option, addTag }) {
         addTag(option); 
         var category = this.categories.filter(x => x.name == option);
-        this.addCompanyType(category);
+        debugger;
+        var id = this.jobid;
+        var payload = { category, id }
+        this.addCompanyType(payload);
         this.search = '';
       },
       onRemoveClick(tag) { 
