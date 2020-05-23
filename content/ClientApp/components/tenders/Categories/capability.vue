@@ -87,7 +87,7 @@
       }
     },
     methods: {
-      ...mapActions('company', [
+      ...mapActions('tenderjob', [
         'addCapability',
         'removeCapability'
       ]), 

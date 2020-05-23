@@ -104,7 +104,6 @@
       getCompanyTypes() {
         var self = this; 
         var cats = [];
-        debugger;
         if (self.job.jobCompanyTypes != null) {
           cats = self.job.jobCompanyTypes.map(x => x.companyTypeId);
         }

@@ -44,45 +44,45 @@ const actions = {
   },
   removeCategory({ commit }, payload) {
     return axios
-      .delete('/portal/api/jobcategories/?categoryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobcategories/?categoryId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
   },
   addCertification({ commit }, payload) {
-    var customerCategory = {
+    var jobCategory = {
       CertificationId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
-      .post('/portal/api/customercertifications/', customerCategory)
+      .post('/portal/api/jobcertifications/', jobCategory)
       .then(function (response) {
         return response.data;
       })
   },
   removeCertification({ commit }, payload) {
     return axios
-      .delete('/portal/api/customercertifications/?certificationId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobcertifications/?certificationId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
   },
   addCapability({ commit }, payload) {
-    var customerCategory = {
+    var jobCategory = {
       CapabilityId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
-      .post('/portal/api/customercapabilities/', customerCategory)
+      .post('/portal/api/jobcapabilities/', jobCategory)
       .then(function (response) {
         return response.data;
       })
   },
   removeCapability({ commit }, payload) {
     return axios
-      .delete('/portal/api/customercapabilities/?capabilityId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobcapabilities/?capabilityId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
@@ -92,7 +92,7 @@ const actions = {
       CompanyTypeId: payload[0].id,
       JobId: state.job.id,
     }
-
+    debugger;
     return axios
       .post('/portal/api/JobCompanyTypes/', jobCategory)
       .then(function (response) {
@@ -101,26 +101,26 @@ const actions = {
   },
   removeCompanyType({ commit }, payload) {
     return axios
-      .delete('/portal/api/jobCompanyTypes/?CompanyTypeId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobCompanyTypes/?CompanyTypeId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
   },
   addFileType({ commit }, payload) {
-    var customerCategory = {
+    var jobCategory = {
       FileTypeId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
-      .post('/portal/api/customerfileTypes/', customerCategory)
+      .post('/portal/api/jobfileTypes/', jobCategory)
       .then(function (response) {
         return response.data;
       })
   },
   removeFileType({ commit }, payload) {
     return axios
-      .delete('/portal/api/customerFileTypes/?FileTypeId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobFileTypes/?FileTypeId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
@@ -128,9 +128,9 @@ const actions = {
   addIndustry({ commit }, payload) {
     var jobCategory = {
       IndustryId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
-
+    debugger
     return axios
       .post('/portal/api/jobIndustries/', jobCategory)
       .then(function (response) {
@@ -139,7 +139,7 @@ const actions = {
   },
   removeIndustry({ commit }, payload) {
     return axios
-      .delete('/portal/api/jobIndustries/?IndustryId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobIndustries/?IndustryId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
@@ -147,7 +147,7 @@ const actions = {
   addMachine({ commit }, payload) {
     var jobCategory = {
       MachineId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
@@ -158,7 +158,7 @@ const actions = {
   },
   removeMachine({ commit }, payload) {
     return axios
-      .delete('/portal/api/jobMachines/?machineId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobMachines/?machineId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
@@ -166,7 +166,7 @@ const actions = {
   addMaterial({ commit }, payload) {
     var jobCategory = {
       MaterialId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
@@ -177,7 +177,7 @@ const actions = {
   },
   removeMaterial({ commit }, payload) {
     return axios
-      .delete('/portal/api/jobMaterials/?MaterialId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobMaterials/?MaterialId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
@@ -185,7 +185,7 @@ const actions = {
   addNaics({ commit }, payload) {
     var jobCategory = {
       NaicsId: payload[0].id,
-      CustomerId: state.company.id
+      JobId: state.job.id
     }
 
     return axios
@@ -196,7 +196,7 @@ const actions = {
   },
   removeNaics({ commit }, payload) {
     return axios
-      .delete('/portal/api/jobNaics/?NaicsId=' + payload[0].id + '&customerId=' + state.company.id)
+      .delete('/portal/api/jobNaics/?NaicsId=' + payload[0].id + '&JobId=' + state.job.id)
       .then(function (response) {
         return response.data;
       });
