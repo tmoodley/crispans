@@ -7,7 +7,7 @@
             <h5 class="title">Create New Tender</h5>
           </div>
           <div class="card-body">
-            <b-form @submit="save">
+            <b-form @submit="beforeSave">
               <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -24,7 +24,7 @@
                                                 name="job classification"
                                                 stacked @blur="$v.job.classification.$touch()"></b-form-radio-group>
                           </b-form-group>
-                          <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
+                          <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.job.classification.required"> This field must not be empty</p>
                         </div>
                         <!--<div class="col-md-4 form-group">
               <b-form-group label="Supply Sub Classification">
@@ -48,22 +48,22 @@
                       <div class="form-group" :class="{invalid: $v.job.type.$error}">
                         <label for="Status" class="control-label">Type</label>
                         <b-form-select v-model="job.type" :options="typeOptions" class="form-control" @blur="$v.job.type.$touch()"></b-form-select>
-                        <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.type.required"> This field must not be empty</p>
+                        <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.job.type.required"> This field must not be empty</p>
                       </div>
                       <div class="form-group" :class="{invalid: $v.job.name.$error}">
                         <label for="Name" class="control-label">Name</label>
                         <input v-model="job.name" class="form-control" placeholder="Create x amount of widgets" @blur="$v.job.name.$touch()" />
-                        <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.name.required"> This field must not be empty</p>
+                        <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.job.name.required"> This field must not be empty</p>
                       </div>
                       <div class="form-group" :class="{invalid: $v.job.number.$error}">
                         <label for="Number" class="control-label">Job Number</label>
                         <input v-model="job.number" class="form-control" placeholder="JobXYZ" @blur="$v.job.number.$touch()" />
-                        <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.number.required"> This field must not be empty</p>
+                        <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.job.number.required"> This field must not be empty</p>
                       </div>
                       <div class="form-group" :class="{invalid: $v.job.status.$error}">
                         <label for="Status" class="control-label">Job Status</label>
                         <b-form-select v-model="job.status" :options="statusOptions" class="form-control" @blur="$v.job.status.$touch()"></b-form-select>
-                        <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.status.required"> This field must not be empty</p>
+                        <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.job.status.required"> This field must not be empty</p>
                       </div>
                     </div>
                   </div>
@@ -181,18 +181,22 @@
             <div class="col-md-2">
               <b-form-input v-model="job.length" placeholder="Length* mm" @blur="$v.job.length.$touch()"></b-form-input>
               <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.length.required"> This field must not be empty</p>
+              <p style="color: red;" v-if="!$v.job.length.decimal"> Please provide a valiod length</p>
             </div>
             <div class="col-md-2">
               <b-form-input v-model="job.width" placeholder="Width mm" @blur="$v.job.width.$touch()"></b-form-input>
               <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.width.required"> This field must not be empty</p>
+              <p style="color: red;" v-if="!$v.job.width.decimal"> Please provide a valiod width</p>
             </div>
             <div class="col-md-2">
               <b-form-input v-model="job.height" placeholder="Height  mm" @blur="$v.job.height.$touch()"></b-form-input>
               <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.height.required"> This field must not be empty</p>
+              <p style="color: red;" v-if="!$v.job.height.decimal"> Please provide a valiod height</p>
             </div>
             <div class="col-md-2">
               <b-form-input v-model="job.diameter" placeholder="Diameter mm" @blur="$v.job.diameter.$touch()"></b-form-input>
               <p :class="{ invalided: validate }" style="color: red;" v-if="!$v.job.diameter.required"> This field must not be empty</p>
+              <p style="color: red;" v-if="!$v.job.diameter.decimal"> Please provide a valiod diameter</p>
             </div>
             <div class="col-md-2">
               <b-form-input v-model="job.minTolerance" placeholder="Min Tolerance mm" @blur="$v.job.minTolerance.$touch()"></b-form-input>
@@ -427,6 +431,7 @@
     },
     data() {
       return {
+        saveValidate: true,
         validate: true,
         action: '',
         email: JSON.parse(localStorage.getItem('user')).username,
@@ -437,7 +442,7 @@
           Classification: 'goods',
           supplyClassification: '',
           manfacturedClassification: '',
-          type: 'rfp'
+          type: 'rfp',
         },
         options: [
           { text: 'Goods', value: 'goods' },
@@ -506,6 +511,15 @@
           })
         });
       },
+      beforeSave() {
+        event.preventDefault();
+        if (this.$v.job.classification.$invalid || this.$v.job.type.$invalid || this.$v.job.name.$invalid || this.$v.job.classification.$invalid || this.$v.job.number.$invalid || this.$v.job.status.$invalid) {
+          this.$swal.fire('Please make sure the required field is filled properly');
+          this.saveValidate = false;
+        } else {
+          this.save();
+        }
+      },
       save() {
         event.preventDefault();
         var self = this;
@@ -518,10 +532,10 @@
           this.job.CustomerId = this.store.company.id;
           var self = this;
           this.saveJob(this.job).then(response => {
-              self.job = response;
-              self.$bvModal.show("wizard");
-              self.action = "edit";
-            })
+            self.job = response;
+            self.$bvModal.show("wizard");
+            self.action = "edit";
+          })
         }
       },
       onComplete: function () {
@@ -570,10 +584,10 @@
         classification: { required },
         name: { required },
         status: { required },
-        length: { required },
-        width: { required },
-        height: { required },
-        diameter: { required },
+        length: { required, decimal },
+        width: { required, decimal },
+        height: { required, decimal },
+        diameter: { required, decimal },
         minTolerance: { required },
         dateAvailable: { required },
         dateClosing: { required },
