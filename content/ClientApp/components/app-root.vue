@@ -1,83 +1,69 @@
 <template>
   <div>
-    <div class="sidebar" data-color="orange" id="app">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-      <div class="logo"> 
-        <a href="https://capacitym.com" class="simple-text logo-normal">
-          Capacitym.com
-        </a>
-      </div> 
-        <perfect-scrollbar class="sidebar-wrapper" id="sidebar-wrapper">
-          <nav-menu params="route: route"></nav-menu>
-        </perfect-scrollbar> 
-    </div>
+    <b-navbar toggleable="lg" type="dark" variant="info">  
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> 
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-brand href="/">
+          <img src="../../wwwroot/images/logo-new.gif" alt="" style="width:100%; max-width:170px; min-width:130px;" class="img-fluid b-logo">
+        </b-navbar-brand>
+        <b-navbar-nav>
+          <b-nav-item :to="'/portal/dashboard'">Dashboard</b-nav-item>
+          <b-nav-item :to="'/portal/tender/search'">Find RFQ's</b-nav-item>
+          <b-nav-item href="#">Propose Innovation</b-nav-item>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">   
+          <b-nav-item-dropdown right>
+            <!-- Using 'button-content' slot -->
+            <template v-slot:button-content>
+              <em>User</em>
+            </template>
+            <b-dropdown-item :to="'/portal/profile'">Profile</b-dropdown-item>
+            <b-dropdown-item :to="'/Login'">Sign Out</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar> 
     <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">User Profile</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <Search></Search>
-            <ul class="navbar-nav"> 
-              <li class="nav-item">
-                <router-link :to="'/Login'">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Logout</span>
-                  </p>
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="panel-header panel-header-sm">
-      </div>
+      <b-navbar toggleable="sm" type="light" variant="dark">
+        <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle> 
+        <b-collapse id="nav-text-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item :to="'/portal/projects'">Projects</b-nav-item>
+            <b-nav-item :to="'/portal/proposals'">Proposals</b-nav-item> 
+            <b-nav-item :to="'/portal/messages'">Messages</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
       <div class="content">
-        <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div> 
+        <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
         <router-view></router-view>
       </div>
-        <!-- End Content -->
-        <footer class="footer">
-          <div class=" container-fluid ">
-            <nav>
-              <ul>
-                <li>
-                  <a href="https://capacitym.com">
-                    Capacitym.com
-                  </a>
-                </li>
-                <li>
-                  <a href="https://capacitym.com/aboutus">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="http://blog.capacitym.com">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </footer>
+      <!-- End Content -->
+      <footer class="footer">
+        <div class=" container-fluid ">
+          <nav>
+            <ul>
+              <li>
+                <a href="https://capacitym.com">
+                  Capacitym.com
+                </a>
+              </li>
+              <li>
+                <a href="https://capacitym.com/aboutus">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="http://blog.capacitym.com">
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
