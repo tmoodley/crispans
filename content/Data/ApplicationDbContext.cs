@@ -17,7 +17,9 @@ namespace HelpingHands.Data
         public DbSet<Dependent> Dependents { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Partner> Partners { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Invoice> Invoices { get; set; } 
+        public DbSet<Project> Projects { get; set; } 
+        public DbSet<Component> Components { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
