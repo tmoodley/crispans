@@ -19,15 +19,15 @@ const getters = {
 const actions = {
   getProject({ commit }, payload) {
     return axios
-      .get('/portal/api/projects/' + payload)
-      .then(function (response) { 
+      .get('/portal/api/projects/' + payload.id)
+      .then(function (response) {
         commit('setProject', response.data);
         return response.data;
       })
   },
-  getProjects({ commit }, payload) {
+  getProjects({ commit }, payload) { 
     return axios
-      .get('/portal/api/projects/' + payload)
+      .get('/portal/api/Projects/GetProjects/?id=' + payload.company.id)
       .then(function (response) {
         commit('setProjects', response.data);
         return response.data;

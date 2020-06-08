@@ -1,18 +1,19 @@
 <template>
-  <div class="content"> 
+  <div>
     <b-form @submit="beforeSave">
       <div class="row">
         <div class="col-md-12 form-group">
-          <div class="form-group" :class="{invalid: $v.project.name.$error}">
+          <div class="form-group" :class="{invalid: $v.comp.name.$error}">
             <label for="Name" class="control-label">Name</label>
-            <input v-model="project.name" class="form-control" placeholder="Custom Program" @blur="$v.project.name.$touch()" />
-            <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.project.name.required"> This field must not be empty</p>
+            <input v-model="comp.name" class="form-control" placeholder="Custom Widget" @blur="$v.comp.name.$touch()" />
+            <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.comp.name.required"> This field must not be empty</p>
           </div>
         </div>
       </div>
-      <b-button class="mt-3 pull-right" @click="$bvModal.hide('modal-project')">Cancel</b-button>
+
+      <b-button class="mt-3 pull-right" @click="$bvModal.hide('modal-component')">Cancel</b-button>
       <b-button type="submit" variant="primary" class="mt-3 pull-right">Save</b-button>
-    </b-form> 
+    </b-form>
   </div>
 </template>
 
@@ -21,10 +22,10 @@
   import { mapState, mapActions } from 'vuex' 
   import { required, decimal } from 'vuelidate/lib/validators'
   export default {
-    props: ['selectedjob'],
+    props: ['selectedproject'],
     computed: { 
         ...mapState({
-            projectStore: state => state.project
+            compStore: state => state.component
         }),
         ...mapState({
             store: state => state.company
@@ -38,7 +39,7 @@
         validate: true,
         action: '',
         email: JSON.parse(localStorage.getItem('user')).username,
-        project: {
+        comp: {
           name: '', 
         }, 
       }
@@ -51,12 +52,9 @@
       ...mapActions('company', [
         'getCompany'
       ]),
-      ...mapActions('project', [
-        'getProjects'
-      ]),
       beforeSave() {
         event.preventDefault();
-        if (this.$v.project.name.$invalid) { 
+        if (this.$v.comp.name.$invalid) { 
           this.save();
         } else {
           this.save();
@@ -67,18 +65,18 @@
         var self = this;
         if (self.action == "edit") {
           return axios
-            .put('/portal/api/projects/' + self.project.id, self.project)
+            .put('/portal/api/components/' + self.comp.id, self.comp)
             .then(response => { console.log(response.data) })
         }
         else {
-          this.project.CustomerId = this.store.company.id;
+          debugger;
+          this.comp.CustomerId = this.store.company.id;
+          this.comp.ProjectId = this.selectedproject;
           var self = this;
           return axios
-            .post('/portal/api/projects/PostProject', self.project)
+            .post('/portal/api/components/PostComponent', self.comp)
             .then(response => { 
-              self.project = response.data;
-              self.getProjects(self.store);
-              self.$bvModal.hide('modal-project')
+              self.comp = response.data; 
             }) 
         }
       },
@@ -99,7 +97,7 @@
                 self.$emit("hide");
               }
               else {
-                self.$router.push({ path: '/portal/projects/' })
+                self.$router.push({ path: '/portal/comps/' })
               }
             })
           });
@@ -107,7 +105,7 @@
       }
     },
     validations: {
-      project: { 
+      comp: { 
         name: { required }, 
       }
     },
