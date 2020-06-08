@@ -26,14 +26,18 @@
       </b-collapse>
     </b-navbar> 
     <div class="main-panel" id="main-panel">
-      <b-navbar toggleable="sm" type="light" variant="dark">
+      <b-navbar toggleable="sm" type="light" variant="secondary">
         <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle> 
         <b-collapse id="nav-text-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="'/portal/projects'">Projects</b-nav-item>
-            <b-nav-item :to="'/portal/proposals'">Proposals</b-nav-item> 
+            <b-nav-item :to="'/portal/proposals'">Proposals</b-nav-item>
             <b-nav-item :to="'/portal/messages'">Messages</b-nav-item>
           </b-navbar-nav>
+          <!-- Right aligned nav items --> 
+          <b-navbar-nav class="ml-auto" right> 
+            <b-button pill variant="outline-secondary" :to="'/portal/tender/create'">Post an RFQ</b-button> 
+          </b-navbar-nav> 
         </b-collapse>
       </b-navbar>
       <div class="content">
