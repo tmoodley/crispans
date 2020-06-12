@@ -18,7 +18,7 @@ const actions = {
 
     return axios
       .get('/portal/api/components/' + payload)
-      .then(function (response) { 
+      .then(function (response) {
         commit('setComponent', response.data);
         return response.data;
       })

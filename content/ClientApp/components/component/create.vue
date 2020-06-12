@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div> 
     <b-form @submit="beforeSave">
       <div class="row">
         <div class="col-md-12 form-group">
@@ -9,8 +9,7 @@
             <p :class="{ invalided: saveValidate }" style="color: red;" v-if="!$v.comp.name.required"> This field must not be empty</p>
           </div>
         </div>
-      </div>
-
+      </div> 
       <b-button class="mt-3 pull-right" @click="$bvModal.hide('modal-component')">Cancel</b-button>
       <b-button type="submit" variant="primary" class="mt-3 pull-right">Save</b-button>
     </b-form>
@@ -52,6 +51,9 @@
       ...mapActions('company', [
         'getCompany'
       ]),
+      ...mapActions('project', [
+        'getProjects'
+      ]),
       beforeSave() {
         event.preventDefault();
         if (this.$v.comp.name.$invalid) { 
@@ -69,14 +71,15 @@
             .then(response => { console.log(response.data) })
         }
         else {
-          debugger;
           this.comp.CustomerId = this.store.company.id;
           this.comp.ProjectId = this.selectedproject;
           var self = this;
           return axios
             .post('/portal/api/components/PostComponent', self.comp)
             .then(response => { 
-              self.comp = response.data; 
+              self.comp = response.data;
+              self.getProjects(self.store);
+              self.$bvModal.hide('modal-component');
             }) 
         }
       },

@@ -13,7 +13,7 @@
                 <div class="col-md-8">
                   <div class="card">
                     <div class="card-header">
-                      <h5 class="title">Details</h5>
+                      <h5 class="title">Details</h5>{{ $route.params.id }}
                     </div>
                     <div class="card-body">
                       <div class="row">
@@ -530,6 +530,8 @@
         }
         else {
           this.job.CustomerId = this.store.company.id;
+          this.job.ComponentId = this.$route.params.id;
+        
           var self = this;
           this.saveJob(this.job).then(response => {
             self.job = response;

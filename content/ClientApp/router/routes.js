@@ -46,7 +46,7 @@ const ifAuthenticated = (to, from, next) => {
 export const routes = [
   { name: 'dashboard', path: '/portal/dashboard', component: Dashboard, display: 'Dashboard', icon: 'home', showOnMenu: true, beforeEnter: ifAuthenticated },
   { name: 'Profile', path: '/portal/Profile', component: Partner, display: 'My Profile', icon: 'home', showOnMenu: true, beforeEnter: ifAuthenticated },
-  { name: 'createtender', path: '/portal/tender/create', component: Job, display: 'Create Tender', icon: 'info', showOnMenu: false, beforeEnter: ifAuthenticated },
+  { name: 'createtender', path: '/portal/tender/create/:id', component: Job, display: 'Create Tender', icon: 'info', showOnMenu: false, beforeEnter: ifAuthenticated },
   { name: 'searchtender', path: '/portal/tender/search', component: Jobs, display: 'Search Tenders', icon: 'list', showOnMenu: false, beforeEnter: ifAuthenticated },
   { name: 'managetender', path: '/portal/tender/manage/:id', component: TenderEdit, display: 'Edit Tenders', icon: 'list', showOnMenu: false, beforeEnter: ifAuthenticated },
   { name: 'CreatePO', path: '/portal/PurchaseOrders/Create', component: CreatePurchaseOrder, display: 'Create Purchase Order', icon: 'home', showOnMenu: false, beforeEnter: ifAuthenticated },

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">  
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> 
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-brand href="/">
           <img src="../../wwwroot/images/logo-new.gif" alt="" style="width:100%; max-width:170px; min-width:130px;" class="img-fluid b-logo">
@@ -13,7 +13,7 @@
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">   
+        <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
@@ -24,20 +24,20 @@
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
-    </b-navbar> 
+    </b-navbar>
     <div class="main-panel" id="main-panel">
       <b-navbar toggleable="sm" type="light" variant="secondary">
-        <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle> 
+        <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
         <b-collapse id="nav-text-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="'/portal/projects'">Projects</b-nav-item>
             <b-nav-item :to="'/portal/proposals'">Proposals</b-nav-item>
             <b-nav-item :to="'/portal/messages'">Messages</b-nav-item>
           </b-navbar-nav>
-          <!-- Right aligned nav items --> 
-          <b-navbar-nav class="ml-auto" right> 
-            <b-button pill variant="outline-secondary" :to="'/portal/tender/create'">Post an RFQ</b-button> 
-          </b-navbar-nav> 
+          <!-- Right aligned nav items -->
+          <b-navbar-nav class="ml-auto" right>
+            <b-button size="sm" v-b-modal.modal-project pill variant="outline-secondary">Post a  Project</b-button>
+          </b-navbar-nav>
         </b-collapse>
       </b-navbar>
       <div class="content">
@@ -69,17 +69,23 @@
         </div>
       </footer>
     </div>
+    <!-- Create Project modal -->
+    <b-modal id="modal-project" title="Add Project" hide-footer>
+      <project></project>
+    </b-modal>
   </div>
 </template>
 
 <script>
     import NavMenu from './nav-menu'
-    import Search from './jobs/search'
+  import Search from './jobs/search'
+  import project from './project/project' 
 
     export default {
       components: {
         'nav-menu': NavMenu,
-        Search
+        Search,
+        project
       },
 
       data () {

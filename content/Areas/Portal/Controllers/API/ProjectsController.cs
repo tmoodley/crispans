@@ -27,7 +27,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects(string id)
         {
             _context.Database.SetCommandTimeout(300);
-            return await _context.Projects.Where(x => x.CustomerId == id)
+            return await _context.Projects.Include(x => x.Components).ThenInclude(x => x.Jobs).Where(x => x.CustomerId == id)
               
                 .ToListAsync().ConfigureAwait(false);//
         }
