@@ -78,7 +78,8 @@
             .then(response => { 
               self.project = response.data;
               self.getProjects(self.store);
-              self.$bvModal.hide('modal-project')
+              self.$bvModal.hide('modal-project');
+              self.$router.push({ path: '/portal/projects/' }); 
             }) 
         }
       },
@@ -94,13 +95,8 @@
               'Saved',
               'Job Saved',
               'success'
-            ).then(function () {
-              if (self.action == 'edit') {
-                self.$emit("hide");
-              }
-              else {
-                self.$router.push({ path: '/portal/projects/' })
-              }
+            ).then(function () { 
+                self.$emit("hide"); 
             })
           });
         }
