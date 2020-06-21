@@ -35,6 +35,12 @@
 
                   </div>
 
+            <template v-if="bid.source=='PurchaseOrder'">
+                <b-table :fields="polineitemFields" :items="bid.lineItems">
+
+                </b-table>
+
+            </template>
 
             
           </b-card-body>
@@ -44,7 +50,7 @@
             <b-button block href="#" v-b-toggle.accordion-6 variant="info">Questions / Answers</b-button>
           </b-card-header>
         <b-card-body>
-          <b-card-text>Q and A</b-card-text>
+          <b-card-text>Question and Answer</b-card-text>
           <!-- <b-table hover :items="bid.purchaseOrder.purchaseOrderQuestions" :fields="fields">
 
                    </b-table> -->
@@ -52,6 +58,35 @@
 
           <template v-if="bid.source=='PurchaseOrder'">
            <div>
+             <div class="bg-light p-4 rounded">
+             <div class="row">
+               <div class="col-md-12">
+                 <div class="form-group">
+                   <label for="">Title</label>
+                   <input v-model="title" type="text" class="form-control" />
+                 </div>
+               </div>
+             </div>
+               <div class="row">
+               <div class="col-md-12">
+                 <div class="form-group">
+                   <label for="">Body</label>
+                   <input v-model="body" type="text" class="form-control" />
+                 </div>
+               </div>
+               
+             </div>
+
+             <div class="row">
+               <div class="col-md-12">
+                 <div class="form-group">
+                  <b-button variant="primary" class="float-right">Ask</b-button>
+                 </div>
+               </div>
+               
+             </div>
+
+</div>
               <ul>
                   <question v-for="(item,index) in bid.purchaseOrder.purchaseOrderQuestions" v-bind:title="item.question.title"
                   v-bind:body="item.question.body"
@@ -127,11 +162,19 @@
         data() {
             return {
               srctype:'', //Purchase Order or Tender
+              title:'',
+              body:'',
               action: '',
               fields:[
                 { key:'question.title', label:'title'},
                 { key:'question.body',label:'body'},
-                'actions']
+                'actions'],
+              polineitemFields:[
+                {key:'item', label:'Item'},
+                                { key:'description',label:'Description'},
+                                { key:'quantity', label:'Quantity'},
+                                 { key:'amount', label:'Amount'}
+              ]
             }
         },
         methods:{

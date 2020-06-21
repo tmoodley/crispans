@@ -60,7 +60,8 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
 
             if (src == "PurchaseOrder")
             {
-                var pOBid = await _context.POBids.Include(a => a.PurchaseOrder).ThenInclude(b => b.PurchaseOrderQuestions).ThenInclude(c => c.Question).Where(a => ((a.PurchaseOrderId == docid) && (a.BidderId == bidderid)))
+                //
+                var pOBid = await _context.POBids.Include(a => a.LineItems).Include(a => a.PurchaseOrder).ThenInclude(b => b.PurchaseOrderQuestions).ThenInclude(c => c.Question).Where(a => ((a.PurchaseOrderId == docid) && (a.BidderId == bidderid)))
                 .FirstOrDefaultAsync().ConfigureAwait(false);
 
                 bidDto = mapper.Map<BidDto>(pOBid);
