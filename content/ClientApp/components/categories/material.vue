@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form-group label="Choose Materials">
+    <b-form-group label="Materials">
       <b-form-tags v-model="value" no-outer-focus class="mb-2">
         <template v-slot="{ tags, disabled, addTag, removeTag }">
           <ul v-if="tags.length > 0" class="list-inline d-inline-block mb-2">
