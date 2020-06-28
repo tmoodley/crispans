@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Vue2Spa.Controllers
 {
-    public class SupplierController : Controller
+    public class ManufacturerController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IEmailSender _emailSender;
@@ -36,7 +36,7 @@ namespace Vue2Spa.Controllers
         // Create a field to store the mapper object
         private readonly IMapper _mapper;
 
-        public SupplierController(ApplicationDbContext context,
+        public ManufacturerController(ApplicationDbContext context,
                                             IMapper mapper,
                                             IConfiguration configuration1,
                                             IEmailSender emailSender,
