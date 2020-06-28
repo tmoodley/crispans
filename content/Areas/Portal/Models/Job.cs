@@ -192,5 +192,7 @@ namespace Vue2Spa.Areas.Portal.Models
 
         [JsonIgnore]
         public ICollection<JobBid> JobBids { get; set; }
+        public Guid ComponentId { get; set; }  
+        public Component Component { get; set; }
     }
 }

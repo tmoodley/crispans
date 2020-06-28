@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import company from './modules/Company'
 import tenderjob from './modules/TenderJob'
+import project from './modules/Project'
+import component from './modules/Component'
 import job from './modules/Job'
 import purchaseOrder from './modules/PurchaseOrder'
 import product from './modules/Product'
@@ -20,7 +22,9 @@ export default new Vuex.Store({
     company,
     tenderjob,
     purchaseOrder,
+    project,
     job,
+    component,
     product,
     bid,
     question,

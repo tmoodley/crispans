@@ -593,6 +593,26 @@ namespace HelpingHands.Data.Migrations
                     b.ToTable("POBidLineItems");
                 });
 
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.Component", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Note");
+
+                    b.Property<Guid>("ProjectId");
+
+                    b.Property<string>("Subject");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Components");
+                });
+
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.Job", b =>
                 {
                     b.Property<string>("Id")
@@ -621,6 +641,8 @@ namespace HelpingHands.Data.Migrations
                     b.Property<Guid>("CadFileDocumentId");
 
                     b.Property<string>("Classification");
+
+                    b.Property<Guid>("ComponentId");
 
                     b.Property<Guid>("ContractDocumentId");
 
@@ -779,6 +801,8 @@ namespace HelpingHands.Data.Migrations
                     b.Property<bool>("isNda");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
 
                     b.HasIndex("CustomerId");
 
@@ -976,6 +1000,28 @@ namespace HelpingHands.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("ProductCategory");
+                });
+
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.Project", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CustomerId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Note");
+
+                    b.Property<string>("Subject");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory", b =>
@@ -1512,8 +1558,21 @@ namespace HelpingHands.Data.Migrations
                         .HasForeignKey("POBidPurchaseOrderId", "POBidBidderId");
                 });
 
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.Component", b =>
+                {
+                    b.HasOne("Vue2Spa.Areas.Portal.Models.Project", "Project")
+                        .WithMany("Components")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.Job", b =>
                 {
+                    b.HasOne("Vue2Spa.Areas.Portal.Models.Component", "Component")
+                        .WithMany("Jobs")
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("HelpingHands.Models.Customer", "Customers")
                         .WithMany("Jobs")
                         .HasForeignKey("CustomerId");
@@ -1691,6 +1750,13 @@ namespace HelpingHands.Data.Migrations
                         .WithMany("ProductCategories")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.Project", b =>
+                {
+                    b.HasOne("HelpingHands.Models.Customer", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("Vue2Spa.Areas.Portal.Models.PurchaseOrderCategory", b =>
