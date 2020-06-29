@@ -42,18 +42,17 @@ namespace HelpingHands.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address1")
-                        .IsRequired();
+                    b.Property<string>("Address1");
 
                     b.Property<DateTime>("Birthday");
 
                     b.Property<string>("CellPhone");
 
-                    b.Property<string>("City")
-                        .IsRequired();
+                    b.Property<string>("City");
 
-                    b.Property<string>("CompanyName")
-                        .IsRequired();
+                    b.Property<string>("CompanyName");
+
+                    b.Property<string>("CompanyType");
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -78,8 +77,7 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<string>("PhoneNumber");
 
-                    b.Property<string>("PostalCode")
-                        .IsRequired();
+                    b.Property<string>("PostalCode");
 
                     b.Property<string>("PrimarySourceMemberId");
 
@@ -87,8 +85,7 @@ namespace HelpingHands.Data.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.Property<string>("State")
-                        .IsRequired();
+                    b.Property<string>("State");
 
                     b.Property<string>("SubscriptionPlan");
 

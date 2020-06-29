@@ -23,6 +23,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: api/Materials
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Material>>> GetMaterials()

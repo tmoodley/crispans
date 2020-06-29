@@ -74,6 +74,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             return NoContent();
         }
 
+        [AllowAnonymous]
         // POST: api/CustomerMaterials
         [HttpPost]
         public async Task<ActionResult<CustomerMaterial>> PostCustomerMaterial(CustomerMaterial customerMaterial)

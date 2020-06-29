@@ -21,14 +21,10 @@ namespace HelpingHands.Models
         [BindProperty]
         public string Gender { get; set; }
         public string[] Genders = new[] { "Male", "Female", "Unspecified" };
-        [Required]
         [Display(Name = "Address")]
         public string Address1 { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
-        public string State { get; set; }
-        [Required]
+        public string City { get; set; } 
+        public string State { get; set; } 
         [Display(Name= "Postal Code")]
         public string PostalCode { get; set; } 
         [Display(Name = "Start Date")]
@@ -53,14 +49,15 @@ namespace HelpingHands.Models
         [Required]
         [Display(Name = "Last Name")]
         public string FamilyName {get; set;}
-        public string Nickname {get; set; }
-        [Required]
+        public string Nickname {get; set; } 
         [Display(Name = "Company")]
         public string CompanyName {get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string EmailAddress {get; set; } 
+        [Display(Name = "Company Type")]
+        public string CompanyType { get; set; }
         public DateTime Birthday {get; set;}
         public string ReferenceId {get; set;}
         public string Note {get; set;} 

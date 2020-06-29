@@ -74,6 +74,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             return NoContent();
         }
 
+        [AllowAnonymous]
         // POST: api/CustomerIndustries
         [HttpPost]
         public async Task<ActionResult<CustomerIndustry>> PostCustomerIndustry(CustomerIndustry customerIndustry)

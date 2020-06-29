@@ -54,6 +54,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             return customer;
         }
 
+        [AllowAnonymous]
         // PUT: api/Customers/5
         [HttpPut("{id}")]
         public async Task<ActionResult<Customer>> PutCustomer(string id, Customer customer)
@@ -84,6 +85,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             return customer;
         }
 
+        [AllowAnonymous]
         // POST: api/Customers
         [HttpPost]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)

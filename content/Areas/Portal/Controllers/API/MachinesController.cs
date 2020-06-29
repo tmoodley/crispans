@@ -23,6 +23,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: api/Machines
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Machine>>> GetMachines()
@@ -74,6 +75,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             return NoContent();
         }
 
+        [AllowAnonymous]
         // POST: api/Machines
         [HttpPost]
         public async Task<ActionResult<Machine>> PostMachine(Machine machine)
