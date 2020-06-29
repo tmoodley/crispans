@@ -46,12 +46,13 @@
                             <div class="form-group">
                               <label>Confirm Password</label>
                               <b-form-input v-model="user.confirmPassword" type="password" placeholder="Enter Password"></b-form-input>
+                              <span v-if="user.password != null && user.password != user.confirmPassword">Please make sure passwords are the same</span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <b-button variant="success" type="submit" class="pull-right">SAVE</b-button>
+                    <b-button variant="success" type="submit" class="pull-right" :disabled="user.password != user.confirmPassword">SAVE</b-button>
                   </form>
                 </b-tab>
                 <b-tab body title="Details">
@@ -62,7 +63,7 @@
                           <div class="col-md-6">
                             <b-form-group label="Select your type">
                               <b-form-radio-group id="btn-radios-2"
-                                                  v-model="store.company.companyType"
+                                                  v-model="selected"
                                                   :options="options"
                                                   buttons
                                                   button-variant="outline-primary"
@@ -222,8 +223,7 @@
       options: [
         { text: 'I am a Buyer', value: 'buyer' },
         { text: 'I am a Manufacturer', value: 'manufacturer' },  
-      ],
-      email: JSON.parse(localStorage.getItem('user')).username
+      ], 
       }
     },
     methods: {
@@ -232,6 +232,7 @@
     ]), 
     save() {
       event.preventDefault();
+      this.store.company.companyType = this.selected;
       var self = this;
       return axios
         .put('/portal/api/customers/' + this.store.company.id, this.store.company)
