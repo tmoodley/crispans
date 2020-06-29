@@ -12,7 +12,7 @@
                 <b-tab body :disabled="isCreated">
                   <template v-slot:title>
                     <strong>Create Account</strong>
-                    <b-spinner type="border" small v-if="isSaving"></b-spinner>
+                    <img v-show="isSaving" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                     <i class="fa fa-check" v-if="isCreated"></i>
                   </template>
                   <form v-on:submit="create">
@@ -57,10 +57,10 @@
                         </div>
                       </div>
                     </div>
-                    <b-button variant="success" type="submit" class="pull-right" :disabled="user.password != user.confirmPassword">SAVE</b-button>
+                    <b-button variant="success" type="submit" class="pull-right" :disabled="user.password != user.confirmPassword || isSaving">SAVE</b-button>
                   </form>
                 </b-tab>
-                <b-tab body :disabled="isDetailsSaved">
+                <b-tab body :disabled="isDetailsSaved || !isCreated">
                   <template v-slot:title>
                     <strong>Details</strong>
                     <i class="fa fa-check" v-if="isDetailsSaved"></i>

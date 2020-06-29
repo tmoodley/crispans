@@ -5,7 +5,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li id="theme_selector" class="dropdown" style="cursor: pointer;">
+    <li id="theme_selector" class="dropdown nav-item mt-0" style="cursor: pointer;">
         <a class="nav-link smoth-scroll" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>@User.Identity.Name</span>
         </a>
@@ -57,7 +57,7 @@
 }
 else
 {
-    <li class="nav-item">
+    <li class="nav-item mt-0">
         <a class="nav-link smoth-scroll" href="~/portal/dashboard">Login</a>
     </li>
 }
