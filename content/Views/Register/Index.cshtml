@@ -11,9 +11,10 @@
 </section>
 @section Scripts {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css" integrity="sha256-AgL8yEmNfLtCpH+gYp9xqJwiDITGqcwAbI8tCfnY2lw=" crossorigin="anonymous" />
- 
+    <link href="~/dist-register/vendor.css" rel="stylesheet" asp-append-version="true" />
+
     <!-- Custom scripts for all pages-->
-    <script src="~/dist/vendor.js" asp-append-version="true"></script>
+    <script src="~/dist-register/vendor.js" asp-append-version="true"></script>
     <script src="~/dist-register/register-main.js" asp-append-version="true"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

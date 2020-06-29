@@ -52,7 +52,7 @@ module.exports = () => {
       new VueLoaderPlugin(),
       new webpack.DllReferencePlugin({
         context: __dirname,
-        manifest: require('./wwwroot/dist/vendor-manifest.json')
+        manifest: require('./wwwroot/dist-register/vendor-manifest.json')
       })
     ].concat(isDevBuild ? [
       // Plugins that apply in development builds only
