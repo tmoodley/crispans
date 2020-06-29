@@ -23,6 +23,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: api/Certifications
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Certification>>> GetCertifications()

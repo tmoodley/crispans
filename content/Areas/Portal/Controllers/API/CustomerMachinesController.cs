@@ -74,6 +74,7 @@ namespace Vue2Spa.Areas.Portal.Controllers.API
             return NoContent();
         }
 
+        [AllowAnonymous]
         // POST: api/CustomerMachines
         [HttpPost]
         public async Task<ActionResult<CustomerMachine>> PostCustomerMachine(CustomerMachine customerMachine)
