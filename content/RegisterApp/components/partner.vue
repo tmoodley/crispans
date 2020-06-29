@@ -55,7 +55,7 @@
                     <b-button variant="success" type="submit" class="pull-right" :disabled="user.password != user.confirmPassword">SAVE</b-button>
                   </form>
                 </b-tab>
-                <b-tab body title="Details">
+                <b-tab body title="Details" :disabled="!isCreated">
                   <form v-on:submit="save">
                     <div class="row">
                       <div class="col-md-12">
@@ -138,7 +138,7 @@
                     <b-button variant="success" type="submit" class="pull-right">SAVE</b-button>
                   </form>
                 </b-tab>
-                <b-tab body title="Industries">
+                <b-tab body title="Industries" :disabled="!isCreated">
                   <div class="row">
                     <div class="col-md-12">
                       <industry></industry>
@@ -146,7 +146,7 @@
                     </div>
                   </div>
                 </b-tab>
-                <b-tab body title="Technologies">
+                <b-tab body title="Technologies" :disabled="!isCreated">
                   <div class="row">
                     <div class="col-md-12">
                       <machine></machine>
@@ -154,7 +154,7 @@
                     </div>
                   </div>
                 </b-tab>
-                <b-tab body title="Materials">
+                <b-tab body title="Materials" :disabled="!isCreated">
                   <div class="row">
                     <div class="col-md-12">
                       <material></material>
@@ -162,7 +162,7 @@
                     </div>
                   </div>
                 </b-tab>
-                <b-tab body title="Certifications">
+                <b-tab body title="Certifications" :disabled="!isCreated">
                   <div class="row">
                     <div class="col-md-12">
                       <certification></certification>
@@ -211,7 +211,7 @@
   data () {
     return {
       isCreated: false,
-      tabIndex: 1,
+      tabIndex: 0,
       user: {
         email: '',
         givenName: '',

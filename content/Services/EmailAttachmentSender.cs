@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace HelpingHands.Services
             };
             if (isSendInfo)
             {
-                mail.Attachments.Add(new Attachment(_host.WebRootPath + "/assets/Getting-Enrolled-Tela-Doc.pdf"));
+                //mail.Attachments.Add(new Attachment(_host.WebRootPath + "/assets/Getting-Enrolled-Tela-Doc.pdf"));
             }
 
             return client.SendMailAsync(mail); 
