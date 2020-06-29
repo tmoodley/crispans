@@ -28,8 +28,8 @@ module.exports = () => {
       vendor: ['bootstrap', 'bootstrap/dist/css/bootstrap.css','bootstrap-vue/dist/bootstrap-vue.css','event-source-polyfill', 'vue', 'vuex', 'axios', 'vue-router', 'jquery', 'vue2-dropzone/dist/vue2Dropzone.min.css','vue-wysiwyg/dist/vueWysiwyg.css']
     },
     output: {
-      path: path.join(__dirname, 'wwwroot', 'dist'),
-      publicPath: '/dist/',
+      path: path.join(__dirname, 'wwwroot', 'dist-register'),
+      publicPath: '/dist-register/',
       filename: '[name].js',
       library: '[name]_[hash]'
     },
@@ -48,7 +48,7 @@ module.exports = () => {
         /* For modal, you will need to add tether */
       }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
       new webpack.DllPlugin({
-        path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
+        path: path.join(__dirname, 'wwwroot', 'dist-register', '[name]-manifest.json'),
         name: '[name]_[hash]'
       })
     ]
