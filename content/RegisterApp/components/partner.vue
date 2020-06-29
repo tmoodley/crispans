@@ -9,7 +9,12 @@
           <div class="card-body">
             <b-card>
               <b-tabs pills card v-model="tabIndex">
-                <b-tab body title="Create Account" :disabled="isCreated">
+                <b-tab body :disabled="isCreated">
+                  <template v-slot:title>
+                    <strong>Create Account</strong>
+                    <b-spinner type="border" small v-if="isSaving"></b-spinner>
+                    <i class="fa fa-check" v-if="isCreated"></i>
+                  </template>
                   <form v-on:submit="create">
                     <div class="row">
                       <div class="col-md-12">
@@ -35,7 +40,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row"> 
+                        <div class="row">
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Password</label>
@@ -55,7 +60,11 @@
                     <b-button variant="success" type="submit" class="pull-right" :disabled="user.password != user.confirmPassword">SAVE</b-button>
                   </form>
                 </b-tab>
-                <b-tab body title="Details" :disabled="!isCreated">
+                <b-tab body :disabled="isDetailsSaved">
+                  <template v-slot:title>
+                    <strong>Details</strong>
+                    <i class="fa fa-check" v-if="isDetailsSaved"></i>
+                  </template>
                   <form v-on:submit="save">
                     <div class="row">
                       <div class="col-md-12">
@@ -211,6 +220,8 @@
   data () {
     return {
       isCreated: false,
+      isSaving: false,
+      isDetailsSaved: false,
       tabIndex: 0,
       user: {
         email: '',
@@ -239,10 +250,12 @@
         .then(response => {
           self.store.company = response.data; 
           self.tabIndex++;
+          self.isDetailsSaved = true;
         })
       },
       create() {
         event.preventDefault();
+        this.isSaving = true;
         var self = this;
         return axios
           .post('/portal/api/register/', self.user)
@@ -250,6 +263,7 @@
             self.store.company = response.data;
             self.tabIndex++;
             self.isCreated = true;
+            self.isSaving = false;
           })
       }
     }, 
