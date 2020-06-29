@@ -56,6 +56,8 @@ namespace HelpingHands.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string EmailAddress {get; set; } 
+        [Display(Name = "Company Type")]
+        public string CompanyType { get; set; }
         public DateTime Birthday {get; set;}
         public string ReferenceId {get; set;}
         public string Note {get; set;} 

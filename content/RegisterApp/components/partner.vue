@@ -62,7 +62,7 @@
                           <div class="col-md-6">
                             <b-form-group label="Select your type">
                               <b-form-radio-group id="btn-radios-2"
-                                                  v-model="selected"
+                                                  v-model="store.company.companyType"
                                                   :options="options"
                                                   buttons
                                                   button-variant="outline-primary"
