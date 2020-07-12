@@ -53,11 +53,11 @@ namespace Vue2Spa
 
             services.AddDistributedMemoryCache();
 
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 443;
-            });
+            //services.AddHttpsRedirection(options =>
+            //{
+            //    options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+            //    options.HttpsPort = 443;
+            //});
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -205,9 +205,9 @@ namespace Vue2Spa
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             //for ssl certs
-            var options = new RewriteOptions();
-            options.Rules.Add(new RedirectToNonWwwRule());
-            app.UseRewriter(options);
+            //var options = new RewriteOptions();
+            //options.Rules.Add(new RedirectToNonWwwRule());
+            //app.UseRewriter(options);
 
             if (env.IsDevelopment())
             {
@@ -228,7 +228,7 @@ namespace Vue2Spa
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
