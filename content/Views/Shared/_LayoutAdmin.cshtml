@@ -1,198 +1,199 @@
-<!DOCTYPE html>
-<html>
+@using Microsoft.Extensions.Options;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="An online platform creating access to quality manufacturing has never been easier">
-    <meta name="keywords" content="An online platform creating access to quality manufacturing has never been easier">
-    <meta name="author" content="Capacitym :: DRB ">
-    <title>@ViewData["Title"] - Capacitym</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.css">
-    <!-- Icofont Css -->
-    <link rel="stylesheet" href="/plugins/fontawesome/css/all.css">
-    <!-- animate.css -->
-    <link rel="stylesheet" href="/plugins/animate-css/animate.css">
-    <!-- Icofont -->
-    <link rel="stylesheet" href="/plugins/icofont/icofont.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158813007-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-158813007-1');
-    </script>
-    @RenderSection("Styles", required: false)
+    <meta name="description" content="Acansaz group is focus on the mining sector in Southern Africa.  We find quality mining projects and help develop them into profitable ventures.">
+    <meta name="keywords" content="Acansaz group is focus on the mining sector in Southern Africa.  We find quality mining projects and help develop them into profitable ventures.">
+    <meta name="author" content="Acansaz Group">
+    <title>@ViewData["Title"] - Acansaz Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/flickity.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
-    <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
-        <div class="container">
-            <a class="navbar-brand mr-0" style="width:20%" href="/">
-                <img src="~/assets/img/LOGO.png" alt="" style="width:100%; max-width:224px; min-width:150px;" class="img-fluid b-logo">
-            </a>
-            <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-                    <i class="fa fa-bars"></i>
-                </span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/service">Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/pricing">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/partner">Partner</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoth-scroll" href="/contact">Contact</a>
-                    </li>
-                    <partial name="_LoginPartial" />
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <partial name="_CookieConsentPartial" />
-    <section id="intro" class="section-padding">
-        <div class="container">
-            @RenderBody()
-        </div>
-    </section>
-            <!--  FOOTER AREA START  -->
-            <section id="footer" class="section-padding">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-sm-8 col-md-8">
-                            <div class="footer-widget footer-link">
-                                <h4>We provide a platform<br> to help grow your business rapidly.</h4>
-                                <p>An online platform creating access to quality manufacturing has never been easier.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-sm-4 col-md-4">
-                            <div class="footer-widget footer-link">
-                                <h4>About</h4>
-                                <ul>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Service</a></li>
-                                    <li><a href="#">Pricing</a></li>
-                                    <li><a href="#">Team</a></li>
-                                    <li><a href="#">Testimonials</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-sm-6 col-md-6">
-                            <div class="footer-widget footer-link">
-                                <h4>Quick Links</h4>
-                                <ul>
-                                    <li><a href="#">How it Works</a></li>
-                                    <li><a href="#">Support</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Report Bug</a></li>
-                                    <li><a href="#">License</a></li>
-                                    <li><a href="#">Terms & Condition</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-md-6">
-                            <div class="footer-widget footer-text">
-                                <h4>Our location</h4>
-                                <p class="mail"><span>Mail:</span> support@capacitym.com</p>
-                                <p><span>Phone :</span>+226-750-5643</p>
-                                <p><span>Location:</span> 102 Hickory Hollow Cres, ON N2N 1X9</p>
-                            </div>
-                        </div>
+<body class=" ">
+    <a id="start"></a>
+    <div class="nav-container ">
+        <div class="bar bar--sm visible-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 col-md-2">
+                        <a href="/">
+                            <img class="logo logo-dark" alt="logo" src="~/images/long-logo-dark.png" />
+                            <img class="logo logo-light" alt="logo" src="/images/long-logo-light.png" />
+                        </a>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <div class="footer-copy">
-                                © 2022 Capacitym All Rights Reserved.
-                            </div>
-                        </div>
+                    <div class="col-9 col-md-10 text-right">
+                        <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
+                            <i class="icon icon--sm stack-interface stack-menu"></i>
+                        </a>
                     </div>
                 </div>
-            </section>
-            <!--  FOOTER AREA END  -->
-            <!-- Footer -->
-            <section id="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                            <ul class="list-unstyled list-inline social text-center">
-                                <li class="list-inline-item"><a href="https://www.facebook.com/Capacitym"><i class="fa fa-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="https://twitter.com/capacitym_com"><i class="fa fa-twitter"></i></a></li>
-
-
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </div>
+        <!--end bar-->
+        <nav id="menu1" class="bar bar--sm bar-1 hidden-xs bar--absolute">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1 col-md-2 hidden-xs">
+                        <div class="bar__module">
+                            <a href="/">
+                                <img class="logo logo-dark" alt="logo" src="~/images/long-logo-dark.png" />
+                                <img class="logo logo-light" alt="logo" src="/images/long-logo-light.png" />
+                            </a>
+                        </div>
+                        <!--end module-->
+                    </div>
+                    <div class="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
+                        <div class="bar__module">
+                            <ul class="menu-horizontal text-left">
+                                <li>
+                                    <a href="/">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/about">
+                                        About
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                        </hr>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-                            <p><u><a href="https://capacitym.com/">Capacitym</a></u> </p>
+                        <!--end module-->
+                        <div class="bar__module">
+                            <a class="btn btn--sm type--uppercase" href="/register/">
+                                <span class="btn__text">
+                                    Register
+                                </span>
+                            </a>
+                            <a class="btn btn--sm btn--primary type--uppercase" href="/Identity/Account/Login">
+                                <span class="btn__text">
+                                    Log In
+                                </span>
+                            </a>
                         </div>
+                        <!--end module-->
                     </div>
                 </div>
-            </section>
-            <!--  FOOTER AREA END  -->
-            <!--
-        Essential Scripts
-        =====================================-->
-            <!-- Main jQuery -->
-            <script src="/plugins/jquery/jquery.min.js"></script>
-            <!-- Bootstrap 4.3.1 -->
-            <script src="/plugins/bootstrap/js/popper.min.js"></script>
-            <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-            <!-- Woow animtaion -->
-            <script src="/plugins/counterup/wow.min.js"></script>
-            <script src="/plugins/counterup/jquery.easing.1.3.js"></script>
-            <!-- Counterup -->
-            <script src="/plugins/counterup/jquery.waypoints.js"></script>
-            <script src="/plugins/counterup/jquery.counterup.min.js"></script>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </nav>
+        <!--end bar-->
+    </div>
+    <div class="main-container">
+        @RenderBody()
+        <footer class="space--sm footer-1 text-center-xs ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline list--hover">
+                            <li>
+                                <a href="#">
+                                    <span>Our Company</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Locations</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Work With Us</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 text-right text-center-xs">
+                        <ul class="social-list list-inline list--hover">
+                            <li>
+                                <a href="#">
+                                    <i class="socicon socicon-google icon icon--xs"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="socicon socicon-twitter icon icon--xs"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="socicon socicon-facebook icon icon--xs"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="socicon socicon-instagram icon icon--xs"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn type--uppercase">
+                            <span class="btn__text">
+                                Contact Us
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <!--end of row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="logo" alt="logo" src="~/images/long-logo-dark.png" />
+                        <span class="type--fine-print">
+                            &copy;
+                            <span class="update-year"></span> Stack Inc.
+                        </span>
+                        <a class="type--fine-print" href="#">Privacy Policy</a>
+                        <a class="type--fine-print" href="#">Legal</a>
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </footer>
+    </div>
+    <!--<div class="loader"></div>-->
+    <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+        <i class="stack-interface stack-up-open-big"></i>
+    </a>
 
-            <!-- Google Map -->
-            <script src="/plugins/google-map/gmap3.min.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
-            <!-- Contact Form -->
-            <script src="/plugins/jquery/contact.js"></script>
-            <script src="/js/custom.js"></script>
 
-            @RenderSection("Scripts", required: false)
-<style> 
-        div#cookieConsent {
-            z-index: 10000;
-        } 
-        .trans-navigation {
-            background: black;
-        }
-
-        table.dataTable thead tr {
-            background-color: black;
-            color: white;
-        }
-</style>
-
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/flickity.min.js"></script>
+    <script src="/js/easypiechart.min.js"></script>
+    <script src="/js/parallax.js"></script>
+    <script src="/js/typed.min.js"></script>
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/isotope.min.js"></script>
+    <script src="/js/ytplayer.min.js"></script>
+    <script src="/js/lightbox.min.js"></script>
+    <script src="/js/granim.min.js"></script>
+    <script src="/js/jquery.steps.min.js"></script>
+    <script src="/js/countdown.min.js"></script>
+    <script src="/js/twitterfetcher.min.js"></script>
+    <script src="/js/spectragram.min.js"></script>
+    <script src="/js/smooth-scroll.min.js"></script>
+    <script src="/js/scripts.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
