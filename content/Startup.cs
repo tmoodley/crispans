@@ -237,7 +237,7 @@ namespace Vue2Spa
            
             CreateUserRoles(serviceProvider).Wait(); 
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseSignalR(routes =>
